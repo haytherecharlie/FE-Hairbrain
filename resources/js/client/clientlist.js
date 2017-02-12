@@ -80,10 +80,7 @@ function insertLeadingLetters(req, i) {
  * Client List -> GET
 *******************************************/
 function clientListAJAX() {
-    if(!userid || !jwt) {
-        window.location.href = window.location.origin + '/';
-        return false;
-    }
+    cookieCheck();
 
     var settings = {
         "async": true,

@@ -3,6 +3,13 @@ var userid      = $.cookie('userid'),
     clients     = [];
     apiurl     = 'http://localhost:8080/';
 
+function cookieCheck() {
+    if(!userid || !token) {
+        window.location.href = window.location.origin + '/';
+        return false;
+    }
+}
+
 function openModal() {
     $('.modal').modal('show');
 }
