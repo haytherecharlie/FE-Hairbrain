@@ -5,7 +5,7 @@
 * Last Modified: February 11th 2017
 * Author: Charlie Hay
 /******************************************/
-var Register = (function() {
+var ClientAdd = (function() {
 
 //----------------------------------------------------------------
 
@@ -16,14 +16,16 @@ var Register = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var registerForm = $('#register-form'),
-    firstname    = $('input[name="firstname"]'),
-    lastname     = $('input[name="lastname"]'),
-    email        = $('input[name="email"]'),
-    password     = $('input[name="password"]'),
-    phone        = $('input[name="phone"]')
-    salon        = $('input[name="salon"]'),
-    avatar       = $('input[name="avatar"]');
+var clientAddForm = $('#clientaddform'),
+    firstname     = $('#clientaddform input[name="firstname"]'),
+    lastname      = $('#clientaddform input[name="lastname"]'),
+    email         = $('#clientaddform input[name="email"]'),
+    phone         = $('#clientaddform input[name="phone"]')
+    notes         = $('#clientaddform textarea[name="notes"]');
+    photofront    = $('#clientaddform input[name="photofront"]');
+    photoleft     = $('#clientaddform input[name="photoleft"]');
+    photoback     = $('#clientaddform input[name="photoback"]');
+    photoright    = $('#clientaddform input[name="photoright"]');
 
 //----------------------------------------------------------------
 
@@ -37,14 +39,11 @@ var registerForm = $('#register-form'),
 						 // LISTENERS
 
 //---------------------------------------------------------------/
-
-/*******************************************
- * Submit Form
-*******************************************/
-registerForm.submit( function(e) {
+clientAddForm.submit( function(e) {
     e.preventDefault();
-    registerFormAJAX();
+    clientAddFormAJAX();
 });
+
 
 //----------------------------------------------------------------
 
@@ -61,6 +60,7 @@ registerForm.submit( function(e) {
 //---------------------------------------------------------------/
 
 
+
 //----------------------------------------------------------------
 
 						 // AJAX CALLS
@@ -68,25 +68,28 @@ registerForm.submit( function(e) {
 //---------------------------------------------------------------/
 
 /*******************************************
- * Login Form -> POST
+ * Add Client Form -> POST
 *******************************************/
-function registerFormAJAX() {
+function clientAddFormAJAX() {
     var form = new FormData();
-    form.append("email", email.val());
-    form.append("password", password.val());
-    form.append("phone", phone.val());
-    form.append("salon", salon.val());
-    form.append("avatar", avatar[0].files[0], 'avatar.jpg');
     form.append("firstname", firstname.val());
     form.append("lastname", lastname.val());
+    form.append("email", email.val());
+    form.append("phone", phone.val());
+    form.append("notes", notes.val());
+    form.append("photofront", photofront[0].files[0], 'photofront.jpg');
+    form.append("photoleft", photoleft[0].files[0], 'photoleft.jpg');
+    form.append("photoback", photoback[0].files[0], 'photoback.jpg');
+    form.append("photoright", photoright[0].files[0], 'photoright.jpg');
 
     var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost:8080/register",
+    "url": "http://localhost:8080/client/add/" + userid,
     "method": "POST",
     "headers": {
         "cache-control": "no-cache",
+        "Authorization": "Bearer " + jwt
     },
     "processData": false,
     "contentType": false,
@@ -94,8 +97,12 @@ function registerFormAJAX() {
     "data": form
     }
 
-    $.ajax(settings).done(function (response) {
-    console.log(response);
+    $.ajax(settings)
+    .done(function (req, res) {
+        console.log(res);
+        if(res === "success") { 
+            ClientList.clientListAJAX();
+        }
     });
 }
 
@@ -108,6 +115,6 @@ function registerFormAJAX() {
 /*******************************************
  * Main Function
 *******************************************/
-registerForm.validate();
+clientAddForm.validate();
 
-})(); // END OF REGISTER.JS
+})(); // END OF LOGIN.JS

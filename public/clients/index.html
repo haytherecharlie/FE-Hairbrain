@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- TITLE -->
+	<title>Hairbrain | Register</title>
+
+	<link rel="apple-touch-icon" sizes="57x57" href="../app/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="../app/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="../app/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="../app/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="../app/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="../app/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="../app/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="../app/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../app/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="../app/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../app/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="../app/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../app/favicon/favicon-16x16.png">
+	<link rel="manifest" href="../app/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="../app/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+	<!-- VENDOR STYLESHEET -->
+	<link rel="stylesheet" type="text/css" href="../app/styles/vendor.css">
+	<!-- CUSTOM STYLESHEET -->
+	<link rel="stylesheet" type="text/css" href="../app/styles/client.css">
+
+</head>
+<body>
+
+    <header>Hairbrain</header>
+    <main>
+
+        <hr> 
+
+        <div class="clientlist">
+
+        </div>
+
+        <hr>
+
+        <div class="clientprofile">
+            <input id="profilefirstname" readonly/>
+            <input id="profilelastname" readonly/>
+            <input id="profileemail" readonly/>
+            <input id="profilephone" readonly/>
+            <textarea id="profilenotes" readonly></textarea>
+        </div>
+        
+        <hr>
+
+        <!-- ADD CLIENT -->
+        <div class="clientadd">
+            <form id="clientaddform" encType="multipart/form-data">
+                <input name="firstname" placeholder="First name" type="text" required>
+                <input name="lastname" placeholder="Last name" type="text" required>
+                <input name="phone" placeholder="Phone #" type="text" data-mask="1(000)000-0000" required>
+                <input name="email" placeholder="Email" type="email" required>
+                <input name="photofront" type="file" accept="image/*" capture="camera" required>
+                <input name="photoleft" type="file" accept="image/*" capture="camera" required>
+                <input name="photoback" type="file" accept="image/*" capture="camera" required>
+                <input name="photoright" type="file" accept="image/*" capture="camera" required>
+                <textarea name="notes" placeholder="Notes" type="text" required></textarea>
+                <input name="submit" type="submit" value="Save Client" />
+            </form>
+        </div>
+
+        <hr>
+
+    </main>
+
+    <!--<footer>
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="hairbrain-modal" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="hairbrain-modal">Welcome to Hairbrain!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>This application is a tool for Hairdressers who are busy.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </footer>-->
+</body>
+	<!-- VENDOR JS -->
+	<script type="text/javascript" src="../app/js/vendor.js"></script>
+	<!-- APP JS -->
+	<script type="text/javascript" src="../app/js/client.js"></script>
+</html>

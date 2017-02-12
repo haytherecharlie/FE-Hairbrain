@@ -13,6 +13,7 @@
     "gulp-watch": "latest",
     "font-awesome": "latest",
     "normalize-css": "latest",
+    "bootsrap": "latest",
     "jquery": "latest",
     "jquery.cookie": "latest",
     "jquery-validation-dist": "latest",

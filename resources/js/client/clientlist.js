@@ -5,7 +5,7 @@
 * Last Modified: February 11th 2017
 * Author: Charlie Hay
 /******************************************/
-var Register = (function() {
+var ClientList = (function() {
 
 //----------------------------------------------------------------
 
@@ -16,14 +16,7 @@ var Register = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var registerForm = $('#register-form'),
-    firstname    = $('input[name="firstname"]'),
-    lastname     = $('input[name="lastname"]'),
-    email        = $('input[name="email"]'),
-    password     = $('input[name="password"]'),
-    phone        = $('input[name="phone"]')
-    salon        = $('input[name="salon"]'),
-    avatar       = $('input[name="avatar"]');
+var clientList = $('.clientlist');
 
 //----------------------------------------------------------------
 
@@ -31,27 +24,37 @@ var registerForm = $('#register-form'),
 
 //---------------------------------------------------------------/
 
-
 //----------------------------------------------------------------
 
 						 // LISTENERS
 
 //---------------------------------------------------------------/
+function addCCListeners() {
+    $('.clientcard').each(function() {
+        $(this).click(function() {
+            ClientProfile.populateProfile(clientlist[$(this).attr('id')]);
+        })
+    })
+}
 
-/*******************************************
- * Submit Form
-*******************************************/
-registerForm.submit( function(e) {
-    e.preventDefault();
-    registerFormAJAX();
-});
 
 //----------------------------------------------------------------
 
 						 // VIEWS
 
 //---------------------------------------------------------------/
-
+function displayClients(req) {
+    for(var i in req) {
+        clientList.append(`
+            <div class="clientcard" id="${i}">
+                <img src="${apiurl}photo/${userid}/${req[i]._id}/photofront.jpg" height="30">
+                <span class="firstname">${req[i].firstname}</span>
+                <span class="lastname">${req[i].lastname}</span>
+            </div>
+        `);
+    }
+    addCCListeners();
+}
 
 
 //----------------------------------------------------------------
@@ -61,6 +64,7 @@ registerForm.submit( function(e) {
 //---------------------------------------------------------------/
 
 
+
 //----------------------------------------------------------------
 
 						 // AJAX CALLS
@@ -68,34 +72,30 @@ registerForm.submit( function(e) {
 //---------------------------------------------------------------/
 
 /*******************************************
- * Login Form -> POST
+ * Client List -> GET
 *******************************************/
-function registerFormAJAX() {
-    var form = new FormData();
-    form.append("email", email.val());
-    form.append("password", password.val());
-    form.append("phone", phone.val());
-    form.append("salon", salon.val());
-    form.append("avatar", avatar[0].files[0], 'avatar.jpg');
-    form.append("firstname", firstname.val());
-    form.append("lastname", lastname.val());
+function clientListAJAX() {
 
     var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://localhost:8080/register",
-    "method": "POST",
-    "headers": {
-        "cache-control": "no-cache",
-    },
-    "processData": false,
-    "contentType": false,
-    "mimeType": "multipart/form-data",
-    "data": form
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8080/client/all/" + userid,
+        "method": "GET",
+        "headers": {
+            "cache-control": "no-cache",
+            "Authorization": "Bearer " + jwt
+        },
+        "processData": false,
+        "contentType": false
     }
 
-    $.ajax(settings).done(function (response) {
-    console.log(response);
+    $.ajax(settings)
+    .done(function (req, res) {
+        if(res === 'success') {
+            clientlist = req;
+            clientList.empty();
+            displayClients(req);
+        }
     });
 }
 
@@ -108,6 +108,10 @@ function registerFormAJAX() {
 /*******************************************
  * Main Function
 *******************************************/
-registerForm.validate();
+clientListAJAX();
 
-})(); // END OF REGISTER.JS
+return {
+    clientListAJAX: clientListAJAX
+}
+
+})(); // END OF LOGIN.JS

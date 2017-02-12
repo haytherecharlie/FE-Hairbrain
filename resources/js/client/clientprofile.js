@@ -5,7 +5,7 @@
 * Last Modified: February 11th 2017
 * Author: Charlie Hay
 /******************************************/
-var Register = (function() {
+var ClientProfile = (function() {
 
 //----------------------------------------------------------------
 
@@ -16,14 +16,12 @@ var Register = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var registerForm = $('#register-form'),
-    firstname    = $('input[name="firstname"]'),
-    lastname     = $('input[name="lastname"]'),
-    email        = $('input[name="email"]'),
-    password     = $('input[name="password"]'),
-    phone        = $('input[name="phone"]')
-    salon        = $('input[name="salon"]'),
-    avatar       = $('input[name="avatar"]');
+var clientProfile = $('.clientprofile'),
+    firstname     = $('#profilefirstname'),
+    lastname      = $('#profilelastname'),
+    email         = $('#profileemail'),
+    phone         = $('#profilephone'),
+    notes         = $('#profilenotes');
 
 //----------------------------------------------------------------
 
@@ -31,27 +29,27 @@ var registerForm = $('#register-form'),
 
 //---------------------------------------------------------------/
 
-
 //----------------------------------------------------------------
 
 						 // LISTENERS
 
 //---------------------------------------------------------------/
 
-/*******************************************
- * Submit Form
-*******************************************/
-registerForm.submit( function(e) {
-    e.preventDefault();
-    registerFormAJAX();
-});
+
 
 //----------------------------------------------------------------
 
 						 // VIEWS
 
 //---------------------------------------------------------------/
-
+function populateProfile(client) {
+    console.log(client);
+    firstname.val(client.firstname);
+    lastname.val(client.lastname);
+    phone.val(client.phone);
+    email.val(client.email);
+    notes.val(client.notes);
+}
 
 
 //----------------------------------------------------------------
@@ -61,43 +59,14 @@ registerForm.submit( function(e) {
 //---------------------------------------------------------------/
 
 
+
 //----------------------------------------------------------------
 
 						 // AJAX CALLS
 
 //---------------------------------------------------------------/
 
-/*******************************************
- * Login Form -> POST
-*******************************************/
-function registerFormAJAX() {
-    var form = new FormData();
-    form.append("email", email.val());
-    form.append("password", password.val());
-    form.append("phone", phone.val());
-    form.append("salon", salon.val());
-    form.append("avatar", avatar[0].files[0], 'avatar.jpg');
-    form.append("firstname", firstname.val());
-    form.append("lastname", lastname.val());
 
-    var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://localhost:8080/register",
-    "method": "POST",
-    "headers": {
-        "cache-control": "no-cache",
-    },
-    "processData": false,
-    "contentType": false,
-    "mimeType": "multipart/form-data",
-    "data": form
-    }
-
-    $.ajax(settings).done(function (response) {
-    console.log(response);
-    });
-}
 
 //----------------------------------------------------------------
 
@@ -108,6 +77,10 @@ function registerFormAJAX() {
 /*******************************************
  * Main Function
 *******************************************/
-registerForm.validate();
 
-})(); // END OF REGISTER.JS
+
+return {
+    populateProfile: populateProfile
+}
+
+})(); // END OF LOGIN.JS

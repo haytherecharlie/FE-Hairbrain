@@ -64,7 +64,11 @@ gulp.task('client-custom-sass', function() {
 // CLIENT CUSTOM JS ======================
 gulp.task('client-custom-js', function() {
     return gulp.src([
-        'resources/js/client/header.js'
+        'resources/js/client/base.js',
+        'resources/js/client/header.js',
+        'resources/js/client/clientprofile.js',
+        'resources/js/client/clientlist.js',
+        'resources/js/client/clientadd.js'
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('client.js'))
@@ -82,7 +86,7 @@ gulp.task('vendor-css', function () {
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
         'node_modules/font-awesome/css/font-awesome.min.css',
         'node_modules/normalize-css/normalize.css',
-        'resources/sass/base/base.scss'
+        'resources/sass/universal/base.scss'
         ])
     .pipe(concat('vendor.css'))
     .pipe(gulp.dest('./public/app/styles/'))
@@ -92,10 +96,12 @@ gulp.task('vendor-css', function () {
 gulp.task('vendor-js', function() {
     return gulp.src([
         'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/bootstrap/dist/js/bootstrap.min.js',
         'node_modules/moment/moment.js',
         'node_modules/jquery.cookie/jquery.cookie.js',
         'node_modules/jquery-validation-dist/dist/jquery.validate.js',
-        'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js'
+        'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
+        'resources/js/universal/modal.js',
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('vendor.js'))

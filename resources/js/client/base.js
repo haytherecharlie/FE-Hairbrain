@@ -1,0 +1,16 @@
+var userid      = $.cookie('userid'),
+    jwt         = $.cookie('jwt'),
+    clients     = [];
+    apiurl     = 'http://localhost:8080/';
+
+function cookieCheck() {
+    if(!userid || !token) window.location.href = window.location.origin + '/';
+}
+
+function openModal() {
+    $('.modal').modal('show');
+}
+
+function closeModal(modal) {
+    $('.modal').modal('hide');
+}

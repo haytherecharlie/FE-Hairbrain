@@ -41,7 +41,7 @@ var registerForm = $('#register-form'),
 /*******************************************
  * Submit Form
 *******************************************/
-$(registerForm).submit( function(e) {
+registerForm.submit( function(e) {
     e.preventDefault();
     registerFormAJAX();
 });
