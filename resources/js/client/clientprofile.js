@@ -21,6 +21,10 @@ var clientProfile = $('.clientprofile'),
     lastname      = $('#profilelastname'),
     email         = $('#profileemail'),
     phone         = $('#profilephone'),
+    photofront    = $('#profilephotofront'),
+    photoleft     = $('#profilephotoleft'),
+    photoback     = $('#profilephotoback'),
+    photoright    = $('#profilephotoright'),
     notes         = $('#profilenotes');
 
 //----------------------------------------------------------------
@@ -48,6 +52,10 @@ function populateProfile(client) {
     lastname.val(client.lastname);
     phone.val(client.phone);
     email.val(client.email);
+    photofront.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photofront.jpg');
+    photoleft.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoleft.jpg');
+    photoback.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoback.jpg');
+    photoright.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoright.jpg');
     notes.val(client.notes);
 }
 

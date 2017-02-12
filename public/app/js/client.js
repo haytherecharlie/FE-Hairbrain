@@ -3,10 +3,6 @@ var userid      = $.cookie('userid'),
     clients     = [];
     apiurl     = 'http://localhost:8080/';
 
-function cookieCheck() {
-    if(!userid || !token) window.location.href = window.location.origin + '/';
-}
-
 function openModal() {
     $('.modal').modal('show');
 }
@@ -39,6 +35,10 @@ var clientProfile = $('.clientprofile'),
     lastname      = $('#profilelastname'),
     email         = $('#profileemail'),
     phone         = $('#profilephone'),
+    photofront    = $('#profilephotofront'),
+    photoleft     = $('#profilephotoleft'),
+    photoback     = $('#profilephotoback'),
+    photoright    = $('#profilephotoright'),
     notes         = $('#profilenotes');
 
 //----------------------------------------------------------------
@@ -66,6 +66,10 @@ function populateProfile(client) {
     lastname.val(client.lastname);
     phone.val(client.phone);
     email.val(client.email);
+    photofront.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photofront.jpg');
+    photoleft.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoleft.jpg');
+    photoback.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoback.jpg');
+    photoright.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoright.jpg');
     notes.val(client.notes);
 }
 
@@ -141,7 +145,6 @@ function addCCListeners() {
     })
 }
 
-
 //----------------------------------------------------------------
 
 						 // VIEWS
@@ -149,6 +152,7 @@ function addCCListeners() {
 //---------------------------------------------------------------/
 function displayClients(req) {
     for(var i in req) {
+        insertLeadingLetters(req, i);
         clientList.append(`
             <div class="clientcard" id="${i}">
                 <img src="${apiurl}photo/${userid}/${req[i]._id}/photofront.jpg" height="30">
@@ -160,14 +164,19 @@ function displayClients(req) {
     addCCListeners();
 }
 
-
 //----------------------------------------------------------------
 
 						 // LOGIC
 
 //---------------------------------------------------------------/
-
-
+function insertLeadingLetters(req, i) {
+    if (i === '0') 
+        clientList.append(`<div class="letter">${req[i].firstname.charAt(0)}</div>`)
+    if (i > 0 && i < (req.length) ) {
+        if (req[i].firstname.charAt(0) !== req[i-1].firstname.charAt(0))
+            clientList.append(`<div class="letter">${req[i].firstname.charAt(0).toUpperCase()}</div>`);
+    }
+}
 
 //----------------------------------------------------------------
 
@@ -179,6 +188,10 @@ function displayClients(req) {
  * Client List -> GET
 *******************************************/
 function clientListAJAX() {
+    if(!userid || !jwt) {
+        window.location.href = window.location.origin + '/';
+        return false;
+    }
 
     var settings = {
         "async": true,
@@ -263,6 +276,7 @@ var clientAddForm = $('#clientaddform'),
 clientAddForm.submit( function(e) {
     e.preventDefault();
     clientAddFormAJAX();
+    emptyAddForm();
 });
 
 
@@ -279,8 +293,12 @@ clientAddForm.submit( function(e) {
 						 // LOGIC
 
 //---------------------------------------------------------------/
-
-
+function emptyAddForm() {
+    $('#clientaddform input').each(function() {
+        $(this).val('');
+    })
+    notes.val('');
+}
 
 //----------------------------------------------------------------
 

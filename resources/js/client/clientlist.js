@@ -37,7 +37,6 @@ function addCCListeners() {
     })
 }
 
-
 //----------------------------------------------------------------
 
 						 // VIEWS
@@ -45,6 +44,7 @@ function addCCListeners() {
 //---------------------------------------------------------------/
 function displayClients(req) {
     for(var i in req) {
+        insertLeadingLetters(req, i);
         clientList.append(`
             <div class="clientcard" id="${i}">
                 <img src="${apiurl}photo/${userid}/${req[i]._id}/photofront.jpg" height="30">
@@ -56,14 +56,19 @@ function displayClients(req) {
     addCCListeners();
 }
 
-
 //----------------------------------------------------------------
 
 						 // LOGIC
 
 //---------------------------------------------------------------/
-
-
+function insertLeadingLetters(req, i) {
+    if (i === '0') 
+        clientList.append(`<div class="letter">${req[i].firstname.charAt(0)}</div>`)
+    if (i > 0 && i < (req.length) ) {
+        if (req[i].firstname.charAt(0) !== req[i-1].firstname.charAt(0))
+            clientList.append(`<div class="letter">${req[i].firstname.charAt(0).toUpperCase()}</div>`);
+    }
+}
 
 //----------------------------------------------------------------
 
@@ -75,6 +80,10 @@ function displayClients(req) {
  * Client List -> GET
 *******************************************/
 function clientListAJAX() {
+    if(!userid || !jwt) {
+        window.location.href = window.location.origin + '/';
+        return false;
+    }
 
     var settings = {
         "async": true,

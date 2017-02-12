@@ -42,6 +42,7 @@ var clientAddForm = $('#clientaddform'),
 clientAddForm.submit( function(e) {
     e.preventDefault();
     clientAddFormAJAX();
+    emptyAddForm();
 });
 
 
@@ -58,8 +59,12 @@ clientAddForm.submit( function(e) {
 						 // LOGIC
 
 //---------------------------------------------------------------/
-
-
+function emptyAddForm() {
+    $('#clientaddform input').each(function() {
+        $(this).val('');
+    })
+    notes.val('');
+}
 
 //----------------------------------------------------------------
 
