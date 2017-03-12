@@ -31,52 +31,62 @@
 </head>
 <body>
 
-    <header>Hairbrain</header>
+    <!-- HEADER -->
+    <header>
+        <img class="headerlogo" src="../app/img/hairbrain-small.png">
+    </header>
+
+    <!-- MAIN -->
     <main>
 
-        <hr> 
+        <!-- CLIENT LIST -->
+        <div class="clientlist"></div>
 
-        <div class="clientlist">
-
-        </div>
-
-        <hr>
-
+        <!-- CLIENT PROFILE -->
         <div class="clientprofile">
-            <input id="profilefirstname" readonly/>
-            <input id="profilelastname" readonly/>
-            <input id="profileemail" readonly/>
-            <input id="profilephone" readonly/>
-            <img id="profilephotofront" src="" height="30">
-            <img id="profilephotoleft" src="" height="30">
-            <img id="profilephotoback" src="" height="30">
-            <img id="profilephotoright" src="" height="30">
-            <textarea id="profilenotes" readonly></textarea>
+            <!-- CONTACT CONTAINER -->
+            <div class="contactbox container">
+                <div class="coverphoto"></div>
+                <div class="avatarcontainer">
+                    <div class="avatarborder">
+                        <img class="avatar" src="../app/img/profilepic.jpg">
+                    </div>
+                </div>
+                <div class="namecontainer">
+                    <span class="firstname"></span>
+                    <span class="lastname"></span>
+                </div>
+                <div class="email"></div>
+                <div class="phone"></div>
+            </div>
+            <!-- PHOTOS CONTAINER -->
+            <div class="photosbox container">
+                <div class="title">Photos</div>
+                <div class="mainphoto">
+                    <img class="photofront" src="" height="100%">
+                </div>
+                <div class="sidephotos">
+                    <div class="leftphoto thirdheight">
+                        <img class="photoleft" src="" height="33%">
+                    </div>
+                    <div class="backphoto thirdheight">
+                        <img class="photoback" src="" height="33%">
+                    </div>
+                    <div class="rightphoto thirdheight">
+                        <img class="photoright" src="" height="33%">
+                    </div>
+                </div>
+            </div>
+            <!-- NOTES CONTAINER -->
+            <div class="notesbox container">
+                <div class="title">Notes</div>
+                <textarea class="notes" readonly></textarea>
+            </div>
         </div>
-        
-        <hr>
-
-        <!-- ADD CLIENT -->
-        <div class="clientadd">
-            <form id="clientaddform" encType="multipart/form-data">
-                <input name="firstname" placeholder="First name" type="text" required>
-                <input name="lastname" placeholder="Last name" type="text" required>
-                <input name="phone" placeholder="Phone #" type="text" data-mask="1(000)000-0000" required>
-                <input name="email" placeholder="Email" type="email" required>
-                <input name="photofront" type="file" accept="image/*" capture="camera" required>
-                <input name="photoleft" type="file" accept="image/*" capture="camera" required>
-                <input name="photoback" type="file" accept="image/*" capture="camera" required>
-                <input name="photoright" type="file" accept="image/*" capture="camera" required>
-                <textarea name="notes" placeholder="Notes" type="text" required></textarea>
-                <input name="submit" type="submit" value="Save Client" />
-            </form>
-        </div>
-
-        <hr>
 
     </main>
 
-    <!--<footer>
+    <footer>
         <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="hairbrain-modal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -86,7 +96,21 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>This application is a tool for Hairdressers who are busy.</p>
+                     <!-- ADD CLIENT -->
+                    <div class="clientadd">
+                        <form id="clientaddform" encType="multipart/form-data">
+                            <input name="firstname" placeholder="First name" type="text" required>
+                            <input name="lastname" placeholder="Last name" type="text" required>
+                            <input name="phone" placeholder="Phone #" type="text" data-mask="1(000)000-0000" required>
+                            <input name="email" placeholder="Email" type="email" required>
+                            <input name="photofront" type="file" accept="image/*" capture="camera" required>
+                            <input name="photoleft" type="file" accept="image/*" capture="camera" required>
+                            <input name="photoback" type="file" accept="image/*" capture="camera" required>
+                            <input name="photoright" type="file" accept="image/*" capture="camera" required>
+                            <textarea name="notes" placeholder="Notes" type="text" required></textarea>
+                            <input name="submit" type="submit" value="Save Client" />
+                        </form>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -94,7 +118,7 @@
                 </div>
             </div>
         </div>
-    </footer>-->
+    </footer>
 </body>
 	<!-- VENDOR JS -->
 	<script type="text/javascript" src="../app/js/vendor.js"></script>

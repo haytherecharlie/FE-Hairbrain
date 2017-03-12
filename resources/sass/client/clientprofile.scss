@@ -1,0 +1,211 @@
+.clientprofile {
+    background: #F5F5F5;
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    left: 100vw;
+    top: 0;
+    overflow-y: scroll;
+
+
+    .container {
+        position: relative;
+        margin: 10px;
+        width: calc(100% - 20px);
+        background: #FFF;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #CCC;
+    }
+
+    .contactbox {
+        padding: 10px 10px;
+
+        .coverphoto {
+            height: 80px;
+            background: url('../img/profilebg.png') no-repeat center;
+            background-size: cover;
+            border-radius: 5px;
+            margin-bottom: 40px;
+        }
+
+        .avatarcontainer {
+            height: 80px; width: 80px;
+            position: absolute;
+            top: 45px; left: 50%;
+            transform: translateX(-50%);
+
+            .avatarborder {
+                height: 100%; width: 100%;
+                overflow: hidden;
+                position: relative;
+                margin: auto;
+                border: 3px solid #fff;
+                border-radius: 50%;
+
+                img {
+                    position: absolute;
+                    left: 50%; transform: translateX(-50%);
+                    width: 100%;
+                }
+            }   
+        }
+
+        .namecontainer {
+            overflow: hidden;
+            display: inline-block;
+            font-size: 20px;
+
+            .firstname {
+                float: left;
+                margin-right: 2px;
+            }
+
+            .lastname {
+                float: right;
+                margin-left: 2px;
+            }   
+        }
+
+        .email {
+            display: block;
+            margin: 20px 0 25px 40px;
+            position: relative;
+            text-align: left;
+            font-family: hb-light;
+
+            &:before {
+                position: absolute;
+                top: -10px; left: 0px;
+                content: "Email";
+                color: #999;
+                font-size: 10px;
+            }
+            &:after {
+                content: " ";
+                background: url('../img/email.png') no-repeat center;
+                background-size: cover;
+                height: 10px; width: 15px;
+                position: absolute;
+                top: 6px; left: -30px;
+            }
+        }
+
+        .phone {
+            display: block;
+            margin: 25px 0 20px 40px;
+            position: relative;
+            text-align: left;
+            font-family: hb-light;
+
+            &:before {
+                position: absolute;
+                top: -12px; left: 0px;
+                content: "Phone";
+                color: #999;
+                font-size: 10px;
+            }
+            &:after {
+                content: " ";
+                background: url('../img/phone.png') no-repeat center;
+                background-size: cover;
+                height: 15px; width: 15px;
+                position: absolute;
+                top: 2px; left: -30px;
+            }
+        }
+    }
+
+    .photosbox {
+        padding: 10px 10px;
+
+        .title {
+            width: 100%;
+            text-align: left;
+            padding-left: 20px;
+            margin-bottom: 7px;
+            position: relative;
+
+            &:before {
+                content: " ";
+                background: url('../img/camera-icon.png') no-repeat center;
+                background-size: cover;
+                height: 12px; width: 15px;
+                position: absolute;
+                top: 4px; left: 0px;
+            }
+        }
+
+        .mainphoto {
+            width: 66%;
+            float: left;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+
+            img {
+                height: 100%;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        .sidephotos {
+            width: 33%;
+            float: right;
+            height: 300px;
+
+            .thirdheight {
+                height: 96.5px;
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+
+                img {
+                    height: 100%;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+
+                &.leftphoto {
+                    margin-bottom: 5px;
+                }
+                &.backphoto {
+                    margin-top: 5px;
+                    margin-bottom: 5px;
+                }
+                &.rightphoto {
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+
+    .notesbox {
+        padding: 10px;
+        .title {
+            width: 100%;
+            text-align: left;
+            padding-left: 20px;
+            margin-bottom: 7px;
+            position: relative;
+
+            &:before {
+                content: " ";
+                background: url('../img/notes.png') no-repeat center;
+                background-size: cover;
+                height: 13px; width: 13px;
+                position: absolute;
+                top: 4px; left: 0px;
+            }
+        }
+        .notes {
+            height: 100px;
+            width: 100%;
+            border: 1px solid #000;
+            border-radius: 5px;
+            padding: 5px;
+        }
+    }
+}

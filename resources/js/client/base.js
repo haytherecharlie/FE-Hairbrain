@@ -4,7 +4,7 @@ var userid      = $.cookie('userid'),
     apiurl     = 'http://localhost:8080/';
 
 function cookieCheck() {
-    if(!userid || !token) {
+    if(!userid || !jwt) {
         window.location.href = window.location.origin + '/';
         return false;
     }

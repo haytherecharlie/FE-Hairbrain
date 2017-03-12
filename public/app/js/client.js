@@ -3,6 +3,13 @@ var userid      = $.cookie('userid'),
     clients     = [];
     apiurl     = 'http://localhost:8080/';
 
+function cookieCheck() {
+    if(!userid || !jwt) {
+        window.location.href = window.location.origin + '/';
+        return false;
+    }
+}
+
 function openModal() {
     $('.modal').modal('show');
 }
@@ -31,15 +38,15 @@ var ClientProfile = (function() {
  * Global Variables
 *******************************************/
 var clientProfile = $('.clientprofile'),
-    firstname     = $('#profilefirstname'),
-    lastname      = $('#profilelastname'),
-    email         = $('#profileemail'),
-    phone         = $('#profilephone'),
-    photofront    = $('#profilephotofront'),
-    photoleft     = $('#profilephotoleft'),
-    photoback     = $('#profilephotoback'),
-    photoright    = $('#profilephotoright'),
-    notes         = $('#profilenotes');
+    firstname     = $('.clientprofile .firstname'),
+    lastname      = $('.clientprofile .lastname'),
+    email         = $('.clientprofile .email'),
+    phone         = $('.clientprofile .phone'),
+    photofront    = $('.clientprofile .photofront'),
+    photoleft     = $('.clientprofile .photoleft'),
+    photoback     = $('.clientprofile .photoback'),
+    photoright    = $('.clientprofile .photoright'),
+    notes         = $('.clientprofile .notes');
 
 //----------------------------------------------------------------
 
@@ -62,10 +69,10 @@ var clientProfile = $('.clientprofile'),
 //---------------------------------------------------------------/
 function populateProfile(client) {
     console.log(client);
-    firstname.val(client.firstname);
-    lastname.val(client.lastname);
-    phone.val(client.phone);
-    email.val(client.email);
+    firstname.text(client.firstname);
+    lastname.text(client.lastname);
+    phone.text(client.phone);
+    email.text(client.email);
     photofront.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photofront.jpg');
     photoleft.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoleft.jpg');
     photoback.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoback.jpg');
@@ -155,7 +162,9 @@ function displayClients(req) {
         insertLeadingLetters(req, i);
         clientList.append(`
             <div class="clientcard" id="${i}">
-                <img src="${apiurl}photo/${userid}/${req[i]._id}/photofront.jpg" height="30">
+                <div class="avatar">
+                    <img src="${apiurl}photo/${userid}/${req[i]._id}/photofront.jpg" height="30">
+                </div>
                 <span class="firstname">${req[i].firstname}</span>
                 <span class="lastname">${req[i].lastname}</span>
             </div>
@@ -188,10 +197,7 @@ function insertLeadingLetters(req, i) {
  * Client List -> GET
 *******************************************/
 function clientListAJAX() {
-    if(!userid || !jwt) {
-        window.location.href = window.location.origin + '/';
-        return false;
-    }
+    cookieCheck();
 
     var settings = {
         "async": true,

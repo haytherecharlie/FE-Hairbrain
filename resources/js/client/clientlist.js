@@ -47,7 +47,9 @@ function displayClients(req) {
         insertLeadingLetters(req, i);
         clientList.append(`
             <div class="clientcard" id="${i}">
-                <img src="${apiurl}photo/${userid}/${req[i]._id}/photofront.jpg" height="30">
+                <div class="avatar">
+                    <img src="${apiurl}photo/${userid}/${req[i]._id}/photofront.jpg" height="30">
+                </div>
                 <span class="firstname">${req[i].firstname}</span>
                 <span class="lastname">${req[i].lastname}</span>
             </div>
