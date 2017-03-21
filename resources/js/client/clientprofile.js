@@ -2,9 +2,12 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: February 11th 2017
+* Last Modified: March 21st 2017
 * Author: Charlie Hay
+*
+* CLIENT PROFILES JS FUNCTIONALITY.
 /******************************************/
+
 var ClientProfile = (function() {
 
 //----------------------------------------------------------------

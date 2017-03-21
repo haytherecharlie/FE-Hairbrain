@@ -1,4 +1,12 @@
-/* File: gulpfile.js */
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* GULPFILE.JS
+/******************************************/
 
 var gulp  = require('gulp');
 var gutil = require('gulp-util');
@@ -65,7 +73,7 @@ gulp.task('client-custom-sass', function() {
 gulp.task('client-custom-js', function() {
     return gulp.src([
         'resources/js/client/base.js',
-        'resources/js/client/header.js',
+        'resources/js/client/nav.js',
         'resources/js/client/clientprofile.js',
         'resources/js/client/clientlist.js',
         'resources/js/client/clientadd.js'
@@ -100,8 +108,7 @@ gulp.task('vendor-js', function() {
         'node_modules/moment/moment.js',
         'node_modules/jquery.cookie/jquery.cookie.js',
         'node_modules/jquery-validation-dist/dist/jquery.validate.js',
-        'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
-        'resources/js/universal/modal.js',
+        'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js'
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('vendor.js'))

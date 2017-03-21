@@ -5847,35 +5847,3 @@ new f(this,e,c))},l=function(b,c,e){e=e||{};var d=a(b).data("mask"),h=JSON.strin
 c))return a(this).data("mask",new f(this,b,c))};a(this).each(g);e&&""!==e&&d&&(clearInterval(a.maskWatchers[e]),a.maskWatchers[e]=setInterval(function(){a(document).find(e).each(g)},h));return this};a.fn.masked=function(a){return this.data("mask").getMaskedVal(a)};a.fn.unmask=function(){clearInterval(a.maskWatchers[this.selector]);delete a.maskWatchers[this.selector];return this.each(function(){var b=a(this).data("mask");b&&b.remove().removeData("mask")})};a.fn.cleanVal=function(){return this.data("mask").getCleanVal()};
 a.applyDataMask=function(b){b=b||a.jMaskGlobals.maskElements;(b instanceof a?b:a(b)).filter(a.jMaskGlobals.dataMaskAttr).each(c)};g={maskElements:"input,td,span,div",dataMaskAttr:"*[data-mask]",dataMask:!0,watchInterval:300,watchInputs:!0,useInput:!/Chrome\/[2-4][0-9]|SamsungBrowser/.test(window.navigator.userAgent)&&g("input"),watchDataMask:!1,byPassKeys:[9,16,17,18,36,37,38,39,40,91],translation:{0:{pattern:/\d/},9:{pattern:/\d/,optional:!0},"#":{pattern:/\d/,recursive:!0},A:{pattern:/[a-zA-Z0-9]/},
 S:{pattern:/[a-zA-Z]/}}};a.jMaskGlobals=a.jMaskGlobals||{};g=a.jMaskGlobals=a.extend(!0,{},g,a.jMaskGlobals);g.dataMask&&a.applyDataMask();setInterval(function(){a.jMaskGlobals.watchDataMask&&a.applyDataMask()},g.watchInterval)},window.jQuery,window.Zepto);
-
-// function setModalMaxHeight(element) {
-//   this.$element     = $(element);  
-//   this.$content     = this.$element.find('.modal-content');
-//   var borderWidth   = this.$content.outerHeight() - this.$content.innerHeight();
-//   var dialogMargin  = $(window).width() < 768 ? 20 : 60;
-//   var contentHeight = $(window).height() - (dialogMargin + borderWidth);
-//   var headerHeight  = this.$element.find('.modal-header').outerHeight() || 0;
-//   var footerHeight  = this.$element.find('.modal-footer').outerHeight() || 0;
-//   var maxHeight     = contentHeight - (headerHeight + footerHeight);
-
-//   this.$content.css({
-//       'overflow': 'hidden'
-//   });
-  
-//   this.$element
-//     .find('.modal-body').css({
-//       'max-height': maxHeight,
-//       'overflow-y': 'auto'
-//   });
-// }
-
-// $('.modal').on('show.bs.modal', function() {
-//   $(this).show();
-//   setModalMaxHeight(this);
-// });
-
-// $(window).resize(function() {
-//   if ($('.modal.in').length != 0) {
-//     setModalMaxHeight($('.modal.in'));
-//   }
-// });

@@ -2,13 +2,16 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: February 11th 2017
+* Last Modified: March 21st 2017
 * Author: Charlie Hay
+*
+* BASE STYLES 
 /******************************************/
-@font-face{font-family:hb-black;src:url(../fonts/hb-black.ttf);font-weight:400}
-@font-face{font-family:hb-bold;src:url(../fonts/hb-bold.ttf);font-weight:400}
-@font-face{font-family:hb-regular;src:url(../fonts/hb-regular.ttf);font-weight:400}
-@font-face{font-family:hb-light;src:url(../fonts/hb-light.ttf);font-weight:400}
+@font-face{font-family:hb-black;src:url(../fonts/hb-black.ttf);font-weight:400;}
+@font-face{font-family:hb-bold;src:url(../fonts/hb-bold.ttf);font-weight:400;}
+@font-face{font-family:hb-regular;src:url(../fonts/hb-regular.ttf);font-weight:400;}
+@font-face{font-family:hb-light;src:url(../fonts/hb-light.ttf);font-weight:400;}
 
-html *{ font-size: 1.1em; color: #000 ; font-family: hb-regular; }
+html *{ font-size: 1.1em; color: #000 ; font-family: hb-regular;}
 body {height: 100vh; width: 100vw; overflow: scroll;}
+a:hover, a:active, a:visited {text-decoration: none; color: inherit;}
