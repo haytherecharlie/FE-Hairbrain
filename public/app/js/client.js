@@ -11,7 +11,7 @@
 var userid      = $.cookie('userid'),
     jwt         = $.cookie('jwt'),
     clients     = [];
-    apiurl     = 'http://localhost:8080/';
+    apiurl      = 'http://localhost:8080/';
 
 function cookieCheck() {
     if(!userid || !jwt) {
@@ -19,6 +19,8 @@ function cookieCheck() {
         return false;
     }
 }
+
+
 
 /*******************************************
 * © 2017 Hairbrain inc.
@@ -41,9 +43,12 @@ var Nav = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var navMenu     = $('.navmenu'),
-	menuItems   = $('.menuitems'),
-	menuOverlay = $('.menuoverlay');
+var navMenu       = $('.navmenu'),
+	menuItems     = $('.menuitems'),
+	menuBox       = $('menu'),
+	navSearch     = $('.navsearch'),
+	exitProfile   = $('.exitprofile'),
+	clientProfile = $('.clientprofile');
 
 //----------------------------------------------------------------
 
@@ -63,17 +68,19 @@ navMenu.click(function() {
 		openMenu();
 });
 
+exitProfile.click(function() {
+	slideClientProfile();
+})
+
 //----------------------------------------------------------------
 
 						 // VIEWS
 
 //---------------------------------------------------------------/
 function openMenu() {
+	menuBox.show();
 	menuItems.animate({
 		bottom: '-=' + menuItems.height()
-	}, 300);
-	menuOverlay.animate({
-		opacity: '1'
 	}, 300);
 	menuItems.addClass('open');
 }
@@ -81,11 +88,34 @@ function openMenu() {
 function closeMenu() {
 	menuItems.animate({
 		bottom: '+=' + menuItems.height()
-	}, 300);
-	menuOverlay.animate({
-		opacity: '0'
-	}, 300);
+	}, 300, function() {
+		menuBox.hide();
+	});
 	menuItems.removeClass('open');
+}
+
+function slideClientProfile() {
+	clientProfile.animate({
+		left: '100vw'
+	}, 500);
+	hideBackBtn();
+	showSearch();
+}
+
+function hideSearch() {
+	navSearch.hide();
+}
+
+function showSearch() {
+	navSearch.show();
+}
+
+function showbackBtn() {
+	exitProfile.show();
+}
+
+function hideBackBtn() {
+	exitProfile.hide();
 }
 
 //----------------------------------------------------------------
@@ -112,7 +142,12 @@ function closeMenu() {
 /*******************************************
  * Main Function
 *******************************************/
-
+return {
+	showSearch: showSearch,
+	hideSearch: hideSearch,
+	showBackBtn: showbackBtn,
+	hideBackBtn: hideBackBtn
+}
 
 })(); // END OF NAV.JS
 /*******************************************
@@ -266,7 +301,8 @@ var ClientList = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var clientList = $('.clientlist');
+var clientList    = $('.clientlist'),
+    clientProfile = $('.clientprofile');
 
 //----------------------------------------------------------------
 
@@ -283,6 +319,11 @@ function addCCListeners() {
     $('.clientcard').each(function() {
         $(this).click(function() {
             ClientProfile.populateProfile(clientlist[$(this).attr('id')]);
+            clientProfile.animate({
+                left: '0'
+            }, 500);
+            Nav.hideSearch();
+            Nav.showBackBtn();
         })
     })
 }
@@ -394,16 +435,18 @@ var ClientAdd = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var clientAddForm = $('#clientaddform'),
-    firstname     = $('#clientaddform input[name="firstname"]'),
-    lastname      = $('#clientaddform input[name="lastname"]'),
-    email         = $('#clientaddform input[name="email"]'),
-    phone         = $('#clientaddform input[name="phone"]')
-    notes         = $('#clientaddform textarea[name="notes"]');
-    photofront    = $('#clientaddform input[name="photofront"]');
-    photoleft     = $('#clientaddform input[name="photoleft"]');
-    photoback     = $('#clientaddform input[name="photoback"]');
-    photoright    = $('#clientaddform input[name="photoright"]');
+var clientAddForm  = $('#clientaddform'),
+    clientAddBtn   = $('.clientadd'),
+    addClientModal = $('.addModal'),
+    firstname      = $('#clientaddform input[name="firstname"]'),
+    lastname       = $('#clientaddform input[name="lastname"]'),
+    email          = $('#clientaddform input[name="email"]'),
+    phone          = $('#clientaddform input[name="phone"]')
+    notes          = $('#clientaddform textarea[name="notes"]');
+    photofront     = $('#clientaddform input[name="photofront"]');
+    photoleft      = $('#clientaddform input[name="photoleft"]');
+    photoback      = $('#clientaddform input[name="photoback"]');
+    photoright     = $('#clientaddform input[name="photoright"]');
 
 //----------------------------------------------------------------
 
@@ -423,13 +466,16 @@ clientAddForm.submit( function(e) {
     emptyAddForm();
 });
 
+clientAddBtn.click(function() {
+    addClientModal.modal('show');
+});
+
 
 //----------------------------------------------------------------
 
 						 // VIEWS
 
 //---------------------------------------------------------------/
-
 
 
 //----------------------------------------------------------------
@@ -499,5 +545,10 @@ function clientAddFormAJAX() {
  * Main Function
 *******************************************/
 clientAddForm.validate();
+
+return {
+    showAddBtn: showAddBtn,
+    hideAddBtn: hideAddBtn
+}
 
 })(); // END OF LOGIN.JS

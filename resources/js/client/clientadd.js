@@ -19,16 +19,18 @@ var ClientAdd = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var clientAddForm = $('#clientaddform'),
-    firstname     = $('#clientaddform input[name="firstname"]'),
-    lastname      = $('#clientaddform input[name="lastname"]'),
-    email         = $('#clientaddform input[name="email"]'),
-    phone         = $('#clientaddform input[name="phone"]')
-    notes         = $('#clientaddform textarea[name="notes"]');
-    photofront    = $('#clientaddform input[name="photofront"]');
-    photoleft     = $('#clientaddform input[name="photoleft"]');
-    photoback     = $('#clientaddform input[name="photoback"]');
-    photoright    = $('#clientaddform input[name="photoright"]');
+var clientAddForm  = $('#clientaddform'),
+    clientAddBtn   = $('.clientadd'),
+    addClientModal = $('.addModal'),
+    firstname      = $('#clientaddform input[name="firstname"]'),
+    lastname       = $('#clientaddform input[name="lastname"]'),
+    email          = $('#clientaddform input[name="email"]'),
+    phone          = $('#clientaddform input[name="phone"]')
+    notes          = $('#clientaddform textarea[name="notes"]');
+    photofront     = $('#clientaddform input[name="photofront"]');
+    photoleft      = $('#clientaddform input[name="photoleft"]');
+    photoback      = $('#clientaddform input[name="photoback"]');
+    photoright     = $('#clientaddform input[name="photoright"]');
 
 //----------------------------------------------------------------
 
@@ -48,13 +50,16 @@ clientAddForm.submit( function(e) {
     emptyAddForm();
 });
 
+clientAddBtn.click(function() {
+    addClientModal.modal('show');
+});
+
 
 //----------------------------------------------------------------
 
 						 // VIEWS
 
 //---------------------------------------------------------------/
-
 
 
 //----------------------------------------------------------------
@@ -124,5 +129,10 @@ function clientAddFormAJAX() {
  * Main Function
 *******************************************/
 clientAddForm.validate();
+
+return {
+    showAddBtn: showAddBtn,
+    hideAddBtn: hideAddBtn
+}
 
 })(); // END OF LOGIN.JS

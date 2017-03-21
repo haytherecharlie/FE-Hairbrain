@@ -12,5 +12,6 @@ main {
     position: absolute;
     top: 50px;
     overflow-y: hidden;
+    overflow-x: hidden; 
     height: calc(100vh - 50px);
 }

@@ -19,9 +19,12 @@ var Nav = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var navMenu     = $('.navmenu'),
-	menuItems   = $('.menuitems'),
-	menuOverlay = $('.menuoverlay');
+var navMenu       = $('.navmenu'),
+	menuItems     = $('.menuitems'),
+	menuBox       = $('menu'),
+	navSearch     = $('.navsearch'),
+	exitProfile   = $('.exitprofile'),
+	clientProfile = $('.clientprofile');
 
 //----------------------------------------------------------------
 
@@ -41,17 +44,19 @@ navMenu.click(function() {
 		openMenu();
 });
 
+exitProfile.click(function() {
+	slideClientProfile();
+})
+
 //----------------------------------------------------------------
 
 						 // VIEWS
 
 //---------------------------------------------------------------/
 function openMenu() {
+	menuBox.show();
 	menuItems.animate({
 		bottom: '-=' + menuItems.height()
-	}, 300);
-	menuOverlay.animate({
-		opacity: '1'
 	}, 300);
 	menuItems.addClass('open');
 }
@@ -59,11 +64,34 @@ function openMenu() {
 function closeMenu() {
 	menuItems.animate({
 		bottom: '+=' + menuItems.height()
-	}, 300);
-	menuOverlay.animate({
-		opacity: '0'
-	}, 300);
+	}, 300, function() {
+		menuBox.hide();
+	});
 	menuItems.removeClass('open');
+}
+
+function slideClientProfile() {
+	clientProfile.animate({
+		left: '100vw'
+	}, 500);
+	hideBackBtn();
+	showSearch();
+}
+
+function hideSearch() {
+	navSearch.hide();
+}
+
+function showSearch() {
+	navSearch.show();
+}
+
+function showbackBtn() {
+	exitProfile.show();
+}
+
+function hideBackBtn() {
+	exitProfile.hide();
 }
 
 //----------------------------------------------------------------
@@ -90,6 +118,11 @@ function closeMenu() {
 /*******************************************
  * Main Function
 *******************************************/
-
+return {
+	showSearch: showSearch,
+	hideSearch: hideSearch,
+	showBackBtn: showbackBtn,
+	hideBackBtn: hideBackBtn
+}
 
 })(); // END OF NAV.JS

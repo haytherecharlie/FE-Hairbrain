@@ -89,7 +89,8 @@
   position: absolute;
   left: 100vw;
   top: 0;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  z-index: 75; }
   .clientprofile .container {
     position: relative;
     margin: 10px;
@@ -282,6 +283,7 @@ main {
   position: absolute;
   top: 50px;
   overflow-y: hidden;
+  overflow-x: hidden;
   height: calc(100vh - 50px); }
 
 /*******************************************
@@ -302,12 +304,12 @@ menu {
   left: 0;
   height: 100vh;
   width: 100%;
-  z-index: 50; }
+  z-index: 50;
+  display: none; }
   menu .menuoverlay {
     background-color: rgba(0, 0, 0, 0.5);
     height: 100%;
-    width: 100%;
-    opacity: 0; }
+    width: 100%; }
   menu ul {
     overflow: hidden;
     width: 100%;
@@ -375,8 +377,16 @@ nav {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); }
-  nav .navsearch img {
+  nav .navsearch {
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%); }
+  nav .exitprofile {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff3253;
+    font-size: 17px;
+    display: none; }

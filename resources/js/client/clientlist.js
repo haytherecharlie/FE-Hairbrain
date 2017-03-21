@@ -19,7 +19,8 @@ var ClientList = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var clientList = $('.clientlist');
+var clientList    = $('.clientlist'),
+    clientProfile = $('.clientprofile');
 
 //----------------------------------------------------------------
 
@@ -36,6 +37,11 @@ function addCCListeners() {
     $('.clientcard').each(function() {
         $(this).click(function() {
             ClientProfile.populateProfile(clientlist[$(this).attr('id')]);
+            clientProfile.animate({
+                left: '0'
+            }, 500);
+            Nav.hideSearch();
+            Nav.showBackBtn();
         })
     })
 }

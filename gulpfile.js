@@ -73,10 +73,10 @@ gulp.task('client-custom-sass', function() {
 gulp.task('client-custom-js', function() {
     return gulp.src([
         'resources/js/client/base.js',
+        'resources/js/client/clientadd.js',
         'resources/js/client/nav.js',
         'resources/js/client/clientprofile.js',
-        'resources/js/client/clientlist.js',
-        'resources/js/client/clientadd.js'
+        'resources/js/client/clientlist.js'
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('client.js'))
