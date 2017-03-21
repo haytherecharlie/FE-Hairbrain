@@ -69,7 +69,7 @@
       color: #333; }
       .clientlist .clientcard span.firstname {
         margin-left: 10px;
-        font-family: hb-light; }
+        font-family: hb-regular; }
       .clientlist .clientcard span.lastname {
         font-family: hb-regular; }
 
@@ -291,6 +291,52 @@ main {
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
+* MENU COMPONENT STYLES 
+/******************************************/
+menu {
+  margin: 0;
+  padding: 0;
+  padding-top: 50px;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 50; }
+  menu .menuoverlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    opacity: 0; }
+  menu ul {
+    overflow: hidden;
+    width: 100%;
+    background: #ff3253;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    bottom: calc(100vh - 50px);
+    left: 0;
+    text-align: center;
+    box-shadow: 0px 0px 10px #666; }
+    menu ul li {
+      list-style: none;
+      border-top: 1px solid #db3f59;
+      border-left: 1px solid #891c2e;
+      border-right: 1px solid #891c2e;
+      border-bottom: 1px solid #891c2e;
+      padding: 10px;
+      color: #fff;
+      font-size: 16px;
+      font-family: hb-black; }
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
 * MODAL COMPONENT STYLES
 /******************************************/
 .modal {
@@ -304,8 +350,7 @@ main {
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
-* THE NAV COMPONENT INCLUDED IN CLIENT 
-* PROFILE AND LIST. 
+* NAV COMPONENT STYLES 
 /******************************************/
 nav {
   height: 50px;
@@ -314,7 +359,7 @@ nav {
   position: fixed;
   top: 0px;
   left: 0px;
-  box-shadow: 0px 0px 10px #ccc;
+  box-shadow: 0px 0px 10px #666;
   z-index: 100; }
   nav .navmenu {
     position: absolute;

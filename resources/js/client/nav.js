@@ -19,7 +19,9 @@ var Nav = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-
+var navMenu     = $('.navmenu'),
+	menuItems   = $('.menuitems'),
+	menuOverlay = $('.menuoverlay');
 
 //----------------------------------------------------------------
 
@@ -32,14 +34,37 @@ var Nav = (function() {
 						 // LISTENERS
 
 //---------------------------------------------------------------/
-
+navMenu.click(function() {
+	if(menuItems.hasClass('open'))
+		closeMenu();
+	else
+		openMenu();
+});
 
 //----------------------------------------------------------------
 
 						 // VIEWS
 
 //---------------------------------------------------------------/
+function openMenu() {
+	menuItems.animate({
+		bottom: '-=' + menuItems.height()
+	}, 300);
+	menuOverlay.animate({
+		opacity: '1'
+	}, 300);
+	menuItems.addClass('open');
+}
 
+function closeMenu() {
+	menuItems.animate({
+		bottom: '+=' + menuItems.height()
+	}, 300);
+	menuOverlay.animate({
+		opacity: '0'
+	}, 300);
+	menuItems.removeClass('open');
+}
 
 //----------------------------------------------------------------
 
