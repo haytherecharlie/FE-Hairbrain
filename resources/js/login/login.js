@@ -98,6 +98,7 @@ function loginFormAJAX(form) {
  * Check If Already Logged In -> GET
 *******************************************/
 function checkIfAlreadyLoggedIn(jwt) {
+    var url = 'http://localhost:8080/check'
     $.ajax( {
         xhr: function () {  
             return $.ajaxSettings.xhr();
@@ -105,7 +106,7 @@ function checkIfAlreadyLoggedIn(jwt) {
         beforeSend: function (xhr) {
             xhr.setRequestHeader ("Authorization", "Bearer " + jwt);
         },
-        url: 'http://localhost:8080/check',
+        url: url,
         type: 'GET',
         success: function(req, res) {
             if(res = "success") redirect(/clients/);

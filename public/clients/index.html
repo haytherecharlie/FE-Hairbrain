@@ -49,7 +49,7 @@
                 <div class="coverphoto"></div>
                 <div class="avatarcontainer">
                     <div class="avatarborder">
-                        <img class="avatar" src="../app/img/profilepic.jpg">
+                        <img class="avatar" src="">
                     </div>
                 </div>
                 <div class="namecontainer">
@@ -81,6 +81,9 @@
             <div class="notesbox container">
                 <div class="title">Notes</div>
                 <textarea class="notes" readonly></textarea>
+            </div>
+            <div class="optionsbox container">
+                <button class="deleteclient">Delete Client</button>
             </div>
         </div>
 
@@ -118,6 +121,22 @@
                 </div>
             </div>
         </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal fade deleteModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>Are you sure you want to delete this client?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default confirmDelete" data-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-default cancelDelete" data-dismiss="modal">No</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
     </footer>
 </body>
 	<!-- VENDOR JS -->

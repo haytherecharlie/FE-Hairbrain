@@ -45,8 +45,9 @@
 
                 img {
                     position: absolute;
+                    top: 0%;
                     left: 50%; transform: translateX(-50%);
-                    width: 100%;
+                    height: 100%;
                 }
             }   
         }
@@ -206,6 +207,27 @@
             border: 1px solid #000;
             border-radius: 5px;
             padding: 5px;
+            color: #ff3253;
+        }
+    }
+
+    .optionsbox {
+        button {
+            display: block;
+            width: 100%;
+            padding: 5px 10px;
+            margin: 20px 0px;
+            border-radius: 5px;
+        }
+        .editclient {
+            background: #fff;
+            border: 1px solid #000;
+            color: #000;
+        }
+        .deleteclient {
+            background: #ff3253;
+            border: none;
+            color: #fff;
         }
     }
 }

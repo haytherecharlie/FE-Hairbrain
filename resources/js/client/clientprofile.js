@@ -17,6 +17,7 @@ var ClientProfile = (function() {
  * Global Variables
 *******************************************/
 var clientProfile = $('.clientprofile'),
+    avatar        = $('.avatar'),
     firstname     = $('.clientprofile .firstname'),
     lastname      = $('.clientprofile .lastname'),
     email         = $('.clientprofile .email'),
@@ -26,6 +27,7 @@ var clientProfile = $('.clientprofile'),
     photoback     = $('.clientprofile .photoback'),
     photoright    = $('.clientprofile .photoright'),
     notes         = $('.clientprofile .notes');
+    deleteModal   = $('.deleteModal');
 
 //----------------------------------------------------------------
 
@@ -38,8 +40,13 @@ var clientProfile = $('.clientprofile'),
 						 // LISTENERS
 
 //---------------------------------------------------------------/
+$('.deleteclient').click(function() {
+    showDeleteConfirmation();
+});
 
-
+$('.confirmDelete').click(function() {
+    deleteClient();
+});
 
 //----------------------------------------------------------------
 
@@ -48,6 +55,8 @@ var clientProfile = $('.clientprofile'),
 //---------------------------------------------------------------/
 function populateProfile(client) {
     console.log(client);
+    clientProfile.attr('id', client._id);
+    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photofront.jpg');
     firstname.text(client.firstname);
     lastname.text(client.lastname);
     phone.text(client.phone);
@@ -59,14 +68,38 @@ function populateProfile(client) {
     notes.val(client.notes);
 }
 
+function showDeleteConfirmation() {
+    deleteModal.modal('show');
+}
 
 //----------------------------------------------------------------
 
 						 // LOGIC
 
 //---------------------------------------------------------------/
+function deleteClient() {
+    var clientid = clientProfile.attr('id');
 
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://localhost:8080/client/delete/" + userid + '/' + clientid,
+        "method": "DELETE",
+        "headers": {
+            "cache-control": "no-cache",
+            "Authorization": "Bearer " + jwt
+        },
+        "processData": false,
+        "contentType": false,
+    }
 
+    $.ajax(settings)
+    .done(function (req, res) {
+        if(res === "success") { 
+            console.log('success');
+        }
+    });
+}
 
 //----------------------------------------------------------------
 
