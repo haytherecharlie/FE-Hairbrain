@@ -115,7 +115,10 @@ function clientListAJAX() {
         if(res === 'success') {
             clientlist = req;
             clientList.empty();
-            displayClients(req);
+            if(clientlist.length === 0)
+                clientList.append('<div class="empty">You don\'t have any clients, <br> Why not click the plus below to get started!</div>');
+            else 
+                displayClients(req);
         }
     });
 }

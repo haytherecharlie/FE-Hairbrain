@@ -208,7 +208,8 @@ return {
 	hideBackBtn: hideBackBtn,
 	slideSearchClosed: slideSearchClosed,
 	quickClearSearch: quickClearSearch,
-	restoreList: restoreList
+	restoreList: restoreList,
+	slideClientProfile: slideClientProfile
 }
 
 })(); // END OF NAV.JS

@@ -19,5 +19,3 @@ function cookieCheck() {
         return false;
     }
 }
-
-

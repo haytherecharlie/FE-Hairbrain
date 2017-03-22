@@ -77,7 +77,8 @@ gulp.task('client-custom-js', function() {
         'resources/js/client/menu.js',
         'resources/js/client/nav.js',
         'resources/js/client/clientprofile.js',
-        'resources/js/client/clientlist.js'
+        'resources/js/client/clientlist.js',
+        'resources/js/client/photoupload.js'
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('client.js'))
@@ -109,7 +110,8 @@ gulp.task('vendor-js', function() {
         'node_modules/moment/moment.js',
         'node_modules/jquery.cookie/jquery.cookie.js',
         'node_modules/jquery-validation-dist/dist/jquery.validate.js',
-        'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js'
+        'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
+        'resources/js/client/resize.js'
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('vendor.js'))

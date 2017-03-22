@@ -19,18 +19,18 @@ var ClientAdd = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var clientAddForm  = $('#clientaddform'),
+var clientAddForm  = $('.clientaddform'),
     clientAddBtn   = $('.clientadd'),
     addClientModal = $('.addModal'),
-    firstname      = $('#clientaddform input[name="firstname"]'),
-    lastname       = $('#clientaddform input[name="lastname"]'),
-    email          = $('#clientaddform input[name="email"]'),
-    phone          = $('#clientaddform input[name="phone"]')
-    notes          = $('#clientaddform textarea[name="notes"]');
-    photofront     = $('#clientaddform input[name="photofront"]');
-    photoleft      = $('#clientaddform input[name="photoleft"]');
-    photoback      = $('#clientaddform input[name="photoback"]');
-    photoright     = $('#clientaddform input[name="photoright"]');
+    firstname      = $('.clientaddform input[name="firstname"]'),
+    lastname       = $('.clientaddform input[name="lastname"]'),
+    email          = $('.clientaddform input[name="email"]'),
+    phone          = $('.clientaddform input[name="phone"]')
+    notes          = $('.clientaddform textarea[name="notes"]');
+    photofront     = $('.clientaddform input[name="photofront"]');
+    photoleft      = $('.clientaddform input[name="photoleft"]');
+    photoback      = $('.clientaddform input[name="photoback"]');
+    photoright     = $('.clientaddform input[name="photoright"]');
 
 //----------------------------------------------------------------
 
@@ -115,6 +115,8 @@ function clientAddFormAJAX() {
         console.log(res);
         if(res === "success") { 
             ClientList.clientListAJAX();
+            emptyAddForm();
+            addClientModal.modal('hide');
         }
     });
 }
@@ -128,6 +130,5 @@ function clientAddFormAJAX() {
 /*******************************************
  * Main Function
 *******************************************/
-clientAddForm.validate();
 
 })(); // END OF LOGIN.JS

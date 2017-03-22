@@ -20,8 +20,6 @@ function cookieCheck() {
     }
 }
 
-
-
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------
@@ -43,18 +41,18 @@ var ClientAdd = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var clientAddForm  = $('#clientaddform'),
+var clientAddForm  = $('.clientaddform'),
     clientAddBtn   = $('.clientadd'),
     addClientModal = $('.addModal'),
-    firstname      = $('#clientaddform input[name="firstname"]'),
-    lastname       = $('#clientaddform input[name="lastname"]'),
-    email          = $('#clientaddform input[name="email"]'),
-    phone          = $('#clientaddform input[name="phone"]')
-    notes          = $('#clientaddform textarea[name="notes"]');
-    photofront     = $('#clientaddform input[name="photofront"]');
-    photoleft      = $('#clientaddform input[name="photoleft"]');
-    photoback      = $('#clientaddform input[name="photoback"]');
-    photoright     = $('#clientaddform input[name="photoright"]');
+    firstname      = $('.clientaddform input[name="firstname"]'),
+    lastname       = $('.clientaddform input[name="lastname"]'),
+    email          = $('.clientaddform input[name="email"]'),
+    phone          = $('.clientaddform input[name="phone"]')
+    notes          = $('.clientaddform textarea[name="notes"]');
+    photofront     = $('.clientaddform input[name="photofront"]');
+    photoleft      = $('.clientaddform input[name="photoleft"]');
+    photoback      = $('.clientaddform input[name="photoback"]');
+    photoright     = $('.clientaddform input[name="photoright"]');
 
 //----------------------------------------------------------------
 
@@ -139,6 +137,8 @@ function clientAddFormAJAX() {
         console.log(res);
         if(res === "success") { 
             ClientList.clientListAJAX();
+            emptyAddForm();
+            addClientModal.modal('hide');
         }
     });
 }
@@ -152,7 +152,6 @@ function clientAddFormAJAX() {
 /*******************************************
  * Main Function
 *******************************************/
-clientAddForm.validate();
 
 })(); // END OF LOGIN.JS
 /*******************************************
@@ -470,7 +469,8 @@ return {
 	hideBackBtn: hideBackBtn,
 	slideSearchClosed: slideSearchClosed,
 	quickClearSearch: quickClearSearch,
-	restoreList: restoreList
+	restoreList: restoreList,
+	slideClientProfile: slideClientProfile
 }
 
 })(); // END OF NAV.JS
@@ -525,6 +525,8 @@ $('.deleteclient').click(function() {
 
 $('.confirmDelete').click(function() {
     deleteClient();
+    ClientList.clientListAJAX();
+    Nav.slideClientProfile();
 });
 
 //----------------------------------------------------------------
@@ -721,7 +723,10 @@ function clientListAJAX() {
         if(res === 'success') {
             clientlist = req;
             clientList.empty();
-            displayClients(req);
+            if(clientlist.length === 0)
+                clientList.append('<div class="empty">You don\'t have any clients, <br> Why not click the plus below to get started!</div>');
+            else 
+                displayClients(req);
         }
     });
 }
@@ -742,3 +747,92 @@ return {
 }
 
 })(); // END OF LOGIN.JS
+(function() {
+	
+	var PhotoUpload = {
+
+		$src: '',
+		$dest: '',
+
+		photoListeners: function() {
+			$('.thumbnail').each(function() {
+
+			    $(this).click( function() {
+
+			        var id = $(this).attr('id');
+			            PhotoUpload.$src = $('#' + id);
+			            PhotoUpload.$dest = $('#select-' + id);
+			        
+			        PhotoUpload.$dest.click();
+
+			        PhotoUpload.photoUploaded();
+
+			    })
+			})
+		},
+
+		photoUploaded: function() {
+
+		    PhotoUpload.$dest.change(function(evt) {
+
+		        PhotoUpload.resizeImage(this.files[0])
+
+		    });
+		},
+
+		resizeImage: function(img) {
+
+		    ImageTools.resize(img, {
+
+		        width: 320, // maximum width
+		        height: 440 // maximum height
+
+		    }, function(blob, didItResize) {
+
+		        PhotoUpload.getPhotoDimensions(blob);
+
+		    });
+		},
+
+		getPhotoDimensions: function(blob) {
+
+		    var fr = new FileReader;
+		    
+		    fr.onload = function() {
+		        
+		        var img = new Image;
+		        
+		        img.onload = function() {
+		            PhotoUpload.rotatePhoto(img, blob);
+		        };
+
+		        img.src = fr.result;
+		    };
+		    
+		    fr.readAsDataURL(blob);
+		},
+
+		rotatePhoto: function(img, blob) {
+
+			console.log(blob);
+
+		    if (img.height < img.width) {
+
+		        PhotoUpload.$src.removeClass('default');
+		        PhotoUpload.$src.addClass('rotate');
+
+		    } else {
+
+		        PhotoUpload.$src.removeClass('rotate');
+		        PhotoUpload.$src.addClass('default');
+
+		    }
+
+		    PhotoUpload.$src.css('background-image', 'url(' + img.src + ')' );
+		    PhotoUpload.$src.css('background-size', 'cover');
+		}
+	};
+
+	PhotoUpload.photoListeners();
+
+})()

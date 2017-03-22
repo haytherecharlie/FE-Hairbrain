@@ -49,6 +49,8 @@ $('.deleteclient').click(function() {
 
 $('.confirmDelete').click(function() {
     deleteClient();
+    ClientList.clientListAJAX();
+    Nav.slideClientProfile();
 });
 
 //----------------------------------------------------------------
