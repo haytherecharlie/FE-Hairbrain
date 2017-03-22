@@ -7,3 +7,22 @@
 *
 * PHOTO COMPONENT JS FUNCTIONALITY.
 /******************************************/
+
+var thumbFront   = $('.thumbfront'),
+    thumbLeft    = $('.thumbleft'),
+    thumbBack    =  $('.thumbback'),
+    thumbRight   = $('.thumbright'),
+    thumbArray   = [thumbFront, thumbLeft, thumbBack, thumbRight],
+    currentFocus = thumbFront; 
+
+for(var thumb in thumbArray) {
+    thumbArray[thumb].click(function() {
+        expandPhoto($(this));
+    })
+}
+
+function expandPhoto($this) {
+    currentFocus.removeClass('focus');
+    $this.addClass('focus');
+    currentFocus = $this;
+}
