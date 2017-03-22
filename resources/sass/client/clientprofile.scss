@@ -16,7 +16,7 @@
     left: 100vw;
     top: 0;
     overflow-y: scroll;
-    z-index: 75;
+    z-index: 25;
 
 
     .container {
@@ -238,7 +238,10 @@
         .deleteclient {
             background: #ff3253;
             border: none;
+            padding: 10px;
             color: #fff;
+            font-size: 16px;
+            font-family: hb-black;
         }
     }
 }

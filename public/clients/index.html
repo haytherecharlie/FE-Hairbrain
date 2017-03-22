@@ -37,13 +37,14 @@
         <img class="navlogo" src="../app/img/hairbrain-small.png">
         <a class="navsearch"><img src="../app/img/search.png"></a>
         <a class="exitprofile">Back</a>
+        <a class="cancelsearch">Cancel</a>
+        <input class="searchfield" type="text"/>
     </nav>
 
     <menu>
         <ul class="menuitems">
-            <!--<li>My Profile</li>-->
-            <li>Report An Issue</li>
-            <li>Logout</li>
+            <li class="report">Report An Issue</li>
+            <li class="logout">Logout</li>
         </ul>
         <div class="menuoverlay"></div>
     </menu>
@@ -110,13 +111,12 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="hairbrain-modal">Welcome to Hairbrain!</h5>
+                    <img class="modallogo" src="../app/img/hairbrain-small.png">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     </button>
                 </div>
                 <div class="modal-body">
                      <!-- ADD CLIENT -->
-                    <div class="clientadd">
                         <form id="clientaddform" encType="multipart/form-data">
                             <input name="firstname" placeholder="First name" type="text" required>
                             <input name="lastname" placeholder="Last name" type="text" required>
@@ -129,10 +129,9 @@
                             <textarea name="notes" placeholder="Notes" type="text" required></textarea>
                             <input name="submit" type="submit" value="Save Client" />
                         </form>
-                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn addClient" data-dismiss="modal">+ Client</button>
                 </div>
                 </div>
             </div>
@@ -143,6 +142,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
+            <img class="modallogo" src="../app/img/hairbrain-small.png">
           <p>Are you sure you want to delete this client?</p>
         </div>
         <div class="modal-footer">

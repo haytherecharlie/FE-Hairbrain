@@ -23,6 +23,7 @@ nav {
         transform: translateY(-50%);
         color: #ff3253;
         font-size: 20px;
+        opacity: 1;
     }
 
     .navlogo {
@@ -30,6 +31,7 @@ nav {
         position: absolute;
         top: 50%; left: 50%;
         transform: translate(-50%, -50%);
+        opacity: 1;
     }
 
     .navsearch {
@@ -37,8 +39,19 @@ nav {
         right: 10px; top: 50%;
         transform: translateY(-50%);
     }
+
+    .searchfield {
+        position: absolute;
+        top: 50%; left: 40px;
+        transform: translateY(-50%);
+        padding: 5px 10px;
+        font-size: 17px;
+        color: #ff3253;
+        width: 60%;
+        display: none;
+    }
     
-    .exitprofile {
+    .exitprofile, .cancelsearch {
         position: absolute;
         right: 10px; top: 50%;
         transform: translateY(-50%); 

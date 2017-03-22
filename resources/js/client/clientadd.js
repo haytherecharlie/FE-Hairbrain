@@ -130,9 +130,4 @@ function clientAddFormAJAX() {
 *******************************************/
 clientAddForm.validate();
 
-return {
-    showAddBtn: showAddBtn,
-    hideAddBtn: hideAddBtn
-}
-
 })(); // END OF LOGIN.JS

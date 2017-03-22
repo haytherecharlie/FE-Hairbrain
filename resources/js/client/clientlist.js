@@ -37,9 +37,13 @@ function addCCListeners() {
     $('.clientcard').each(function() {
         $(this).click(function() {
             ClientProfile.populateProfile(clientlist[$(this).attr('id')]);
+            Nav.quickClearSearch();
             clientProfile.animate({
                 left: '0'
-            }, 500);
+            }, 500, function() {
+                Nav.restoreList();
+                clientList.scrollTop(0);
+            });
             Nav.hideSearch();
             Nav.showBackBtn();
         })
@@ -55,7 +59,7 @@ function displayClients(req) {
     for(var i in req) {
         insertLeadingLetters(req, i);
         clientList.append(`
-            <div class="clientcard" id="${i}">
+            <div class="clientcard" id="${i}" data-name="${req[i].firstname} ${req[i].lastname}">
                 <div class="avatar">
                     <img src="${apiurl}photo/${userid}/${req[i]._id}/photofront.jpg" height="30">
                 </div>

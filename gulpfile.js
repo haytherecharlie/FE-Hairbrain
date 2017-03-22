@@ -74,6 +74,7 @@ gulp.task('client-custom-js', function() {
     return gulp.src([
         'resources/js/client/base.js',
         'resources/js/client/clientadd.js',
+        'resources/js/client/menu.js',
         'resources/js/client/nav.js',
         'resources/js/client/clientprofile.js',
         'resources/js/client/clientlist.js'

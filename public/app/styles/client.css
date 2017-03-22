@@ -42,7 +42,8 @@
   .clientlist .letter {
     color: #ff3253;
     display: block;
-    padding: 5px 10px; }
+    padding: 5px 10px;
+    opacity: 1; }
   .clientlist .clientcard {
     background: #ffffff;
     margin: 10px 10px;
@@ -90,7 +91,7 @@
   left: 100vw;
   top: 0;
   overflow-y: scroll;
-  z-index: 75; }
+  z-index: 25; }
   .clientprofile .container {
     position: relative;
     margin: 10px;
@@ -268,7 +269,10 @@
   .clientprofile .optionsbox .deleteclient {
     background: #ff3253;
     border: none;
-    color: #fff; }
+    padding: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-family: hb-black; }
 
 /*******************************************
 * © 2017 Hairbrain inc.
@@ -307,9 +311,11 @@ menu {
   z-index: 50;
   display: none; }
   menu .menuoverlay {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
     height: 100%;
-    width: 100%; }
+    width: 100%;
+    opacity: 0;
+    z-index: 51; }
   menu ul {
     overflow: hidden;
     width: 100%;
@@ -320,7 +326,10 @@ menu {
     bottom: calc(100vh - 50px);
     left: 0;
     text-align: center;
-    box-shadow: 0px 0px 10px #666; }
+    box-shadow: 0px 0px 10px #666;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 52; }
     menu ul li {
       list-style: none;
       border-top: 1px solid #db3f59;
@@ -331,6 +340,9 @@ menu {
       color: #fff;
       font-size: 16px;
       font-family: hb-black; }
+      menu ul li:last-child {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px; }
 
 /*******************************************
 * © 2017 Hairbrain inc.
@@ -343,7 +355,18 @@ menu {
 /******************************************/
 .modal {
   text-align: center;
-  padding: 0 !important; }
+  padding: 0 !important;
+  background-color: rgba(255, 255, 255, 0.7); }
+  .modal .modallogo {
+    width: 119px;
+    height: 30px;
+    margin: 10px; }
+  .modal.fade {
+    background-color: rgba(255, 255, 255, 0.7); }
+  .modal.deleteModal .confirmDelete {
+    background: #ff3253;
+    border: none;
+    color: #fff; }
 
 /*******************************************
 * © 2017 Hairbrain inc.
@@ -369,20 +392,32 @@ nav {
     left: 10px;
     transform: translateY(-50%);
     color: #ff3253;
-    font-size: 20px; }
+    font-size: 20px;
+    opacity: 1; }
   nav .navlogo {
     width: 119px;
     height: 30px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); }
+    transform: translate(-50%, -50%);
+    opacity: 1; }
   nav .navsearch {
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%); }
-  nav .exitprofile {
+  nav .searchfield {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+    padding: 5px 10px;
+    font-size: 17px;
+    color: #ff3253;
+    width: 60%;
+    display: none; }
+  nav .exitprofile, nav .cancelsearch {
     position: absolute;
     right: 10px;
     top: 50%;

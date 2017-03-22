@@ -21,10 +21,12 @@ var Nav = (function() {
 *******************************************/
 var navMenu       = $('.navmenu'),
 	menuItems     = $('.menuitems'),
-	menuBox       = $('menu'),
 	navSearch     = $('.navsearch'),
 	exitProfile   = $('.exitprofile'),
-	clientProfile = $('.clientprofile');
+	clientProfile = $('.clientprofile'),
+	searchField   = $('.searchfield'),
+	navLogo       = $('.navlogo'),
+	cancelSearch  = $('.cancelsearch');
 
 //----------------------------------------------------------------
 
@@ -39,59 +41,138 @@ var navMenu       = $('.navmenu'),
 //---------------------------------------------------------------/
 navMenu.click(function() {
 	if(menuItems.hasClass('open'))
-		closeMenu();
+		Menu.closeMenu();
 	else
-		openMenu();
+		Menu.openMenu();
 });
 
 exitProfile.click(function() {
 	slideClientProfile();
+	if(menuItems.hasClass('open'))
+		Menu.closeMenu();
 })
+
+navSearch.click(function() {
+	if(navSearch.hasClass('open'))
+		slideSearchClosed();
+	else
+		slideSearchOpen();
+	if(menuItems.hasClass('open'))
+		Menu.closeMenu();
+});
+
+$(window).on("resize",function() {
+  if(navSearch.hasClass('open'))
+  	repositionSearch();
+});
+
+searchField.keyup(function(){
+    var searchText = $(this).val();
+    $(".clientcard").each(function() {
+        $(this).toggle(contains($(this).data('name'), searchText));
+    });
+});
+
+cancelSearch.click(function() {
+	slideSearchClosed();
+});
 
 //----------------------------------------------------------------
 
 						 // VIEWS
 
 //---------------------------------------------------------------/
-function openMenu() {
-	menuBox.show();
-	menuItems.animate({
-		bottom: '-=' + menuItems.height()
-	}, 300);
-	menuItems.addClass('open');
-}
-
-function closeMenu() {
-	menuItems.animate({
-		bottom: '+=' + menuItems.height()
-	}, 300, function() {
-		menuBox.hide();
-	});
-	menuItems.removeClass('open');
-}
 
 function slideClientProfile() {
 	clientProfile.animate({
 		left: '100vw'
-	}, 500);
+	}, 500, function() {
+		clientProfile.scrollTop(0);
+	});
 	hideBackBtn();
 	showSearch();
 }
 
 function hideSearch() {
-	navSearch.hide();
+	navSearch.fadeOut();
 }
 
 function showSearch() {
-	navSearch.show();
+	navSearch.fadeIn();
 }
 
 function showbackBtn() {
-	exitProfile.show();
+	exitProfile.fadeIn();
 }
 
 function hideBackBtn() {
-	exitProfile.hide();
+	exitProfile.fadeOut();
+}
+
+function slideSearchOpen() {
+	var windowWidth = $(window).width() - 40;
+	navMenu.fadeOut(300);
+	navLogo.fadeOut(300);
+	cancelSearch.fadeIn(300);
+	fadeOutLetters();
+	navSearch.addClass('open');
+	navSearch.animate({
+		right: '+=' + windowWidth + 'px'
+	}, 300, function() {
+		searchField.show();
+		searchField.focus();
+	})
+}
+
+function slideSearchClosed() {
+	var windowWidth = $(window).width() - 40;
+	searchField.hide();
+	navMenu.fadeIn(300);
+	navLogo.fadeIn(300);
+	cancelSearch.fadeOut(300);
+	navSearch.removeClass('open');
+	navSearch.animate({
+		right: '10px'
+	}, 300, function() {
+		fadeInLetters();
+		searchField.val('');
+		searchField.trigger('keyup');
+	});
+}
+
+function quickClearSearch() {
+	navLogo.fadeIn();
+	navMenu.fadeIn();
+	navSearch.hide();
+	cancelSearch.hide();
+	navSearch.css('right', '10px');
+	searchField.hide();
+	navSearch.removeClass('open');	
+}
+
+function restoreList() {
+	setTimeout(function() {
+		searchField.val('');
+		searchField.trigger('keyup');
+		fadeInLetters();
+	},300);
+}
+
+function repositionSearch() {
+	var windowWidth = $(window).width() - 30;
+	navSearch.css('right', windowWidth);
+}
+
+function fadeInLetters() {
+	$('.letter').each(function() {
+		$(this).fadeIn(300);
+	});
+}
+
+function fadeOutLetters() {
+	$('.letter').each(function() {
+		$(this).fadeOut(300);
+	});
 }
 
 //----------------------------------------------------------------
@@ -99,7 +180,9 @@ function hideBackBtn() {
 						 // LOGIC
 
 //---------------------------------------------------------------/
-
+function contains(text_one, text_two) {
+    return text_one.toLowerCase().indexOf(text_two.toLowerCase()) != -1;
+}
 
 //----------------------------------------------------------------
 
@@ -122,7 +205,10 @@ return {
 	showSearch: showSearch,
 	hideSearch: hideSearch,
 	showBackBtn: showbackBtn,
-	hideBackBtn: hideBackBtn
+	hideBackBtn: hideBackBtn,
+	slideSearchClosed: slideSearchClosed,
+	quickClearSearch: quickClearSearch,
+	restoreList: restoreList
 }
 
 })(); // END OF NAV.JS

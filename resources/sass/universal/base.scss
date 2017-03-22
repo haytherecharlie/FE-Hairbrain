@@ -15,3 +15,4 @@
 html *{ font-size: 1.1em; color: #000 ; font-family: hb-regular;}
 body {height: 100vh; width: 100vw; overflow: scroll;}
 a:hover, a:active, a:visited {text-decoration: none; color: inherit;}
+*:focus {outline: none;}

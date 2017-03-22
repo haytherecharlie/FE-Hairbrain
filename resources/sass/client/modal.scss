@@ -10,4 +10,27 @@
 .modal {
   text-align: center;
   padding: 0!important;
+  background-color: rgba(255,255,255, 0.7);
+
+  .modallogo {
+    width: 119px;
+    height: 30px;
+    margin: 10px;
+  }
+
+  &.fade {
+    background-color: rgba(255,255,255, 0.7);
+  }
+
+  &.deleteModal {
+
+    .confirmDelete {
+      background: #ff3253;
+      border: none;
+      color: #fff;
+    }
+    .cancelDelete {
+
+    }
+  }
 }
