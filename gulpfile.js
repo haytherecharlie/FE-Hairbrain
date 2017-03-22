@@ -78,7 +78,8 @@ gulp.task('client-custom-js', function() {
         'resources/js/client/nav.js',
         'resources/js/client/clientprofile.js',
         'resources/js/client/clientlist.js',
-        'resources/js/client/photoupload.js'
+        'resources/js/client/photoupload.js',
+        'resources/js/client/photowidget.js'
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('client.js'))

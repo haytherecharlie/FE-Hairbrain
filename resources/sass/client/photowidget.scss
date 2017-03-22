@@ -1,0 +1,61 @@
+.photosbox {
+position: absolute;
+top: 135px;
+left: 50%;
+transform: translateX(-50%);
+padding: none;
+width: 91vw;
+height: 35vh;
+text-align: center;
+border: 1px solid #001;
+
+    .thumbnail-container {
+    height: 100%;
+    background-image: url('../../app/img/photo-holder.png');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 70%;
+    display: inline-block;
+    position: relative;
+    }
+    .thumbnail {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: 70%;
+        border: none;
+    }
+    .thumbfront {
+    width: 23%;
+    }
+    .thumbleft {
+    width: 23%;
+    }
+    .thumbback {
+    width: 23%;
+    }
+    .thumbright {
+    width: 23%;
+    }
+
+
+    .default {
+        height: 100%;
+        width: 100%;
+    }
+    .rotate {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        position: absolute;
+        top: 24px;
+        left: -26px;
+        width: 155px;
+        height: 105px;
+    }
+}
