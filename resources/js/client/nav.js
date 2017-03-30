@@ -52,8 +52,8 @@ exitProfile.click(function() {
 		Menu.closeMenu();
 })
 
-navSearch.click(function() {
-	if(navSearch.hasClass('open'))
+searchField.click(function() {
+	if(searchField.hasClass('open'))
 		slideSearchClosed();
 	else
 		slideSearchOpen();
@@ -115,22 +115,22 @@ function slideSearchOpen() {
 	navLogo.fadeOut(300);
 	cancelSearch.fadeIn(300);
 	fadeOutLetters();
-	navSearch.addClass('open');
+	searchField.addClass('open');
 	navSearch.animate({
 		right: '+=' + windowWidth + 'px'
 	}, 300, function() {
 		searchField.show();
-		searchField.focus();
+        searchField.focus();
 	})
 }
 
 function slideSearchClosed() {
+    searchField.blur();
 	var windowWidth = $(window).width() - 40;
-	searchField.hide();
 	navMenu.fadeIn(300);
 	navLogo.fadeIn(300);
 	cancelSearch.fadeOut(300);
-	navSearch.removeClass('open');
+	searchField.removeClass('open');
 	navSearch.animate({
 		right: '10px'
 	}, 300, function() {
@@ -147,7 +147,7 @@ function quickClearSearch() {
 	cancelSearch.hide();
 	navSearch.css('right', '10px');
 	searchField.hide();
-	navSearch.removeClass('open');	
+	searchField.removeClass('open');	
 }
 
 function restoreList() {

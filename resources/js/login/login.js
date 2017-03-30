@@ -19,7 +19,13 @@ var Login = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var loginForm = $('#login-form');
+var loginForm    = $('.loginform'),
+    email        = $('input[name="email"]'),
+    password     = $('input[name="password"]'),
+    loginBtn     = $('button[name="submit"]'),
+    loginBtnSpan = $('button[name="submit"] span'), 
+    loadingGif   = $('.loading'),
+    failedLogin  = $('.failedlogin');
 
 //----------------------------------------------------------------
 
@@ -39,7 +45,8 @@ var loginForm = $('#login-form');
 *******************************************/
 $(loginForm).submit( function(e) {
     e.preventDefault();
-    loginFormAJAX(this);
+    disableLogin();
+    loginFormAJAX();
 });
 
 //----------------------------------------------------------------
@@ -47,8 +54,17 @@ $(loginForm).submit( function(e) {
 						 // VIEWS
 
 //---------------------------------------------------------------/
+function showFailedMessage() {
+    failedLogin.css('opacity', '1');
+}
 
+function disableLogin() {
+    loginBtn.prop('disabled', true);
+}
 
+function enableLogin() {
+    loginBtn.prop('disabled', false);
+}
 
 //----------------------------------------------------------------
 
@@ -81,42 +97,65 @@ function redirect(path) {
 /*******************************************
  * Login Form -> POST
 *******************************************/
-function loginFormAJAX(form) {
-    $.ajax( {
-        url: 'http://localhost:8080/login',
-        type: 'POST',
-        data: new FormData(form),
-        processData: false,
-        contentType: false,
-        success: function(req, res) {
-            if(res = "success") loginSuccess(req);
+function loginFormAJAX() {
+
+    var form = new FormData();
+    form.append("email", email.val());
+    form.append("password", password.val());
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://api.hairbrain.ca/login",
+        "method": "POST",
+        "headers": {
+            "cache-control": "no-cache"
         },
-        fail: function(err) {
-            console.log(err);
+        "processData": false,
+        "contentType": false,
+        "mimeType": "multipart/form-data",
+        "data": form
+    }
+
+    $.ajax(settings)
+    .done(function (req, res) {
+        if(res === "success") { 
+            loginSuccess(JSON.parse(req));
         }
-    });
+    })
+    .fail( function(err) {
+        enableLogin();
+        showFailedMessage();
+    })
+
 }
 
 /*******************************************
  * Check If Already Logged In -> GET
 *******************************************/
 function checkIfAlreadyLoggedIn(jwt) {
-    var url = 'http://localhost:8080/check'
-    $.ajax( {
-        xhr: function () {  
-            return $.ajaxSettings.xhr();
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://api.hairbrain.ca/check",
+        "method": "GET",
+        "headers": {
+            "cache-control": "no-cache",
+            "Authorization": "Bearer " + jwt
         },
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader ("Authorization", "Bearer " + jwt);
-        },
-        url: url,
-        type: 'GET',
-        success: function(req, res) {
-            if(res = "success") redirect(/clients/);
-        },
-        fail: function(err) {
+        "processData": false,
+        "contentType": false,
+        "mimeType": "multipart/form-data"
+    }
+
+    $.ajax(settings)
+    .done(function (req, res) {
+        if(res === "success") 
+            redirect(/clients/);
+    })
+    .fail(function(err) {
             console.log(err);
-        }
     });
 }
 
@@ -129,9 +168,10 @@ function checkIfAlreadyLoggedIn(jwt) {
 /*******************************************
  * Main Function
 *******************************************/
-if($.cookie('jwt'))
-    checkIfAlreadyLoggedIn($.cookie('jwt'));
-else 
-    loginForm.validate();
+(function() {
+    if($.cookie('jwt')) {
+        checkIfAlreadyLoggedIn($.cookie('jwt'));
+    }
+})();
 
 })(); // END OF LOGIN.JS

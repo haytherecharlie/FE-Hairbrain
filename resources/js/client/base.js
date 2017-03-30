@@ -10,8 +10,7 @@
 
 var userid      = $.cookie('userid'),
     jwt         = $.cookie('jwt'),
-    clients     = [];
-    apiurl      = 'http://localhost:8080/';
+    apiurl      = 'http://api.hairbrain.ca/';
 
 function cookieCheck() {
     if(!userid || !jwt) {

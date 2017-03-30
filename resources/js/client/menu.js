@@ -46,6 +46,10 @@ logout.click(function() {
 	window.location.href = window.location.origin + '/';
 });
 
+$(window).on("resize",function() {
+  	repositionMenu();
+});
+
 //----------------------------------------------------------------
 
 						 // VIEWS
@@ -72,6 +76,18 @@ function closeMenu() {
 		opacity: 0
 	}, 300);
 	menuItems.removeClass('open');
+}
+
+function repositionMenu() {
+    var windowHeight = $(window).height();
+    console.log(windowHeight);
+    if(menuItems.hasClass('open')) {
+        console.log(menuItems.css('bottom'));
+	    menuItems.css('bottom', windowHeight - 138);
+    } else {
+        console.log(menuItems.css('bottom'));
+        menuItems.css('bottom', windowHeight - 50);
+    }
 }
 
 //----------------------------------------------------------------

@@ -44,7 +44,7 @@
     width: 100%;
     text-align: center;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #777; }
@@ -68,11 +68,11 @@
       border-radius: 50%; }
       .clientlist .clientcard .avatar img {
         position: absolute;
-        top: 65%;
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100%;
-        height: 65px; }
+        height: 120%; }
     .clientlist .clientcard span {
       display: inline-block;
       line-height: 40px;
@@ -266,7 +266,8 @@
       border: 1px solid #000;
       border-radius: 5px;
       padding: 5px;
-      color: #ff3253; }
+      color: #ff3253;
+      overflow: scroll; }
   .clientprofile .optionsbox button {
     display: block;
     width: 100%;
@@ -367,7 +368,9 @@ menu {
 .modal {
   text-align: center;
   padding: 0 !important;
-  background-color: rgba(255, 255, 255, 0.7); }
+  background-color: rgba(255, 255, 255, 0.7);
+  /* DELETE CLIENT MODAL */
+  /* ADD CLIENT MODAL */ }
   .modal .modallogo {
     width: 119px;
     height: 30px;
@@ -378,39 +381,38 @@ menu {
     background: #ff3253;
     border: none;
     color: #fff; }
-  .modal.addModal {
+  .modal.addmodal {
     text-align: center; }
-    .modal.addModal .clientaddform {
+    .modal.addmodal .clientaddform {
       width: 100%; }
-      .modal.addModal .clientaddform input {
+      .modal.addmodal .clientaddform input {
         border: none;
         border-bottom: 1px solid #ccc;
         font-size: 15px;
         width: 100%;
         margin-bottom: 10px; }
-      .modal.addModal .clientaddform input[name="submit"] {
+      .modal.addmodal .clientaddform button {
         position: absolute;
         left: 15px;
-        bottom: -60px;
+        bottom: -50px;
         padding: 7px 20px;
         width: auto !important;
         border-radius: 5px;
         border: none;
         background: #ff3253;
-        color: #fff; }
-      .modal.addModal .clientaddform textarea {
+        color: #fff;
+        font-size: 15px; }
+      .modal.addmodal .clientaddform textarea {
         border: none;
-        border-bottom: 1px solid #ccc;
         font-size: 15px;
         width: 100%;
-        margin-bottom: 10px;
         margin-top: 40vh; }
-      .modal.addModal .clientaddform .error {
+      .modal.addmodal .clientaddform .error {
         font-size: 13px;
         color: #ccc;
         font-family: hb-light; }
-  .modal .file-select {
-    display: none; }
+      .modal.addmodal .clientaddform .file-select {
+        display: none; }
 
 /*******************************************
 * © 2017 Hairbrain inc.
@@ -435,9 +437,10 @@ nav {
     top: 50%;
     left: 10px;
     transform: translateY(-50%);
-    color: #ff3253;
-    font-size: 20px;
     opacity: 1; }
+    nav .navmenu img {
+      height: 20px;
+      width: 20px; }
   nav .navlogo {
     width: 119px;
     height: 30px;
@@ -445,22 +448,30 @@ nav {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 1; }
+    opacity: 1;
+    z-index: 100; }
   nav .navsearch {
     position: absolute;
     right: 10px;
     top: 50%;
     transform: translateY(-50%); }
+    nav .navsearch img {
+      height: 20px;
+      width: 20px; }
   nav .searchfield {
     position: absolute;
     top: 50%;
-    left: 40px;
+    right: 10px;
     transform: translateY(-50%);
+    border: none;
     padding: 5px 10px;
     font-size: 17px;
     color: #ff3253;
-    width: 60%;
-    display: none; }
+    width: 20px;
+    background: transparent; }
+    nav .searchfield.open {
+      width: calc(100vw - 50px);
+      padding-right: 70px; }
   nav .exitprofile, nav .cancelsearch {
     position: absolute;
     right: 10px;
@@ -468,8 +479,18 @@ nav {
     transform: translateY(-50%);
     color: #ff3253;
     font-size: 17px;
-    display: none; }
+    display: none;
+    z-index: 100; }
 
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* PHOTOS WIDGET COMPONENT STYLES
+/******************************************/
 .photoswidget {
   position: absolute;
   top: 135px;
@@ -494,7 +515,7 @@ nav {
     background: transparent;
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    background-size: 70%;
+    background-size: cover;
     border: none; }
   .photoswidget .focus {
     width: 50% !important;

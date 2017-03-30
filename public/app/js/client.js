@@ -10,8 +10,7 @@
 
 var userid      = $.cookie('userid'),
     jwt         = $.cookie('jwt'),
-    clients     = [];
-    apiurl      = 'http://localhost:8080/';
+    apiurl      = 'http://api.hairbrain.ca/';
 
 function cookieCheck() {
     if(!userid || !jwt) {
@@ -43,16 +42,20 @@ var ClientAdd = (function() {
 *******************************************/
 var clientAddForm  = $('.clientaddform'),
     clientAddBtn   = $('.clientadd'),
-    addClientModal = $('.addModal'),
+    closeModal     = $('.closemodal'),
+    addClientModal = $('.addmodal'),
     firstname      = $('.clientaddform input[name="firstname"]'),
     lastname       = $('.clientaddform input[name="lastname"]'),
-    email          = $('.clientaddform input[name="email"]'),
     phone          = $('.clientaddform input[name="phone"]')
-    notes          = $('.clientaddform textarea[name="notes"]');
-    photofront     = $('.clientaddform input[name="photofront"]');
-    photoleft      = $('.clientaddform input[name="photoleft"]');
-    photoback      = $('.clientaddform input[name="photoback"]');
+    notes          = $('.clientaddform textarea[name="notes"]'),
+    photofront     = $('.clientaddform input[name="photofront"]'),
+    photoleft      = $('.clientaddform input[name="photoleft"]'),
+    photoback      = $('.clientaddform input[name="photoback"]'),
     photoright     = $('.clientaddform input[name="photoright"]');
+    thumbFront     = $('#photo-front'),
+    thumbLeft      = $('#photo-left'),
+    thumbBack      = $('#photo-back'),
+    thumbRight     = $('#photo-right');
 
 //----------------------------------------------------------------
 
@@ -72,8 +75,12 @@ clientAddForm.submit( function(e) {
     emptyAddForm();
 });
 
-clientAddBtn.click(function() {
+clientAddBtn.click( function() {
     addClientModal.modal('show');
+});
+
+closeModal.click( function() {
+    emptyAddForm();
 });
 
 
@@ -90,7 +97,7 @@ clientAddBtn.click(function() {
 
 //---------------------------------------------------------------/
 function emptyAddForm() {
-    $('#clientaddform input').each(function() {
+    $('.clientaddform input').each(function() {
         $(this).val('');
     })
     notes.val('');
@@ -109,7 +116,6 @@ function clientAddFormAJAX() {
     var form = new FormData();
     form.append("firstname", firstname.val());
     form.append("lastname", lastname.val());
-    form.append("email", email.val());
     form.append("phone", phone.val());
     form.append("notes", notes.val());
     form.append("photofront", photofront[0].files[0], 'photofront.jpg');
@@ -120,7 +126,7 @@ function clientAddFormAJAX() {
     var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost:8080/client/add/" + userid,
+    "url": "http://api.hairbrain.ca/client/add/" + userid,
     "method": "POST",
     "headers": {
         "cache-control": "no-cache",
@@ -154,6 +160,7 @@ function clientAddFormAJAX() {
 *******************************************/
 
 })(); // END OF LOGIN.JS
+
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------
@@ -202,6 +209,10 @@ logout.click(function() {
 	window.location.href = window.location.origin + '/';
 });
 
+$(window).on("resize",function() {
+  	repositionMenu();
+});
+
 //----------------------------------------------------------------
 
 						 // VIEWS
@@ -228,6 +239,18 @@ function closeMenu() {
 		opacity: 0
 	}, 300);
 	menuItems.removeClass('open');
+}
+
+function repositionMenu() {
+    var windowHeight = $(window).height();
+    console.log(windowHeight);
+    if(menuItems.hasClass('open')) {
+        console.log(menuItems.css('bottom'));
+	    menuItems.css('bottom', windowHeight - 138);
+    } else {
+        console.log(menuItems.css('bottom'));
+        menuItems.css('bottom', windowHeight - 50);
+    }
 }
 
 //----------------------------------------------------------------
@@ -259,6 +282,7 @@ return {
 }
 
 })(); // END OF MENU.JS
+
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------
@@ -313,8 +337,8 @@ exitProfile.click(function() {
 		Menu.closeMenu();
 })
 
-navSearch.click(function() {
-	if(navSearch.hasClass('open'))
+searchField.click(function() {
+	if(searchField.hasClass('open'))
 		slideSearchClosed();
 	else
 		slideSearchOpen();
@@ -376,22 +400,22 @@ function slideSearchOpen() {
 	navLogo.fadeOut(300);
 	cancelSearch.fadeIn(300);
 	fadeOutLetters();
-	navSearch.addClass('open');
+	searchField.addClass('open');
 	navSearch.animate({
 		right: '+=' + windowWidth + 'px'
 	}, 300, function() {
 		searchField.show();
-		searchField.focus();
+        searchField.focus();
 	})
 }
 
 function slideSearchClosed() {
+    searchField.blur();
 	var windowWidth = $(window).width() - 40;
-	searchField.hide();
 	navMenu.fadeIn(300);
 	navLogo.fadeIn(300);
 	cancelSearch.fadeOut(300);
-	navSearch.removeClass('open');
+	searchField.removeClass('open');
 	navSearch.animate({
 		right: '10px'
 	}, 300, function() {
@@ -408,7 +432,7 @@ function quickClearSearch() {
 	cancelSearch.hide();
 	navSearch.css('right', '10px');
 	searchField.hide();
-	navSearch.removeClass('open');	
+	searchField.removeClass('open');	
 }
 
 function restoreList() {
@@ -499,7 +523,6 @@ var clientProfile = $('.clientprofile'),
     avatar        = $('.avatar'),
     firstname     = $('.clientprofile .firstname'),
     lastname      = $('.clientprofile .lastname'),
-    email         = $('.clientprofile .email'),
     phone         = $('.clientprofile .phone'),
     photofront    = $('.clientprofile .photofront'),
     photoleft     = $('.clientprofile .photoleft'),
@@ -537,11 +560,10 @@ $('.confirmDelete').click(function() {
 function populateProfile(client) {
     console.log(client);
     clientProfile.attr('id', client._id);
-    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photofront.jpg');
+    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg');
     firstname.text(client.firstname);
     lastname.text(client.lastname);
     phone.text(client.phone);
-    email.text(client.email);
     photofront.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photofront.jpg');
     photoleft.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoleft.jpg');
     photoback.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoback.jpg');
@@ -564,7 +586,7 @@ function deleteClient() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8080/client/delete/" + userid + '/' + clientid,
+        "url": "//api.hairbrain.ca/client/delete/" + userid + '/' + clientid,
         "method": "DELETE",
         "headers": {
             "cache-control": "no-cache",
@@ -606,6 +628,7 @@ return {
 }
 
 })(); // END OF LOGIN.JS
+
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------
@@ -669,7 +692,7 @@ function displayClients(req) {
         clientList.append(`
             <div class="clientcard" id="${i}" data-name="${req[i].firstname} ${req[i].lastname}">
                 <div class="avatar">
-                    <img src="${apiurl}photo/${userid}/${req[i]._id}/photofront.jpg" height="30">
+                    <img src="${apiurl}photo/${userid}/${req[i]._id}/avatar.jpg" height="30">
                 </div>
                 <span class="firstname">${req[i].firstname}</span>
                 <span class="lastname">${req[i].lastname}</span>
@@ -708,7 +731,7 @@ function clientListAJAX() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8080/client/all/" + userid,
+        "url": "http://api.hairbrain.ca/client/all/" + userid,
         "method": "GET",
         "headers": {
             "cache-control": "no-cache",
@@ -724,7 +747,7 @@ function clientListAJAX() {
             clientlist = req;
             clientList.empty();
             if(clientlist.length === 0)
-                clientList.append('<div class="empty">You don\'t have any clients, <br> Why not click the plus below to get started!</div>');
+                clientList.append('<div class="empty">You don\'t have any clients, <br> Click the \'+\' below to get started!</div>');
             else 
                 displayClients(req);
         }
@@ -747,6 +770,7 @@ return {
 }
 
 })(); // END OF LOGIN.JS
+
 (function() {
 	
 	var PhotoUpload = {
@@ -828,7 +852,7 @@ return {
 
 		    }
 
-		    PhotoUpload.$src.css('background-image', 'url(' + img.src + ')' );
+		    PhotoUpload.$src.css('background', 'url(' + img.src + ')' );
 		    PhotoUpload.$src.css('background-size', 'cover');
 		}
 	};

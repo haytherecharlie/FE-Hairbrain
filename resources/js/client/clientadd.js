@@ -21,16 +21,20 @@ var ClientAdd = (function() {
 *******************************************/
 var clientAddForm  = $('.clientaddform'),
     clientAddBtn   = $('.clientadd'),
-    addClientModal = $('.addModal'),
+    closeModal     = $('.closemodal'),
+    addClientModal = $('.addmodal'),
     firstname      = $('.clientaddform input[name="firstname"]'),
     lastname       = $('.clientaddform input[name="lastname"]'),
-    email          = $('.clientaddform input[name="email"]'),
     phone          = $('.clientaddform input[name="phone"]')
-    notes          = $('.clientaddform textarea[name="notes"]');
-    photofront     = $('.clientaddform input[name="photofront"]');
-    photoleft      = $('.clientaddform input[name="photoleft"]');
-    photoback      = $('.clientaddform input[name="photoback"]');
+    notes          = $('.clientaddform textarea[name="notes"]'),
+    photofront     = $('.clientaddform input[name="photofront"]'),
+    photoleft      = $('.clientaddform input[name="photoleft"]'),
+    photoback      = $('.clientaddform input[name="photoback"]'),
     photoright     = $('.clientaddform input[name="photoright"]');
+    thumbFront     = $('#photo-front'),
+    thumbLeft      = $('#photo-left'),
+    thumbBack      = $('#photo-back'),
+    thumbRight     = $('#photo-right');
 
 //----------------------------------------------------------------
 
@@ -50,8 +54,12 @@ clientAddForm.submit( function(e) {
     emptyAddForm();
 });
 
-clientAddBtn.click(function() {
+clientAddBtn.click( function() {
     addClientModal.modal('show');
+});
+
+closeModal.click( function() {
+    emptyAddForm();
 });
 
 
@@ -68,7 +76,7 @@ clientAddBtn.click(function() {
 
 //---------------------------------------------------------------/
 function emptyAddForm() {
-    $('#clientaddform input').each(function() {
+    $('.clientaddform input').each(function() {
         $(this).val('');
     })
     notes.val('');
@@ -87,7 +95,6 @@ function clientAddFormAJAX() {
     var form = new FormData();
     form.append("firstname", firstname.val());
     form.append("lastname", lastname.val());
-    form.append("email", email.val());
     form.append("phone", phone.val());
     form.append("notes", notes.val());
     form.append("photofront", photofront[0].files[0], 'photofront.jpg');
@@ -98,7 +105,7 @@ function clientAddFormAJAX() {
     var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost:8080/client/add/" + userid,
+    "url": "http://api.hairbrain.ca/client/add/" + userid,
     "method": "POST",
     "headers": {
         "cache-control": "no-cache",

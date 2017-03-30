@@ -21,9 +21,12 @@ nav {
         position: absolute;
         top: 50%; left: 10px;
         transform: translateY(-50%);
-        color: #ff3253;
-        font-size: 20px;
         opacity: 1;
+
+        img {
+            height: 20px;
+            width: 20px;
+        }
     }
 
     .navlogo {
@@ -32,23 +35,35 @@ nav {
         top: 50%; left: 50%;
         transform: translate(-50%, -50%);
         opacity: 1;
+        z-index: 100;
     }
 
     .navsearch {
         position: absolute;
         right: 10px; top: 50%;
         transform: translateY(-50%);
+        
+        img {
+            height: 20px;
+            width: 20px;
+        }
     }
 
     .searchfield {
         position: absolute;
-        top: 50%; left: 40px;
+        top: 50%; right: 10px;
         transform: translateY(-50%);
+        border: none;
         padding: 5px 10px;
         font-size: 17px;
         color: #ff3253;
-        width: 60%;
-        display: none;
+        width: 20px;
+        background: transparent;
+
+        &.open {
+            width: calc(100vw - 50px);
+            padding-right: 70px;
+        }
     }
     
     .exitprofile, .cancelsearch {
@@ -58,5 +73,6 @@ nav {
         color: #ff3253;
         font-size: 17px;
         display: none;
+        z-index: 100;
     }
 }

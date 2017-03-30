@@ -61,7 +61,7 @@ function displayClients(req) {
         clientList.append(`
             <div class="clientcard" id="${i}" data-name="${req[i].firstname} ${req[i].lastname}">
                 <div class="avatar">
-                    <img src="${apiurl}photo/${userid}/${req[i]._id}/photofront.jpg" height="30">
+                    <img src="${apiurl}photo/${userid}/${req[i]._id}/avatar.jpg" height="30">
                 </div>
                 <span class="firstname">${req[i].firstname}</span>
                 <span class="lastname">${req[i].lastname}</span>
@@ -100,7 +100,7 @@ function clientListAJAX() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8080/client/all/" + userid,
+        "url": "http://api.hairbrain.ca/client/all/" + userid,
         "method": "GET",
         "headers": {
             "cache-control": "no-cache",
@@ -116,7 +116,7 @@ function clientListAJAX() {
             clientlist = req;
             clientList.empty();
             if(clientlist.length === 0)
-                clientList.append('<div class="empty">You don\'t have any clients, <br> Why not click the plus below to get started!</div>');
+                clientList.append('<div class="empty">You don\'t have any clients, <br> Click the \'+\' below to get started!</div>');
             else 
                 displayClients(req);
         }

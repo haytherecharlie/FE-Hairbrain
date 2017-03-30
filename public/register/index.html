@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<!-- TITLE -->
 	<title>Hairbrain | Register</title>
-
 	<link rel="apple-touch-icon" sizes="57x57" href="../app/favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="../app/favicon/apple-icon-60x60.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="../app/favicon/apple-icon-72x72.png">
@@ -22,7 +22,6 @@
 	<meta name="msapplication-TileImage" content="../app/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
 	<!-- VENDOR STYLESHEET -->
 	<link rel="stylesheet" type="text/css" href="../app/styles/vendor.css">
 	<!-- CUSTOM STYLESHEET -->
@@ -30,7 +29,8 @@
 
 </head>
 <body>
-    <form id="register-form" encType="multipart/form-data">
+
+    <form class="registerform" encType="multipart/form-data">
         <input placeholder="First name" type="text" name="firstname" required>
         <input placeholder="Last name" type="text" name="lastname" required>
         <input name="avatar" type="file" accept="image/*" capture="camera" required>
@@ -40,7 +40,9 @@
         <input placeholder="Salon" type="text" name="salon" required>
         <input type='submit' name="submit" value='login' />
     </form>
-    <a href="javascript:history.back()">Go Back</a>
+
+    <a class="backtologin">Go Back</a>
+
 </body>
 	<!-- VENDOR JS -->
 	<script type="text/javascript" src="../app/js/vendor.js"></script>

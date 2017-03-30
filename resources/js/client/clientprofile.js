@@ -23,7 +23,6 @@ var clientProfile = $('.clientprofile'),
     avatar        = $('.avatar'),
     firstname     = $('.clientprofile .firstname'),
     lastname      = $('.clientprofile .lastname'),
-    email         = $('.clientprofile .email'),
     phone         = $('.clientprofile .phone'),
     photofront    = $('.clientprofile .photofront'),
     photoleft     = $('.clientprofile .photoleft'),
@@ -61,11 +60,10 @@ $('.confirmDelete').click(function() {
 function populateProfile(client) {
     console.log(client);
     clientProfile.attr('id', client._id);
-    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photofront.jpg');
+    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg');
     firstname.text(client.firstname);
     lastname.text(client.lastname);
     phone.text(client.phone);
-    email.text(client.email);
     photofront.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photofront.jpg');
     photoleft.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoleft.jpg');
     photoback.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoback.jpg');
@@ -88,7 +86,7 @@ function deleteClient() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://localhost:8080/client/delete/" + userid + '/' + clientid,
+        "url": "//api.hairbrain.ca/client/delete/" + userid + '/' + clientid,
         "method": "DELETE",
         "headers": {
             "cache-control": "no-cache",

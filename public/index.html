@@ -30,10 +30,11 @@
 
 </head>
 <body>
-    <form id="login-form" encType="multipart/form-data">
+    <form class="loginform" encType="multipart/form-data">
 		<img src="./app/img/hairbrain.png">
         <input placeholder="Email" type="email" name="email" required>
         <input placeholder="Password" type="password" name="password" minlength="8" maxlength="16"  required>
+		<span class="failedlogin">Email or Password Incorrect</span>
         <button type='submit' name="submit">Login</button>
     </form>
 </body>

@@ -79,7 +79,7 @@
 
 		    }
 
-		    PhotoUpload.$src.css('background-image', 'url(' + img.src + ')' );
+		    PhotoUpload.$src.css('background', 'url(' + img.src + ')' );
 		    PhotoUpload.$src.css('background-size', 'cover');
 		}
 	};

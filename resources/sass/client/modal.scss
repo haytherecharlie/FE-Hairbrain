@@ -7,70 +7,76 @@
 *
 * MODAL COMPONENT STYLES
 /******************************************/
+
 .modal {
-  text-align: center;
-  padding: 0!important;
-  background-color: rgba(255,255,255, 0.7);
-
-  .modallogo {
-    width: 119px;
-    height: 30px;
-    margin: 10px;
-  }
-
-  &.fade {
-    background-color: rgba(255,255,255, 0.7);
-  }
-
-  &.deleteModal {
-
-    .confirmDelete {
-      background: #ff3253;
-      border: none;
-      color: #fff;
-    }
-  }
-
-  &.addModal {
     text-align: center;
+    padding: 0!important;
+    background-color: rgba(255,255,255, 0.7);
 
-    .clientaddform {
-      width: 100%;
-      
-      input {
-        border: none;
-        border-bottom: 1px solid #ccc;
-        font-size: 15px;
-        width: 100%;
-        margin-bottom: 10px;
-      }
-      input[name="submit"] {
-        position: absolute;
-        left: 15px;
-        bottom: -60px;
-        padding: 7px 20px;
-        width: auto!important;
-        border-radius: 5px;
-        border: none;
-        background: #ff3253;
-        color: #fff;
-      }
-      textarea {
-        border: none;
-        border-bottom: 1px solid #ccc;
-        font-size: 15px;
-        width: 100%;
-        margin-bottom: 10px; 
-        margin-top: 40vh;      
-      }
-      .error {
-        font-size: 13px;
-        color: #ccc;
-        font-family: hb-light;
-      }
+    .modallogo {
+        width: 119px;
+        height: 30px;
+        margin: 10px;
     }
-  }
-  .file-select {
-  display: none;
-}
+
+    &.fade {
+        background-color: rgba(255,255,255, 0.7);
+    }
+
+    /* DELETE CLIENT MODAL */
+    &.deleteModal {
+
+        .confirmDelete {
+            background: #ff3253;
+            border: none;
+            color: #fff;
+        }
+    }
+
+    /* ADD CLIENT MODAL */
+    &.addmodal {
+        text-align: center;
+
+        .clientaddform {
+            width: 100%;
+            
+            input {
+                border: none;
+                border-bottom: 1px solid #ccc;
+                font-size: 15px;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            button {
+                position: absolute;
+                left: 15px;
+                bottom: -50px;
+                padding: 7px 20px;
+                width: auto!important;
+                border-radius: 5px;
+                border: none;
+                background: #ff3253;
+                color: #fff;
+                font-size: 15px;
+            }
+
+            textarea {
+                border: none;
+                font-size: 15px;
+                width: 100%;
+                margin-top: 40vh;      
+            }
+
+            .error {
+                font-size: 13px;
+                color: #ccc;
+                font-family: hb-light;
+            }
+            
+            .file-select {
+                display: none;
+            }
+        }
+    }
 }
