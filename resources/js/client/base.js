@@ -8,8 +8,12 @@
 * BASE JS FUNCTIONALITY.
 /******************************************/
 
-var userid      = $.cookie('userid'),
-    jwt         = $.cookie('jwt'),
+var userid      = decodeURI($.cookie('userid')),
+    jwt         = decodeURI($.cookie('jwt')),
+    name        = decodeURI($.cookie('name')),
+    phone       = decodeURI($.cookie('phone')),
+    email       = decodeURI($.cookie('email')),
+    salon       = decodeURI($.cookie('salon')),
     apiurl      = 'http://api.hairbrain.ca/';
 
 function cookieCheck() {

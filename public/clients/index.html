@@ -93,7 +93,7 @@
             <!-- NOTES CONTAINER -->
             <div class="notesbox container">
                 <div class="title">Notes</div>
-                <textarea class="notes" readonly></textarea>
+                <textarea class="notes" readonly disabled></textarea>
             </div>
             <div class="optionsbox container">
                 <button class="deleteclient">Delete Client</button>
@@ -127,14 +127,14 @@
                         <form class="clientaddform" encType="multipart/form-data">
                             <input name="firstname" placeholder="First name" type="text" required>
                             <input name="lastname" placeholder="Last name" type="text" required>
-                            <input name="phone" placeholder="Phone #" type="text" data-mask="1(000)000-0000" required>
+                            <input name="phone" placeholder="Phone #" type="text" data-mask="1 (000) 000-0000" required>
                             <input name="email" placeholder="Email" type="email" value="noemail@hairbrain.ca" style="display: none;" required>
                             <input name="photofront" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-front" required>
                             <input name="photoleft" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-left" required>
                             <input name="photoback" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-back" required>
                             <input name="photoright" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-right" required>
                             <textarea name="notes" placeholder="Notes" type="text" required></textarea>
-                            <button name="submit" type="submit">Save Client</button>
+                            <button class="btn" name="submit" type="submit">Save Client</button>
                         </form>
 
                         <!-- PHOTOS WIDGET -->
@@ -177,6 +177,26 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default confirmDelete" data-dismiss="modal">Yes</button>
                         <button type="button" class="btn btn-default cancelDelete" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REPORT AN ISSUE MODAL -->
+        <div class="modal fade issueModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- MODAL BODY -->
+                    <div class="modal-body">
+                        <img class="modallogo" src="../app/img/hairbrain-small.png">
+                        <textarea class="issueform" placeholder="Please provide details of your issue"></textarea>
+                    </div>
+
+                    <!-- MODAL FOOTER -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default confirmReport" data-dismiss="modal">Send</button>
+                        <button type="button" class="btn btn-default cancelReport" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>

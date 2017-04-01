@@ -63,7 +63,7 @@ function populateProfile(client) {
     avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg');
     firstname.text(client.firstname);
     lastname.text(client.lastname);
-    phone.text(client.phone);
+    phone.html('<a href="tel:' + client.phone + '">' + client.phone + '</a>');
     photofront.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photofront.jpg');
     photoleft.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoleft.jpg');
     photoback.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoback.jpg');
@@ -86,7 +86,7 @@ function deleteClient() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "//api.hairbrain.ca/client/delete/" + userid + '/' + clientid,
+        "url": apiurl + "client/delete/" + userid + '/' + clientid,
         "method": "DELETE",
         "headers": {
             "cache-control": "no-cache",

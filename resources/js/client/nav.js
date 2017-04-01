@@ -62,7 +62,7 @@ searchField.click(function() {
 });
 
 $(window).on("resize",function() {
-  if(navSearch.hasClass('open'))
+  if(searchField.hasClass('open'))
   	repositionSearch();
 });
 
@@ -146,7 +146,7 @@ function quickClearSearch() {
 	navSearch.hide();
 	cancelSearch.hide();
 	navSearch.css('right', '10px');
-	searchField.hide();
+	searchField.removeClass('open');
 	searchField.removeClass('open');	
 }
 

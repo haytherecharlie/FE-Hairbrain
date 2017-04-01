@@ -19,7 +19,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 80%;
-  text-align: center; }
+  text-align: center;
+  max-width: 400px; }
   .loginform img {
     margin: 0 0 20px 0;
     width: 100%; }

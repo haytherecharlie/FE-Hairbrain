@@ -72,7 +72,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100%;
-        height: 120%; }
+        height: auto; }
     .clientlist .clientcard span {
       display: inline-block;
       line-height: 40px;
@@ -102,11 +102,13 @@
   left: 100vw;
   top: 0;
   overflow-y: scroll;
-  z-index: 25; }
+  z-index: 25;
+  -webkit-overflow-scrolling: touch; }
   .clientprofile .container {
     position: relative;
-    margin: 10px;
+    margin: 10px auto;
     width: calc(100% - 20px);
+    max-width: 600px;
     background: #FFF;
     text-align: center;
     border-radius: 5px;
@@ -139,7 +141,8 @@
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 100%; }
+          width: 100%;
+          height: auto; }
     .clientprofile .contactbox .namecontainer {
       overflow: hidden;
       display: inline-block;
@@ -218,7 +221,8 @@
       overflow: hidden;
       position: relative; }
       .clientprofile .photosbox .mainphoto img {
-        height: 100%;
+        width: 100%;
+        height: auto;
         position: absolute;
         left: 50%;
         transform: translateX(-50%); }
@@ -232,7 +236,8 @@
         overflow: hidden;
         position: relative; }
         .clientprofile .photosbox .sidephotos .thirdheight img {
-          height: 100%;
+          width: 100%;
+          height: auto;
           position: absolute;
           left: 50%;
           transform: translateX(-50%); }
@@ -266,7 +271,7 @@
       border: 1px solid #000;
       border-radius: 5px;
       padding: 5px;
-      color: #ff3253;
+      color: #000;
       overflow: scroll; }
   .clientprofile .optionsbox button {
     display: block;
@@ -371,6 +376,8 @@ menu {
   background-color: rgba(255, 255, 255, 0.7);
   /* DELETE CLIENT MODAL */
   /* ADD CLIENT MODAL */ }
+  .modal .modal-body {
+    position: relative; }
   .modal .modallogo {
     width: 119px;
     height: 30px;
@@ -406,13 +413,28 @@ menu {
         border: none;
         font-size: 15px;
         width: 100%;
-        margin-top: 40vh; }
+        margin-top: 250px;
+        border: 1px solid #CCC;
+        height: 100px;
+        resize: none;
+        padding: 5px; }
       .modal.addmodal .clientaddform .error {
         font-size: 13px;
         color: #ccc;
         font-family: hb-light; }
       .modal.addmodal .clientaddform .file-select {
         display: none; }
+    .modal.addmodal .closemodal {
+      background: #fff;
+      border: 1px solid #ccc; }
+  .modal.issueModal textarea {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 15px;
+    height: 300px;
+    width: 90%;
+    resize: none; }
 
 /*******************************************
 * © 2017 Hairbrain inc.
@@ -497,9 +519,10 @@ nav {
   left: 50%;
   transform: translateX(-50%);
   padding: none;
-  width: 91vw;
-  height: 35vh;
-  text-align: center; }
+  width: 100%;
+  height: 225px;
+  text-align: center;
+  padding: 5px; }
   .photoswidget .thumbnail-container {
     height: 100%;
     width: 15%;

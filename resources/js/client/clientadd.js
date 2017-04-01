@@ -105,7 +105,7 @@ function clientAddFormAJAX() {
     var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://api.hairbrain.ca/client/add/" + userid,
+    "url": apiurl + "client/add/" + userid,
     "method": "POST",
     "headers": {
         "cache-control": "no-cache",

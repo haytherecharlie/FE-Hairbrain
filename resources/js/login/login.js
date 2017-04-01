@@ -76,8 +76,12 @@ function enableLogin() {
  * Login Success
 *******************************************/
 function loginSuccess(res) {
-    $.cookie('jwt', res.token, { expires: 7, path: '/' });
-    $.cookie('userid', res.id, { expires: 7, path: '/' });
+    $.cookie('jwt',    res.token, { expires: 7, path: '/' });
+    $.cookie('userid', res.id,    { expires: 7, path: '/' });
+    $.cookie('name',   res.name,  { expires: 7, path: '/' });
+    $.cookie('phone',  res.phone, { expires: 7, path: '/' });
+    $.cookie('email',  res.email, { expires: 7, path: '/' });
+    $.cookie('salon',  res.salon, { expires: 7, path: '/' });
     redirect(/clients/);
 }
 
@@ -154,9 +158,6 @@ function checkIfAlreadyLoggedIn(jwt) {
         if(res === "success") 
             redirect(/clients/);
     })
-    .fail(function(err) {
-            console.log(err);
-    });
 }
 
 //----------------------------------------------------------------

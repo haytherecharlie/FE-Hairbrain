@@ -100,7 +100,7 @@ function clientListAJAX() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://api.hairbrain.ca/client/all/" + userid,
+        "url": apiurl + "client/all/" + userid,
         "method": "GET",
         "headers": {
             "cache-control": "no-cache",

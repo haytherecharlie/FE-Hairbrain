@@ -46,6 +46,11 @@ logout.click(function() {
 	window.location.href = window.location.origin + '/';
 });
 
+reportIssue.click(function() {
+    $('.issueModal').modal('show');
+    closeMenu();
+});
+
 $(window).on("resize",function() {
   	repositionMenu();
 });
@@ -80,14 +85,10 @@ function closeMenu() {
 
 function repositionMenu() {
     var windowHeight = $(window).height();
-    console.log(windowHeight);
-    if(menuItems.hasClass('open')) {
-        console.log(menuItems.css('bottom'));
+    if(menuItems.hasClass('open'))
 	    menuItems.css('bottom', windowHeight - 138);
-    } else {
-        console.log(menuItems.css('bottom'));
+    else
         menuItems.css('bottom', windowHeight - 50);
-    }
 }
 
 //----------------------------------------------------------------

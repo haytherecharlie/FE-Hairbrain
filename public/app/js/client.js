@@ -8,8 +8,12 @@
 * BASE JS FUNCTIONALITY.
 /******************************************/
 
-var userid      = $.cookie('userid'),
-    jwt         = $.cookie('jwt'),
+var userid      = decodeURI($.cookie('userid')),
+    jwt         = decodeURI($.cookie('jwt')),
+    name        = decodeURI($.cookie('name')),
+    phone       = decodeURI($.cookie('phone')),
+    email       = decodeURI($.cookie('email')),
+    salon       = decodeURI($.cookie('salon')),
     apiurl      = 'http://api.hairbrain.ca/';
 
 function cookieCheck() {
@@ -126,7 +130,7 @@ function clientAddFormAJAX() {
     var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://api.hairbrain.ca/client/add/" + userid,
+    "url": apiurl + "client/add/" + userid,
     "method": "POST",
     "headers": {
         "cache-control": "no-cache",
@@ -209,6 +213,11 @@ logout.click(function() {
 	window.location.href = window.location.origin + '/';
 });
 
+reportIssue.click(function() {
+    $('.issueModal').modal('show');
+    closeMenu();
+});
+
 $(window).on("resize",function() {
   	repositionMenu();
 });
@@ -243,14 +252,10 @@ function closeMenu() {
 
 function repositionMenu() {
     var windowHeight = $(window).height();
-    console.log(windowHeight);
-    if(menuItems.hasClass('open')) {
-        console.log(menuItems.css('bottom'));
+    if(menuItems.hasClass('open'))
 	    menuItems.css('bottom', windowHeight - 138);
-    } else {
-        console.log(menuItems.css('bottom'));
+    else
         menuItems.css('bottom', windowHeight - 50);
-    }
 }
 
 //----------------------------------------------------------------
@@ -347,7 +352,7 @@ searchField.click(function() {
 });
 
 $(window).on("resize",function() {
-  if(navSearch.hasClass('open'))
+  if(searchField.hasClass('open'))
   	repositionSearch();
 });
 
@@ -431,7 +436,7 @@ function quickClearSearch() {
 	navSearch.hide();
 	cancelSearch.hide();
 	navSearch.css('right', '10px');
-	searchField.hide();
+	searchField.removeClass('open');
 	searchField.removeClass('open');	
 }
 
@@ -563,7 +568,7 @@ function populateProfile(client) {
     avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg');
     firstname.text(client.firstname);
     lastname.text(client.lastname);
-    phone.text(client.phone);
+    phone.html('<a href="tel:' + client.phone + '">' + client.phone + '</a>');
     photofront.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photofront.jpg');
     photoleft.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoleft.jpg');
     photoback.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoback.jpg');
@@ -586,7 +591,7 @@ function deleteClient() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "//api.hairbrain.ca/client/delete/" + userid + '/' + clientid,
+        "url": apiurl + "client/delete/" + userid + '/' + clientid,
         "method": "DELETE",
         "headers": {
             "cache-control": "no-cache",
@@ -731,7 +736,7 @@ function clientListAJAX() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://api.hairbrain.ca/client/all/" + userid,
+        "url": apiurl + "client/all/" + userid,
         "method": "GET",
         "headers": {
             "cache-control": "no-cache",
@@ -887,4 +892,34 @@ function expandPhoto($this) {
     currentFocus.removeClass('focus');
     $this.addClass('focus');
     currentFocus = $this;
+}
+
+$('.confirmReport').click(function() {
+    submitForm();
+});
+
+function submitForm() {
+    var form = new FormData();
+    form.append("name", name);
+    form.append("phone", phone);
+    form.append("email", email);
+    form.append("salon", salon);
+    form.append("issue", $('.issueform').val());
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://script.google.com/macros/s/AKfycbxwK0uSZtglD0qBQKwqNOzfM-1JDMjIusr4FL3i6bkpAkL-QCOH/exec",
+        "method": "POST",
+        "processData": false,
+        "contentType": false,
+        "data": form
+    }
+
+    $.ajax(settings)
+    .done(function (req, res) {
+        if(res === "success") { 
+            console.log('success');
+        }
+    });
 }
