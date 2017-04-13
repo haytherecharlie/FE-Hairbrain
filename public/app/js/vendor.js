@@ -6045,3 +6045,4 @@ module.exports = exports['default'];
 
   ga('create', 'UA-96535573-1', 'auto');
   ga('send', 'pageview');
+var apiurl      = 'http://localhost:8080/';

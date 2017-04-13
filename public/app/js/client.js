@@ -13,8 +13,7 @@ var userid      = decodeURI($.cookie('userid')),
     name        = decodeURI($.cookie('name')),
     phone       = decodeURI($.cookie('phone')),
     email       = decodeURI($.cookie('email')),
-    salon       = decodeURI($.cookie('salon')),
-    apiurl      = 'http://api.hairbrain.ca/';
+    salon       = decodeURI($.cookie('salon'));
 
 function cookieCheck() {
     if(!userid || !jwt) {

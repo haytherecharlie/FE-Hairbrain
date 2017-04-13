@@ -1,0 +1,1 @@
+var apiurl      = 'http://api.hairbrain.ca/';

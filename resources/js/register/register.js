@@ -86,7 +86,7 @@ function registerFormAJAX() {
     var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "http://localhost:8080/register",
+    "url": apiurl + "register",
     "method": "POST",
     "headers": {
         "cache-control": "no-cache",

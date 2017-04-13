@@ -110,7 +110,7 @@ function loginFormAJAX() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://api.hairbrain.ca/login",
+        "url": apiurl + "login",
         "method": "POST",
         "headers": {
             "cache-control": "no-cache"
@@ -142,7 +142,7 @@ function checkIfAlreadyLoggedIn(jwt) {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "http://api.hairbrain.ca/check",
+        "url": apiurl + "check",
         "method": "GET",
         "headers": {
             "cache-control": "no-cache",

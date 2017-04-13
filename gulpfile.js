@@ -29,7 +29,9 @@ gulp.task('login-custom-sass', function() {
 
 // LOGIN CUSTOM JS ========================
 gulp.task('login-custom-js', function() {
-    return gulp.src(['resources/js/login/login.js'])
+    return gulp.src([
+        'resources/js/login/login.js'
+        ])
     .pipe(sourcemaps.init())
     .pipe(concat('login.js'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
@@ -50,7 +52,9 @@ gulp.task('register-custom-sass', function() {
 
 // LOGIN CUSTOM JS ========================
 gulp.task('register-custom-js', function() {
-    return gulp.src(['resources/js/register/register.js'])
+    return gulp.src([
+        'resources/js/register/register.js'
+        ])
     .pipe(sourcemaps.init())
     .pipe(concat('register.js'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
@@ -114,7 +118,8 @@ gulp.task('vendor-js', function() {
         'node_modules/jquery-validation-dist/dist/jquery.validate.js',
         'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
         'resources/js/vendor/resize.js',
-        'resources/js/vendor/analytics.js'
+        'resources/js/vendor/analytics.js',
+        'resources/js/universal/' + (gutil.env.api ? gutil.env.api : 'test') + 'api.js'
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('vendor.js'))
