@@ -32,9 +32,9 @@
 <body>
     <form class="loginform" encType="multipart/form-data">
 		<img src="./app/img/hairbrain.png">
-        <input placeholder="Email" type="email" name="email" required>
+        <input placeholder="Phone" type="tel" name="phone" data-mask="1(000)000-0000" required>
         <input placeholder="Password" type="password" name="password" minlength="8" maxlength="16"  required>
-		<span class="failedlogin">Email or Password Incorrect</span>
+		<span class="failedlogin">Phone # or Password Incorrect</span>
         <button type='submit' name="submit">Login</button>
     </form>
 </body>

@@ -20,7 +20,7 @@ var Login = (function() {
  * Global Variables
 *******************************************/
 var loginForm    = $('.loginform'),
-    email        = $('input[name="email"]'),
+    phone        = $('input[name="phone"]'),
     password     = $('input[name="password"]'),
     loginBtn     = $('button[name="submit"]'),
     loginBtnSpan = $('button[name="submit"] span'), 
@@ -104,7 +104,7 @@ function redirect(path) {
 function loginFormAJAX() {
 
     var form = new FormData();
-    form.append("email", email.val());
+    form.append("phone", phone.val());
     form.append("password", password.val());
 
     var settings = {
