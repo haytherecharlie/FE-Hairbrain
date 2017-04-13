@@ -229,7 +229,7 @@ $(window).on("resize",function() {
 function openMenu() {
 	menuBox.show();
 	menuItems.animate({
-		bottom: '-=' + menuItems.height()
+		top: 50
 	}, 300);
 	menuOverlay.animate({
 		opacity: 1
@@ -239,7 +239,7 @@ function openMenu() {
 
 function closeMenu() {
 	menuItems.animate({
-		bottom: '+=' + menuItems.height()
+		top: 50 - menuItems.height()
 	}, 300, function() {
 		menuBox.hide();
 	});
@@ -250,11 +250,10 @@ function closeMenu() {
 }
 
 function repositionMenu() {
-    var windowHeight = $(window).height();
     if(menuItems.hasClass('open'))
-	    menuItems.css('bottom', windowHeight - 138);
+	    menuItems.css('top', 50);
     else
-        menuItems.css('bottom', windowHeight - 50);
+        menuItems.css('top', 50 - menuItems.height());
 }
 
 //----------------------------------------------------------------
