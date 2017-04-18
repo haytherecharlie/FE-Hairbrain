@@ -58,7 +58,6 @@ $('.confirmDelete').click(function() {
 
 //---------------------------------------------------------------/
 function populateProfile(client) {
-    console.log(client);
     clientProfile.attr('id', client._id);
     avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg');
     firstname.text(client.firstname);
@@ -99,7 +98,7 @@ function deleteClient() {
     $.ajax(settings)
     .done(function (req, res) {
         if(res === "success") { 
-            console.log('success');
+            // Success
         }
     });
 }

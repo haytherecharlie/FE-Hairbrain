@@ -42,7 +42,7 @@ gulp.task('login-custom-js', function() {
 /            REGISTER PAGE
 /******************************************/
 
-// LOGIN CUSTOM SASS ======================
+// REGISTER CUSTOM SASS ======================
 gulp.task('register-custom-sass', function() {
     gulp.src('resources/sass/register/register.scss')
         .pipe(concat('register.css'))
@@ -50,7 +50,7 @@ gulp.task('register-custom-sass', function() {
         .pipe(gulp.dest('./public/app/styles/'))
 });
 
-// LOGIN CUSTOM JS ========================
+// REGISTER CUSTOM JS ========================
 gulp.task('register-custom-js', function() {
     return gulp.src([
         'resources/js/register/register.js'
@@ -88,6 +88,29 @@ gulp.task('client-custom-js', function() {
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('client.js'))
+    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gulp.dest('./public/app/js/'))
+});
+
+/*******************************************
+/               RATE PAGE
+/******************************************/
+
+// RATE CUSTOM SASS ======================
+gulp.task('rate-custom-sass', function() {
+    gulp.src('resources/sass/rate/rate.scss')
+        .pipe(concat('rate.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/'))
+});
+
+// RATE CUSTOM JS ========================
+gulp.task('rate-custom-js', function() {
+    return gulp.src([
+        'resources/js/rate/rate.js'
+        ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('rate.js'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
     .pipe(gulp.dest('./public/app/js/'))
 });
@@ -133,14 +156,11 @@ gulp.task('vendor-js', function() {
 
 // DEFAULT TASK ============================
 gulp.task('default', [
-    'login-custom-sass',
-    'login-custom-js',
-    'register-custom-sass',
-    'register-custom-js',
-    'client-custom-sass',
-    'client-custom-js',
-    'vendor-css',
-    'vendor-js'
+    'login-custom-sass', 'login-custom-js',
+    'register-custom-sass', 'register-custom-js',
+    'client-custom-sass', 'client-custom-js', 
+    'rate-custom-sass', 'rate-custom-js',
+    'vendor-css', 'vendor-js'
 ]);
 
 // WATCH TASK ============================

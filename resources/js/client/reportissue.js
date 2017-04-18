@@ -23,7 +23,7 @@ function submitForm() {
     $.ajax(settings)
     .done(function (req, res) {
         if(res === "success") { 
-            console.log('success');
+            // Success
         }
     });
 }

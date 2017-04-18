@@ -95,10 +95,12 @@ function slideClientProfile() {
 
 function hideSearch() {
 	navSearch.fadeOut();
+    searchField.hide();
 }
 
 function showSearch() {
 	navSearch.fadeIn();
+    searchField.show();
 }
 
 function showbackBtn() {

@@ -59,6 +59,7 @@ nav {
         color: #ff3253;
         width: 20px;
         background: transparent;
+        display: block;
 
         &.open {
             width: calc(100vw - 50px);

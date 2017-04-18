@@ -65,8 +65,6 @@
 
 		rotatePhoto: function(img, blob) {
 
-			console.log(blob);
-
 		    if (img.height < img.width) {
 
 		        PhotoUpload.$src.removeClass('default');

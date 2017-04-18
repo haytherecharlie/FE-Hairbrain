@@ -424,6 +424,19 @@ menu {
         font-family: hb-light; }
       .modal.addmodal .clientaddform .file-select {
         display: none; }
+    .modal.addmodal .savingclient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #fff;
+      height: 100%;
+      width: 100%;
+      display: none; }
+      .modal.addmodal .savingclient img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); }
     .modal.addmodal .closemodal {
       background: #fff;
       border: 1px solid #ccc; }
@@ -490,7 +503,8 @@ nav {
     font-size: 17px;
     color: #ff3253;
     width: 20px;
-    background: transparent; }
+    background: transparent;
+    display: block; }
     nav .searchfield.open {
       width: calc(100vw - 50px);
       padding-right: 70px; }
@@ -520,6 +534,7 @@ nav {
   transform: translateX(-50%);
   padding: none;
   width: 100%;
+  max-width: 400px;
   height: 225px;
   text-align: center;
   padding: 5px; }

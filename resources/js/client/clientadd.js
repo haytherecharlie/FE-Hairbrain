@@ -20,6 +20,8 @@ var ClientAdd = (function() {
  * Global Variables
 *******************************************/
 var clientAddForm  = $('.clientaddform'),
+    addFormInputs  = $('.clientaddform input')
+    addFormSubmit  = $('.clientaddsubmit'),
     clientAddBtn   = $('.clientadd'),
     closeModal     = $('.closemodal'),
     addClientModal = $('.addmodal'),
@@ -34,7 +36,8 @@ var clientAddForm  = $('.clientaddform'),
     thumbFront     = $('#photo-front'),
     thumbLeft      = $('#photo-left'),
     thumbBack      = $('#photo-back'),
-    thumbRight     = $('#photo-right');
+    thumbRight     = $('#photo-right'),
+    loadingGif     = $('.savingclient');
 
 //----------------------------------------------------------------
 
@@ -50,16 +53,28 @@ var clientAddForm  = $('.clientaddform'),
 //---------------------------------------------------------------/
 clientAddForm.submit( function(e) {
     e.preventDefault();
+    showLoading();
     clientAddFormAJAX();
     emptyAddForm();
 });
 
 clientAddBtn.click( function() {
+    countValidInputs();
     addClientModal.modal('show');
 });
 
 closeModal.click( function() {
     emptyAddForm();
+});
+
+// Doesn't allow form submit on enter press.
+$(document).keypress(":input:not(textarea)", function(event) {
+    return event.keyCode != 13;
+});
+
+// Listens for change on each input. NOTE:Doesn't listen to textarea.
+addFormInputs.not('input[type="button"]').change(function() {
+    countValidInputs();
 });
 
 
@@ -68,7 +83,13 @@ closeModal.click( function() {
 						 // VIEWS
 
 //---------------------------------------------------------------/
+function showLoading() {
+    loadingGif.show();
+}
 
+function hideLoading() {
+    loadingGif.hide();
+}
 
 //----------------------------------------------------------------
 
@@ -76,12 +97,33 @@ closeModal.click( function() {
 
 //---------------------------------------------------------------/
 function emptyAddForm() {
-    $('.clientaddform input').each(function() {
+    addFormInputs.each(function() {
         $(this).val('');
     })
     notes.val('');
+    $('#photo-front').css('background', 'none');
+    $('#photo-left').css( 'background', 'none');
+    $('#photo-back').css( 'background', 'none');
+    $('#photo-right').css('background', 'none');
 }
 
+function countValidInputs() {
+    var numInputs   = addFormInputs.length;
+    var validInputs = 0; 
+    addFormInputs.each(function() {
+        if ( $(this).val() !== '') {
+            validInputs++;
+        }
+    })
+    toggleSubmitBtn(validInputs, numInputs);
+}
+
+function toggleSubmitBtn(valid, total) {
+    if( valid === total )
+        addFormSubmit.prop('disabled', false);
+    else 
+        addFormSubmit.prop('disabled', true);
+}
 //----------------------------------------------------------------
 
 						 // AJAX CALLS
@@ -119,11 +161,11 @@ function clientAddFormAJAX() {
 
     $.ajax(settings)
     .done(function (req, res) {
-        console.log(res);
         if(res === "success") { 
             ClientList.clientListAJAX();
             emptyAddForm();
             addClientModal.modal('hide');
+            hideLoading();
         }
     });
 }
@@ -137,5 +179,7 @@ function clientAddFormAJAX() {
 /*******************************************
  * Main Function
 *******************************************/
-
+(function() {
+    // validateform();
+})();
 })(); // END OF LOGIN.JS

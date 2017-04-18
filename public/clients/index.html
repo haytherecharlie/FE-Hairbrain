@@ -127,14 +127,13 @@
                         <form class="clientaddform" encType="multipart/form-data">
                             <input name="firstname" placeholder="First name" type="text" required>
                             <input name="lastname" placeholder="Last name" type="text" required>
-                            <input name="phone" placeholder="Phone #" type="text" data-mask="1 (000) 000-0000" required>
-                            <input name="email" placeholder="Email" type="email" value="noemail@hairbrain.ca" style="display: none;" required>
+                            <input name="phone" placeholder="Phone #" type="phone" data-mask="1 (000) 000-0000" required>
                             <input name="photofront" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-front" required>
                             <input name="photoleft" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-left" required>
                             <input name="photoback" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-back" required>
                             <input name="photoright" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-right" required>
-                            <textarea name="notes" placeholder="Notes" type="text" required></textarea>
-                            <button class="btn" name="submit" type="submit">Save Client</button>
+                            <textarea name="notes" placeholder="Notes" type="text"></textarea>
+                            <button class="btn clientaddsubmit" name="submit" type="submit" disabled>Save Client</button>
                         </form>
 
                         <!-- PHOTOS WIDGET -->
@@ -151,6 +150,10 @@
                             <div class="thumbnail-container thumbright">
                                 <div class="thumbnail default" id="photo-right"></div>
                             </div>
+                        </div>
+
+                        <div class="savingclient">
+                            <img src="/app/img/loading.gif">
                         </div>
                     </div>
 
