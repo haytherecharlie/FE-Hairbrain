@@ -21,7 +21,10 @@ var sourcemaps = require('gulp-sourcemaps');
 
 // LOGIN CUSTOM SASS ======================
 gulp.task('login-custom-sass', function() {
-    gulp.src('resources/sass/login/login.scss')
+    gulp.src([
+        'resources/sass/login/login.scss',
+        'resources/sass/login/register.scss'
+        ])
         .pipe(concat('login.css'))
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./public/app/styles/'))
@@ -30,33 +33,12 @@ gulp.task('login-custom-sass', function() {
 // LOGIN CUSTOM JS ========================
 gulp.task('login-custom-js', function() {
     return gulp.src([
-        'resources/js/login/login.js'
+        'resources/js/login/login.js',
+        'resources/js/login/register.js',
+        'resources/js/universal/photoupload.js',
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('login.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
-    .pipe(gulp.dest('./public/app/js/'))
-});
-
-/*******************************************
-/            REGISTER PAGE
-/******************************************/
-
-// REGISTER CUSTOM SASS ======================
-gulp.task('register-custom-sass', function() {
-    gulp.src('resources/sass/register/register.scss')
-        .pipe(concat('register.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/'))
-});
-
-// REGISTER CUSTOM JS ========================
-gulp.task('register-custom-js', function() {
-    return gulp.src([
-        'resources/js/register/register.js'
-        ])
-    .pipe(sourcemaps.init())
-    .pipe(concat('register.js'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
     .pipe(gulp.dest('./public/app/js/'))
 });
@@ -82,7 +64,7 @@ gulp.task('client-custom-js', function() {
         'resources/js/client/nav.js',
         'resources/js/client/clientprofile.js',
         'resources/js/client/clientlist.js',
-        'resources/js/client/photoupload.js',
+        'resources/js/universal/photoupload.js',
         'resources/js/client/photowidget.js',
         'resources/js/client/reportissue.js'
         ])
@@ -157,7 +139,6 @@ gulp.task('vendor-js', function() {
 // DEFAULT TASK ============================
 gulp.task('default', [
     'login-custom-sass', 'login-custom-js',
-    'register-custom-sass', 'register-custom-js',
     'client-custom-sass', 'client-custom-js', 
     'rate-custom-sass', 'rate-custom-js',
     'vendor-css', 'vendor-js'

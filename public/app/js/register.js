@@ -62,7 +62,10 @@ registerForm.submit( function(e) {
 						 // LOGIC
 
 //---------------------------------------------------------------/
-
+   function initialize() {
+      var input = document.getElementById('salon');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+   }
 
 //----------------------------------------------------------------
 
@@ -111,6 +114,6 @@ function registerFormAJAX() {
 /*******************************************
  * Main Function
 *******************************************/
-registerForm.validate();
-
+    registerForm.validate();
+   google.maps.event.addDomListener(window, 'load', initialize);
 })(); // END OF REGISTER.JS

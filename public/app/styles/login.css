@@ -46,3 +46,66 @@ body {
     color: #fff; }
   .loginform .failedlogin {
     opacity: 0; }
+
+.modal-backdrop {
+  z-index: 19; }
+
+.registermodal {
+  z-index: 20; }
+  .registermodal .modal-header {
+    text-align: center; }
+    .registermodal .modal-header img {
+      width: 119px;
+      height: 30px; }
+  .registermodal .modal-body input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 15px;
+    width: 100%;
+    margin-bottom: 10px; }
+    .registermodal .modal-body input[name="avatar"] {
+      display: none; }
+  .registermodal .modal-body .thumbnail-container {
+    height: 100px;
+    width: 100px;
+    background: url("/app/img/avatar.png") no-repeat center;
+    background-size: cover;
+    margin: auto;
+    position: relative; }
+    .registermodal .modal-body .thumbnail-container .default {
+      height: 100%;
+      width: 100%; }
+    .registermodal .modal-body .thumbnail-container .rotate {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 100px;
+      height: 100px; }
+    .registermodal .modal-body .thumbnail-container #avatar {
+      background: transparent; }
+  .registermodal .modal-body .pac-container {
+    z-index: 2051 !important; }
+  .registermodal .modal-footer .confirmregister {
+    background: #ff2353;
+    border: 1px solid #fff;
+    color: #fff; }
+  .registermodal .modal-footer .disclaimer {
+    font-size: .8em;
+    color: #ccc;
+    margin-top: 10px; }
+
+.registernow {
+  background: #fff;
+  border: 1px solid #ff2353;
+  position: absolute;
+  color: #ff2353;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 25px; }

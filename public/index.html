@@ -30,6 +30,8 @@
 
 </head>
 <body>
+
+    <!-- LOGIN FORM --> 
     <form class="loginform" encType="multipart/form-data">
 		<img src="./app/img/hairbrain.png">
         <input placeholder="Phone" type="tel" name="phone" data-mask="1(000)000-0000" required>
@@ -37,8 +39,57 @@
 		<span class="failedlogin">Phone # or Password Incorrect</span>
         <button type='submit' name="submit">Login</button>
     </form>
+
+    <button class="registernow">Register Now</button>
+
+    <!-- REGISTER MODAL -->
+    <div class="modal registermodal fade" tabindex="-1" role="dialog" aria-labelledby="hairbrain-modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <!-- MODAL HEADER -->
+                <div class="modal-header">
+                    <img class="modallogo" src="../app/img/hairbrain-small.png">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <!-- MODAL BODY -->
+                <div class="modal-body">
+                    <form class="register-form" encType="multipart/form-data">
+                        <input name="avatar" type="file" accept="image/*" capture="camera" class="file-select" id="select-avatar" required>
+                        <div class="thumbnail-container thumbfront focus">
+                            <div class="thumbnail default" id="avatar"></div>
+                        </div>
+                        <input placeholder="First name" type="text" name="firstname" required>
+                        <input placeholder="Last name" type="text" name="lastname" required>
+                        <input placeholder="Phone #" type="phone" name="phone" data-mask="1(000)000-0000" required>                        
+                        <input placeholder="Password" type="password" name="password" minlength="8" maxlength="16"  required>
+                        <input placeholder="Email" type="email" name="email" required>
+                        <input placeholder="Salon" type="text" id="salon" name="salon" autocomplete="on" required>
+                    </form>
+                </div>
+
+                <!-- MODAL FOOTER -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default confirmregister" data-dismiss="modal">Register</button>
+                    <button type="button" class="btn closemodal" data-dismiss="modal">Cancel</button>
+                    <p class="disclaimer">
+                        By clicking Register Now, you warrant that: (a) you have read,
+                        understood and agree to our terms and conditions and privacy polict; (b) you have not been previously
+                        suspended or removed from the Site; (c) if you are an individual, you are of legal age to
+                        form a binding contract, or if you are registering on behalf of an entity, that you are
+                        authorized to enter into, and bind the entity to, this Agreement; and (d) that your
+                        registration and your use of the Site is in compliance with any and all applicable laws and
+                        regulations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 	<!-- VENDOR JS -->
+    <script src="http://maps.googleapis.com/maps/api/js?libraries=places&amp;location=ca&amp;key=AIzaSyCqRXqCtwf1xlUKeztz5q3z1BiI43OIkDc" type="text/javascript"></script>
 	<script type="text/javascript" src="./app/js/vendor.js"></script>
 	<!-- APP JS -->
 	<script type="text/javascript" src="./app/js/login.js"></script>

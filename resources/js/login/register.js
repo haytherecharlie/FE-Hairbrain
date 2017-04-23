@@ -19,14 +19,16 @@ var Register = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var registerForm = $('#register-form'),
-    firstname    = $('input[name="firstname"]'),
-    lastname     = $('input[name="lastname"]'),
-    email        = $('input[name="email"]'),
-    password     = $('input[name="password"]'),
-    phone        = $('input[name="phone"]')
-    salon        = $('input[name="salon"]'),
-    avatar       = $('input[name="avatar"]');
+var registerForm = $('.register-form'),
+    firstname    = $('.register-form input[name="firstname"]'),
+    lastname     = $('.register-form input[name="lastname"]'),
+    email        = $('.register-form input[name="email"]'),
+    password     = $('.register-form input[name="password"]'),
+    phone        = $('.register-form input[name="phone"]')
+    salon        = $('.register-form input[name="salon"]'),
+    avatar       = $('.register-form input[name="avatar"]'),
+    registerBtn  = $('.confirmregister'),
+    registerNow  = $('.registernow');
 
 //----------------------------------------------------------------
 
@@ -44,9 +46,12 @@ var registerForm = $('#register-form'),
 /*******************************************
  * Submit Form
 *******************************************/
-registerForm.submit( function(e) {
-    e.preventDefault();
+registerBtn.click( function(e) {
     registerFormAJAX();
+});
+
+registerNow.click( function(e) {
+    $('.modal').modal('show');
 });
 
 //----------------------------------------------------------------
@@ -62,7 +67,10 @@ registerForm.submit( function(e) {
 						 // LOGIC
 
 //---------------------------------------------------------------/
-
+   function initialize() {
+      var input = document.getElementById('salon');
+      var autocomplete = new google.maps.places.Autocomplete(input);
+   }
 
 //----------------------------------------------------------------
 
@@ -111,6 +119,5 @@ function registerFormAJAX() {
 /*******************************************
  * Main Function
 *******************************************/
-registerForm.validate();
-
+    google.maps.event.addDomListener(window, 'load', initialize);
 })(); // END OF REGISTER.JS
