@@ -151,15 +151,15 @@
         }
 
         .mainphoto {
-            width: 66%;
-            float: left;
+            height: 100%;
+            // float: left;
             height: 300px;
             overflow: hidden;
             position: relative;
 
             img {
-                width: 100%;
-                height: auto;
+                height: 100%;
+                width: auto;
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);

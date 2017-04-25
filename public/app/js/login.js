@@ -197,16 +197,17 @@ var Register = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var registerForm = $('.register-form'),
-    firstname    = $('.register-form input[name="firstname"]'),
-    lastname     = $('.register-form input[name="lastname"]'),
-    email        = $('.register-form input[name="email"]'),
-    password     = $('.register-form input[name="password"]'),
-    phone        = $('.register-form input[name="phone"]')
-    salon        = $('.register-form input[name="salon"]'),
-    avatar       = $('.register-form input[name="avatar"]'),
-    registerBtn  = $('.confirmregister'),
-    registerNow  = $('.registernow');
+var registerForm   = $('.register-form'),
+    firstname      = $('.register-form input[name="firstname"]'),
+    lastname       = $('.register-form input[name="lastname"]'),
+    email          = $('.register-form input[name="email"]'),
+    password       = $('.register-form input[name="password"]'),
+    phone          = $('.register-form input[name="phone"]')
+    salon          = $('.register-form input[name="salon"]'),
+    avatar         = $('.register-form input[name="avatar"]'),
+    registerInputs = $('.register-form input'),
+    registerBtn    = $('.confirmregister'),
+    registerNow    = $('.registernow');
 
 //----------------------------------------------------------------
 
@@ -232,6 +233,11 @@ registerNow.click( function(e) {
     $('.modal').modal('show');
 });
 
+// Listens for change on each input. NOTE:Doesn't listen to textarea.
+registerInputs.not('input[type="button"]').change(function() {
+    countValidInputs();
+});
+
 //----------------------------------------------------------------
 
 						 // VIEWS
@@ -245,10 +251,28 @@ registerNow.click( function(e) {
 						 // LOGIC
 
 //---------------------------------------------------------------/
-   function initialize() {
-      var input = document.getElementById('salon');
-      var autocomplete = new google.maps.places.Autocomplete(input);
-   }
+function initialize() {
+    var input = document.getElementById('salon');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+}
+
+function countValidInputs() {
+    var numInputs   = registerInputs.length;
+    var validInputs = 0; 
+    registerInputs.each(function() {
+        if ( $(this).val() !== '') {
+            validInputs++;
+        }
+    })
+    toggleSubmitBtn(validInputs, numInputs);
+}
+
+function toggleSubmitBtn(valid, total) {
+    if( valid === total )
+        registerBtn.prop('disabled', false);
+    else 
+        registerBtn.prop('disabled', true);
+}
 
 //----------------------------------------------------------------
 
@@ -298,6 +322,7 @@ function registerFormAJAX() {
  * Main Function
 *******************************************/
     google.maps.event.addDomListener(window, 'load', initialize);
+    countValidInputs();
 })(); // END OF REGISTER.JS
 (function() {
 	

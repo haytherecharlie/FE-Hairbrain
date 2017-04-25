@@ -33,14 +33,13 @@
 
     <!-- LOGIN FORM --> 
     <form class="loginform" encType="multipart/form-data">
+        <button class="registernow"></button>
 		<img src="./app/img/hairbrain.png">
         <input placeholder="Phone" type="tel" name="phone" data-mask="1(000)000-0000" required>
         <input placeholder="Password" type="password" name="password" minlength="8" maxlength="16"  required>
 		<span class="failedlogin">Phone # or Password Incorrect</span>
-        <button type='submit' name="submit">Login</button>
+        <button class="login" type='submit' name="submit">Login</button>
     </form>
-
-    <button class="registernow">Register Now</button>
 
     <!-- REGISTER MODAL -->
     <div class="modal registermodal fade" tabindex="-1" role="dialog" aria-labelledby="hairbrain-modal" aria-hidden="true">
@@ -71,14 +70,14 @@
 
                 <!-- MODAL FOOTER -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default confirmregister" data-dismiss="modal">Register</button>
+                    <button type="button" class="btn btn-default confirmregister" data-dismiss="modal" disabled>Register</button>
                     <button type="button" class="btn closemodal" data-dismiss="modal">Cancel</button>
                     <p class="disclaimer">
-                        By clicking Register Now, you warrant that: (a) you have read,
-                        understood and agree to our terms and conditions and privacy polict; (b) you have not been previously
-                        suspended or removed from the Site; (c) if you are an individual, you are of legal age to
+                        By clicking Register Now, you warrant that: (a) You have read,
+                        understood and agree to our terms and conditions and privacy policy. (b) You have not been previously
+                        suspended or removed from the site. (c) If you are an individual, you are of legal age to
                         form a binding contract, or if you are registering on behalf of an entity, that you are
-                        authorized to enter into, and bind the entity to, this Agreement; and (d) that your
+                        authorized to enter into, and bind the entity to, this Agreement and (d) That your
                         registration and your use of the Site is in compliance with any and all applicable laws and
                         regulations.
                     </p>

@@ -33,7 +33,7 @@ body {
     padding: 5px 10px;
     margin: 5px;
     text-align: center; }
-  .loginform button {
+  .loginform .login {
     box-sizing: border-box;
     width: calc(80% - 20px);
     border: 2px solid #fff;
@@ -100,12 +100,11 @@ body {
     margin-top: 10px; }
 
 .registernow {
-  background: #fff;
-  border: 1px solid #ff2353;
+  background: transparent;
+  border: none;
   position: absolute;
-  color: #ff2353;
-  bottom: 20px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 20px;
-  border-radius: 25px; }
+  height: 40px;
+  width: 50px; }

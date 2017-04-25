@@ -78,17 +78,6 @@
                 <div class="mainphoto">
                     <img class="photofront" src="" height="100%">
                 </div>
-                <div class="sidephotos">
-                    <div class="leftphoto thirdheight">
-                        <img class="photoleft" src="" height="33%">
-                    </div>
-                    <div class="backphoto thirdheight">
-                        <img class="photoback" src="" height="33%">
-                    </div>
-                    <div class="rightphoto thirdheight">
-                        <img class="photoright" src="" height="33%">
-                    </div>
-                </div>
             </div>
             <!-- NOTES CONTAINER -->
             <div class="notesbox container">
@@ -127,11 +116,8 @@
                         <form class="clientaddform" encType="multipart/form-data">
                             <input name="firstname" placeholder="First name" type="text" required>
                             <input name="lastname" placeholder="Last name" type="text" required>
-                            <input name="phone" placeholder="Phone #" type="phone" data-mask="1 (000) 000-0000" required>
+                            <input name="phone" placeholder="Phone #" type="tel" data-mask="1 (000) 000-0000" required>
                             <input name="photofront" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-front" required>
-                            <input name="photoleft" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-left" required>
-                            <input name="photoback" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-back" required>
-                            <input name="photoright" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-right" required>
                             <textarea name="notes" placeholder="Notes" type="text"></textarea>
                             <button class="btn clientaddsubmit" name="submit" type="submit" disabled>Save Client</button>
                         </form>
@@ -140,15 +126,6 @@
                         <div class="photoswidget">
                             <div class="thumbnail-container thumbfront focus">
                                 <div class="thumbnail default" id="photo-front"></div>
-                            </div>
-                            <div class="thumbnail-container thumbleft">
-                                <div class="thumbnail default" id="photo-left"></div>
-                            </div>
-                            <div class="thumbnail-container thumbback">
-                                <div class="thumbnail default" id="photo-back"></div>
-                            </div>
-                            <div class="thumbnail-container thumbright">
-                                <div class="thumbnail default" id="photo-right"></div>
                             </div>
                         </div>
 

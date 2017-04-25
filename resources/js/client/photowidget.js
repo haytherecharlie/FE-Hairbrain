@@ -9,10 +9,7 @@
 /******************************************/
 
 var thumbFront   = $('.thumbfront'),
-    thumbLeft    = $('.thumbleft'),
-    thumbBack    =  $('.thumbback'),
-    thumbRight   = $('.thumbright'),
-    thumbArray   = [thumbFront, thumbLeft, thumbBack, thumbRight],
+    thumbArray   = [thumbFront],
     currentFocus = thumbFront; 
 
 for(var thumb in thumbArray) {
