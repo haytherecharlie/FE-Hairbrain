@@ -1,1 +1,1 @@
-var apiurl      = 'http://api.hairbrain.ca/';
+var apiurl      = 'https://api.hairbrain.ca/';
