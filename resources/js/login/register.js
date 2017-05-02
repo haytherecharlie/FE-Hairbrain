@@ -28,8 +28,7 @@ var registerForm   = $('.register-form'),
     salon          = $('.register-form input[name="salon"]'),
     avatar         = $('.register-form input[name="avatar"]'),
     registerInputs = $('.register-form input'),
-    registerBtn    = $('.confirmregister'),
-    registerNow    = $('.registernow');
+    registerBtn    = $('.confirmregister');
 
 //----------------------------------------------------------------
 
@@ -49,10 +48,6 @@ var registerForm   = $('.register-form'),
 *******************************************/
 registerBtn.click( function(e) {
     registerFormAJAX();
-});
-
-registerNow.click( function(e) {
-    $('.modal').modal('show');
 });
 
 // Listens for change on each input. NOTE:Doesn't listen to textarea.

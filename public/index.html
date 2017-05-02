@@ -30,10 +30,12 @@
 
 </head>
 <body>
+    <button class="hamburger">
+        <img src="/app/img/menu2.png">
+    </button>
 
     <!-- LOGIN FORM --> 
     <form class="loginform" encType="multipart/form-data">
-        <button class="registernow"></button>
 		<img src="./app/img/hairbrain.png">
         <input placeholder="Phone" type="tel" name="phone" data-mask="1(000)000-0000" required>
         <input placeholder="Password" type="password" name="password" minlength="8" maxlength="16"  required>
@@ -81,6 +83,24 @@
                         registration and your use of the Site is in compliance with any and all applicable laws and
                         regulations.
                     </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REGISTER MODAL -->
+    <div class="modal menumodal fade" tabindex="-1" role="dialog" aria-labelledby="hairbrain-modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <!-- MODAL BODY -->
+                <div class="modal-body">
+                    <!--<a href="#" class="link">About</a>
+                    <a href="#" class="link">Pricing</a>
+                    <a href="#" class="link">Resources</a>
+                    <a href="#" class="link">Blog</a>
+                    <a href="#" class="link">Contact</a>-->
+                    <a href="#" class="link" id="register">Register</a>
                 </div>
             </div>
         </div>

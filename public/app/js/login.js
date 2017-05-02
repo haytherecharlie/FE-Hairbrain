@@ -206,8 +206,7 @@ var registerForm   = $('.register-form'),
     salon          = $('.register-form input[name="salon"]'),
     avatar         = $('.register-form input[name="avatar"]'),
     registerInputs = $('.register-form input'),
-    registerBtn    = $('.confirmregister'),
-    registerNow    = $('.registernow');
+    registerBtn    = $('.confirmregister');
 
 //----------------------------------------------------------------
 
@@ -227,10 +226,6 @@ var registerForm   = $('.register-form'),
 *******************************************/
 registerBtn.click( function(e) {
     registerFormAJAX();
-});
-
-registerNow.click( function(e) {
-    $('.modal').modal('show');
 });
 
 // Listens for change on each input. NOTE:Doesn't listen to textarea.
@@ -324,6 +319,26 @@ function registerFormAJAX() {
     google.maps.event.addDomListener(window, 'load', initialize);
     countValidInputs();
 })(); // END OF REGISTER.JS
+var Menu = (function() {
+
+    var hamburger     = $('.hamburger');
+    var menuModal     = $('.menumodal');
+    var register      = $('#register');
+    var registerModal = $('.registermodal');
+
+    hamburger.click(function() {
+        menuModal.modal('show');
+    });
+
+    register.click(function() {
+        menuModal.modal('hide');
+        registerModal.modal('show');
+    });
+
+
+
+})();
+
 (function() {
 	
 	var PhotoUpload = {
@@ -405,6 +420,8 @@ function registerFormAJAX() {
 
 		    PhotoUpload.$src.css('background', 'url(' + img.src + ') no-repeat center' );
 		    PhotoUpload.$src.css('background-size', 'cover');
+
+            console.log(img.src);
 		}
 	};
 

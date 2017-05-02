@@ -52,59 +52,122 @@ body {
 
 .registermodal {
   z-index: 20; }
-  .registermodal .modal-header {
-    text-align: center; }
-    .registermodal .modal-header img {
-      width: 119px;
-      height: 30px; }
-  .registermodal .modal-body input {
-    border: none;
-    border-bottom: 1px solid #ccc;
-    font-size: 15px;
-    width: 100%;
-    margin-bottom: 10px; }
-    .registermodal .modal-body input[name="avatar"] {
-      display: none; }
-  .registermodal .modal-body .thumbnail-container {
-    height: 100px;
-    width: 100px;
-    background: url("/app/img/avatar.png") no-repeat center;
-    background-size: cover;
-    margin: auto;
+  .registermodal .modal-content {
+    height: calc(100vh - 20px);
+    overflow: scroll;
     position: relative; }
-    .registermodal .modal-body .thumbnail-container .default {
-      height: 100%;
-      width: 100%; }
-    .registermodal .modal-body .thumbnail-container .rotate {
-      -webkit-transform: rotate(90deg);
-      -moz-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-      -o-transform: rotate(90deg);
-      transform: rotate(90deg);
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100px;
-      height: 100px; }
-    .registermodal .modal-body .thumbnail-container #avatar {
-      background: transparent; }
-  .registermodal .modal-body .pac-container {
-    z-index: 2051 !important; }
-  .registermodal .modal-footer .confirmregister {
-    background: #ff2353;
-    border: 1px solid #fff;
-    color: #fff; }
-  .registermodal .modal-footer .disclaimer {
-    font-size: .8em;
-    color: #ccc;
-    margin-top: 10px; }
+    .registermodal .modal-content .modal-header {
+      text-align: center; }
+      .registermodal .modal-content .modal-header img {
+        width: 119px;
+        height: 30px; }
+    .registermodal .modal-content .modal-body {
+      margin-top: 10px; }
+      .registermodal .modal-content .modal-body input {
+        border: none;
+        border-bottom: 1px solid #ccc;
+        font-size: 15px;
+        width: 100%;
+        margin-bottom: 10px; }
+        .registermodal .modal-content .modal-body input[name="avatar"] {
+          display: none; }
+      .registermodal .modal-content .modal-body .thumbnail-container {
+        height: 100px;
+        width: 100px;
+        background: url("/app/img/avatar.png") no-repeat center;
+        background-size: cover;
+        margin: auto;
+        position: relative;
+        border-radius: 10px;
+        border: none;
+        margin-bottom: 20px; }
+        .registermodal .modal-content .modal-body .thumbnail-container .default {
+          height: 100%;
+          width: 100%;
+          border: none; }
+        .registermodal .modal-content .modal-body .thumbnail-container .rotate {
+          -webkit-transform: rotate(90deg);
+          -moz-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+          transform: rotate(90deg);
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100px;
+          height: 100px;
+          border: none; }
+        .registermodal .modal-content .modal-body .thumbnail-container #avatar {
+          background: transparent; }
+      .registermodal .modal-content .modal-body .pac-container {
+        z-index: 2051 !important; }
+    .registermodal .modal-content .modal-footer .confirmregister {
+      background: #ff2353;
+      border: 1px solid #fff;
+      color: #fff; }
+    .registermodal .modal-content .modal-footer .disclaimer {
+      font-size: .8em;
+      color: #ccc;
+      margin-top: 10px; }
 
-.registernow {
-  background: transparent;
+.hamburger {
+  position: fixed;
+  top: 0px;
+  right: 0px;
   border: none;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 40px;
-  width: 50px; }
+  padding: 15px;
+  border-radius: 0;
+  background: transparent; }
+  .hamburger img {
+    height: 100%;
+    width: 100%;
+    height: 30px;
+    width: 30px;
+    image-rendering: optimizeSpeed;
+    /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;
+    /* Firefox                        */
+    image-rendering: -o-crisp-edges;
+    /* Opera                          */
+    image-rendering: -webkit-optimize-contrast;
+    /* Chrome (and eventually Safari) */
+    image-rendering: pixelated;
+    /* Chrome */
+    image-rendering: optimize-contrast;
+    /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;
+    /* IE8+    */ }
+
+.modal-backdrop.in {
+  opacity: 0; }
+
+.menumodal .modal-content {
+  background-color: white;
+  box-shadow: 0 0 5px #777;
+  border: none;
+  position: relative; }
+
+.menumodal .modal-body {
+  padding: 0; }
+  .menumodal .modal-body .close {
+    position: absolute;
+    top: 10px;
+    right: 10px; }
+  .menumodal .modal-body a {
+    display: block;
+    text-align: center;
+    color: #ff2353;
+    font-size: 17px;
+    font-family: hb-light;
+    letter-spacing: 2px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 15px; }
+    .menumodal .modal-body a:last-child {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    .menumodal .modal-body a:before {
+      content: " ";
+      position: relative;
+      height: 17px;
+      width: 17px;
+      margin-right: 10px;
+      background: #ff2353; }

@@ -23,7 +23,8 @@ var sourcemaps = require('gulp-sourcemaps');
 gulp.task('login-custom-sass', function() {
     gulp.src([
         'resources/sass/login/login.scss',
-        'resources/sass/login/register.scss'
+        'resources/sass/login/register.scss',
+        'resources/sass/login/menu.scss'
         ])
         .pipe(concat('login.css'))
         .pipe(sass().on('error', sass.logError))
@@ -35,6 +36,7 @@ gulp.task('login-custom-js', function() {
     return gulp.src([
         'resources/js/login/login.js',
         'resources/js/login/register.js',
+        'resources/js/login/menu.js',
         'resources/js/universal/photoupload.js',
         ])
     .pipe(sourcemaps.init())

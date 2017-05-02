@@ -54,13 +54,7 @@ var clientAddForm  = $('.clientaddform'),
     phone          = $('.clientaddform input[name="phone"]')
     notes          = $('.clientaddform textarea[name="notes"]'),
     photofront     = $('.clientaddform input[name="photofront"]'),
-    // photoleft      = $('.clientaddform input[name="photoleft"]'),
-    // photoback      = $('.clientaddform input[name="photoback"]'),
-    // photoright     = $('.clientaddform input[name="photoright"]');
     thumbFront     = $('#photo-front'),
-    // thumbLeft      = $('#photo-left'),
-    // thumbBack      = $('#photo-back'),
-    // thumbRight     = $('#photo-right'),
     loadingGif     = $('.savingclient');
 
 //----------------------------------------------------------------
@@ -126,9 +120,6 @@ function emptyAddForm() {
     })
     notes.val('');
     $('#photo-front').css('background', 'none');
-    // $('#photo-left').css( 'background', 'none');
-    // $('#photo-back').css( 'background', 'none');
-    // $('#photo-right').css('background', 'none');
 }
 
 function countValidInputs() {
@@ -164,9 +155,6 @@ function clientAddFormAJAX() {
     form.append("phone", phone.val());
     form.append("notes", notes.val());
     form.append("photofront", photofront[0].files[0], 'photofront.jpg');
-    // form.append("photoleft", photoleft[0].files[0], 'photoleft.jpg');
-    // form.append("photoback", photoback[0].files[0], 'photoback.jpg');
-    // form.append("photoright", photoright[0].files[0], 'photoright.jpg');
 
     var settings = {
     "async": true,
@@ -900,6 +888,8 @@ return {
 
 		    PhotoUpload.$src.css('background', 'url(' + img.src + ') no-repeat center' );
 		    PhotoUpload.$src.css('background-size', 'cover');
+
+            console.log(img.src);
 		}
 	};
 
