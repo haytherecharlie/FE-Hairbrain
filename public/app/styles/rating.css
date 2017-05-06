@@ -1,0 +1,106 @@
+@charset "UTF-8";
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* RATING PAGE STYLES.
+/******************************************/
+main {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden; }
+  main header {
+    height: 100%;
+    width: 100%;
+    background: #ff2353;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 0 5px #333; }
+    main header .instructions {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      padding: 40px; }
+      main header .instructions#invalid {
+        display: none; }
+      main header .instructions#step1 {
+        display: none; }
+      main header .instructions#step2 {
+        display: none; }
+      main header .instructions#step3 {
+        display: none; }
+      main header .instructions#step4 {
+        display: none; }
+      main header .instructions img {
+        width: 200px;
+        height: auto;
+        display: block;
+        margin: 20px 0; }
+      main header .instructions .title {
+        color: #fff;
+        font-size: 2.2em;
+        line-height: 1em;
+        font-family: hb-bold; }
+      main header .instructions .description {
+        color: #fff;
+        font-size: 1.2em;
+        font-family: hb-regular;
+        padding: 10px 0; }
+        main header .instructions .description b {
+          color: #fff;
+          font-family: hb-bold; }
+      main header .instructions a {
+        font-size: 1.2em;
+        color: #fff;
+        font-family: hb-bold;
+        text-decoration: underline; }
+  main footer {
+    height: 50vh;
+    width: 100%;
+    background: #FFF;
+    position: relative;
+    z-index: 50; }
+    main footer .stars {
+      height: 20px;
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      top: 40%;
+      left: 0;
+      transform: translateY(-50%); }
+      main footer .stars a {
+        padding: 10px;
+        color: #ccc;
+        font-size: 2.5em;
+        color: #333; }
+      main footer .stars#stars1 {
+        display: block; }
+    main footer .comments {
+      height: 100%;
+      width: 100%;
+      display: none;
+      padding: 20px; }
+      main footer .comments textarea {
+        height: calc(100% - 55px);
+        width: 100%;
+        border: 1px solid #ff2353;
+        border-radius: 25px;
+        resize: none;
+        padding: 15px 20px;
+        margin-bottom: 10px; }
+      main footer .comments button {
+        width: 100%;
+        border: 1px solid #ff2353;
+        border-radius: 10px;
+        padding: 10px 0;
+        margin: 10px 0;
+        background: #ff2353;
+        color: #fff;
+        font-family: hb-bold;
+        font-size: 15px; }

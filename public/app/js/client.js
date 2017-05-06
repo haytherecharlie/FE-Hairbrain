@@ -155,6 +155,7 @@ function clientAddFormAJAX() {
     form.append("phone", phone.val());
     form.append("notes", notes.val());
     form.append("photofront", photofront[0].files[0], 'photofront.jpg');
+    form.append("name", name);
 
     var settings = {
     "async": true,
@@ -806,6 +807,9 @@ return {
 }
 
 })(); // END OF LOGIN.JS
+
+// http://stackoverflow.com/questions/23945494/use-html5-to-resize-an-image-before-upload
+// Answer # 69 is the reference you wanna check ;)
 
 (function() {
 	

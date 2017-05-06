@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- TITLE -->
+	<title>Hairbrain | Rate Your Experience</title>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Hairbrain, made for independent hairstylists">
+    <meta name="keywords" content="Hairbrain, Hair, Hairstylists, Independent, Style, Bookings, Appointment, Beauty, Salon">
+    <meta name="author" content="Charlie Hay">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/app/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/app/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/app/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/app/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/app/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/app/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/app/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/app/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/app/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/app/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/app/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/app/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/app/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/app/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/app/favicon/manifest.json">
+
+	<!-- VENDOR STYLESHEET -->
+	<link rel="stylesheet" type="text/css" href="/app/styles/vendor.css">
+	<!-- CUSTOM STYLESHEET -->
+	<link rel="stylesheet" type="text/css" href="/app/styles/rating.css">
+
+</head>
+<body>
+
+    <main>
+        <!-- HEADER -->
+        <header>
+
+            <!-- INVALID -->
+            <div class="instructions" id="invalid">
+                <img src="/app/img/hairbrain.png">
+                <span class="title">Invalid<br> Request</span>
+                <p class="description">
+                    Sorry. This rating is either invalid, 
+                    or has already been submitted. Thanks. 
+                </p>
+            </div>
+
+            <!-- STEP 1 -->
+            <div class="instructions" id="step1">
+                <img src="/app/img/hairbrain.png">
+                <span class="title">Rate your<br> experience</span>
+                <p class="description">
+                    Looks like you just got a cut from <b id="stylist"></b>. 
+                    Please take a moment and rate your experience. 
+                </p>
+                <a id="startnow">Start Now</a>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="instructions" id="step2">
+                <img src="/app/img/hairbrain.png">
+                <span class="title">Experience</span>
+                <p class="description">
+                    How do you like your new style? How pleasant
+                    was your experience?
+                </p>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="instructions" id="step3">
+                <img src="/app/img/hairbrain.png">
+                <span class="title">Comments</span>
+                <p class="description">
+                    How would you summarize your 
+                    experience as a whole?
+                </p>
+                <a id="skipcomments">Skip question</a>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="instructions" id="step4">
+                <img src="/app/img/hairbrain.png">
+                <span class="title">Thank you!</span>
+                <p class="description">
+                    We really appreciate you taking the time 
+                    to give us your rating. You make Hairbrain
+                    a better experience for everyone.  
+                </p>
+            </div>
+
+        </header>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <!-- QUESTION 1 RATING -->
+            <div class="stars" id="stars1">
+                <a class="starrating" id="star1">&star;</a>
+                <a class="starrating" id="star2">&star;</a>
+                <a class="starrating" id="star3">&star;</a>
+                <a class="starrating" id="star4">&star;</a>
+                <a class="starrating" id="star5">&star;</a>
+            </div>
+
+            <!-- COMMENTS -->
+            <div class="comments">
+                <textarea class="commentsbox" placeholder="Enter your comments here..."></textarea>
+                <button class="submitcomment">Submit</button>
+            </div>
+
+        </footer>
+    </main>
+
+</body>
+    <!-- VENDOR JS -->
+    <script type="text/javascript" src="/app/js/vendor.js"></script>
+	<!-- APP JS -->
+	<script type="text/javascript" src="/app/js/rating.js"></script>
+</html>

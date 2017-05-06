@@ -131,6 +131,7 @@ function clientAddFormAJAX() {
     form.append("phone", phone.val());
     form.append("notes", notes.val());
     form.append("photofront", photofront[0].files[0], 'photofront.jpg');
+    form.append("name", name);
 
     var settings = {
     "async": true,

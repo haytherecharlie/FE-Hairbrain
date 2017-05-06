@@ -37,7 +37,7 @@ gulp.task('login-custom-js', function() {
         'resources/js/login/login.js',
         'resources/js/login/register.js',
         'resources/js/login/menu.js',
-        'resources/js/universal/photoupload.js',
+        'resources/js/universal/images/photoupload.js',
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('login.js'))
@@ -66,7 +66,7 @@ gulp.task('client-custom-js', function() {
         'resources/js/client/nav.js',
         'resources/js/client/clientprofile.js',
         'resources/js/client/clientlist.js',
-        'resources/js/universal/photoupload.js',
+        'resources/js/universal/images/photoupload.js',
         'resources/js/client/photowidget.js',
         'resources/js/client/reportissue.js'
         ])
@@ -77,24 +77,52 @@ gulp.task('client-custom-js', function() {
 });
 
 /*******************************************
-/               RATE PAGE
+/               RATING PAGE
 /******************************************/
 
-// RATE CUSTOM SASS ======================
-gulp.task('rate-custom-sass', function() {
-    gulp.src('resources/sass/rate/rate.scss')
-        .pipe(concat('rate.css'))
+// MAPS CUSTOM SASS ======================
+gulp.task('rating-custom-sass', function() {
+    gulp.src([
+        'resources/sass/rating/rating.scss'
+        ])
+        .pipe(concat('rating.css'))
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./public/app/styles/'))
 });
 
-// RATE CUSTOM JS ========================
-gulp.task('rate-custom-js', function() {
+// MAPS CUSTOM JS ========================
+gulp.task('rating-custom-js', function() {
     return gulp.src([
-        'resources/js/rate/rate.js'
+        'resources/js/rating/rating.js'
         ])
     .pipe(sourcemaps.init())
-    .pipe(concat('rate.js'))
+    .pipe(concat('rating.js'))
+    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gulp.dest('./public/app/js/'))
+});
+
+/*******************************************
+/               MAPS PAGE
+/******************************************/
+
+// MAPS CUSTOM SASS ======================
+gulp.task('maps-custom-sass', function() {
+    gulp.src([
+        'resources/sass/maps/maps.scss',
+        'resources/sass/maps/searchbox.scss'
+        ])
+        .pipe(concat('maps.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/'))
+});
+
+// MAPS CUSTOM JS ========================
+gulp.task('maps-custom-js', function() {
+    return gulp.src([
+        'resources/js/maps/maps.js'
+        ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('maps.js'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
     .pipe(gulp.dest('./public/app/js/'))
 });
@@ -124,9 +152,9 @@ gulp.task('vendor-js', function() {
         'node_modules/jquery.cookie/jquery.cookie.js',
         'node_modules/jquery-validation-dist/dist/jquery.validate.js',
         'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
-        'resources/js/vendor/resize.js',
-        'resources/js/vendor/analytics.js',
-        'resources/js/universal/' + (gutil.env.api ? gutil.env.api : 'test') + 'api.js'
+        'resources/js/universal/images/resize.js',
+        'resources/js/universal/google/analytics.js',
+        'resources/js/universal/api/' + (gutil.env.api ? gutil.env.api : 'test') + 'api.js'
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('vendor.js'))
@@ -140,16 +168,17 @@ gulp.task('vendor-js', function() {
 
 // DEFAULT TASK ============================
 gulp.task('default', [
-    'login-custom-sass', 'login-custom-js',
+    'login-custom-sass',  'login-custom-js',
     'client-custom-sass', 'client-custom-js', 
-    'rate-custom-sass', 'rate-custom-js',
-    'vendor-css', 'vendor-js'
+    'rating-custom-sass', 'rating-custom-js',
+    'maps-custom-sass',   'maps-custom-js',
+    'vendor-css',         'vendor-js'
 ]);
 
 // WATCH TASK ============================
 gulp.task('watch', function() {
     gulp.watch([
-        'resources/js/*/*.js',
-        'resources/sass/*/*.scss'
+        'resources/js/**/*.js',
+        'resources/sass/**/*.scss'
     ], ['default']);
 });

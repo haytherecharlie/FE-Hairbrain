@@ -339,6 +339,9 @@ var Menu = (function() {
 
 })();
 
+// http://stackoverflow.com/questions/23945494/use-html5-to-resize-an-image-before-upload
+// Answer # 69 is the reference you wanna check ;)
+
 (function() {
 	
 	var PhotoUpload = {
