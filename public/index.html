@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
 	<!-- TITLE -->
 	<title>Hairbrain | Login</title>
 
+    <!-- META AND ICONS -->
     <meta charset="UTF-8">
     <meta name="description" content="Hairbrain, made for independent hairstylists">
     <meta name="keywords" content="Hairbrain, Hair, Hairstylists, Independent, Style, Bookings, Appointment, Beauty, Salon">
@@ -12,35 +14,38 @@
 	<meta name="msapplication-TileImage" content="/app/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<link rel="apple-touch-icon" sizes="57x57" href="./app/favicon/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="./app/favicon/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="./app/favicon/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="./app/favicon/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="./app/favicon/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="./app/favicon/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="./app/favicon/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="./app/favicon/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="./app/favicon/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192"  href="./app/favicon/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="./app/favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="./app/favicon/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="./app/favicon/favicon-16x16.png">
-	<link rel="manifest" href="./app/favicon/manifest.json">
+	<link rel="apple-touch-icon" sizes="57x57" href="/app/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/app/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/app/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/app/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/app/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/app/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/app/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/app/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/app/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/app/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/app/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/app/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/app/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/app/favicon/manifest.json">
 
 	<!-- VENDOR STYLESHEET -->
-	<link rel="stylesheet" type="text/css" href="./app/styles/vendor.css">
+	<link rel="stylesheet" type="text/css" href="/app/styles/vendor.css">
+
 	<!-- CUSTOM STYLESHEET -->
-	<link rel="stylesheet" type="text/css" href="./app/styles/login.css">
+	<link rel="stylesheet" type="text/css" href="/app/styles/login.css">
 
 </head>
 <body>
+
+    <!-- MENU BUTTON -->
     <button class="hamburger">
         <img src="/app/img/menu2.png">
     </button>
 
     <!-- LOGIN FORM --> 
     <form class="loginform" encType="multipart/form-data">
-		<img src="./app/img/hairbrain.png">
+		<img src="/app/img/hairbrain.png">
         <input placeholder="Phone" type="tel" name="phone" data-mask="1(000)000-0000" required>
         <input placeholder="Password" type="password" name="password" minlength="8" maxlength="16"  required>
 		<span class="failedlogin">Phone # or Password Incorrect</span>
@@ -54,7 +59,7 @@
 
                 <!-- MODAL HEADER -->
                 <div class="modal-header">
-                    <img class="modallogo" src="../app/img/hairbrain-small.png">
+                    <img class="modallogo" src="/app/img/hairbrain-small.png">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -92,28 +97,29 @@
         </div>
     </div>
 
-    <!-- REGISTER MODAL -->
+    <!-- MENU MODAL -->
     <div class="modal menumodal fade" tabindex="-1" role="dialog" aria-labelledby="hairbrain-modal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
 
                 <!-- MODAL BODY -->
                 <div class="modal-body">
-                    <!--<a href="#" class="link">About</a>
-                    <a href="#" class="link">Pricing</a>
-                    <a href="#" class="link">Resources</a>
-                    <a href="#" class="link">Blog</a>
-                    <a href="#" class="link">Contact</a>-->
-                    <a href="#" class="link" id="register">Register</a>
+                    <a class="link" id="register">Register</a>
                 </div>
+
             </div>
         </div>
     </div>
 
 </body>
-	<!-- VENDOR JS -->
+
+    <!-- GOOGLE MAPS API -->
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;location=ca&amp;key=AIzaSyCqRXqCtwf1xlUKeztz5q3z1BiI43OIkDc" type="text/javascript"></script>
-	<script type="text/javascript" src="./app/js/vendor.js"></script>
+
+    <!-- VENDOR JS -->
+	<script type="text/javascript" src="/app/js/vendor.js"></script>
+
 	<!-- APP JS -->
-	<script type="text/javascript" src="./app/js/login.js"></script>
+	<script type="text/javascript" src="/app/js/login.js"></script>
+
 </html>

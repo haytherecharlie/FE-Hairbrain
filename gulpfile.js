@@ -15,6 +15,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 
+
 /*******************************************
 /              LOGIN PAGE
 /******************************************/
@@ -44,6 +45,7 @@ gulp.task('login-custom-js', function() {
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
     .pipe(gulp.dest('./public/app/js/'))
 });
+
 
 /*******************************************
 /              CLIENT PAGE
@@ -76,6 +78,7 @@ gulp.task('client-custom-js', function() {
     .pipe(gulp.dest('./public/app/js/'))
 });
 
+
 /*******************************************
 /               RATING PAGE
 /******************************************/
@@ -100,6 +103,7 @@ gulp.task('rating-custom-js', function() {
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
     .pipe(gulp.dest('./public/app/js/'))
 });
+
 
 /*******************************************
 /               MAPS PAGE
@@ -126,6 +130,85 @@ gulp.task('maps-custom-js', function() {
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
     .pipe(gulp.dest('./public/app/js/'))
 });
+
+
+/*******************************************
+/               ABOUT PAGE
+/******************************************/
+
+// ABOUT CUSTOM SASS ======================
+gulp.task('about-custom-sass', function() {
+    gulp.src([
+        'resources/sass/learn/about/about.scss'
+        ])
+        .pipe(concat('about.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/learn/'))
+});
+
+// ABOUT CUSTOM JS ========================
+gulp.task('about-custom-js', function() {
+    return gulp.src([
+        'resources/js/learn/about/about.js'
+        ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('about.js'))
+    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gulp.dest('./public/app/js/learn/'))
+});
+
+
+/*******************************************
+/                HELP PAGE
+/******************************************/
+
+// HELP CUSTOM SASS ======================
+gulp.task('help-custom-sass', function() {
+    gulp.src([
+        'resources/sass/learn/help/help.scss'
+        ])
+        .pipe(concat('help.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/learn/'))
+});
+
+// HELP CUSTOM JS ========================
+gulp.task('help-custom-js', function() {
+    return gulp.src([
+        'resources/js/learn/help/help.js'
+        ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('help.js'))
+    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gulp.dest('./public/app/js/learn/'))
+});
+
+
+/*******************************************
+/                MISTAKE PAGE
+/******************************************/
+
+// MISTAKE CUSTOM SASS ======================
+gulp.task('mistake-custom-sass', function() {
+    gulp.src([
+        'resources/sass/learn/mistake/mistake.scss'
+        ])
+        .pipe(concat('mistake.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/learn/'))
+});
+
+// MISTAKE CUSTOM JS ========================
+gulp.task('mistake-custom-js', function() {
+    return gulp.src([
+        'resources/js/learn/mistake/mistake.js'
+        ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('mistake.js'))
+    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gulp.dest('./public/app/js/learn/'))
+});
+
 
 /*******************************************
 /                VENDOR
@@ -162,6 +245,7 @@ gulp.task('vendor-js', function() {
     .pipe(gulp.dest('./public/app/js/'))
 });
 
+
 /*******************************************
 /                 TASKS
 /******************************************/
@@ -172,6 +256,9 @@ gulp.task('default', [
     'client-custom-sass', 'client-custom-js', 
     'rating-custom-sass', 'rating-custom-js',
     'maps-custom-sass',   'maps-custom-js',
+    'about-custom-sass',   'about-custom-js',
+    'help-custom-sass',   'help-custom-js',
+    'mistake-custom-sass',   'mistake-custom-js',
     'vendor-css',         'vendor-js'
 ]);
 
