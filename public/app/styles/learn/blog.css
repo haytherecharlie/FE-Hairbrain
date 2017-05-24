@@ -1,0 +1,59 @@
+@charset "UTF-8";
+.navmenu nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 0 5px #000; }
+  .navmenu nav img {
+    height: 30px;
+    margin: 10px 20px; }
+  .navmenu nav .hamburger {
+    float: right;
+    font-size: 30px;
+    line-height: 30px;
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    color: #ff2353; }
+
+.navmenu menu {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background: #333;
+  margin: 0;
+  display: none; }
+  .navmenu menu ul {
+    padding: 5px 0;
+    margin: 0px; }
+    .navmenu menu ul li {
+      list-style: none;
+      color: #fff;
+      text-align: center;
+      display: block;
+      padding: 10px 0;
+      font-size: 20px;
+      line-height: 20px; }
+      .navmenu menu ul li a {
+        color: #fff; }
+        .navmenu menu ul li a:hover {
+          color: #ccc;
+          cursor: pointer; }
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* BLOG PAGE STYLES
+/******************************************/
+iframe {
+  height: 99vh;
+  width: 100%;
+  overflow: hidden; }

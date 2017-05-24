@@ -1,0 +1,58 @@
+
+.navmenu {
+    nav {
+        position: fixed;
+        top: 0; left: 0;
+        height: 50px;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 0 5px #000;
+
+        img {
+            height: 30px;
+            margin: 10px 20px;
+        }
+
+        .hamburger {
+            float: right;
+            font-size: 30px;
+            line-height: 30px;
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            color: #ff2353;
+        }
+    }
+
+    menu {
+        position: fixed;
+        top: 50px; left: 0;
+        width: 100%;
+        background: #333;
+        margin: 0;
+        display: none;
+
+        ul {
+            padding: 5px 0;
+            margin: 0px;
+
+            li {
+                list-style: none;
+                color: #fff;
+                text-align: center;
+                display: block;
+                padding: 10px 0;
+                font-size: 20px;
+                line-height: 20px;
+
+                a {
+                    color: #fff;
+                    &:hover {
+                        color: #ccc;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

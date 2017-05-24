@@ -6207,4 +6207,4 @@ module.exports = exports['default'];
 
   ga('create', 'UA-96535573-1', 'auto');
   ga('send', 'pageview');
-var apiurl      = 'http://10.0.1.34:8080/';
+var apiurl      = 'http://localhost:8080/';

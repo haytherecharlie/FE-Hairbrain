@@ -14,6 +14,7 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
+var sitemap = require('gulp-sitemap');
 
 
 /*******************************************
@@ -70,7 +71,8 @@ gulp.task('client-custom-js', function() {
         'resources/js/client/clientlist.js',
         'resources/js/universal/images/photoupload.js',
         'resources/js/client/photowidget.js',
-        'resources/js/client/reportissue.js'
+        'resources/js/client/reportissue.js',
+        'resources/js/client/profilemodal.js'
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('client.js'))
@@ -153,6 +155,34 @@ gulp.task('about-custom-js', function() {
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('about.js'))
+    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gulp.dest('./public/app/js/learn/'))
+});
+
+
+/*******************************************
+/               BLOG PAGE
+/******************************************/
+
+// BLOG CUSTOM SASS ======================
+gulp.task('blog-custom-sass', function() {
+    gulp.src([
+        'resources/sass/templates/navmenu.scss',
+        'resources/sass/learn/blog/blog.scss'
+        ])
+        .pipe(concat('blog.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/learn/'))
+});
+
+// BLOG CUSTOM JS ========================
+gulp.task('blog-custom-js', function() {
+    return gulp.src([
+        'resources/js/templates/navmenu.js',
+        'resources/js/learn/blog/blog.js'
+        ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('blog.js'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
     .pipe(gulp.dest('./public/app/js/learn/'))
 });
@@ -245,6 +275,15 @@ gulp.task('vendor-js', function() {
     .pipe(gulp.dest('./public/app/js/'))
 });
 
+/*******************************************
+/                SITEMAP
+/******************************************/
+gulp.task('sitemap', function () {
+    gulp.src('public/**/*.html', { read: false })
+    .pipe(sitemap({ siteUrl: 'https://www.hairbrain.ca' }))
+    .pipe(gulp.dest('public/'));
+});
+
 
 /*******************************************
 /                 TASKS
@@ -252,14 +291,15 @@ gulp.task('vendor-js', function() {
 
 // DEFAULT TASK ============================
 gulp.task('default', [
-    'login-custom-sass',  'login-custom-js',
-    'client-custom-sass', 'client-custom-js', 
-    'rating-custom-sass', 'rating-custom-js',
-    'maps-custom-sass',   'maps-custom-js',
+    'login-custom-sass',   'login-custom-js',
+    'client-custom-sass',  'client-custom-js', 
+    'rating-custom-sass',  'rating-custom-js',
+    'maps-custom-sass',    'maps-custom-js',
     'about-custom-sass',   'about-custom-js',
-    'help-custom-sass',   'help-custom-js',
-    'mistake-custom-sass',   'mistake-custom-js',
-    'vendor-css',         'vendor-js'
+    'blog-custom-sass',    'blog-custom-js',
+    'help-custom-sass',    'help-custom-js',
+    'mistake-custom-sass', 'mistake-custom-js',
+    'vendor-css',          'vendor-js'
 ]);
 
 // WATCH TASK ============================

@@ -586,3 +586,22 @@ nav {
     height: 144px;
     border: none;
     border-radius: 0; }
+
+.profilemodal .modal-body #profilephoto {
+  height: 30px;
+  width: 30px;
+  margin: auto;
+  border: 1px soild #000;
+  display: block; }
+
+.profilemodal .modal-body #name {
+  display: block; }
+
+.profilemodal .modal-body #phone {
+  display: block; }
+
+.profilemodal .modal-body #email {
+  display: block; }
+
+.profilemodal .modal-body #salon {
+  display: block; }

@@ -1,0 +1,6 @@
+User-Agent: *
+
+Disallow: /clients/
+Disallow: /rating/
+
+Sitemap: https://www.hairbrain.ca/sitemap.xml
