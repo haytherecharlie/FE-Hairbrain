@@ -151,6 +151,7 @@
           max-width: 175px;
           color: #fff;
           border: 1px solid #fff;
+          border-radius: 5px;
           font-size: 15px;
           font-family: hb-bold; }
           .motionad .container section .motiontitle a.login {
