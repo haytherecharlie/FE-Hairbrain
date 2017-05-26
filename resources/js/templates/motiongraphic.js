@@ -51,6 +51,12 @@ function textFadeIn() {
     var motionTitle = $('div.motionad .container section .motiontitle');
     motionTitle.css('display', 'table-cell');
     motionTitle.addClass('animated zoomInDown');
+    motionTitle.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', showButtons);
+}
+
+function showButtons() {
+    $('div.motionad .container section .motiontitle a').fadeTo(1000, 1);
+    $('div.motionad .container section .register').fadeTo(1000, 1);
 }
 
 //----------------------------------------------------------------

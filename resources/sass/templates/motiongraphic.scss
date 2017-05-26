@@ -25,15 +25,70 @@
                 display: none;
                 text-align: center;
                 vertical-align: middle;
+                padding-top: 40px;
 
                 span {
                     color: #fff;
                     font-size: 1.5em;
+                    display: block;
+                    margin-bottom: 20px;
                 }
 
                 img {
                     width: 100%;
                     max-width: 400px;
+                    margin: auto;
+                    display: block;
+                }
+                a {
+                    display: inline-block;
+                    opacity: 0;
+                    width: 50%;
+                    padding: 7px 10px;
+                    margin: 10px;
+                    width: 90%;
+                    max-width: 175px;
+                    color: #fff;
+                    border: 1px solid #fff;
+                    font-size: 15px;
+                    font-family: hb-bold;
+
+                    &.login {
+                        background: #ff2353;
+
+                        &:hover, &:active {
+                            background: rgba(0, 0, 0, 0.7);
+                            border: 1px solid #ff2353;
+                            color: #ff2353;
+                        }
+                    }
+
+                    &.learnmore {
+                        background: #fff;
+                        color: #ff2353;
+                        border: 1px solid #ff2353;
+                        
+                        &:hover, &:active {
+                            background: rgba(0, 0, 0, 0.7);
+                        }
+                    }
+
+                }
+            }
+            .register {
+                position: absolute;
+                bottom: 30px; left: 50%;
+                transform: translateX(-50%);
+                text-shadow: 0 0 10px #000;
+                color: #fff;
+                font-size: 14px;
+                display: inline-block;
+                text-align: center;
+                opacity: 0;
+
+                a {
+                    color: #ff2353;
+                    display: inline-block;
                 }
             }
         }

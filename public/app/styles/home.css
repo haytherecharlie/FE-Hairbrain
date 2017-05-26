@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .navmenu nav {
   position: fixed;
   top: 0;
@@ -179,13 +178,3 @@
         .motionad .container section .register a {
           color: #ff2353;
           display: inline-block; }
-
-/*******************************************
-* © 2017 Hairbrain inc.
-* ---------------------
-* Created: February 11th 2017
-* Last Modified: March 21st 2017
-* Author: Charlie Hay
-*
-* ABOUT PAGE STYLES
-/******************************************/

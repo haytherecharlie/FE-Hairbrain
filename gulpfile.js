@@ -108,27 +108,32 @@ gulp.task('rating-custom-js', function() {
 
 
 /*******************************************
-/               MAPS PAGE
+/               HOME PAGE
 /******************************************/
 
 // MAPS CUSTOM SASS ======================
-gulp.task('maps-custom-sass', function() {
+gulp.task('home-custom-sass', function() {
     gulp.src([
-        'resources/sass/maps/maps.scss',
-        'resources/sass/maps/searchbox.scss'
+        'resources/sass/templates/navmenu.scss',
+        'resources/sass/templates/footerlinks.scss',
+        'resources/sass/templates/motiongraphic.scss',
+        'resources/sass/maps/home.scss'
         ])
-        .pipe(concat('maps.css'))
+        .pipe(concat('home.css'))
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./public/app/styles/'))
 });
 
 // MAPS CUSTOM JS ========================
-gulp.task('maps-custom-js', function() {
+gulp.task('home-custom-js', function() {
     return gulp.src([
-        'resources/js/maps/maps.js'
+        'resources/js/templates/navmenu.js',
+        'resources/js/templates/footerlinks.js',
+        'resources/js/templates/motiongraphic.js',
+        'resources/js/maps/home.js'
         ])
     .pipe(sourcemaps.init())
-    .pipe(concat('maps.js'))
+    .pipe(concat('home.js'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
     .pipe(gulp.dest('./public/app/js/'))
 });
@@ -301,7 +306,7 @@ gulp.task('default', [
     'login-custom-sass',   'login-custom-js',
     'client-custom-sass',  'client-custom-js', 
     'rating-custom-sass',  'rating-custom-js',
-    'maps-custom-sass',    'maps-custom-js',
+    'home-custom-sass',    'home-custom-js',
     'about-custom-sass',   'about-custom-js',
     'blog-custom-sass',    'blog-custom-js',
     'help-custom-sass',    'help-custom-js',
