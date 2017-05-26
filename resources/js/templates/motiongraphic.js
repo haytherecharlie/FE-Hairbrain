@@ -5,10 +5,10 @@
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
-* NAVMENU TEMPLATE JS FUNCTIONALITY.
+* MOTIONGRAPHIC TEMPLATE JS FUNCTIONALITY.
 /******************************************/
 
-var NavMenu = (function() {
+var MotionGraphic = (function() {
 
 //----------------------------------------------------------------
 
@@ -19,10 +19,8 @@ var NavMenu = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var navMenuTplPath   = '/templates/navmenu.tpl.html';
-var navMenuContainer = $('header.navmenu'); 
-var hamburgerBtn;
-var menu;
+var motionGraphicTplPath   = '/templates/motiongraphic.tpl.html';
+var motionGraphicContainer = $('div.motionad'); 
 
 //----------------------------------------------------------------
 
@@ -36,29 +34,23 @@ var menu;
 						 // LISTENERS
 
 //---------------------------------------------------------------/
-function hamburgerClick() {
-    hamburgerBtn.click(function() {
-        if(hamburgerBtn.hasClass('open'))
-            closeMenu();
-        else 
-            openMenu();
-    });
 
-}
 
 //----------------------------------------------------------------
 
 						 // VIEWS
 
 //---------------------------------------------------------------/
-function openMenu() {
-    hamburgerBtn.addClass('open');
-    menu.css('display', 'block');
+function backgroundFadeIn() {
+    motionGraphicContainer.find('.container').fadeIn(500, function() {
+        textFadeIn();
+    });
 }
 
-function closeMenu() {
-    hamburgerBtn.removeClass('open');
-    menu.css('display', 'none');
+function textFadeIn() { 
+    var motionTitle = $('div.motionad .container section .motiontitle');
+    motionTitle.css('display', 'table-cell');
+    motionTitle.addClass('animated zoomInDown');
 }
 
 //----------------------------------------------------------------
@@ -66,13 +58,6 @@ function closeMenu() {
 						 // LOGIC
 
 //---------------------------------------------------------------/
-
-function setNavListeners() {
-    menu         = $('menu');
-    hamburgerBtn = $('button.hamburger');
-    hamburgerClick();
-}
-
 
 //----------------------------------------------------------------
 
@@ -93,13 +78,13 @@ function setNavListeners() {
 *******************************************/
 var Main = (function() {
     
-    // If Nav container exists fill it with nav. 
-    if(navMenuContainer) {
-        navMenuContainer.load(navMenuTplPath, function() {
-            setNavListeners();
+    // If graphics container exists, fill it with graphic and start animation.
+    if(motionGraphicContainer) {
+        motionGraphicContainer.load(motionGraphicTplPath, function() {
+            backgroundFadeIn();
         });
     }
 
 })();
 
-})(); // END OF NAVMENU.JS
+})(); // END OF MOTIONGRAPHIC.JS

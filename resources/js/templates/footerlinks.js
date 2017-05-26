@@ -8,7 +8,7 @@
 * NAVMENU TEMPLATE JS FUNCTIONALITY.
 /******************************************/
 
-var NavMenu = (function() {
+var FooterLinks = (function() {
 
 //----------------------------------------------------------------
 
@@ -19,10 +19,8 @@ var NavMenu = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var navMenuTplPath   = '/templates/navmenu.tpl.html';
-var navMenuContainer = $('header.navmenu'); 
-var hamburgerBtn;
-var menu;
+var footerLinksTplPath   = '/templates/footerlinks.tpl.html';
+var footerLinksContainer = $('footer.footerlinks'); 
 
 //----------------------------------------------------------------
 
@@ -36,14 +34,12 @@ var menu;
 						 // LISTENERS
 
 //---------------------------------------------------------------/
-function hamburgerClick() {
-    hamburgerBtn.click(function() {
-        if(hamburgerBtn.hasClass('open'))
-            closeMenu();
-        else 
-            openMenu();
-    });
-
+function addListeners() {
+    $('.group').each(function() {
+        $(this).click(function() {
+            expandCollapse(this);
+        })
+    })
 }
 
 //----------------------------------------------------------------
@@ -51,28 +47,20 @@ function hamburgerClick() {
 						 // VIEWS
 
 //---------------------------------------------------------------/
-function openMenu() {
-    hamburgerBtn.addClass('open');
-    menu.css('display', 'block');
-}
 
-function closeMenu() {
-    hamburgerBtn.removeClass('open');
-    menu.css('display', 'none');
-}
 
 //----------------------------------------------------------------
 
 						 // LOGIC
 
 //---------------------------------------------------------------/
-
-function setNavListeners() {
-    menu         = $('menu');
-    hamburgerBtn = $('button.hamburger');
-    hamburgerClick();
+function expandCollapse(obj) {
+    if( $(obj).find('a').css('display') === 'none') {
+       $(obj).find('a').css('display', 'block'); 
+    } else {
+        $(obj).find('a').css('display', 'none'); 
+    }
 }
-
 
 //----------------------------------------------------------------
 
@@ -94,12 +82,12 @@ function setNavListeners() {
 var Main = (function() {
     
     // If Nav container exists fill it with nav. 
-    if(navMenuContainer) {
-        navMenuContainer.load(navMenuTplPath, function() {
-            setNavListeners();
+    if(footerLinksContainer) {
+        footerLinksContainer.load(footerLinksTplPath, function() {
+            addListeners();
         });
     }
 
 })();
 
-})(); // END OF NAVMENU.JS
+})(); // END OF FOOTERLINKS.JS

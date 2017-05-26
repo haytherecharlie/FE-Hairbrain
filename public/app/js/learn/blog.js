@@ -102,4 +102,4 @@ var Main = (function() {
 
 })();
 
-})(); // END OF RATING.JS
+})(); // END OF NAVMENU.JS

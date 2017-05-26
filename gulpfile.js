@@ -141,6 +141,9 @@ gulp.task('maps-custom-js', function() {
 // ABOUT CUSTOM SASS ======================
 gulp.task('about-custom-sass', function() {
     gulp.src([
+        'resources/sass/templates/navmenu.scss',
+        'resources/sass/templates/footerlinks.scss',
+        'resources/sass/templates/motiongraphic.scss',
         'resources/sass/learn/about/about.scss'
         ])
         .pipe(concat('about.css'))
@@ -151,6 +154,9 @@ gulp.task('about-custom-sass', function() {
 // ABOUT CUSTOM JS ========================
 gulp.task('about-custom-js', function() {
     return gulp.src([
+        'resources/js/templates/navmenu.js',
+        'resources/js/templates/footerlinks.js',
+        'resources/js/templates/motiongraphic.js',
         'resources/js/learn/about/about.js'
         ])
     .pipe(sourcemaps.init())
@@ -250,6 +256,7 @@ gulp.task('vendor-css', function () {
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
         'node_modules/font-awesome/css/font-awesome.min.css',
         'node_modules/normalize-css/normalize.css',
+        'node_modules/animate.css/animate.min.css',
         'resources/sass/universal/base.scss'
         ])
     .pipe(concat('vendor.css'))

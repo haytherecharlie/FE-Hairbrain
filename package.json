@@ -4,6 +4,7 @@
   "description": "Love is in the Hair.",
   "main": "server.js",
   "dependencies": {
+    "animate.css": "latest",
     "bootstrap": "3.3.7",
     "gulp": "latest",
     "gulp-concat": "latest",

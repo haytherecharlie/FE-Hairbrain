@@ -141,7 +141,7 @@ body {
 
 .menumodal .modal-content {
   background-color: white;
-  box-shadow: 0 0 5px #777;
+  box-shadow: 0 0 0 #777;
   border: none;
   position: relative; }
 
@@ -156,12 +156,15 @@ body {
     text-align: center;
     color: #ff2353;
     font-size: 17px;
-    font-family: hb-light;
+    font-family: hb-regular;
+    text-transform: uppercase;
+    cursor: pointer;
     letter-spacing: 2px;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     padding: 15px; }
     .menumodal .modal-body a:last-child {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      font-family: hb-black; }
     .menumodal .modal-body a:before {
       content: " ";
       position: relative;
