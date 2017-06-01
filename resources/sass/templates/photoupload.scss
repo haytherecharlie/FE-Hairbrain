@@ -1,0 +1,38 @@
+.photowidget {
+    display: block;
+    position: relative;
+    
+    .photoinput {
+        display: none;
+    }
+
+    .photobox {
+        height: 150px;
+        width: 100px;
+        background: url('/app/img/photoholder.png') no-repeat center;
+        background-size: 100%;
+        display: block;
+        margin: 10px auto;
+        position: relative;
+
+        .default {
+            height: 100%;
+            width: 100%;
+            border: none;
+        }
+        
+        .rotate {
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+            position: absolute;
+            top: 24px;
+            left: -26px;
+            width: 150px;
+            height: 100px;
+            border: none;
+        }
+    }
+}

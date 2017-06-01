@@ -726,15 +726,15 @@ function addCCListeners() {
 function displayClients(req) {
     for(var i in req) {
         insertLeadingLetters(req, i);
-        clientList.append(`
-            <div class="clientcard" id="${i}" data-name="${req[i].firstname} ${req[i].lastname}">
-                <div class="avatar">
-                    <img src="${apiurl}photo/${userid}/${req[i]._id}/avatar.jpg">
-                </div>
-                <span class="firstname">${req[i].firstname}</span>
-                <span class="lastname">${req[i].lastname}</span>
-            </div>
-        `);
+        clientList.append('' +
+            '<div class="clientcard" id="'+i+'" data-name="' + req[i].firstname + req[i].lastname + '">' +
+                '<div class="avatar">' +
+                    '<img src="'+apiurl+'photo/'+userid+'/'+req[i]._id+'/avatar.jpg">' +
+                '</div>' +
+                '<span class="firstname">'+req[i].firstname+'</span>' +
+                '<span class="lastname"> '+req[i].lastname+'</span>' +
+            '</div>'
+        );
     }
     addCCListeners();
 }
@@ -746,10 +746,10 @@ function displayClients(req) {
 //---------------------------------------------------------------/
 function insertLeadingLetters(req, i) {
     if (i === '0') 
-        clientList.append(`<div class="letter">${req[i].firstname.charAt(0)}</div>`)
+        clientList.append('<div class="letter">'+req[i].firstname.charAt(0)+'</div>');
     if (i > 0 && i < (req.length) ) {
         if (req[i].firstname.charAt(0) !== req[i-1].firstname.charAt(0))
-            clientList.append(`<div class="letter">${req[i].firstname.charAt(0).toUpperCase()}</div>`);
+            clientList.append('<div class="letter">'+req[i].firstname.charAt(0).toUpperCase()+'</div>');
     }
 }
 
@@ -910,21 +910,27 @@ return {
 * PHOTO COMPONENT JS FUNCTIONALITY.
 /******************************************/
 
-var thumbFront   = $('.thumbfront'),
-    thumbArray   = [thumbFront],
-    currentFocus = thumbFront; 
+var PhotoWidget = (function() {
+    
+    var thumbFront   = $('.thumbfront'),
+        thumbArray   = [thumbFront],
+        currentFocus = thumbFront; 
 
-for(var thumb in thumbArray) {
-    thumbArray[thumb].click(function() {
-        expandPhoto($(this));
-    })
-}
+    for(var thumb in thumbArray) {
+        thumbArray[thumb].click(function() {
+            expandPhoto($(this));
+        })
+    }
 
-function expandPhoto($this) {
-    currentFocus.removeClass('focus');
-    $this.addClass('focus');
-    currentFocus = $this;
-}
+    function expandPhoto($this) {
+        currentFocus.removeClass('focus');
+        $this.addClass('focus');
+        currentFocus = $this;
+    }
+
+})(); // END OF PHOTO WIDGET
+
+var ReportIssue = (function() {
 
 $('.confirmReport').click(function() {
     submitForm();
@@ -955,6 +961,8 @@ function submitForm() {
         }
     });
 }
+
+})();
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------

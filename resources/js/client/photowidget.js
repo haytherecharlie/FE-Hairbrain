@@ -8,18 +8,22 @@
 * PHOTO COMPONENT JS FUNCTIONALITY.
 /******************************************/
 
-var thumbFront   = $('.thumbfront'),
-    thumbArray   = [thumbFront],
-    currentFocus = thumbFront; 
+var PhotoWidget = (function() {
+    
+    var thumbFront   = $('.thumbfront'),
+        thumbArray   = [thumbFront],
+        currentFocus = thumbFront; 
 
-for(var thumb in thumbArray) {
-    thumbArray[thumb].click(function() {
-        expandPhoto($(this));
-    })
-}
+    for(var thumb in thumbArray) {
+        thumbArray[thumb].click(function() {
+            expandPhoto($(this));
+        })
+    }
 
-function expandPhoto($this) {
-    currentFocus.removeClass('focus');
-    $this.addClass('focus');
-    currentFocus = $this;
-}
+    function expandPhoto($this) {
+        currentFocus.removeClass('focus');
+        $this.addClass('focus');
+        currentFocus = $this;
+    }
+
+})(); // END OF PHOTO WIDGET

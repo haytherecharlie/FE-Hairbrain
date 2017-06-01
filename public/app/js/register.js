@@ -210,6 +210,145 @@ var Main = (function() {
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
+* MOTIONGRAPHIC TEMPLATE JS FUNCTIONALITY.
+/******************************************/
+
+var PhotoUpload = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var photoWidget    = $('.photowidget');
+var photoWidgetTpl = '/templates/photoupload.tpl.html'; 
+var photoInput;
+var photoBox;
+var photoThumb;
+
+//----------------------------------------------------------------
+
+						 // TEMPLATES
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+function listenForUpload() {
+    photoThumb.click(function() {
+        photoInput.click();
+        detectFile();
+    })
+}
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+function setNavListeners() {
+    photoInput  = $('.photowidget .photoinput');
+    photoBox    = $('.photowidget .photobox');
+    photoThumb  = $('.photowidget .photothumb');
+    listenForUpload();
+}
+
+function detectFile() {
+    photoInput.change(function(evt) {
+        resizeImage(this.files[0]);
+    })
+}
+
+function resizeImage(img) {
+
+    ImageTools.resize(img, {
+        width: 400, // maximum width
+        height: 300 // maximum height
+    }, function(blob, didItResize) {
+        getPhotoDimensions(blob)
+    });
+}
+
+function getPhotoDimensions(blob) {
+		    
+        var fr = new FileReader;
+        fr.onload = function() {
+            var img = new Image;
+            img.onload = function() {
+                showPhoto(img, blob);
+            };
+            img.src = fr.result;
+        };
+        fr.readAsDataURL(blob);
+}
+
+function showPhoto(img, blob) {
+
+    if (img.height < img.width) {
+        photoThumb.removeClass('default');
+        photoThumb.addClass('rotate');
+    } else {
+        photoThumb.removeClass('rotate');
+        photoThumb.addClass('default');
+    }
+
+    photoThumb.css('background', 'url(' + img.src + ') no-repeat center' );
+    photoThumb.css('background-size', 'cover');
+}
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+var Main = (function() {
+
+    // If PhotoWidget container exists fill it with nav. 
+    if(photoWidget) {
+        photoWidget.load(photoWidgetTpl, function() {
+            setNavListeners();
+        });
+    }
+
+})();
+
+})(); // END OF PHOTOWIDGET.JS
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
 * REGISTER PAGE JS FUNCTIONALITY.
 /******************************************/
 
@@ -224,16 +363,15 @@ var Register = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var registerForm   = $('.register-form'),
-    firstname      = $('.register-form input[name="firstname"]'),
-    lastname       = $('.register-form input[name="lastname"]'),
-    email          = $('.register-form input[name="email"]'),
-    password       = $('.register-form input[name="password"]'),
-    phone          = $('.register-form input[name="phone"]')
-    salon          = $('.register-form input[name="salon"]'),
-    avatar         = $('.register-form input[name="avatar"]'),
-    registerInputs = $('.register-form input'),
-    registerBtn    = $('.confirmregister');
+var registerForm   = $('.registerform'),
+    firstname      = $('.registerform .firstname'),
+    lastname       = $('.registerform .lastname'),
+    email          = $('.registerform .avatar'),
+    password       = $('.registerform .password'),
+    phone          = $('.registerform .phone')
+    salon          = $('.registerform .salon'),
+    avatar         = $('.registerform .photoinput'),
+    registerBtn    = $('.registerform .submit');
 
 //----------------------------------------------------------------
 
@@ -256,7 +394,8 @@ registerBtn.click( function(e) {
 });
 
 // Listens for change on each input. NOTE:Doesn't listen to textarea.
-registerInputs.not('input[type="button"]').change(function() {
+$('.registerform input').change(function() {
+    console.log('change');
     countValidInputs();
 });
 
@@ -279,9 +418,9 @@ function initialize() {
 }
 
 function countValidInputs() {
-    var numInputs   = registerInputs.length;
+    var numInputs   = $('.registerform input').length;
     var validInputs = 0; 
-    registerInputs.each(function() {
+    $('.registerform input').each(function() {
         if ( $(this).val() !== '') {
             validInputs++;
         }
@@ -290,10 +429,14 @@ function countValidInputs() {
 }
 
 function toggleSubmitBtn(valid, total) {
-    if( valid === total )
+    if( valid === total ) {
         registerBtn.prop('disabled', false);
-    else 
+        registerBtn.removeClass('disabled');
+    }
+    else {
         registerBtn.prop('disabled', true);
+        registerBtn.addClass('disabled');
+    }
 }
 
 //----------------------------------------------------------------
@@ -311,7 +454,7 @@ function registerFormAJAX() {
     form.append("password", password.val());
     form.append("phone", phone.val());
     form.append("salon", salon.val());
-    form.append("avatar", avatar[0].files[0], 'avatar.jpg');
+    form.append("avatar", $('.photoinput')[0].files[0], 'avatar.jpg');
     form.append("firstname", firstname.val());
     form.append("lastname", lastname.val());
 
@@ -346,95 +489,3 @@ function registerFormAJAX() {
     google.maps.event.addDomListener(window, 'load', initialize);
     countValidInputs();
 })(); // END OF REGISTER.JS
-// http://stackoverflow.com/questions/23945494/use-html5-to-resize-an-image-before-upload
-// Answer # 69 is the reference you wanna check ;)
-
-(function() {
-	
-	var PhotoUpload = {
-
-		$src: '',
-		$dest: '',
-
-		photoListeners: function() {
-			$('.thumbnail').each(function() {
-
-			    $(this).click( function() {
-
-			        var id = $(this).attr('id');
-			            PhotoUpload.$src = $('#' + id);
-			            PhotoUpload.$dest = $('#select-' + id);
-			        
-			        PhotoUpload.$dest.click();
-
-			        PhotoUpload.photoUploaded();
-
-			    })
-			})
-		},
-
-		photoUploaded: function() {
-
-		    PhotoUpload.$dest.change(function(evt) {
-
-		        PhotoUpload.resizeImage(this.files[0])
-
-		    });
-		},
-
-		resizeImage: function(img) {
-
-		    ImageTools.resize(img, {
-
-		        width: 320, // maximum width
-		        height: 440 // maximum height
-
-		    }, function(blob, didItResize) {
-
-		        PhotoUpload.getPhotoDimensions(blob);
-
-		    });
-		},
-
-		getPhotoDimensions: function(blob) {
-
-		    var fr = new FileReader;
-		    
-		    fr.onload = function() {
-		        
-		        var img = new Image;
-		        
-		        img.onload = function() {
-		            PhotoUpload.rotatePhoto(img, blob);
-		        };
-
-		        img.src = fr.result;
-		    };
-		    
-		    fr.readAsDataURL(blob);
-		},
-
-		rotatePhoto: function(img, blob) {
-
-		    if (img.height < img.width) {
-
-		        PhotoUpload.$src.removeClass('default');
-		        PhotoUpload.$src.addClass('rotate');
-
-		    } else {
-
-		        PhotoUpload.$src.removeClass('rotate');
-		        PhotoUpload.$src.addClass('default');
-
-		    }
-
-		    PhotoUpload.$src.css('background', 'url(' + img.src + ') no-repeat center' );
-		    PhotoUpload.$src.css('background-size', 'cover');
-
-            console.log(img.src);
-		}
-	};
-
-	PhotoUpload.photoListeners();
-
-})()

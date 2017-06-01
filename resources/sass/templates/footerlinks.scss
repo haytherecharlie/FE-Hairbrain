@@ -1,5 +1,5 @@
-
 .footerlinks {
+
     .group {
         display: inline-block;
         width: 33%;
@@ -14,6 +14,7 @@
             padding: 10px;
             font-size: 1.2em;
         }
+
         a {
             display: block;
             color: #666;
@@ -23,11 +24,11 @@
             }
         }
     }
+
     .basebar {
         display: block;
         background: #333;
         padding: 10px 20px;
-        margin-top: 10px;
         
         span {
             color: #fff;
@@ -36,12 +37,14 @@
 }
 
 @media (max-width: 768px) {
+
     .footerlinks .group {
         width: 100%;
         border-top: 1px solid #ccc;
         text-align: left;
 
         b {
+
             &:before {
                 content: '>';
                 font-size: .8em;

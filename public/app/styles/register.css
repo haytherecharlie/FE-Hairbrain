@@ -77,7 +77,7 @@
         color: #ff2353;
         display: block; }
         .navmenu menu ul li a:hover {
-          color: #ccc;
+          color: #999;
           cursor: pointer; }
 
 .footerlinks .group {
@@ -101,8 +101,7 @@
 .footerlinks .basebar {
   display: block;
   background: #333;
-  padding: 10px 20px;
-  margin-top: 10px; }
+  padding: 10px 20px; }
   .footerlinks .basebar span {
     color: #fff; }
 
@@ -118,3 +117,115 @@
     .footerlinks .group a {
       display: none;
       margin: 5px 0px 5px 30px; } }
+
+.photowidget {
+  display: block;
+  position: relative; }
+  .photowidget .photoinput {
+    display: none; }
+  .photowidget .photobox {
+    height: 150px;
+    width: 100px;
+    background: url("/app/img/photoholder.png") no-repeat center;
+    background-size: 100%;
+    display: block;
+    margin: 10px auto;
+    position: relative; }
+    .photowidget .photobox .default {
+      height: 100%;
+      width: 100%;
+      border: none; }
+    .photowidget .photobox .rotate {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg);
+      position: absolute;
+      top: 24px;
+      left: -26px;
+      width: 150px;
+      height: 100px;
+      border: none; }
+
+main {
+  margin-top: 50px;
+  min-height: calc(100vh - 100px);
+  background: #ff2353;
+  padding: 20px;
+  display: table;
+  width: 100%; }
+  main .registerbox {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%; }
+    main .registerbox .registerform {
+      border-radius: 25px;
+      text-align: left;
+      background: #fff;
+      padding: 20px;
+      width: 100%;
+      max-width: 600px;
+      margin: auto; }
+      main .registerbox .registerform b {
+        font-size: 15px;
+        display: block;
+        text-align: center; }
+      main .registerbox .registerform input {
+        border: none;
+        border-bottom: 1px solid #ccc;
+        font-family: hb-light;
+        font-size: 15px;
+        padding: 5px;
+        margin: 5px 0;
+        width: 100%; }
+      main .registerbox .registerform textarea {
+        margin-top: 10px;
+        font-family: hb-light;
+        font-size: 15px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+        resize: none;
+        min-height: 200px; }
+      main .registerbox .registerform .avatarimg {
+        display: none; }
+      main .registerbox .registerform .thumbnail-container {
+        height: 100px;
+        width: 100px;
+        background: url("/app/img/avatar.png") no-repeat center;
+        background-size: cover;
+        position: relative;
+        border-radius: 10px;
+        border: none;
+        margin: 20px auto; }
+        main .registerbox .registerform .thumbnail-container .default {
+          height: 100%;
+          width: 100%;
+          border: none;
+          background: transparent; }
+        main .registerbox .registerform .thumbnail-container .rotate {
+          -webkit-transform: rotate(90deg);
+          -moz-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+          transform: rotate(90deg);
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          width: 100px;
+          height: 100px;
+          border: none; }
+      main .registerbox .registerform .submit {
+        font-size: 15px;
+        color: #fff;
+        font-family: hb-regular;
+        background: #ff2353;
+        border: 2px solid #FFF;
+        border-radius: 25px;
+        margin: 15px 0 0 0;
+        width: 100%;
+        padding: 10px; }
+      main .registerbox .registerform .disabled {
+        opacity: 0.7; }

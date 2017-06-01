@@ -1,3 +1,5 @@
+var ReportIssue = (function() {
+
 $('.confirmReport').click(function() {
     submitForm();
 });
@@ -27,3 +29,5 @@ function submitForm() {
         }
     });
 }
+
+})();

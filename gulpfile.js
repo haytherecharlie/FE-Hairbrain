@@ -8,13 +8,13 @@
 * GULPFILE.JS
 /******************************************/
 
-var gulp  = require('gulp');
-var gutil = require('gulp-util');
-var sass = require('gulp-sass');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var sourcemaps = require('gulp-sourcemaps');
-var sitemap = require('gulp-sitemap');
+var gulp        = require('gulp');
+var gutil       = require('gulp-util');
+var sass        = require('gulp-sass');
+var concat      = require('gulp-concat');
+var uglify      = require('gulp-uglify');
+var sourcemaps  = require('gulp-sourcemaps');
+var sitemap     = require('gulp-sitemap');
 
 
 /*******************************************
@@ -43,7 +43,7 @@ gulp.task('login-custom-js', function() {
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('login.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
     .pipe(gulp.dest('./public/app/js/'))
 });
 
@@ -56,6 +56,7 @@ gulp.task('register-custom-sass', function() {
     gulp.src([
         'resources/sass/templates/navmenu.scss',
         'resources/sass/templates/footerlinks.scss',
+        'resources/sass/templates/photoupload.scss',
         'resources/sass/register/register.scss',
         ])
         .pipe(concat('register.css'))
@@ -68,12 +69,12 @@ gulp.task('register-custom-js', function() {
     return gulp.src([
         'resources/js/templates/navmenu.js',
         'resources/js/templates/footerlinks.js',
-        'resources/js/login/register.js',
-        'resources/js/universal/images/photoupload.js',
+        'resources/js/templates/photoupload.js',        
+        'resources/js/register/register.js',
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('register.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
     .pipe(gulp.dest('./public/app/js/'))
 });
 
@@ -106,7 +107,7 @@ gulp.task('client-custom-js', function() {
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('client.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
     .pipe(gulp.dest('./public/app/js/'))
 });
 
@@ -136,7 +137,7 @@ gulp.task('contact-custom-js', function() {
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('contact.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
     .pipe(gulp.dest('./public/app/js/'))
 });
 
@@ -162,7 +163,7 @@ gulp.task('rating-custom-js', function() {
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('rating.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
     .pipe(gulp.dest('./public/app/js/'))
 });
 
@@ -194,7 +195,7 @@ gulp.task('about-custom-js', function() {
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('about.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
     .pipe(gulp.dest('./public/app/js/learn/'))
 });
 
@@ -222,7 +223,7 @@ gulp.task('blog-custom-js', function() {
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('blog.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
     .pipe(gulp.dest('./public/app/js/learn/'))
 });
 
@@ -252,7 +253,7 @@ gulp.task('tutorials-custom-js', function() {
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('tutorials.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
     .pipe(gulp.dest('./public/app/js/learn/'))
 });
 
@@ -278,7 +279,7 @@ gulp.task('mistake-custom-js', function() {
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('mistake.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
     .pipe(gulp.dest('./public/app/js/learn/'))
 });
 
@@ -315,7 +316,7 @@ gulp.task('vendor-js', function() {
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('vendor.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
     .pipe(gulp.dest('./public/app/js/'))
 });
 
@@ -340,12 +341,11 @@ gulp.task('default', [
     'client-custom-sass',    'client-custom-js', 
     'contact-custom-sass',   'contact-custom-js',
     'rating-custom-sass',    'rating-custom-js',
-
     'about-custom-sass',     'about-custom-js',
     'blog-custom-sass',      'blog-custom-js',
     'tutorials-custom-sass', 'tutorials-custom-js',
     'mistake-custom-sass',   'mistake-custom-js',
-    'vendor-css',            'vendor-js'
+    'vendor-css',            'vendor-js',
 ]);
 
 // WATCH TASK ============================

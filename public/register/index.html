@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<!-- TITLE -->
+	<title>Hairbrain</title>
+
+    <!-- META AND ICONS -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Hairbrain, made for independent hairstylists">
+    <meta name="keywords" content="Hairbrain, Hair, Hairstylists, Independent, Style, Bookings, Appointment, Beauty, Salon">
+    <meta name="author" content="Charlie Hay">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/app/favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/app/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/app/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/app/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/app/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/app/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/app/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/app/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/app/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/app/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/app/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/app/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/app/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/app/favicon/favicon-16x16.png">
+	<link rel="manifest" href="/app/favicon/manifest.json">
+
+	<!-- VENDOR STYLESHEET -->
+	<link rel="stylesheet" type="text/css" href="/app/styles/vendor.css">
+
+	<!-- CUSTOM STYLESHEET -->
+	<link rel="stylesheet" type="text/css" href="/app/styles/register.css">
+
+</head>
+<body class="registerpage">
+    
+    <header class="navmenu"></header>
+
+    <main>
+        <div class="registerbox">
+
+            <div class="registerform">
+                <b>Register a New User</b><hr>
+                <div class="photowidget"></div>
+                <input placeholder="First name" type="text" class="firstname" required>
+                <input placeholder="Last name" type="text" class="lastname" required>
+                <input placeholder="Phone #" type="tel" class="phone" data-mask="1(000)000-0000" required>                        
+                <input placeholder="Password" type="password" class="password" minlength="8" maxlength="16"  required>
+                <input placeholder="Email" type="email" class="email" required>
+                <input placeholder="Salon" id="salon" type="text" class="salon" autocomplete="on" required>
+                <button class="submit disabled" disabled>Register</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footerlinks"></footer>
+
+</body>
+
+    <!-- GOOGLE MAPS API -->
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;location=ca&amp;key=AIzaSyCqRXqCtwf1xlUKeztz5q3z1BiI43OIkDc" type="text/javascript"></script>
+
+	<!-- VENDOR JS -->
+	<script type="text/javascript" src="/app/js/vendor.js"></script>
+
+	<!-- APP JS -->
+	<script type="text/javascript" src="/app/js/register.js"></script>
+
+</html>

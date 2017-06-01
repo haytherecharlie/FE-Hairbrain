@@ -11,7 +11,7 @@
     "gulp-sass": "latest",
     "gulp-sitemap": "latest",
     "gulp-sourcemaps": "latest",
-    "gulp-uglify": "latest",
+    "gulp-minify": "latest",
     "gulp-util": "latest",
     "gulp-watch": "latest",
     "normalize-css": "latest",

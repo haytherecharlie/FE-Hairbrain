@@ -1,0 +1,30 @@
+.photowidget {
+  display: block;
+  position: relative; }
+  .photowidget .photoinput {
+    opacity: 0;
+    height: 20px; }
+  .photowidget .photobox {
+    height: 200px;
+    width: 150px;
+    background: url("/app/img/photoholder.png") no-repeat center;
+    background-size: 100%;
+    display: block;
+    margin: 0 auto 20px auto;
+    position: relative; }
+    .photowidget .photobox .default {
+      height: 100%;
+      width: 100%;
+      border: none; }
+    .photowidget .photobox .rotate {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg);
+      position: absolute;
+      top: 24px;
+      left: -26px;
+      width: 200px;
+      height: 150px;
+      border: none; }
