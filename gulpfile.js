@@ -26,7 +26,6 @@ gulp.task('login-custom-sass', function() {
     gulp.src([
         'resources/sass/templates/navmenu.scss',
         'resources/sass/login/login.scss',
-        'resources/sass/login/register.scss',
         ])
         .pipe(concat('login.css'))
         .pipe(sass().on('error', sass.logError))
@@ -38,7 +37,6 @@ gulp.task('login-custom-js', function() {
     return gulp.src([
         'resources/js/templates/navmenu.js',
         'resources/js/login/login.js',
-        'resources/js/login/register.js',
         'resources/js/universal/images/photoupload.js',
         ])
     .pipe(sourcemaps.init())

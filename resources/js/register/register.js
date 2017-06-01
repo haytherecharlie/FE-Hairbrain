@@ -27,6 +27,7 @@ var registerForm   = $('.registerform'),
     phone          = $('.registerform .phone')
     salon          = $('.registerform .salon'),
     avatar         = $('.registerform .photoinput'),
+    keyword        = $('.registerform .keyword'),
     registerBtn    = $('.registerform .submit');
 
 //----------------------------------------------------------------
@@ -50,8 +51,8 @@ registerBtn.click( function(e) {
 });
 
 // Listens for change on each input. NOTE:Doesn't listen to textarea.
-$('.registerform input').change(function() {
-    console.log('change');
+$('.registerform input').keydown(function() {
+    console.log('x');
     countValidInputs();
 });
 
@@ -105,32 +106,40 @@ function toggleSubmitBtn(valid, total) {
  * Login Form -> POST
 *******************************************/
 function registerFormAJAX() {
-    var form = new FormData();
-    form.append("email", email.val());
-    form.append("password", password.val());
-    form.append("phone", phone.val());
-    form.append("salon", salon.val());
-    form.append("avatar", $('.photoinput')[0].files[0], 'avatar.jpg');
-    form.append("firstname", firstname.val());
-    form.append("lastname", lastname.val());
+    console.log(keyword.val());
 
-    var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": apiurl + "register",
-    "method": "POST",
-    "headers": {
-        "cache-control": "no-cache",
-    },
-    "processData": false,
-    "contentType": false,
-    "mimeType": "multipart/form-data",
-    "data": form
+    if(keyword.val() === 'Kanye2020') {
+        var form = new FormData();
+        form.append("email", email.val());
+        form.append("password", password.val());
+        form.append("phone", phone.val());
+        form.append("salon", salon.val());
+        form.append("avatar", $('.photoinput')[0].files[0], 'avatar.jpg');
+        form.append("firstname", firstname.val());
+        form.append("lastname", lastname.val());
+
+        var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": apiurl + "register",
+        "method": "POST",
+        "headers": {
+            "cache-control": "no-cache",
+        },
+        "processData": false,
+        "contentType": false,
+        "mimeType": "multipart/form-data",
+        "data": form
+        }
+
+        $.ajax(settings)
+        .done(function (err, res) {
+            if(res === "success") redirect('/');
+            else console.log(err);
+        });
+    } else {
+        window.location.reload();
     }
-
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-    });
 }
 
 //----------------------------------------------------------------
