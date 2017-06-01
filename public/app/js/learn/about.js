@@ -38,12 +38,17 @@ var menu;
 //---------------------------------------------------------------/
 function hamburgerClick() {
     hamburgerBtn.click(function() {
-        if(hamburgerBtn.hasClass('open'))
+        if(navMenuContainer.hasClass('open'))
             closeMenu();
         else 
             openMenu();
     });
+}
 
+function underlayClick() {
+    underlay.click(function() {
+        closeMenu();
+    })
 }
 
 //----------------------------------------------------------------
@@ -52,12 +57,12 @@ function hamburgerClick() {
 
 //---------------------------------------------------------------/
 function openMenu() {
-    hamburgerBtn.addClass('open');
+    navMenuContainer.addClass('open');
     menu.css('display', 'block');
 }
 
 function closeMenu() {
-    hamburgerBtn.removeClass('open');
+    navMenuContainer.removeClass('open');
     menu.css('display', 'none');
 }
 
@@ -70,7 +75,9 @@ function closeMenu() {
 function setNavListeners() {
     menu         = $('menu');
     hamburgerBtn = $('button.hamburger');
+    underlay     = $('menu .underlay');
     hamburgerClick();
+    underlayClick();
 }
 
 

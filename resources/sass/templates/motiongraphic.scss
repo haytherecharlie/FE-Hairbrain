@@ -49,8 +49,8 @@
                     width: 90%;
                     max-width: 175px;
                     color: #fff;
-                    border: 1px solid #fff;
-                    border-radius: 5px;
+                    border: 2px solid #fff;
+                    border-radius: 25px;
                     font-size: 15px;
                     font-family: hb-bold;
 
@@ -59,7 +59,7 @@
 
                         &:hover, &:active {
                             background: rgba(0, 0, 0, 0.7);
-                            border: 1px solid #ff2353;
+                            border: 2px solid #ff2353;
                             color: #ff2353;
                         }
                     }
@@ -67,7 +67,7 @@
                     &.learnmore {
                         background: #fff;
                         color: #ff2353;
-                        border: 1px solid #ff2353;
+                        border: 2px solid #ff2353;
                         
                         &:hover, &:active {
                             background: rgba(0, 0, 0, 0.7);

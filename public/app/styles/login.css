@@ -1,4 +1,86 @@
 @charset "UTF-8";
+.navmenu nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0 0 5px #000;
+  z-index: 100; }
+  .navmenu nav .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); }
+    .navmenu nav .logo img {
+      height: 30px;
+      margin: 10px 0px 10px 0px; }
+  .navmenu nav .hamburger {
+    float: left;
+    border: none;
+    background: transparent;
+    padding: 12px 5px 8px 10px; }
+    .navmenu nav .hamburger img {
+      height: 30px;
+      width: 30px;
+      margin: 0;
+      image-rendering: optimizeSpeed;
+      /* STOP SMOOTHING, GIVE ME SPEED  */
+      image-rendering: -moz-crisp-edges;
+      /* Firefox                        */
+      image-rendering: -o-crisp-edges;
+      /* Opera                          */
+      image-rendering: -webkit-optimize-contrast;
+      /* Chrome (and eventually Safari) */
+      image-rendering: pixelated;
+      /* Chrome */
+      image-rendering: optimize-contrast;
+      /* CSS3 Proposed                  */
+      -ms-interpolation-mode: nearest-neighbor;
+      /* IE8+    */ }
+
+.navmenu menu {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh-50px);
+  background: transparent;
+  margin: 0;
+  padding: 0;
+  display: none;
+  z-index: 99;
+  border-bottom: 2px solid #ff2353;
+  box-shadow: 0 0 5px #000; }
+  .navmenu menu .underlay {
+    height: 100vh;
+    width: 100vw;
+    background: rgba(255, 255, 255, 0.6); }
+  .navmenu menu ul {
+    padding: 0;
+    margin: 0px;
+    border-bottom: 2px solid #fff; }
+    .navmenu menu ul li {
+      border-top: 1px solid #999;
+      list-style: none;
+      text-align: center;
+      display: block;
+      line-height: 20px;
+      background: white; }
+      .navmenu menu ul li:last-child {
+        background: #ff2353; }
+        .navmenu menu ul li:last-child a {
+          color: #fff; }
+      .navmenu menu ul li a {
+        padding: 15px 0;
+        font-size: 15px;
+        font-family: hb-bold;
+        color: #ff2353;
+        display: block; }
+        .navmenu menu ul li a:hover {
+          color: #ccc;
+          cursor: pointer; }
+
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------
@@ -15,6 +97,18 @@ body {
   min-height: 400px;
   position: relative; }
 
+.navmenu nav {
+  background: transparent !important;
+  box-shadow: none !important; }
+  .navmenu nav .logo {
+    display: none; }
+
+.navmenu.open nav {
+  background: #FFF !important;
+  box-shadow: 0 0 5px #000 !important; }
+  .navmenu.open nav .logo {
+    display: block; }
+
 .loginform {
   position: absolute;
   top: 50%;
@@ -29,20 +123,19 @@ body {
   .loginform input {
     box-sizing: border-box;
     width: calc(100% - 20px);
-    border: 1px solid #ff2353;
-    border-radius: 5px;
-    box-shadow: 0 0 0 1px #ffffff;
+    border: 2px solid #ff2353;
+    border-radius: 25px;
     font-size: 15px;
     padding: 7px 10px;
     margin: 5px;
     text-align: center;
-    -webkit-appearance: none; }
+    -webkit-appearance: none;
+    font-family: hb-bold; }
   .loginform .login {
     box-sizing: border-box;
     width: calc(80% - 20px);
-    border: 1px solid #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 0 1px #ff2353;
+    border: 2px solid #fff;
+    border-radius: 25px;
     padding: 7px 10px;
     background: #ff2353;
     margin: 10px auto;
@@ -114,66 +207,3 @@ body {
       font-size: .8em;
       color: #ccc;
       margin-top: 10px; }
-
-.hamburger {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  border: none;
-  padding: 11px 20px 9px 20px;
-  border-radius: 0;
-  background: transparent; }
-  .hamburger img {
-    height: 30px;
-    width: 30px;
-    image-rendering: optimizeSpeed;
-    /* STOP SMOOTHING, GIVE ME SPEED  */
-    image-rendering: -moz-crisp-edges;
-    /* Firefox                        */
-    image-rendering: -o-crisp-edges;
-    /* Opera                          */
-    image-rendering: -webkit-optimize-contrast;
-    /* Chrome (and eventually Safari) */
-    image-rendering: pixelated;
-    /* Chrome */
-    image-rendering: optimize-contrast;
-    /* CSS3 Proposed                  */
-    -ms-interpolation-mode: nearest-neighbor;
-    /* IE8+    */ }
-
-.modal-backdrop.in {
-  opacity: 0; }
-
-.menumodal .modal-content {
-  background-color: white;
-  box-shadow: 0 0 0 #777;
-  border: none;
-  position: relative; }
-
-.menumodal .modal-body {
-  padding: 0; }
-  .menumodal .modal-body .close {
-    position: absolute;
-    top: 10px;
-    right: 10px; }
-  .menumodal .modal-body a {
-    display: block;
-    text-align: center;
-    color: #ff2353;
-    font-size: 17px;
-    font-family: hb-regular;
-    text-transform: uppercase;
-    cursor: pointer;
-    letter-spacing: 2px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    padding: 15px; }
-    .menumodal .modal-body a:last-child {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      font-family: hb-black; }
-    .menumodal .modal-body a:before {
-      content: " ";
-      position: relative;
-      height: 17px;
-      width: 17px;
-      margin-right: 10px;
-      background: #ff2353; }

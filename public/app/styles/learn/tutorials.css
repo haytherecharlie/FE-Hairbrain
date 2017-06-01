@@ -81,6 +81,45 @@
           color: #ccc;
           cursor: pointer; }
 
+.footerlinks .group {
+  display: inline-block;
+  width: 33%;
+  min-width: 200px;
+  background: #fff;
+  text-align: center;
+  padding: 5px 0; }
+  .footerlinks .group b {
+    display: block;
+    font-family: hb-bold;
+    padding: 10px;
+    font-size: 1.2em; }
+  .footerlinks .group a {
+    display: block;
+    color: #666; }
+    .footerlinks .group a:hover {
+      color: #ccc; }
+
+.footerlinks .basebar {
+  display: block;
+  background: #333;
+  padding: 10px 20px;
+  margin-top: 10px; }
+  .footerlinks .basebar span {
+    color: #fff; }
+
+@media (max-width: 768px) {
+  .footerlinks .group {
+    width: 100%;
+    border-top: 1px solid #ccc;
+    text-align: left; }
+    .footerlinks .group b:before {
+      content: '>';
+      font-size: .8em;
+      margin: 0px 5px; }
+    .footerlinks .group a {
+      display: none;
+      margin: 5px 0px 5px 30px; } }
+
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------
@@ -88,9 +127,11 @@
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
-* BLOG PAGE STYLES
+* TUTORIAL PAGE STYLES
 /******************************************/
-iframe {
-  height: 99vh;
-  width: 100%;
-  overflow: hidden; }
+body.tutorialspage {
+  background: #FFFFFF; }
+  body.tutorialspage video {
+    margin-top: 55px;
+    height: calc(100vh - 50px);
+    width: 100%; }

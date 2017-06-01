@@ -19,7 +19,7 @@ var Nav = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var navMenu       = $('.navmenu'),
+var hamburger     = $('.hamburger'),
 	menuItems     = $('.menuitems'),
 	navSearch     = $('.navsearch'),
 	exitProfile   = $('.exitprofile'),
@@ -39,7 +39,7 @@ var navMenu       = $('.navmenu'),
 						 // LISTENERS
 
 //---------------------------------------------------------------/
-navMenu.click(function() {
+hamburger.click(function() {
 	if(menuItems.hasClass('open'))
 		Menu.closeMenu();
 	else
@@ -113,13 +113,13 @@ function hideBackBtn() {
 
 function slideSearchOpen() {
 	var windowWidth = $(window).width() - 40;
-	navMenu.fadeOut(300);
+	hamburger.fadeOut(300);
 	navLogo.fadeOut(300);
 	cancelSearch.fadeIn(300);
 	fadeOutLetters();
 	searchField.addClass('open');
 	navSearch.animate({
-		right: '+=' + windowWidth + 'px'
+		right: '+=' + (windowWidth - 10) + 'px'
 	}, 300, function() {
 		searchField.show();
         searchField.focus();
@@ -129,7 +129,7 @@ function slideSearchOpen() {
 function slideSearchClosed() {
     searchField.blur();
 	var windowWidth = $(window).width() - 40;
-	navMenu.fadeIn(300);
+	hamburger.fadeIn(300);
 	navLogo.fadeIn(300);
 	cancelSearch.fadeOut(300);
 	searchField.removeClass('open');
@@ -144,7 +144,7 @@ function slideSearchClosed() {
 
 function quickClearSearch() {
 	navLogo.fadeIn();
-	navMenu.fadeIn();
+	hamburger.fadeIn();
 	navSearch.hide();
 	cancelSearch.hide();
 	navSearch.css('right', '10px');
@@ -162,7 +162,7 @@ function restoreList() {
 
 function repositionSearch() {
 	var windowWidth = $(window).width() - 30;
-	navSearch.css('right', windowWidth);
+	navSearch.css('right', (windowWidth - 10));
 }
 
 function fadeInLetters() {

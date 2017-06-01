@@ -8,16 +8,22 @@
         box-shadow: 0 0 5px #000;
         z-index: 100;
 
-        img {
-            height: 30px;
-            margin: 10px 20px 10px 15px;
+        .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            
+            img {
+                height: 30px;
+                margin: 10px 0px 10px 0px;
+            }
         }
 
         .hamburger {
-            float: right;
+            float: left;
             border: none;
             background: transparent;
-            padding: 11px 20px 9px 20px;
+            padding: 12px 5px 8px 10px;
 
             img {
                 height: 30px;
@@ -38,16 +44,25 @@
         position: fixed;
         top: 50px; left: 0;
         width: 100%;
-        background: rgba(30, 30, 30, .9);
+        height: calc(100vh-50px);
+        background: transparent;
         margin: 0;
         padding: 0;
         display: none;
         z-index: 99;
-        border-bottom: 2px solid #fff;
+        border-bottom: 2px solid #ff2353;
+        box-shadow: 0 0 5px #000;
+
+        .underlay {
+            height: 100vh;
+            width: 100vw;
+            background: rgba(255, 255, 255, 0.6);
+        }
 
         ul {
             padding: 0;
             margin: 0px;
+            border-bottom: 2px solid #fff;
 
             li {
                 border-top: 1px solid #999;
@@ -55,16 +70,20 @@
                 text-align: center;
                 display: block;
                 line-height: 20px;
+                background: rgba(255, 255, 255, 1);
 
-                &:first-child {
-                    background: rgba(255, 35, 83, 1);
+                &:last-child {
+                    background: #ff2353;
+                    a {
+                        color: #fff;
+                    }
                 }
 
                 a {                
                     padding: 15px 0;
-                    font-size: 17px;
-                    font-family: hb-regular;                    
-                    color: #fff;
+                    font-size: 15px;
+                    font-family: hb-bold;                    
+                    color: #ff2353;
                     display: block;
 
                     &:hover {

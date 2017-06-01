@@ -15,6 +15,27 @@ body {
     position: relative;
 }
 
+.navmenu {
+    nav {
+        background: transparent!important;
+        box-shadow: none!important;
+
+        .logo {
+            display: none;
+        }
+    }
+
+    &.open{
+        nav{
+            background: #FFF!important;
+            box-shadow: 0 0 5px #000!important;
+            .logo {
+                display: block;
+            }
+        }
+    }
+}
+
 .loginform {
     position: absolute; top: 50%; left: 50%;
     transform: translate(-50%, -50%); 
@@ -30,22 +51,21 @@ body {
     input {
         box-sizing: border-box;
         width: calc(100% - 20px);
-        border: 1px solid #ff2353;
-        border-radius: 5px;
-        box-shadow: 0 0 0 1px #ffffff;
+        border: 2px solid #ff2353;
+        border-radius: 25px;
         font-size: 15px;
         padding: 7px 10px;
         margin: 5px;
         text-align: center;
         -webkit-appearance: none;
+        font-family: hb-bold;
     }
 
     .login {
         box-sizing: border-box;
         width: calc(80% - 20px);
-        border: 1px solid #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 0 1px #ff2353;;
+        border: 2px solid #fff;
+        border-radius: 25px;
         padding: 7px 10px;
         background: #ff2353;
         margin: 10px auto;

@@ -291,7 +291,7 @@
     padding: 10px;
     color: #fff;
     font-size: 16px;
-    font-family: hb-black; }
+    font-family: hb-bold; }
 
 /*******************************************
 * © 2017 Hairbrain inc.
@@ -357,8 +357,8 @@ menu {
       border-bottom: 1px solid #891c2e;
       padding: 10px;
       color: #fff;
-      font-size: 16px;
-      font-family: hb-black; }
+      font-size: 15px;
+      font-family: hb-bold; }
       menu ul li:last-child {
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px; }
@@ -436,6 +436,7 @@ menu {
       display: none; }
       .modal.addmodal .savingclient img {
         position: absolute;
+        height: 15px;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%); }
@@ -469,6 +470,29 @@ nav {
   left: 0px;
   box-shadow: 0px 0px 10px #666;
   z-index: 100; }
+  nav .hamburger {
+    float: left;
+    border: none;
+    background: transparent;
+    padding: 12px 5px 8px 10px; }
+    nav .hamburger img {
+      height: 30px;
+      width: 30px;
+      margin: 0;
+      image-rendering: optimizeSpeed;
+      /* STOP SMOOTHING, GIVE ME SPEED  */
+      image-rendering: -moz-crisp-edges;
+      /* Firefox                        */
+      image-rendering: -o-crisp-edges;
+      /* Opera                          */
+      image-rendering: -webkit-optimize-contrast;
+      /* Chrome (and eventually Safari) */
+      image-rendering: pixelated;
+      /* Chrome */
+      image-rendering: optimize-contrast;
+      /* CSS3 Proposed                  */
+      -ms-interpolation-mode: nearest-neighbor;
+      /* IE8+    */ }
   nav .navmenu {
     position: absolute;
     top: 50%;
@@ -479,7 +503,6 @@ nav {
     color: #ff2353;
     line-height: 30px; }
   nav .navlogo {
-    width: 119px;
     height: 30px;
     position: absolute;
     top: 50%;
@@ -492,10 +515,10 @@ nav {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    padding: 5px 0; }
+    padding: 10px 0px 10px 10px; }
     nav .navsearch img {
-      height: 20px;
-      width: 20px; }
+      height: 30px;
+      width: 30px; }
   nav .searchfield {
     position: absolute;
     top: 50%;

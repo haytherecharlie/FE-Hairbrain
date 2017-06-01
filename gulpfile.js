@@ -24,9 +24,9 @@ var sitemap = require('gulp-sitemap');
 // LOGIN CUSTOM SASS ======================
 gulp.task('login-custom-sass', function() {
     gulp.src([
+        'resources/sass/templates/navmenu.scss',
         'resources/sass/login/login.scss',
         'resources/sass/login/register.scss',
-        'resources/sass/login/menu.scss'
         ])
         .pipe(concat('login.css'))
         .pipe(sass().on('error', sass.logError))
@@ -36,13 +36,43 @@ gulp.task('login-custom-sass', function() {
 // LOGIN CUSTOM JS ========================
 gulp.task('login-custom-js', function() {
     return gulp.src([
+        'resources/js/templates/navmenu.js',
         'resources/js/login/login.js',
         'resources/js/login/register.js',
-        'resources/js/login/menu.js',
         'resources/js/universal/images/photoupload.js',
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('login.js'))
+    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gulp.dest('./public/app/js/'))
+});
+
+/*******************************************
+/              REGISTER PAGE
+/******************************************/
+
+// REGISTER CUSTOM SASS ======================
+gulp.task('register-custom-sass', function() {
+    gulp.src([
+        'resources/sass/templates/navmenu.scss',
+        'resources/sass/templates/footerlinks.scss',
+        'resources/sass/register/register.scss',
+        ])
+        .pipe(concat('register.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/'))
+});
+
+// REGISTER CUSTOM JS ========================
+gulp.task('register-custom-js', function() {
+    return gulp.src([
+        'resources/js/templates/navmenu.js',
+        'resources/js/templates/footerlinks.js',
+        'resources/js/login/register.js',
+        'resources/js/universal/images/photoupload.js',
+        ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('register.js'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
     .pipe(gulp.dest('./public/app/js/'))
 });
@@ -82,10 +112,40 @@ gulp.task('client-custom-js', function() {
 
 
 /*******************************************
+/               CONTACT PAGE
+/******************************************/
+
+// CONTACT CUSTOM SASS ======================
+gulp.task('contact-custom-sass', function() {
+    gulp.src([
+        'resources/sass/templates/navmenu.scss',
+        'resources/sass/templates/footerlinks.scss',
+        'resources/sass/contact/contact.scss'
+        ])
+        .pipe(concat('contact.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/'))
+});
+
+// CONTACT CUSTOM JS ========================
+gulp.task('contact-custom-js', function() {
+    return gulp.src([
+        'resources/js/templates/navmenu.js',
+        'resources/js/templates/footerlinks.js',
+        'resources/js/contact/contact.js'
+        ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('contact.js'))
+    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
+    .pipe(gulp.dest('./public/app/js/'))
+});
+
+
+/*******************************************
 /               RATING PAGE
 /******************************************/
 
-// MAPS CUSTOM SASS ======================
+// RATING CUSTOM SASS ======================
 gulp.task('rating-custom-sass', function() {
     gulp.src([
         'resources/sass/rating/rating.scss'
@@ -95,45 +155,13 @@ gulp.task('rating-custom-sass', function() {
         .pipe(gulp.dest('./public/app/styles/'))
 });
 
-// MAPS CUSTOM JS ========================
+// RATING CUSTOM JS ========================
 gulp.task('rating-custom-js', function() {
     return gulp.src([
         'resources/js/rating/rating.js'
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('rating.js'))
-    .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
-    .pipe(gulp.dest('./public/app/js/'))
-});
-
-
-/*******************************************
-/               HOME PAGE
-/******************************************/
-
-// MAPS CUSTOM SASS ======================
-gulp.task('home-custom-sass', function() {
-    gulp.src([
-        'resources/sass/templates/navmenu.scss',
-        'resources/sass/templates/footerlinks.scss',
-        'resources/sass/templates/motiongraphic.scss',
-        'resources/sass/maps/home.scss'
-        ])
-        .pipe(concat('home.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/'))
-});
-
-// MAPS CUSTOM JS ========================
-gulp.task('home-custom-js', function() {
-    return gulp.src([
-        'resources/js/templates/navmenu.js',
-        'resources/js/templates/footerlinks.js',
-        'resources/js/templates/motiongraphic.js',
-        'resources/js/maps/home.js'
-        ])
-    .pipe(sourcemaps.init())
-    .pipe(concat('home.js'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
     .pipe(gulp.dest('./public/app/js/'))
 });
@@ -200,26 +228,30 @@ gulp.task('blog-custom-js', function() {
 
 
 /*******************************************
-/                HELP PAGE
+/             TUTORIALS PAGE
 /******************************************/
 
-// HELP CUSTOM SASS ======================
-gulp.task('help-custom-sass', function() {
+// TUTORIALS CUSTOM SASS ======================
+gulp.task('tutorials-custom-sass', function() {
     gulp.src([
-        'resources/sass/learn/help/help.scss'
+        'resources/sass/templates/navmenu.scss',
+        'resources/sass/templates/footerlinks.scss',
+        'resources/sass/learn/tutorials/tutorials.scss'
         ])
-        .pipe(concat('help.css'))
+        .pipe(concat('tutorials.css'))
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./public/app/styles/learn/'))
 });
 
-// HELP CUSTOM JS ========================
-gulp.task('help-custom-js', function() {
+// TUTORIALS CUSTOM JS ========================
+gulp.task('tutorials-custom-js', function() {
     return gulp.src([
-        'resources/js/learn/help/help.js'
+        'resources/js/templates/navmenu.js',
+        'resources/js/templates/footerlinks.js',
+        'resources/js/learn/tutorials/tutorials.js'
         ])
     .pipe(sourcemaps.init())
-    .pipe(concat('help.js'))
+    .pipe(concat('tutorials.js'))
     .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop()) // uglify with '--type production'
     .pipe(gulp.dest('./public/app/js/learn/'))
 });
@@ -303,15 +335,17 @@ gulp.task('sitemap', function () {
 
 // DEFAULT TASK ============================
 gulp.task('default', [
-    'login-custom-sass',   'login-custom-js',
-    'client-custom-sass',  'client-custom-js', 
-    'rating-custom-sass',  'rating-custom-js',
-    'home-custom-sass',    'home-custom-js',
-    'about-custom-sass',   'about-custom-js',
-    'blog-custom-sass',    'blog-custom-js',
-    'help-custom-sass',    'help-custom-js',
-    'mistake-custom-sass', 'mistake-custom-js',
-    'vendor-css',          'vendor-js'
+    'login-custom-sass',     'login-custom-js',
+    'register-custom-sass',  'register-custom-js',
+    'client-custom-sass',    'client-custom-js', 
+    'contact-custom-sass',   'contact-custom-js',
+    'rating-custom-sass',    'rating-custom-js',
+
+    'about-custom-sass',     'about-custom-js',
+    'blog-custom-sass',      'blog-custom-js',
+    'tutorials-custom-sass', 'tutorials-custom-js',
+    'mistake-custom-sass',   'mistake-custom-js',
+    'vendor-css',            'vendor-js'
 ]);
 
 // WATCH TASK ============================
