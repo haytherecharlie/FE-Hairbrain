@@ -48,8 +48,6 @@ $('.deleteclient').click(function() {
 
 $('.confirmDelete').click(function() {
     deleteClient();
-    ClientList.clientListAJAX();
-    Nav.slideClientProfile();
 });
 
 //----------------------------------------------------------------
@@ -98,7 +96,8 @@ function deleteClient() {
     $.ajax(settings)
     .done(function (req, res) {
         if(res === "success") { 
-            // Success
+            ClientList.clientListAJAX();
+            Nav.slideClientProfile();
         }
     });
 }

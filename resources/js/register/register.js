@@ -134,7 +134,8 @@ function registerFormAJAX() {
 
         $.ajax(settings)
         .done(function (err, res) {
-            if(res === "success") redirect('/');
+            if(res === "success") 
+            window.location.href = window.location.origin;
             else console.log(err);
         });
     } else {
