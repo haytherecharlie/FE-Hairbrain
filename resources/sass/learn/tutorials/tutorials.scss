@@ -8,13 +8,14 @@
 * TUTORIAL PAGE STYLES
 /******************************************/
 
-body.tutorialspage {
+// BODY //
+.tutorialspage {
     background: #FFFFFF;
 
+    // VIDEO //
     video {
         margin-top: 55px;
         height: calc(100vh - 50px);
         width: 100%;
     }
-
 }

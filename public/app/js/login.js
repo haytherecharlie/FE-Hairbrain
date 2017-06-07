@@ -36,6 +36,10 @@ var menu;
 						 // LISTENERS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * On Click of Hamburger
+*******************************************/
 function hamburgerClick() {
     hamburgerBtn.click(function() {
         if(navMenuContainer.hasClass('open'))
@@ -45,6 +49,9 @@ function hamburgerClick() {
     });
 }
 
+/*******************************************
+ * On Click of Underlay
+*******************************************/
 function underlayClick() {
     underlay.click(function() {
         closeMenu();
@@ -56,11 +63,18 @@ function underlayClick() {
 						 // VIEWS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Open Menu
+*******************************************/
 function openMenu() {
     navMenuContainer.addClass('open');
     menu.css('display', 'block');
 }
 
+/*******************************************
+ * Close Menu
+*******************************************/
 function closeMenu() {
     navMenuContainer.removeClass('open');
     menu.css('display', 'none');
@@ -72,6 +86,9 @@ function closeMenu() {
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * Set Nav Listeners When Able
+*******************************************/
 function setNavListeners() {
     menu         = $('menu');
     hamburgerBtn = $('button.hamburger');
@@ -98,16 +115,20 @@ function setNavListeners() {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
-    
-    // If Nav container exists fill it with nav. 
-    if(navMenuContainer) {
-        navMenuContainer.load(navMenuTplPath, function() {
-            setNavListeners();
-        });
-    }
+    var Main = (function() {
+        
+        // If Nav container exists fill it with nav. 
+        if(navMenuContainer) {
+            navMenuContainer.load(navMenuTplPath, function() {
+                setNavListeners();
+            });
+        }
 
-})();
+    })();
+
+    return {
+        
+    }
 
 })(); // END OF NAVMENU.JS
 /*******************************************
@@ -120,7 +141,7 @@ var Main = (function() {
 * LOGIN PAGE JS FUNCTIONALITY.
 /******************************************/
 
-var LoginPage = (function() {
+var Login = (function() {
 
 //----------------------------------------------------------------
 
@@ -306,106 +327,17 @@ function checkIfAlreadyLoggedIn(jwt) {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
+    var Main = (function() {
 
-    // If JWT exists, try auto login.
-    if ($.cookie('jwt')) { 
-        checkIfAlreadyLoggedIn($.cookie('jwt')) 
-    };
+        // If JWT exists, try auto login.
+        if ($.cookie('jwt')) { 
+            checkIfAlreadyLoggedIn($.cookie('jwt')) 
+        };
 
-})();
+    })();
+
+    return {
+
+    }
 
 })(); // END OF LOGIN.JS
-
-// http://stackoverflow.com/questions/23945494/use-html5-to-resize-an-image-before-upload
-// Answer # 69 is the reference you wanna check ;)
-
-(function() {
-	
-	var PhotoUpload = {
-
-		$src: '',
-		$dest: '',
-
-		photoListeners: function() {
-			$('.thumbnail').each(function() {
-
-			    $(this).click( function() {
-
-			        var id = $(this).attr('id');
-			            PhotoUpload.$src = $('#' + id);
-			            PhotoUpload.$dest = $('#select-' + id);
-			        
-			        PhotoUpload.$dest.click();
-
-			        PhotoUpload.photoUploaded();
-
-			    })
-			})
-		},
-
-		photoUploaded: function() {
-
-		    PhotoUpload.$dest.change(function(evt) {
-
-		        PhotoUpload.resizeImage(this.files[0])
-
-		    });
-		},
-
-		resizeImage: function(img) {
-
-		    ImageTools.resize(img, {
-
-		        width: 320, // maximum width
-		        height: 440 // maximum height
-
-		    }, function(blob, didItResize) {
-
-		        PhotoUpload.getPhotoDimensions(blob);
-
-		    });
-		},
-
-		getPhotoDimensions: function(blob) {
-
-		    var fr = new FileReader;
-		    
-		    fr.onload = function() {
-		        
-		        var img = new Image;
-		        
-		        img.onload = function() {
-		            PhotoUpload.rotatePhoto(img, blob);
-		        };
-
-		        img.src = fr.result;
-		    };
-		    
-		    fr.readAsDataURL(blob);
-		},
-
-		rotatePhoto: function(img, blob) {
-
-		    if (img.height < img.width) {
-
-		        PhotoUpload.$src.removeClass('default');
-		        PhotoUpload.$src.addClass('rotate');
-
-		    } else {
-
-		        PhotoUpload.$src.removeClass('rotate');
-		        PhotoUpload.$src.addClass('default');
-
-		    }
-
-		    PhotoUpload.$src.css('background', 'url(' + img.src + ') no-repeat center' );
-		    PhotoUpload.$src.css('background-size', 'cover');
-
-            console.log(img.src);
-		}
-	};
-
-	PhotoUpload.photoListeners();
-
-})()

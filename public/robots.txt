@@ -2,5 +2,7 @@ User-Agent: *
 
 Disallow: /clients/
 Disallow: /rating/
+Disallow: /templates/
+Disallow: /app/
 
 Sitemap: https://www.hairbrain.ca/sitemap.xml

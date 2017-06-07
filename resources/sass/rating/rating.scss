@@ -8,12 +8,14 @@
 * RATING PAGE STYLES.
 /******************************************/
 
+// MAIN DIV //
 main {
     position: relative;
     height: 100vh;
     width: 100%;
     overflow: hidden;
 
+    // HEADER //
     header {
         height: 100%;
         width: 100%;
@@ -22,6 +24,7 @@ main {
         z-index: 100;
         box-shadow: 0 0 5px #333;
 
+        // INSTRUCTIONS //
         .instructions {
             position: absolute;
             top: 50%; left: 50%;
@@ -29,58 +32,72 @@ main {
             width: 100%;
             padding: 40px;
 
+            // INVALID REQUEST //
             &#invalid {
                 display: none;
             }
 
+            // STEP 1 //
             &#step1 {
                 display: none;
             }
 
+            // STEP 2 //
             &#step2 {
                 display: none;
             }
 
+            // STEP 3 //
             &#step3 {
                 display: none;
             }
 
+            // STEP 4 //
             &#step4 {
                 display: none;
             }
 
+            // LOGO //
             img {
                 width: 200px;
                 height: auto;
                 display: block;
                 margin: 20px 0;
             }
+
+            // TITLE //
             .title {
                 color: #fff;
                 font-size: 2.2em;
                 line-height: 1em;
                 font-family: hb-bold;
             }
+
+            // DESCRIPTION //
             .description {
                 color: #fff;
                 font-size: 1.2em;
                 font-family: hb-regular;
                 padding: 10px 0;
+
+                // BOLD //
                 b {
                     color: #fff;
                     font-family: hb-bold;
                 }
             }
+
+            // LINKS //
             a {
                 font-size: 1.2em;
                 color: #fff;
                 font-family: hb-bold;
                 text-decoration: underline;
             }
-
         }
     }
 
+    // FOOTER // 
     footer {
         height: 50vh;
         width: 100%;
@@ -88,6 +105,7 @@ main {
         position: relative;
         z-index: 50;
 
+        // RATING STARTS CONTAINER //
         .stars {
             height: 20px;
             width: 100%;
@@ -96,6 +114,7 @@ main {
             top: 40%; left: 0;
             transform: translateY(-50%);
 
+            // STAR LINK //
             a {
                 padding: 10px;
                 color: #ccc;
@@ -103,17 +122,20 @@ main {
                 color: #333;
             }
 
+            // STARS #1 //
             &#stars1 {
                 display: block;
             }
         }
 
+        // COMMENTS CONTAINER //
         .comments {
             height: 100%;
             width: 100%;
             display: none;
             padding: 20px;
             
+            // TEXT AREA //
             textarea {
                 height: calc(100% - 55px);
                 width: 100%;
@@ -124,6 +146,7 @@ main {
                 margin-bottom: 10px;
             }
 
+            // SUBMIT BUTTON //
             button {
                 width: 100%;
                 border: 1px solid #ff2353;
@@ -135,7 +158,6 @@ main {
                 font-family: hb-bold;
                 font-size: 15px;
             }
-
         }
     }
 }

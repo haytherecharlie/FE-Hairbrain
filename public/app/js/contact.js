@@ -36,6 +36,10 @@ var menu;
 						 // LISTENERS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * On Click of Hamburger
+*******************************************/
 function hamburgerClick() {
     hamburgerBtn.click(function() {
         if(navMenuContainer.hasClass('open'))
@@ -45,6 +49,9 @@ function hamburgerClick() {
     });
 }
 
+/*******************************************
+ * On Click of Underlay
+*******************************************/
 function underlayClick() {
     underlay.click(function() {
         closeMenu();
@@ -56,11 +63,18 @@ function underlayClick() {
 						 // VIEWS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Open Menu
+*******************************************/
 function openMenu() {
     navMenuContainer.addClass('open');
     menu.css('display', 'block');
 }
 
+/*******************************************
+ * Close Menu
+*******************************************/
 function closeMenu() {
     navMenuContainer.removeClass('open');
     menu.css('display', 'none');
@@ -72,6 +86,9 @@ function closeMenu() {
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * Set Nav Listeners When Able
+*******************************************/
 function setNavListeners() {
     menu         = $('menu');
     hamburgerBtn = $('button.hamburger');
@@ -98,16 +115,20 @@ function setNavListeners() {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
-    
-    // If Nav container exists fill it with nav. 
-    if(navMenuContainer) {
-        navMenuContainer.load(navMenuTplPath, function() {
-            setNavListeners();
-        });
-    }
+    var Main = (function() {
+        
+        // If Nav container exists fill it with nav. 
+        if(navMenuContainer) {
+            navMenuContainer.load(navMenuTplPath, function() {
+                setNavListeners();
+            });
+        }
 
-})();
+    })();
+
+    return {
+        
+    }
 
 })(); // END OF NAVMENU.JS
 /*******************************************
@@ -117,7 +138,7 @@ var Main = (function() {
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
-* NAVMENU TEMPLATE JS FUNCTIONALITY.
+* FOOTERLINKS TEMPLATE JS FUNCTIONALITY.
 /******************************************/
 
 var FooterLinks = (function() {
@@ -146,6 +167,10 @@ var footerLinksContainer = $('footer.footerlinks');
 						 // LISTENERS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Add Listeners
+*******************************************/
 function addListeners() {
     $('.group').each(function() {
         $(this).click(function() {
@@ -166,6 +191,10 @@ function addListeners() {
 						 // LOGIC
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Expand and Collapse Footer
+*******************************************/
 function expandCollapse(obj) {
     if( $(obj).find('a').css('display') === 'none') {
        $(obj).find('a').css('display', 'block'); 
@@ -191,15 +220,93 @@ function expandCollapse(obj) {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
-    
-    // If Nav container exists fill it with nav. 
-    if(footerLinksContainer) {
-        footerLinksContainer.load(footerLinksTplPath, function() {
-            addListeners();
-        });
+    var Main = (function() {
+        
+        // If Nav container exists fill it with nav. 
+        if(footerLinksContainer) {
+            footerLinksContainer.load(footerLinksTplPath, function() {
+                addListeners();
+            });
+        }
+
+    })();
+
+    return {
+        
     }
 
-})();
-
 })(); // END OF FOOTERLINKS.JS
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CONTACT JS FUNCTIONALITY.
+/******************************************/
+
+var Contact = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    var Main = (function() {  
+
+        // Main
+
+    })();
+
+    return {
+
+    }
+
+})(); // END OF CONTACT.JS

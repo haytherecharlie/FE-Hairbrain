@@ -1,3 +1,13 @@
+@charset "UTF-8";
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* NAV MENU STYLES 
+/******************************************/
 .navmenu nav {
   position: fixed;
   top: 0;
@@ -80,6 +90,15 @@
           color: #999;
           cursor: pointer; }
 
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* FOOTER LINKS STYLES 
+/******************************************/
 .footerlinks .group {
   display: inline-block;
   width: 33%;
@@ -118,6 +137,15 @@
       display: none;
       margin: 5px 0px 5px 30px; } }
 
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* PHOTO UPLOAD STYLES 
+/******************************************/
 .photowidget {
   display: block;
   position: relative; }
@@ -148,19 +176,28 @@
       height: 100px;
       border: none; }
 
-main {
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* REGISTER STYLES 
+/******************************************/
+.registerpage main {
   margin-top: 50px;
   min-height: calc(100vh - 100px);
   background: #ff2353;
   padding: 20px;
   display: table;
   width: 100%; }
-  main .registerbox {
+  .registerpage main .registerbox {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
     width: 100%; }
-    main .registerbox .registerform {
+    .registerpage main .registerbox .registerform {
       border-radius: 25px;
       text-align: left;
       background: #fff;
@@ -168,11 +205,11 @@ main {
       width: 100%;
       max-width: 600px;
       margin: auto; }
-      main .registerbox .registerform b {
+      .registerpage main .registerbox .registerform b {
         font-size: 15px;
         display: block;
         text-align: center; }
-      main .registerbox .registerform input {
+      .registerpage main .registerbox .registerform input {
         border: none;
         border-bottom: 1px solid #ccc;
         font-family: hb-light;
@@ -180,7 +217,7 @@ main {
         padding: 5px;
         margin: 5px 0;
         width: 100%; }
-      main .registerbox .registerform textarea {
+      .registerpage main .registerbox .registerform textarea {
         margin-top: 10px;
         font-family: hb-light;
         font-size: 15px;
@@ -189,35 +226,9 @@ main {
         width: 100%;
         resize: none;
         min-height: 200px; }
-      main .registerbox .registerform .avatarimg {
+      .registerpage main .registerbox .registerform .avatarimg {
         display: none; }
-      main .registerbox .registerform .thumbnail-container {
-        height: 100px;
-        width: 100px;
-        background: url("/app/img/avatar.png") no-repeat center;
-        background-size: cover;
-        position: relative;
-        border-radius: 10px;
-        border: none;
-        margin: 20px auto; }
-        main .registerbox .registerform .thumbnail-container .default {
-          height: 100%;
-          width: 100%;
-          border: none;
-          background: transparent; }
-        main .registerbox .registerform .thumbnail-container .rotate {
-          -webkit-transform: rotate(90deg);
-          -moz-transform: rotate(90deg);
-          -ms-transform: rotate(90deg);
-          -o-transform: rotate(90deg);
-          transform: rotate(90deg);
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          width: 100px;
-          height: 100px;
-          border: none; }
-      main .registerbox .registerform .submit {
+      .registerpage main .registerbox .registerform .submit {
         font-size: 15px;
         color: #fff;
         font-family: hb-regular;
@@ -227,5 +238,21 @@ main {
         margin: 15px 0 0 0;
         width: 100%;
         padding: 10px; }
-      main .registerbox .registerform .disabled {
+      .registerpage main .registerbox .registerform .disabled {
         opacity: 0.7; }
+
+.registerpage .modal {
+  text-align: center;
+  padding: 0 !important;
+  background-color: rgba(255, 255, 255, 0.7); }
+  .registerpage .modal .modal-body {
+    position: relative; }
+  .registerpage .modal .modallogo {
+    width: 119px;
+    height: 30px;
+    margin: 10px; }
+  .registerpage .modal.fade {
+    background-color: rgba(255, 255, 255, 0.7); }
+  .registerpage .modal .login {
+    background: #ff2353;
+    color: #fff; }

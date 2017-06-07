@@ -1,63 +1,85 @@
-main {
-    margin-top: 50px;
-    min-height: calc(100vh - 100px);
-    background: #ff2353;
-    padding: 20px;
-    display: table;
-    width: 100%;
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CONTACT STYLES
+/******************************************/
 
-    .contactbox {
-        display: table-cell;
-        text-align: center;
-        vertical-align: middle;
+// CONTACT PAGE // 
+.contactpage {
+
+    // MAIN //
+    main {
+        margin-top: 50px;
+        min-height: calc(100vh - 100px);
+        background: #ff2353;
+        padding: 20px;
+        display: table;
         width: 100%;
 
-        form {
-            border-radius: 25px;
-            text-align: left;
-            background: #fff;
-            padding: 20px;
+        // CONTACT CONTAINER //
+        .contactbox {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
             width: 100%;
-            max-width: 600px;
-            margin: auto;
-            
-            b {
-                font-size: 15px;
-                display: block;
-                text-align: center;
-                margin-bottom: 20px;
-            }
 
-            input {
-                border: none;
-                border-bottom: 1px solid #ccc;
-                font-family: hb-light;
-                font-size: 15px;
-                padding: 5px;
-                margin: 5px 0;
-                width: 100%;
-            }
-
-            textarea {
-                margin-top: 10px;
-                font-family: hb-light;
-                font-size: 15px;
-                padding: 5px;
-                border: 1px solid #ccc;
-                width: 100%;
-                resize: none;
-                min-height: 200px;
-            }
-            .submit {
-                font-size: 15px;
-                color: #fff;
-                font-family: hb-regular;
-                background: #ff2353;
-                border: 2px solid #FFF;
+            // FORM //
+            form {
                 border-radius: 25px;
-                margin: 15px 0 0 0;
+                text-align: left;
+                background: #fff;
+                padding: 20px;
                 width: 100%;
-                padding: 10px 
+                max-width: 600px;
+                margin: auto;
+                
+                // BOLD //
+                b {
+                    font-size: 15px;
+                    display: block;
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+
+                // INPUT // 
+                input {
+                    border: none;
+                    border-bottom: 1px solid #ccc;
+                    font-family: hb-light;
+                    font-size: 15px;
+                    padding: 5px;
+                    margin: 5px 0;
+                    width: 100%;
+                }
+
+                // TEXT AREA //
+                textarea {
+                    margin-top: 10px;
+                    font-family: hb-light;
+                    font-size: 15px;
+                    padding: 5px;
+                    border: 1px solid #ccc;
+                    width: 100%;
+                    resize: none;
+                    min-height: 200px;
+                }
+                
+                // SUBMIT //
+                .submit {
+                    font-size: 15px;
+                    color: #fff;
+                    font-family: hb-regular;
+                    background: #ff2353;
+                    border: 2px solid #FFF;
+                    border-radius: 25px;
+                    margin: 15px 0 0 0;
+                    width: 100%;
+                    padding: 10px 
+                }
             }
         }
     }

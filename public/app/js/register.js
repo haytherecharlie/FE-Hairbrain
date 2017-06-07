@@ -36,6 +36,10 @@ var menu;
 						 // LISTENERS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * On Click of Hamburger
+*******************************************/
 function hamburgerClick() {
     hamburgerBtn.click(function() {
         if(navMenuContainer.hasClass('open'))
@@ -45,6 +49,9 @@ function hamburgerClick() {
     });
 }
 
+/*******************************************
+ * On Click of Underlay
+*******************************************/
 function underlayClick() {
     underlay.click(function() {
         closeMenu();
@@ -56,11 +63,18 @@ function underlayClick() {
 						 // VIEWS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Open Menu
+*******************************************/
 function openMenu() {
     navMenuContainer.addClass('open');
     menu.css('display', 'block');
 }
 
+/*******************************************
+ * Close Menu
+*******************************************/
 function closeMenu() {
     navMenuContainer.removeClass('open');
     menu.css('display', 'none');
@@ -72,6 +86,9 @@ function closeMenu() {
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * Set Nav Listeners When Able
+*******************************************/
 function setNavListeners() {
     menu         = $('menu');
     hamburgerBtn = $('button.hamburger');
@@ -98,16 +115,20 @@ function setNavListeners() {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
-    
-    // If Nav container exists fill it with nav. 
-    if(navMenuContainer) {
-        navMenuContainer.load(navMenuTplPath, function() {
-            setNavListeners();
-        });
-    }
+    var Main = (function() {
+        
+        // If Nav container exists fill it with nav. 
+        if(navMenuContainer) {
+            navMenuContainer.load(navMenuTplPath, function() {
+                setNavListeners();
+            });
+        }
 
-})();
+    })();
+
+    return {
+        
+    }
 
 })(); // END OF NAVMENU.JS
 /*******************************************
@@ -117,7 +138,7 @@ var Main = (function() {
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
-* NAVMENU TEMPLATE JS FUNCTIONALITY.
+* FOOTERLINKS TEMPLATE JS FUNCTIONALITY.
 /******************************************/
 
 var FooterLinks = (function() {
@@ -146,6 +167,10 @@ var footerLinksContainer = $('footer.footerlinks');
 						 // LISTENERS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Add Listeners
+*******************************************/
 function addListeners() {
     $('.group').each(function() {
         $(this).click(function() {
@@ -166,6 +191,10 @@ function addListeners() {
 						 // LOGIC
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Expand and Collapse Footer
+*******************************************/
 function expandCollapse(obj) {
     if( $(obj).find('a').css('display') === 'none') {
        $(obj).find('a').css('display', 'block'); 
@@ -191,16 +220,20 @@ function expandCollapse(obj) {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
-    
-    // If Nav container exists fill it with nav. 
-    if(footerLinksContainer) {
-        footerLinksContainer.load(footerLinksTplPath, function() {
-            addListeners();
-        });
-    }
+    var Main = (function() {
+        
+        // If Nav container exists fill it with nav. 
+        if(footerLinksContainer) {
+            footerLinksContainer.load(footerLinksTplPath, function() {
+                addListeners();
+            });
+        }
 
-})();
+    })();
+
+    return {
+        
+    }
 
 })(); // END OF FOOTERLINKS.JS
 /*******************************************
@@ -210,7 +243,7 @@ var Main = (function() {
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
-* MOTIONGRAPHIC TEMPLATE JS FUNCTIONALITY.
+* PHOTOUPLOAD TEMPLATE JS FUNCTIONALITY.
 /******************************************/
 
 var PhotoUpload = (function() {
@@ -243,6 +276,9 @@ var photoThumb;
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * Listen for Photo Upload
+*******************************************/
 function listenForUpload() {
     photoThumb.click(function() {
         photoInput.click();
@@ -263,6 +299,9 @@ function listenForUpload() {
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * Set Listeners
+*******************************************/
 function setNavListeners() {
     photoInput  = $('.photowidget .photoinput');
     photoBox    = $('.photowidget .photobox');
@@ -270,14 +309,19 @@ function setNavListeners() {
     listenForUpload();
 }
 
+/*******************************************
+ * Detect File
+*******************************************/
 function detectFile() {
     photoInput.change(function(evt) {
         resizeImage(this.files[0]);
     })
 }
 
+/*******************************************
+ * Resize Photo - Using Resize.js
+*******************************************/
 function resizeImage(img) {
-
     ImageTools.resize(img, {
         width: 400, // maximum width
         height: 300 // maximum height
@@ -286,6 +330,9 @@ function resizeImage(img) {
     });
 }
 
+/*******************************************
+ * Get Photo Dimensions
+*******************************************/
 function getPhotoDimensions(blob) {
 		    
         var fr = new FileReader;
@@ -299,6 +346,9 @@ function getPhotoDimensions(blob) {
         fr.readAsDataURL(blob);
 }
 
+/*******************************************
+ * Show Photo
+*******************************************/
 function showPhoto(img, blob) {
 
     if (img.height < img.width) {
@@ -330,18 +380,22 @@ function showPhoto(img, blob) {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
+    var Main = (function() {
 
-    // If PhotoWidget container exists fill it with nav. 
-    if(photoWidget) {
-        photoWidget.load(photoWidgetTpl, function() {
-            setNavListeners();
-        });
+        // If PhotoWidget container exists fill it with nav. 
+        if(photoWidget) {
+            photoWidget.load(photoWidgetTpl, function() {
+                setNavListeners();
+            });
+        }
+
+    })();
+
+    return {
+        
     }
 
-})();
-
-})(); // END OF PHOTOWIDGET.JS
+})(); // END OF PHOTOUPLOAD.JS
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------
@@ -363,16 +417,18 @@ var Register = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var registerForm   = $('.registerform'),
-    firstname      = $('.registerform .firstname'),
-    lastname       = $('.registerform .lastname'),
-    email          = $('.registerform .avatar'),
-    password       = $('.registerform .password'),
-    phone          = $('.registerform .phone')
-    salon          = $('.registerform .salon'),
-    avatar         = $('.registerform .photoinput'),
-    keyword        = $('.registerform .keyword'),
-    registerBtn    = $('.registerform .submit');
+var registerForm   = $('.registerpage .registerform');
+var firstname      = $('.registerpage .registerform .firstname');
+var lastname       = $('.registerpage .registerform .lastname');
+var email          = $('.registerpage .registerform .avatar');
+var password       = $('.registerpage .registerform .password');
+var phone          = $('.registerpage .registerform .phone');
+var salon          = $('.registerpage .registerform .salon');
+var avatar         = $('.registerpage .registerform .photoinput');
+var keyword        = $('.registerpage .registerform .keyword');
+var registerBtn    = $('.registerpage .registerform .submit');
+var successModal   = $('.registerpage .successmodal');
+var successLogin   = $('.registerpage .login');
 
 //----------------------------------------------------------------
 
@@ -388,17 +444,25 @@ var registerForm   = $('.registerform'),
 //---------------------------------------------------------------/
 
 /*******************************************
- * Submit Form
+ * On Click Register Button
 *******************************************/
 registerBtn.click( function(e) {
     registerFormAJAX();
 });
 
-// Listens for change on each input. NOTE:Doesn't listen to textarea.
+/*******************************************
+ * Changes on Inputs * Not Text Area
+*******************************************/
 $('.registerform input').keydown(function() {
-    console.log('x');
     countValidInputs();
 });
+
+/*******************************************
+ * On Click Go To Login Page
+*******************************************/
+successLogin.click(function() {
+    location.href = location.origin;
+})
 
 //----------------------------------------------------------------
 
@@ -413,11 +477,17 @@ $('.registerform input').keydown(function() {
 						 // LOGIC
 
 //---------------------------------------------------------------/
+/*******************************************
+ * Initialize Google Places
+*******************************************/
 function initialize() {
     var input = document.getElementById('salon');
     var autocomplete = new google.maps.places.Autocomplete(input);
 }
 
+/*******************************************
+ * Count Valid Inputs
+*******************************************/
 function countValidInputs() {
     var numInputs   = $('.registerform input').length;
     var validInputs = 0; 
@@ -429,6 +499,9 @@ function countValidInputs() {
     toggleSubmitBtn(validInputs, numInputs);
 }
 
+/*******************************************
+ * Toggle Submit Button
+*******************************************/
 function toggleSubmitBtn(valid, total) {
     if( valid === total ) {
         registerBtn.prop('disabled', false);
@@ -450,7 +523,6 @@ function toggleSubmitBtn(valid, total) {
  * Login Form -> POST
 *******************************************/
 function registerFormAJAX() {
-    console.log(keyword.val());
 
     if(keyword.val() === 'Kanye2020') {
         var form = new FormData();
@@ -463,27 +535,30 @@ function registerFormAJAX() {
         form.append("lastname", lastname.val());
 
         var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": apiurl + "register",
-        "method": "POST",
-        "headers": {
-            "cache-control": "no-cache",
-        },
-        "processData": false,
-        "contentType": false,
-        "mimeType": "multipart/form-data",
-        "data": form
+            "async": true,
+            "crossDomain": true,
+            "url": apiurl + "register",
+            "method": "POST",
+            "headers": {
+                "cache-control": "no-cache",
+            },
+            "processData": false,
+            "contentType": false,
+            "mimeType": "multipart/form-data",
+            "data": form,
+            "statusCode": {
+                200: function(req, res) {
+                    successModal.modal('show');
+                },
+                400: function(req, res) {
+                    redirect('/learn/mistake/');
+                },
+                401: function(req, res) {
+                    location.origin.reload();
+                }
+            }
         }
-
         $.ajax(settings)
-        .done(function (err, res) {
-            if(res === "success") 
-            window.location.href = window.location.origin;
-            else console.log(err);
-        });
-    } else {
-        window.location.reload();
     }
 }
 
@@ -496,6 +571,13 @@ function registerFormAJAX() {
 /*******************************************
  * Main Function
 *******************************************/
-    google.maps.event.addDomListener(window, 'load', initialize);
-    countValidInputs();
+    var Main = (function() {
+        google.maps.event.addDomListener(window, 'load', initialize);
+        countValidInputs();
+    })();
+
+    return {
+
+    }
+
 })(); // END OF REGISTER.JS

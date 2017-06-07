@@ -36,6 +36,10 @@ var menu;
 						 // LISTENERS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * On Click of Hamburger
+*******************************************/
 function hamburgerClick() {
     hamburgerBtn.click(function() {
         if(navMenuContainer.hasClass('open'))
@@ -45,6 +49,9 @@ function hamburgerClick() {
     });
 }
 
+/*******************************************
+ * On Click of Underlay
+*******************************************/
 function underlayClick() {
     underlay.click(function() {
         closeMenu();
@@ -56,11 +63,18 @@ function underlayClick() {
 						 // VIEWS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Open Menu
+*******************************************/
 function openMenu() {
     navMenuContainer.addClass('open');
     menu.css('display', 'block');
 }
 
+/*******************************************
+ * Close Menu
+*******************************************/
 function closeMenu() {
     navMenuContainer.removeClass('open');
     menu.css('display', 'none');
@@ -72,6 +86,9 @@ function closeMenu() {
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * Set Nav Listeners When Able
+*******************************************/
 function setNavListeners() {
     menu         = $('menu');
     hamburgerBtn = $('button.hamburger');
@@ -98,15 +115,93 @@ function setNavListeners() {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
-    
-    // If Nav container exists fill it with nav. 
-    if(navMenuContainer) {
-        navMenuContainer.load(navMenuTplPath, function() {
-            setNavListeners();
-        });
+    var Main = (function() {
+        
+        // If Nav container exists fill it with nav. 
+        if(navMenuContainer) {
+            navMenuContainer.load(navMenuTplPath, function() {
+                setNavListeners();
+            });
+        }
+
+    })();
+
+    return {
+        
     }
 
-})();
-
 })(); // END OF NAVMENU.JS
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* BLOG JS FUNCTIONALITY.
+/******************************************/
+
+var Blog = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    var Main = (function() {  
+
+        // Main
+
+    })();
+
+    return {
+
+    }
+
+})(); // END OF BLOG.JS

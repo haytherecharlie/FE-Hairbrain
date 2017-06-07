@@ -8,7 +8,7 @@
 * LOGIN PAGE JS FUNCTIONALITY.
 /******************************************/
 
-var LoginPage = (function() {
+var Login = (function() {
 
 //----------------------------------------------------------------
 
@@ -194,13 +194,17 @@ function checkIfAlreadyLoggedIn(jwt) {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
+    var Main = (function() {
 
-    // If JWT exists, try auto login.
-    if ($.cookie('jwt')) { 
-        checkIfAlreadyLoggedIn($.cookie('jwt')) 
-    };
+        // If JWT exists, try auto login.
+        if ($.cookie('jwt')) { 
+            checkIfAlreadyLoggedIn($.cookie('jwt')) 
+        };
 
-})();
+    })();
+
+    return {
+
+    }
 
 })(); // END OF LOGIN.JS

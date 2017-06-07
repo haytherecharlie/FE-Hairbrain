@@ -33,7 +33,6 @@ var rating      = decodeURI($.cookie('rating'));
 //---------------------------------------------------------------/
 
 
-
 //----------------------------------------------------------------
 
 						 // VIEWS
@@ -46,6 +45,7 @@ var rating      = decodeURI($.cookie('rating'));
 						 // LOGIC
 
 //---------------------------------------------------------------/
+
 /*******************************************
  * Check Token Exists
 *******************************************/
@@ -1023,10 +1023,128 @@ function clientListAJAX() {
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT REPORT JS FUNCTIONALITY.
+/******************************************/
+
+var ReportIssue = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var reportModal   = $('.reportmodal');
+var confirmReport = $('.reportmodal .confirmreport');
+var reportTextBox = $('.issueform')
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * On Click of Confirm 
+*******************************************/
+confirmReport.click(function() {
+    submitForm();
+});
+
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Submit Form -> POST
+*******************************************/
+function submitForm() {
+    var form = new FormData();
+    form.append("name", name);
+    form.append("phone", phone);
+    form.append("email", email);
+    form.append("salon", salon);
+    form.append("issue", reportTextBox.val());
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://script.google.com/macros/s/AKfycbxwK0uSZtglD0qBQKwqNOzfM-1JDMjIusr4FL3i6bkpAkL-QCOH/exec",
+        "method": "POST",
+        "processData": false,
+        "contentType": false,
+        "data": form,
+        "statusCode": {
+            200: function(req, res) {
+                // Do Nothing
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            },
+            401: function(req, res) {
+                redirect('/');
+            }
+        }
+    }
+
+    $.ajax(settings)
+
+}
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    var Main = (function() {
+
+        // Main
+
+    })();
+
+    return {
+
+    }
+
+})(); // END OF CLIENTREPORT.JS
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
-* MOTIONGRAPHIC TEMPLATE JS FUNCTIONALITY.
+* PHOTOUPLOAD TEMPLATE JS FUNCTIONALITY.
 /******************************************/
 
 var PhotoUpload = (function() {
@@ -1059,6 +1177,9 @@ var photoThumb;
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * Listen for Photo Upload
+*******************************************/
 function listenForUpload() {
     photoThumb.click(function() {
         photoInput.click();
@@ -1079,6 +1200,9 @@ function listenForUpload() {
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * Set Listeners
+*******************************************/
 function setNavListeners() {
     photoInput  = $('.photowidget .photoinput');
     photoBox    = $('.photowidget .photobox');
@@ -1086,14 +1210,19 @@ function setNavListeners() {
     listenForUpload();
 }
 
+/*******************************************
+ * Detect File
+*******************************************/
 function detectFile() {
     photoInput.change(function(evt) {
         resizeImage(this.files[0]);
     })
 }
 
+/*******************************************
+ * Resize Photo - Using Resize.js
+*******************************************/
 function resizeImage(img) {
-
     ImageTools.resize(img, {
         width: 400, // maximum width
         height: 300 // maximum height
@@ -1102,6 +1231,9 @@ function resizeImage(img) {
     });
 }
 
+/*******************************************
+ * Get Photo Dimensions
+*******************************************/
 function getPhotoDimensions(blob) {
 		    
         var fr = new FileReader;
@@ -1115,6 +1247,9 @@ function getPhotoDimensions(blob) {
         fr.readAsDataURL(blob);
 }
 
+/*******************************************
+ * Show Photo
+*******************************************/
 function showPhoto(img, blob) {
 
     if (img.height < img.width) {
@@ -1146,15 +1281,19 @@ function showPhoto(img, blob) {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
+    var Main = (function() {
 
-    // If PhotoWidget container exists fill it with nav. 
-    if(photoWidget) {
-        photoWidget.load(photoWidgetTpl, function() {
-            setNavListeners();
-        });
+        // If PhotoWidget container exists fill it with nav. 
+        if(photoWidget) {
+            photoWidget.load(photoWidgetTpl, function() {
+                setNavListeners();
+            });
+        }
+
+    })();
+
+    return {
+        
     }
 
-})();
-
-})(); // END OF PHOTOWIDGET.JS
+})(); // END OF PHOTOUPLOAD.JS

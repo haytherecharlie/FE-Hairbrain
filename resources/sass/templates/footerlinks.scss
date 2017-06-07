@@ -1,5 +1,17 @@
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* FOOTER LINKS STYLES 
+/******************************************/
+
+// FOOTER LINKS //
 .footerlinks {
 
+    // GROUP //
     .group {
         display: inline-block;
         width: 33%;
@@ -8,6 +20,7 @@
         text-align: center;
         padding: 5px 0;
 
+        // BOLD //
         b {
             display: block;
             font-family: hb-bold;
@@ -15,36 +28,44 @@
             font-size: 1.2em;
         }
 
+        // LINKS //
         a {
             display: block;
             color: #666;
 
+            // HOVER LINKS //
             &:hover {
                 color: #ccc;
             }
         }
     }
 
+    // BASE BAR //
     .basebar {
         display: block;
         background: #333;
         padding: 10px 20px;
         
+        // SPAN // 
         span {
             color: #fff;
         }
     }
 }
 
+// MOBILE FOOTER //
 @media (max-width: 768px) {
 
+    // GROUPS //
     .footerlinks .group {
         width: 100%;
         border-top: 1px solid #ccc;
         text-align: left;
 
+        // BOLD //
         b {
 
+            // ICON //
             &:before {
                 content: '>';
                 font-size: .8em;
@@ -52,6 +73,7 @@
             }
         }
 
+        // LINKS //
         a {
             display: none;
             margin: 5px 0px 5px 30px;

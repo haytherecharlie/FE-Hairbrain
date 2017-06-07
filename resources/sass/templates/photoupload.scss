@@ -1,11 +1,24 @@
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* PHOTO UPLOAD STYLES 
+/******************************************/
+
+// PHOTO WIDGET // 
 .photowidget {
     display: block;
     position: relative;
     
+    // PHOTO INPUT // 
     .photoinput {
         display: none;
     }
 
+    // PHOTO CONTAINER //
     .photobox {
         height: 150px;
         width: 100px;
@@ -15,12 +28,14 @@
         margin: 10px auto;
         position: relative;
 
+        // VERTICAL PHOTO //
         .default {
             height: 100%;
             width: 100%;
             border: none;
         }
         
+        // ROTATE PHOTO //
         .rotate {
             -webkit-transform: rotate(90deg);
             -moz-transform: rotate(90deg);

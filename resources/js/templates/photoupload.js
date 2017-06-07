@@ -5,7 +5,7 @@
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
-* MOTIONGRAPHIC TEMPLATE JS FUNCTIONALITY.
+* PHOTOUPLOAD TEMPLATE JS FUNCTIONALITY.
 /******************************************/
 
 var PhotoUpload = (function() {
@@ -38,6 +38,9 @@ var photoThumb;
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * Listen for Photo Upload
+*******************************************/
 function listenForUpload() {
     photoThumb.click(function() {
         photoInput.click();
@@ -58,6 +61,9 @@ function listenForUpload() {
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * Set Listeners
+*******************************************/
 function setNavListeners() {
     photoInput  = $('.photowidget .photoinput');
     photoBox    = $('.photowidget .photobox');
@@ -65,14 +71,19 @@ function setNavListeners() {
     listenForUpload();
 }
 
+/*******************************************
+ * Detect File
+*******************************************/
 function detectFile() {
     photoInput.change(function(evt) {
         resizeImage(this.files[0]);
     })
 }
 
+/*******************************************
+ * Resize Photo - Using Resize.js
+*******************************************/
 function resizeImage(img) {
-
     ImageTools.resize(img, {
         width: 400, // maximum width
         height: 300 // maximum height
@@ -81,6 +92,9 @@ function resizeImage(img) {
     });
 }
 
+/*******************************************
+ * Get Photo Dimensions
+*******************************************/
 function getPhotoDimensions(blob) {
 		    
         var fr = new FileReader;
@@ -94,6 +108,9 @@ function getPhotoDimensions(blob) {
         fr.readAsDataURL(blob);
 }
 
+/*******************************************
+ * Show Photo
+*******************************************/
 function showPhoto(img, blob) {
 
     if (img.height < img.width) {
@@ -125,15 +142,19 @@ function showPhoto(img, blob) {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
+    var Main = (function() {
 
-    // If PhotoWidget container exists fill it with nav. 
-    if(photoWidget) {
-        photoWidget.load(photoWidgetTpl, function() {
-            setNavListeners();
-        });
+        // If PhotoWidget container exists fill it with nav. 
+        if(photoWidget) {
+            photoWidget.load(photoWidgetTpl, function() {
+                setNavListeners();
+            });
+        }
+
+    })();
+
+    return {
+        
     }
 
-})();
-
-})(); // END OF PHOTOWIDGET.JS
+})(); // END OF PHOTOUPLOAD.JS

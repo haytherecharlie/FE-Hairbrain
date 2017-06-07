@@ -5,7 +5,7 @@
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
-* NAVMENU TEMPLATE JS FUNCTIONALITY.
+* FOOTERLINKS TEMPLATE JS FUNCTIONALITY.
 /******************************************/
 
 var FooterLinks = (function() {
@@ -34,6 +34,10 @@ var footerLinksContainer = $('footer.footerlinks');
 						 // LISTENERS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Add Listeners
+*******************************************/
 function addListeners() {
     $('.group').each(function() {
         $(this).click(function() {
@@ -54,6 +58,10 @@ function addListeners() {
 						 // LOGIC
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Expand and Collapse Footer
+*******************************************/
 function expandCollapse(obj) {
     if( $(obj).find('a').css('display') === 'none') {
        $(obj).find('a').css('display', 'block'); 
@@ -79,15 +87,19 @@ function expandCollapse(obj) {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
-    
-    // If Nav container exists fill it with nav. 
-    if(footerLinksContainer) {
-        footerLinksContainer.load(footerLinksTplPath, function() {
-            addListeners();
-        });
-    }
+    var Main = (function() {
+        
+        // If Nav container exists fill it with nav. 
+        if(footerLinksContainer) {
+            footerLinksContainer.load(footerLinksTplPath, function() {
+                addListeners();
+            });
+        }
 
-})();
+    })();
+
+    return {
+        
+    }
 
 })(); // END OF FOOTERLINKS.JS

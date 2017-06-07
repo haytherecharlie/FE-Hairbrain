@@ -1,12 +1,22 @@
-body {
+@charset "UTF-8";
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* TERMS PAGE STYLES
+/******************************************/
+.termspage {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px; }
-  body .terms {
+  .termspage .terms {
     padding: 10px; }
-    body .terms img {
+    .termspage .terms img {
       display: block;
       margin: auto; }
-    body .terms #ppHeader {
+    .termspage .terms #ppHeader {
       font-family: verdana;
       font-size: 21pt;
       width: 100%;

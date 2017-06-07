@@ -30,6 +30,9 @@ var reportTextBox = $('.issueform')
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * On Click of Confirm 
+*******************************************/
 confirmReport.click(function() {
     submitForm();
 });
@@ -55,6 +58,9 @@ confirmReport.click(function() {
 
 //---------------------------------------------------------------/
 
+/*******************************************
+ * Submit Form -> POST
+*******************************************/
 function submitForm() {
     var form = new FormData();
     form.append("name", name);

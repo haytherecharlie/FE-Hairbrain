@@ -1,4 +1,13 @@
 @charset "UTF-8";
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* NAV MENU STYLES 
+/******************************************/
 .navmenu nav {
   position: fixed;
   top: 0;
@@ -81,6 +90,15 @@
           color: #999;
           cursor: pointer; }
 
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* FOOTER LINKS STYLES 
+/******************************************/
 .footerlinks .group {
   display: inline-block;
   width: 33%;

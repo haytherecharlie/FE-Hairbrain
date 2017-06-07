@@ -1,102 +1,125 @@
-main {
-    margin-top: 50px;
-    min-height: calc(100vh - 100px);
-    background: #ff2353;
-    padding: 20px;
-    display: table;
-    width: 100%;
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* REGISTER STYLES 
+/******************************************/
 
-    .registerbox {
-        display: table-cell;
-        text-align: center;
-        vertical-align: middle;
+// REGISTER PAGE //
+.registerpage {
+
+    // MAIN //
+    main {
+        margin-top: 50px;
+        min-height: calc(100vh - 100px);
+        background: #ff2353;
+        padding: 20px;
+        display: table;
         width: 100%;
 
-        .registerform{
-            border-radius: 25px;
-            text-align: left;
-            background: #fff;
-            padding: 20px;
+        // REGISTER CONTAINER //
+        .registerbox {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
             width: 100%;
-            max-width: 600px;
-            margin: auto;
-            
-            b {
-                font-size: 15px;
-                display: block;
-                text-align: center;
-            }
 
-            input {
-                border: none;
-                border-bottom: 1px solid #ccc;
-                font-family: hb-light;
-                font-size: 15px;
-                padding: 5px;
-                margin: 5px 0;
-                width: 100%;
-            }
-
-            textarea {
-                margin-top: 10px;
-                font-family: hb-light;
-                font-size: 15px;
-                padding: 5px;
-                border: 1px solid #ccc;
-                width: 100%;
-                resize: none;
-                min-height: 200px;
-            }
-
-            .avatarimg {
-                display: none;
-            }
-
-            .thumbnail-container {
-                height: 100px;
-                width: 100px;
-                background: url('/app/img/avatar.png') no-repeat center;
-                background-size: cover;
-                position: relative;
-                border-radius: 10px;
-                border: none;
-                margin: 20px auto;
-
-                .default {
-                    height: 100%;
-                    width: 100%;
-                    border: none;
-                    background: transparent;
-                }
-                
-                .rotate {
-                    -webkit-transform: rotate(90deg);
-                    -moz-transform: rotate(90deg);
-                    -ms-transform: rotate(90deg);
-                    -o-transform: rotate(90deg);
-                    transform: rotate(90deg);
-                    position: absolute;
-                    top: 0px;
-                    left: 0px;
-                    width: 100px;
-                    height: 100px;
-                    border: none;
-                }
-            }
-            .submit {
-                font-size: 15px;
-                color: #fff;
-                font-family: hb-regular;
-                background: #ff2353;
-                border: 2px solid #FFF;
+            // REGISTER FORM //
+            .registerform{
                 border-radius: 25px;
-                margin: 15px 0 0 0;
+                text-align: left;
+                background: #fff;
+                padding: 20px;
                 width: 100%;
-                padding: 10px 
+                max-width: 600px;
+                margin: auto;
+                
+                // BOLD //
+                b {
+                    font-size: 15px;
+                    display: block;
+                    text-align: center;
+                }
+
+                // INPUTS //
+                input {
+                    border: none;
+                    border-bottom: 1px solid #ccc;
+                    font-family: hb-light;
+                    font-size: 15px;
+                    padding: 5px;
+                    margin: 5px 0;
+                    width: 100%;
+                }
+
+                // TEXT AREA //
+                textarea {
+                    margin-top: 10px;
+                    font-family: hb-light;
+                    font-size: 15px;
+                    padding: 5px;
+                    border: 1px solid #ccc;
+                    width: 100%;
+                    resize: none;
+                    min-height: 200px;
+                }
+
+                // AVATAR IMAGE //
+                .avatarimg {
+                    display: none;
+                }
+
+                // SUBMIT BUTTON //
+                .submit {
+                    font-size: 15px;
+                    color: #fff;
+                    font-family: hb-regular;
+                    background: #ff2353;
+                    border: 2px solid #FFF;
+                    border-radius: 25px;
+                    margin: 15px 0 0 0;
+                    width: 100%;
+                    padding: 10px 
+                }
+
+                // DISABLED BUTTON //
+                .disabled {
+                    opacity: 0.7;
+                }
             }
-            .disabled {
-                opacity: 0.7;
-            }
+        }
+    }
+
+    // MODAL //
+    .modal {
+        text-align: center;
+        padding: 0!important;
+        background-color: rgba(255,255,255, 0.7);
+
+        // MODAL BODY //
+        .modal-body {
+            position: relative;
+        }
+
+        // MODAL LOGO //
+        .modallogo {
+            width: 119px;
+            height: 30px;
+            margin: 10px;
+        }
+
+        // MODAL FADE //
+        &.fade {
+            background-color: rgba(255,255,255, 0.7);
+        }
+
+        // LOGIN BUTTON //
+        .login {
+            background: #ff2353;
+            color: #fff;
         }
     }
 }

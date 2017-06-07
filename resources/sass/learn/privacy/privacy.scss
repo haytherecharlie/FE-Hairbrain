@@ -1,14 +1,29 @@
-body {
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* PRIVACY STYLES 
+/******************************************/
+
+// PRIVACY PAGE //
+.privacypage {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
 
+    // PRIVACY CONTAINER //
     .privacy {    
         padding: 10px;
 
+        // LOGO //
         img {
             display: block;
             margin: auto;
         }
+
+        // PRIVACY BODY //
         #ppBody {
             font-size:11pt;
             width:100%;
@@ -16,6 +31,7 @@ body {
             text-align: justify;
         }
 
+        // PRIVACY HEADER //
         #ppHeader {
             font-family:verdana;
             font-size:21pt;
@@ -24,6 +40,7 @@ body {
             text-align: center;
         }
 
+        // PRIVACY CONSISTENCIES //
         .ppConsistencies {
             display:none;
         }
