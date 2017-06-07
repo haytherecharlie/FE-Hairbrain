@@ -2,13 +2,14 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
-* NAV COMPONENT STYLES 
+* CLIENT NAV STYLES 
 /******************************************/
 
-nav {
+// CLIENT NAV //
+.clientnav {
     height: 50px;
     width: 100%;
     background: #FFFFFF;
@@ -17,12 +18,14 @@ nav {
     box-shadow: 0px 0px 10px #666;
     z-index: 100;
 
+    // HAMBURGER MENU //
     .hamburger {
         float: left;
         border: none;
         background: transparent;
         padding: 12px 5px 8px 10px;
 
+        // HAMBURGER ICON //
         img {
             height: 30px;
             width: 30px;
@@ -31,22 +34,13 @@ nav {
             image-rendering: -moz-crisp-edges;          /* Firefox                        */
             image-rendering: -o-crisp-edges;            /* Opera                          */
             image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
-            image-rendering: pixelated; /* Chrome */
+            image-rendering: pixelated;                 /* Chrome */
             image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
             -ms-interpolation-mode: nearest-neighbor;   /* IE8+    */
         }
     }
 
-    .navmenu {
-        position: absolute;
-        top: 50%; left: 10px;
-        transform: translateY(-50%);
-        opacity: 1;
-        font-size: 20px;
-        color: #ff2353;
-        line-height: 30px;
-    }
-
+    // HAIRBRAIN NAV LOGO //
     .navlogo {
         height: 30px;
         position: absolute;
@@ -56,18 +50,21 @@ nav {
         z-index: 100;
     }
 
+    // NAV SEARCH //
     .navsearch {
         position: absolute;
         right: 10px; top: 50%;
         transform: translateY(-50%);
         padding: 10px 0px 10px 10px;
         
+        // NAV SEARCH ICON //
         img {
             height: 30px;
             width: 30px;
         }
     }
 
+    // SEARCH FIELD // 
     .searchfield {
         position: absolute;
         top: 50%; right: 10px;
@@ -80,12 +77,14 @@ nav {
         background: transparent;
         display: block;
 
+        // SEARCH FIELD OPEN // 
         &.open {
             width: calc(100vw - 50px);
             padding-right: 70px;
         }
     }
     
+    // EXIT & CANCEL BUTTON //
     .exitprofile, .cancelsearch {
         position: absolute;
         right: 10px; top: 50%;

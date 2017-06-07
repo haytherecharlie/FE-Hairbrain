@@ -2,13 +2,11 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
-* NAV COMPONENT JS FUNCTIONALITY.
+* CLIENT BASE JS FUNCTIONALITY.
 /******************************************/
-
-var ProfileModal = (function() {
 
 //----------------------------------------------------------------
 
@@ -19,19 +17,14 @@ var ProfileModal = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var profilemodal = $('.profilemodal');
-var profilephoto = $('.profilemodal #profilephoto');
-var profilename  = $('.profilemodal #name');
-var profilephone  = $('.profilemodal #phone');
-var profileemail = $('.profilemodal #phone');
-var profilesalon = $('.profilemodal #salon');
+var userid      = decodeURI($.cookie('userid'));
+var jwt         = decodeURI($.cookie('jwt'));
+var name        = decodeURI($.cookie('name'));
+var phone       = decodeURI($.cookie('phone'));
+var email       = decodeURI($.cookie('email'));
+var salon       = decodeURI($.cookie('salon'));
+var rating      = decodeURI($.cookie('rating'));
 
-
-//----------------------------------------------------------------
-
-						 // TEMPLATES
-
-//---------------------------------------------------------------/
 
 //----------------------------------------------------------------
 
@@ -46,24 +39,6 @@ var profilesalon = $('.profilemodal #salon');
 						 // VIEWS
 
 //---------------------------------------------------------------/
-function setPhoto() {
-    profilephoto.attr('src', '');
-}
-
-function setName() {
-    profilename.text(name);
-}
-
-function setPhone() {
-    profilephone.text(phone);
-}
-
-function setEmail() {
-    profileemail.text(email);
-}
-function setSalon() {
-    profilesalon.text(salon);
-}
 
 
 //----------------------------------------------------------------
@@ -71,6 +46,24 @@ function setSalon() {
 						 // LOGIC
 
 //---------------------------------------------------------------/
+/*******************************************
+ * Check Token Exists
+*******************************************/
+function cookieCheck() {
+    if(!userid || !jwt) {
+        window.location.href = window.location.origin + '/';
+        return false;
+    } else {
+        return true;
+    }
+}
+
+/*******************************************
+ * Redirect Page -> URL
+*******************************************/
+function redirect(path) {
+    window.location.href = window.location.origin + path; 
+}
 
 
 //----------------------------------------------------------------
@@ -79,23 +72,8 @@ function setSalon() {
 
 //---------------------------------------------------------------/
 
-
-
 //----------------------------------------------------------------
 
 						 // MAIN
 
 //---------------------------------------------------------------/
-
-/*******************************************
- * Main Function
-*******************************************/
-var Main = (function() {
-    setPhoto();
-    setName();
-    setPhone();
-    setEmail();
-    setSalon();
-})();
-
-})(); // END OF NAV.JS

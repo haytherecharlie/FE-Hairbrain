@@ -3,12 +3,12 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
-* ADD CLIENT BUTTON STYLES
+* CLIENT ADD STYLES
 /******************************************/
-.clientadd {
+.clientaddbutton {
   height: 50px;
   width: 50px;
   position: fixed;
@@ -16,7 +16,7 @@
   bottom: 20px;
   background: #ff3253;
   border-radius: 50%; }
-  .clientadd a {
+  .clientaddbutton a {
     color: #fff;
     font-size: 30px;
     position: absolute;
@@ -24,11 +24,85 @@
     left: 50%;
     transform: translate(-50%, -50%); }
 
+.clientaddmodal {
+  text-align: center; }
+  .clientaddmodal .clientaddform {
+    width: 100%; }
+    .clientaddmodal .clientaddform input {
+      border: none;
+      border-bottom: 1px solid #ccc;
+      font-size: 15px;
+      width: 100%;
+      margin-bottom: 10px; }
+    .clientaddmodal .clientaddform textarea {
+      border: none;
+      font-size: 15px;
+      width: 100%;
+      border: 1px solid #CCC;
+      height: 100px;
+      resize: none;
+      padding: 5px; }
+  .clientaddmodal .savingclient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    display: none; }
+    .clientaddmodal .savingclient img {
+      position: absolute;
+      height: 15px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+  .clientaddmodal .clientaddsubmit {
+    padding: 7px 20px;
+    width: auto !important;
+    border-radius: 5px;
+    border: none;
+    background: #ff3253;
+    color: #fff;
+    font-size: 15px; }
+  .clientaddmodal .closemodal {
+    background: #fff;
+    border: 1px solid #ccc; }
+
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT BASE STYLES
+/******************************************/
+main {
+  position: absolute;
+  top: 50px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  height: calc(100vh - 50px); }
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT DELETE STYLES
+/******************************************/
+.deleteModal .confirmDelete {
+  background: #ff3253;
+  border: none;
+  color: #fff; }
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
 * CLIENT LIST STYLES
@@ -92,7 +166,166 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT MENU STYLES 
+/******************************************/
+.clientmenu {
+  margin: 0;
+  padding: 0;
+  padding-top: 50px;
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 50;
+  display: none; }
+  .clientmenu .menuoverlay {
+    background-color: rgba(255, 255, 255, 0.7);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 51; }
+  .clientmenu .menuitems {
+    overflow: hidden;
+    width: 100%;
+    background: #ff3253;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: center;
+    box-shadow: 0px 0px 10px #666;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index: 52; }
+    .clientmenu .menuitems li {
+      list-style: none;
+      border-top: 1px solid #db3f59;
+      border-left: 1px solid #891c2e;
+      border-right: 1px solid #891c2e;
+      border-bottom: 1px solid #891c2e;
+      padding: 10px;
+      color: #fff;
+      font-size: 15px;
+      font-family: hb-bold; }
+      .clientmenu .menuitems li:last-child {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px; }
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT MODAL STYLES
+/******************************************/
+.modal {
+  text-align: center;
+  padding: 0 !important;
+  background-color: rgba(255, 255, 255, 0.7); }
+  .modal .modal-body {
+    position: relative; }
+  .modal .modallogo {
+    width: 119px;
+    height: 30px;
+    margin: 10px; }
+  .modal.fade {
+    background-color: rgba(255, 255, 255, 0.7); }
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT NAV STYLES 
+/******************************************/
+.clientnav {
+  height: 50px;
+  width: 100%;
+  background: #FFFFFF;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  box-shadow: 0px 0px 10px #666;
+  z-index: 100; }
+  .clientnav .hamburger {
+    float: left;
+    border: none;
+    background: transparent;
+    padding: 12px 5px 8px 10px; }
+    .clientnav .hamburger img {
+      height: 30px;
+      width: 30px;
+      margin: 0;
+      image-rendering: optimizeSpeed;
+      /* STOP SMOOTHING, GIVE ME SPEED  */
+      image-rendering: -moz-crisp-edges;
+      /* Firefox                        */
+      image-rendering: -o-crisp-edges;
+      /* Opera                          */
+      image-rendering: -webkit-optimize-contrast;
+      /* Chrome (and eventually Safari) */
+      image-rendering: pixelated;
+      /* Chrome */
+      image-rendering: optimize-contrast;
+      /* CSS3 Proposed                  */
+      -ms-interpolation-mode: nearest-neighbor;
+      /* IE8+    */ }
+  .clientnav .navlogo {
+    height: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    z-index: 100; }
+  .clientnav .navsearch {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 0px 10px 10px; }
+    .clientnav .navsearch img {
+      height: 30px;
+      width: 30px; }
+  .clientnav .searchfield {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border: none;
+    padding: 5px 10px;
+    font-size: 17px;
+    color: #ff3253;
+    width: 20px;
+    background: transparent;
+    display: block; }
+    .clientnav .searchfield.open {
+      width: calc(100vw - 50px);
+      padding-right: 70px; }
+  .clientnav .exitprofile, .clientnav .cancelsearch {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff3253;
+    font-size: 17px;
+    display: none;
+    z-index: 100; }
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
 * CLIENT PROFILE STYLES
@@ -218,8 +451,8 @@
         top: 4px;
         left: 0px; }
     .clientprofile .photosbox .mainphoto {
-      height: 100%;
-      height: 300px;
+      height: 250px;
+      width: auto;
       overflow: hidden;
       position: relative; }
       .clientprofile .photosbox .mainphoto img {
@@ -228,28 +461,6 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%); }
-    .clientprofile .photosbox .sidephotos {
-      width: 33%;
-      float: right;
-      height: 300px; }
-      .clientprofile .photosbox .sidephotos .thirdheight {
-        height: 96.5px;
-        width: 100%;
-        overflow: hidden;
-        position: relative; }
-        .clientprofile .photosbox .sidephotos .thirdheight img {
-          width: 100%;
-          height: auto;
-          position: absolute;
-          left: 50%;
-          transform: translateX(-50%); }
-        .clientprofile .photosbox .sidephotos .thirdheight.leftphoto {
-          margin-bottom: 5px; }
-        .clientprofile .photosbox .sidephotos .thirdheight.backphoto {
-          margin-top: 5px;
-          margin-bottom: 5px; }
-        .clientprofile .photosbox .sidephotos .thirdheight.rightphoto {
-          margin-top: 5px; }
   .clientprofile .notesbox {
     padding: 10px; }
     .clientprofile .notesbox .title {
@@ -281,10 +492,6 @@
     padding: 5px 10px;
     margin: 20px 0px;
     border-radius: 5px; }
-  .clientprofile .optionsbox .editclient {
-    background: #fff;
-    border: 1px solid #000;
-    color: #000; }
   .clientprofile .optionsbox .deleteclient {
     background: #ff3253;
     border: none;
@@ -297,334 +504,50 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
-* MAIN STYLES
+* CLIENT REPORT STYLES
 /******************************************/
-main {
-  position: absolute;
-  top: 50px;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  height: calc(100vh - 50px); }
+.reportmodal textarea {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 15px;
+  height: 300px;
+  width: 90%;
+  resize: none; }
 
-/*******************************************
-* © 2017 Hairbrain inc.
-* ---------------------
-* Created: February 11th 2017
-* Last Modified: March 21st 2017
-* Author: Charlie Hay
-*
-* MENU COMPONENT STYLES 
-/******************************************/
-menu {
-  margin: 0;
-  padding: 0;
-  padding-top: 50px;
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-  z-index: 50;
-  display: none; }
-  menu .menuoverlay {
-    background-color: rgba(255, 255, 255, 0.7);
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    z-index: 51; }
-  menu ul {
-    overflow: hidden;
-    width: 100%;
-    background: #ff3253;
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    text-align: center;
-    box-shadow: 0px 0px 10px #666;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    z-index: 52; }
-    menu ul li {
-      list-style: none;
-      border-top: 1px solid #db3f59;
-      border-left: 1px solid #891c2e;
-      border-right: 1px solid #891c2e;
-      border-bottom: 1px solid #891c2e;
-      padding: 10px;
-      color: #fff;
-      font-size: 15px;
-      font-family: hb-bold; }
-      menu ul li:last-child {
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px; }
+.reportmodal .confirmreport {
+  background: #ff2353;
+  color: #fff; }
 
-/*******************************************
-* © 2017 Hairbrain inc.
-* ---------------------
-* Created: February 11th 2017
-* Last Modified: March 21st 2017
-* Author: Charlie Hay
-*
-* MODAL COMPONENT STYLES
-/******************************************/
-.modal {
-  text-align: center;
-  padding: 0 !important;
-  background-color: rgba(255, 255, 255, 0.7);
-  /* DELETE CLIENT MODAL */
-  /* ADD CLIENT MODAL */ }
-  .modal .modal-body {
+.photowidget {
+  display: block;
+  position: relative; }
+  .photowidget .photoinput {
+    display: none; }
+  .photowidget .photobox {
+    height: 150px;
+    width: 100px;
+    background: url("/app/img/photoholder.png") no-repeat center;
+    background-size: 100%;
+    display: block;
+    margin: 10px auto;
     position: relative; }
-  .modal .modallogo {
-    width: 119px;
-    height: 30px;
-    margin: 10px; }
-  .modal.fade {
-    background-color: rgba(255, 255, 255, 0.7); }
-  .modal.deleteModal .confirmDelete {
-    background: #ff3253;
-    border: none;
-    color: #fff; }
-  .modal.addmodal {
-    text-align: center; }
-    .modal.addmodal .clientaddform {
-      width: 100%; }
-      .modal.addmodal .clientaddform input {
-        border: none;
-        border-bottom: 1px solid #ccc;
-        font-size: 15px;
-        width: 100%;
-        margin-bottom: 10px; }
-      .modal.addmodal .clientaddform button {
-        position: absolute;
-        left: 15px;
-        bottom: -50px;
-        padding: 7px 20px;
-        width: auto !important;
-        border-radius: 5px;
-        border: none;
-        background: #ff3253;
-        color: #fff;
-        font-size: 15px; }
-      .modal.addmodal .clientaddform textarea {
-        border: none;
-        font-size: 15px;
-        width: 100%;
-        margin-top: 250px;
-        border: 1px solid #CCC;
-        height: 100px;
-        resize: none;
-        padding: 5px; }
-      .modal.addmodal .clientaddform .error {
-        font-size: 13px;
-        color: #ccc;
-        font-family: hb-light; }
-      .modal.addmodal .clientaddform .file-select {
-        display: none; }
-    .modal.addmodal .savingclient {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #fff;
+    .photowidget .photobox .default {
       height: 100%;
       width: 100%;
-      display: none; }
-      .modal.addmodal .savingclient img {
-        position: absolute;
-        height: 15px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); }
-    .modal.addmodal .closemodal {
-      background: #fff;
-      border: 1px solid #ccc; }
-  .modal.issueModal textarea {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 15px;
-    height: 300px;
-    width: 90%;
-    resize: none; }
-
-/*******************************************
-* © 2017 Hairbrain inc.
-* ---------------------
-* Created: February 11th 2017
-* Last Modified: March 21st 2017
-* Author: Charlie Hay
-*
-* NAV COMPONENT STYLES 
-/******************************************/
-nav {
-  height: 50px;
-  width: 100%;
-  background: #FFFFFF;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  box-shadow: 0px 0px 10px #666;
-  z-index: 100; }
-  nav .hamburger {
-    float: left;
-    border: none;
-    background: transparent;
-    padding: 12px 5px 8px 10px; }
-    nav .hamburger img {
-      height: 30px;
-      width: 30px;
-      margin: 0;
-      image-rendering: optimizeSpeed;
-      /* STOP SMOOTHING, GIVE ME SPEED  */
-      image-rendering: -moz-crisp-edges;
-      /* Firefox                        */
-      image-rendering: -o-crisp-edges;
-      /* Opera                          */
-      image-rendering: -webkit-optimize-contrast;
-      /* Chrome (and eventually Safari) */
-      image-rendering: pixelated;
-      /* Chrome */
-      image-rendering: optimize-contrast;
-      /* CSS3 Proposed                  */
-      -ms-interpolation-mode: nearest-neighbor;
-      /* IE8+    */ }
-  nav .navmenu {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    opacity: 1;
-    font-size: 20px;
-    color: #ff2353;
-    line-height: 30px; }
-  nav .navlogo {
-    height: 30px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 1;
-    z-index: 100; }
-  nav .navsearch {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 10px 0px 10px 10px; }
-    nav .navsearch img {
-      height: 30px;
-      width: 30px; }
-  nav .searchfield {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    border: none;
-    padding: 5px 10px;
-    font-size: 17px;
-    color: #ff3253;
-    width: 20px;
-    background: transparent;
-    display: block; }
-    nav .searchfield.open {
-      width: calc(100vw - 50px);
-      padding-right: 70px; }
-  nav .exitprofile, nav .cancelsearch {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #ff3253;
-    font-size: 17px;
-    display: none;
-    z-index: 100; }
-
-/*******************************************
-* © 2017 Hairbrain inc.
-* ---------------------
-* Created: February 11th 2017
-* Last Modified: March 21st 2017
-* Author: Charlie Hay
-*
-* PHOTOS WIDGET COMPONENT STYLES
-/******************************************/
-.photoswidget {
-  position: absolute;
-  top: 135px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: none;
-  width: 100%;
-  max-width: 400px;
-  height: 225px;
-  text-align: center;
-  padding: 5px; }
-  .photoswidget .thumbnail-container {
-    height: 100%;
-    width: 15%;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: cover;
-    display: inline-block;
-    position: relative; }
-  .photoswidget .thumbnail {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    background-size: cover;
-    border: none; }
-  .photoswidget .focus {
-    width: 50% !important;
-    webkit-transition: width 0.5s;
-    transition: width 0.5s; }
-  .photoswidget .thumbfront {
-    background-image: url("../../app/img/front.png"); }
-  .photoswidget .thumbleft {
-    background-image: url("../../app/img/left.png"); }
-  .photoswidget .thumbback {
-    background-image: url("../../app/img/back.png"); }
-  .photoswidget .thumbright {
-    background-image: url("../../app/img/right.png"); }
-  .photoswidget .default {
-    height: 100%;
-    width: 100%; }
-  .photoswidget .rotate {
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
-    position: absolute;
-    top: 35px;
-    left: -36px;
-    width: 215px;
-    height: 144px;
-    border: none;
-    border-radius: 0; }
-
-.profilemodal .modal-body #profilephoto {
-  height: 30px;
-  width: 30px;
-  margin: auto;
-  border: 1px soild #000;
-  display: block; }
-
-.profilemodal .modal-body #name {
-  display: block; }
-
-.profilemodal .modal-body #phone {
-  display: block; }
-
-.profilemodal .modal-body #email {
-  display: block; }
-
-.profilemodal .modal-body #salon {
-  display: block; }
+      border: none; }
+    .photowidget .photobox .rotate {
+      -webkit-transform: rotate(90deg);
+      -moz-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+      -o-transform: rotate(90deg);
+      transform: rotate(90deg);
+      position: absolute;
+      top: 24px;
+      left: -26px;
+      width: 150px;
+      height: 100px;
+      border: none; }

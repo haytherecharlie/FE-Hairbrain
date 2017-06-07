@@ -2,24 +2,91 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
-* ADD CLIENT BUTTON STYLES
+* CLIENT ADD STYLES
 /******************************************/
 
-.clientadd {
+// '+' BUTTON ON CLIENT LIST PAGE //
+.clientaddbutton {
     height: 50px; width: 50px;
     position: fixed;
     right: 20px; bottom: 20px;
     background: #ff3253;
     border-radius: 50%;
 
+    // + ICON //
     a {
         color: #fff;
         font-size: 30px;
         position: absolute;
         top: 50%; left: 50%;
         transform: translate(-50%, -50%);
+    }
+}
+
+
+// CLIENT ADD MODAL // 
+.clientaddmodal {
+    text-align: center;
+
+    // CLIENT ADD FORM //
+    .clientaddform {
+        width: 100%;
+        
+        // CLIENT ADD FORM INPUTS //
+        input {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            font-size: 15px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        // CLIENT ADD FORM TEXTAREA //
+        textarea {
+            border: none;
+            font-size: 15px;
+            width: 100%; 
+            border: 1px solid #CCC;
+            height: 100px;
+            resize: none;
+            padding: 5px;   
+        }
+    }
+
+    // SAVING CLIENT OVERLAY //
+    .savingclient {
+        position: absolute;
+        top: 0; left: 0;
+        background: #fff;
+        height: 100%; width: 100%;
+        display: none;
+
+        // LOADING GIF //
+        img {
+            position: absolute;
+            height: 15px;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    // SUBMIT BUTTON //
+    .clientaddsubmit {
+        padding: 7px 20px;
+        width: auto!important;
+        border-radius: 5px;
+        border: none;
+        background: #ff3253;
+        color: #fff;
+        font-size: 15px;
+    }
+
+    // CLOSE MODAL BUTTON //
+    .closemodal {
+        background: #fff;
+        border: 1px solid #ccc;
     }
 }

@@ -85,62 +85,59 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
 * LOGIN PAGE STYLES.
 /******************************************/
-body {
+.loginpage {
   background: url("../img/hairbrain-bg.gif") no-repeat center;
   height: 100vh;
   background-size: cover;
   min-height: 400px;
   position: relative; }
-
-.navmenu nav {
-  background: transparent !important;
-  box-shadow: none !important; }
-  .navmenu nav .logo {
-    display: none; }
-
-.navmenu.open nav {
-  background: #FFF !important;
-  box-shadow: 0 0 5px #000 !important; }
-  .navmenu.open nav .logo {
-    display: block; }
-
-.loginform {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  text-align: center;
-  max-width: 400px; }
-  .loginform img {
-    margin: 0 0 20px 0;
-    width: 100%; }
-  .loginform input {
-    box-sizing: border-box;
-    width: calc(100% - 20px);
-    border: 2px solid #ff2353;
-    border-radius: 25px;
-    font-size: 15px;
-    padding: 7px 10px;
-    margin: 5px;
+  .loginpage .navmenu nav {
+    background: transparent !important;
+    box-shadow: none !important; }
+    .loginpage .navmenu nav .logo {
+      display: none; }
+  .loginpage .navmenu.open nav {
+    background: #FFF !important;
+    box-shadow: 0 0 5px #000 !important; }
+    .loginpage .navmenu.open nav .logo {
+      display: block; }
+  .loginpage .loginform {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
     text-align: center;
-    -webkit-appearance: none;
-    font-family: hb-bold; }
-  .loginform .login {
-    box-sizing: border-box;
-    width: calc(80% - 20px);
-    border: 2px solid #fff;
-    border-radius: 25px;
-    padding: 7px 10px;
-    background: #ff2353;
-    margin: 10px auto;
-    position: relative;
-    font-size: 15px;
-    color: #fff; }
-  .loginform .failedlogin {
-    opacity: 0; }
+    max-width: 400px; }
+    .loginpage .loginform .loginlogo {
+      margin: 0 0 20px 0;
+      width: 100%; }
+    .loginpage .loginform input {
+      box-sizing: border-box;
+      width: calc(100% - 20px);
+      border: 2px solid #ff2353;
+      border-radius: 25px;
+      font-size: 15px;
+      padding: 7px 10px;
+      margin: 5px;
+      text-align: center;
+      -webkit-appearance: none;
+      font-family: hb-bold; }
+    .loginpage .loginform .loginbutton {
+      box-sizing: border-box;
+      width: calc(80% - 20px);
+      border: 2px solid #fff;
+      border-radius: 25px;
+      padding: 7px 10px;
+      background: #ff2353;
+      margin: 10px auto;
+      position: relative;
+      font-size: 15px;
+      color: #fff; }
+    .loginpage .loginform .loginfailed {
+      opacity: 0; }

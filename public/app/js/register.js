@@ -1,1 +1,501 @@
-var NavMenu=function(){function n(){i.click(function(){s.hasClass("open")?t():e()})}function o(){underlay.click(function(){t()})}function e(){s.addClass("open"),r.css("display","block")}function t(){s.removeClass("open"),r.css("display","none")}function a(){r=$("menu"),i=$("button.hamburger"),underlay=$("menu .underlay"),n(),o()}var i,r,s=$("header.navmenu");!function(){s&&s.load("/templates/navmenu.tpl.html",function(){a()})}()}(),FooterLinks=function(){function n(){$(".group").each(function(){$(this).click(function(){o(this)})})}function o(n){"none"===$(n).find("a").css("display")?$(n).find("a").css("display","block"):$(n).find("a").css("display","none")}var e=$("footer.footerlinks");!function(){e&&e.load("/templates/footerlinks.tpl.html",function(){n()})}()}(),PhotoUpload=function(){function n(){l.click(function(){r.click(),e()})}function o(){r=$(".photowidget .photoinput"),s=$(".photowidget .photobox"),l=$(".photowidget .photothumb"),n()}function e(){r.change(function(n){t(this.files[0])})}function t(n){ImageTools.resize(n,{width:400,height:300},function(n,o){a(n)})}function a(n){var o=new FileReader;o.onload=function(){var e=new Image;e.onload=function(){i(e,n)},e.src=o.result},o.readAsDataURL(n)}function i(n,o){n.height<n.width?(l.removeClass("default"),l.addClass("rotate")):(l.removeClass("rotate"),l.addClass("default")),l.css("background","url("+n.src+") no-repeat center"),l.css("background-size","cover")}var r,s,l,c=$(".photowidget");!function(){c&&c.load("/templates/photoupload.tpl.html",function(){o()})}()}(),Register=function(){function n(){var n=document.getElementById("salon");new google.maps.places.Autocomplete(n)}function o(){var n=$(".registerform input").length,o=0;$(".registerform input").each(function(){""!==$(this).val()&&o++}),e(o,n)}function e(n,o){n===o?(registerBtn.prop("disabled",!1),registerBtn.removeClass("disabled")):(registerBtn.prop("disabled",!0),registerBtn.addClass("disabled"))}function t(){if(console.log(keyword.val()),"Kanye2020"===keyword.val()){var n=new FormData;n.append("email",r.val()),n.append("password",s.val()),n.append("phone",l.val()),n.append("salon",salon.val()),n.append("avatar",$(".photoinput")[0].files[0],"avatar.jpg"),n.append("firstname",a.val()),n.append("lastname",i.val());var o={async:!0,crossDomain:!0,url:apiurl+"register",method:"POST",headers:{"cache-control":"no-cache"},processData:!1,contentType:!1,mimeType:"multipart/form-data",data:n};$.ajax(o).done(function(n,o){"success"===o?window.location.href=window.location.origin:console.log(n)})}else window.location.reload()}var a=($(".registerform"),$(".registerform .firstname")),i=$(".registerform .lastname"),r=$(".registerform .avatar"),s=$(".registerform .password"),l=$(".registerform .phone");salon=$(".registerform .salon"),avatar=$(".registerform .photoinput"),keyword=$(".registerform .keyword"),registerBtn=$(".registerform .submit"),registerBtn.click(function(n){t()}),$(".registerform input").keydown(function(){console.log("x"),o()}),google.maps.event.addDomListener(window,"load",n),o()}();
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* NAVMENU TEMPLATE JS FUNCTIONALITY.
+/******************************************/
+
+var NavMenu = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var navMenuTplPath   = '/templates/navmenu.tpl.html';
+var navMenuContainer = $('header.navmenu'); 
+var hamburgerBtn;
+var menu;
+
+//----------------------------------------------------------------
+
+						 // TEMPLATES
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+function hamburgerClick() {
+    hamburgerBtn.click(function() {
+        if(navMenuContainer.hasClass('open'))
+            closeMenu();
+        else 
+            openMenu();
+    });
+}
+
+function underlayClick() {
+    underlay.click(function() {
+        closeMenu();
+    })
+}
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+function openMenu() {
+    navMenuContainer.addClass('open');
+    menu.css('display', 'block');
+}
+
+function closeMenu() {
+    navMenuContainer.removeClass('open');
+    menu.css('display', 'none');
+}
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+function setNavListeners() {
+    menu         = $('menu');
+    hamburgerBtn = $('button.hamburger');
+    underlay     = $('menu .underlay');
+    hamburgerClick();
+    underlayClick();
+}
+
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+var Main = (function() {
+    
+    // If Nav container exists fill it with nav. 
+    if(navMenuContainer) {
+        navMenuContainer.load(navMenuTplPath, function() {
+            setNavListeners();
+        });
+    }
+
+})();
+
+})(); // END OF NAVMENU.JS
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* NAVMENU TEMPLATE JS FUNCTIONALITY.
+/******************************************/
+
+var FooterLinks = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var footerLinksTplPath   = '/templates/footerlinks.tpl.html';
+var footerLinksContainer = $('footer.footerlinks'); 
+
+//----------------------------------------------------------------
+
+						 // TEMPLATES
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+function addListeners() {
+    $('.group').each(function() {
+        $(this).click(function() {
+            expandCollapse(this);
+        })
+    })
+}
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+function expandCollapse(obj) {
+    if( $(obj).find('a').css('display') === 'none') {
+       $(obj).find('a').css('display', 'block'); 
+    } else {
+        $(obj).find('a').css('display', 'none'); 
+    }
+}
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+var Main = (function() {
+    
+    // If Nav container exists fill it with nav. 
+    if(footerLinksContainer) {
+        footerLinksContainer.load(footerLinksTplPath, function() {
+            addListeners();
+        });
+    }
+
+})();
+
+})(); // END OF FOOTERLINKS.JS
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* MOTIONGRAPHIC TEMPLATE JS FUNCTIONALITY.
+/******************************************/
+
+var PhotoUpload = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var photoWidget    = $('.photowidget');
+var photoWidgetTpl = '/templates/photoupload.tpl.html'; 
+var photoInput;
+var photoBox;
+var photoThumb;
+
+//----------------------------------------------------------------
+
+						 // TEMPLATES
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+function listenForUpload() {
+    photoThumb.click(function() {
+        photoInput.click();
+        detectFile();
+    })
+}
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+function setNavListeners() {
+    photoInput  = $('.photowidget .photoinput');
+    photoBox    = $('.photowidget .photobox');
+    photoThumb  = $('.photowidget .photothumb');
+    listenForUpload();
+}
+
+function detectFile() {
+    photoInput.change(function(evt) {
+        resizeImage(this.files[0]);
+    })
+}
+
+function resizeImage(img) {
+
+    ImageTools.resize(img, {
+        width: 400, // maximum width
+        height: 300 // maximum height
+    }, function(blob, didItResize) {
+        getPhotoDimensions(blob)
+    });
+}
+
+function getPhotoDimensions(blob) {
+		    
+        var fr = new FileReader;
+        fr.onload = function() {
+            var img = new Image;
+            img.onload = function() {
+                showPhoto(img, blob);
+            };
+            img.src = fr.result;
+        };
+        fr.readAsDataURL(blob);
+}
+
+function showPhoto(img, blob) {
+
+    if (img.height < img.width) {
+        photoThumb.removeClass('default');
+        photoThumb.addClass('rotate');
+    } else {
+        photoThumb.removeClass('rotate');
+        photoThumb.addClass('default');
+    }
+
+    photoThumb.css('background', 'url(' + img.src + ') no-repeat center' );
+    photoThumb.css('background-size', 'cover');
+}
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+var Main = (function() {
+
+    // If PhotoWidget container exists fill it with nav. 
+    if(photoWidget) {
+        photoWidget.load(photoWidgetTpl, function() {
+            setNavListeners();
+        });
+    }
+
+})();
+
+})(); // END OF PHOTOWIDGET.JS
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* REGISTER PAGE JS FUNCTIONALITY.
+/******************************************/
+
+var Register = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var registerForm   = $('.registerform'),
+    firstname      = $('.registerform .firstname'),
+    lastname       = $('.registerform .lastname'),
+    email          = $('.registerform .avatar'),
+    password       = $('.registerform .password'),
+    phone          = $('.registerform .phone')
+    salon          = $('.registerform .salon'),
+    avatar         = $('.registerform .photoinput'),
+    keyword        = $('.registerform .keyword'),
+    registerBtn    = $('.registerform .submit');
+
+//----------------------------------------------------------------
+
+						 // TEMPLATES
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Submit Form
+*******************************************/
+registerBtn.click( function(e) {
+    registerFormAJAX();
+});
+
+// Listens for change on each input. NOTE:Doesn't listen to textarea.
+$('.registerform input').keydown(function() {
+    console.log('x');
+    countValidInputs();
+});
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+function initialize() {
+    var input = document.getElementById('salon');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+}
+
+function countValidInputs() {
+    var numInputs   = $('.registerform input').length;
+    var validInputs = 0; 
+    $('.registerform input').each(function() {
+        if ( $(this).val() !== '') {
+            validInputs++;
+        }
+    })
+    toggleSubmitBtn(validInputs, numInputs);
+}
+
+function toggleSubmitBtn(valid, total) {
+    if( valid === total ) {
+        registerBtn.prop('disabled', false);
+        registerBtn.removeClass('disabled');
+    }
+    else {
+        registerBtn.prop('disabled', true);
+        registerBtn.addClass('disabled');
+    }
+}
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Login Form -> POST
+*******************************************/
+function registerFormAJAX() {
+    console.log(keyword.val());
+
+    if(keyword.val() === 'Kanye2020') {
+        var form = new FormData();
+        form.append("email", email.val());
+        form.append("password", password.val());
+        form.append("phone", phone.val());
+        form.append("salon", salon.val());
+        form.append("avatar", $('.photoinput')[0].files[0], 'avatar.jpg');
+        form.append("firstname", firstname.val());
+        form.append("lastname", lastname.val());
+
+        var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": apiurl + "register",
+        "method": "POST",
+        "headers": {
+            "cache-control": "no-cache",
+        },
+        "processData": false,
+        "contentType": false,
+        "mimeType": "multipart/form-data",
+        "data": form
+        }
+
+        $.ajax(settings)
+        .done(function (err, res) {
+            if(res === "success") 
+            window.location.href = window.location.origin;
+            else console.log(err);
+        });
+    } else {
+        window.location.reload();
+    }
+}
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    google.maps.event.addDomListener(window, 'load', initialize);
+    countValidInputs();
+})(); // END OF REGISTER.JS

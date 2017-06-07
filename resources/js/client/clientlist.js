@@ -19,33 +19,32 @@ var ClientList = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var clientList    = $('.clientlist'),
-    clientProfile = $('.clientprofile');
+var clientList    = $('.clientlist');
+var clientProfile = $('.clientprofile');
 
-//----------------------------------------------------------------
-
-						 // TEMPLATES
-
-//---------------------------------------------------------------/
 
 //----------------------------------------------------------------
 
 						 // LISTENERS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * SET LISTENERS FOR CLIENT CARDS
+*******************************************/
 function addCCListeners() {
     $('.clientcard').each(function() {
         $(this).click(function() {
             ClientProfile.populateProfile(clientlist[$(this).attr('id')]);
-            Nav.quickClearSearch();
+            ClientNav.quickClearSearch();
             clientProfile.animate({
                 left: '0'
             }, 500, function() {
-                Nav.restoreList();
+                ClientNav.restoreList();
                 clientList.scrollTop(0);
             });
-            Nav.hideSearch();
-            Nav.showBackBtn();
+            ClientNav.hideSearch();
+            ClientNav.showBackBtn();
         })
     })
 }
@@ -55,6 +54,10 @@ function addCCListeners() {
 						 // VIEWS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * DISPLAY CLIENTS
+*******************************************/
 function displayClients(req) {
     for(var i in req) {
         insertLeadingLetters(req, i);
@@ -76,6 +79,10 @@ function displayClients(req) {
 						 // LOGIC
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * INSERT LEADING LETTERS FOR CLIENT LIST
+*******************************************/
 function insertLeadingLetters(req, i) {
     if (i === '0') 
         clientList.append('<div class="letter">'+req[i].firstname.charAt(0)+'</div>');
@@ -95,8 +102,7 @@ function insertLeadingLetters(req, i) {
  * Client List -> GET
 *******************************************/
 function clientListAJAX() {
-    cookieCheck();
-
+    
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -107,20 +113,27 @@ function clientListAJAX() {
             "Authorization": "Bearer " + jwt
         },
         "processData": false,
-        "contentType": false
+        "contentType": false,
+        "statusCode": {
+            200: function(req, res) {
+                clientlist = req;
+                clientList.empty();
+                if(clientlist.length === 0)
+                    clientList.append('<div class="empty">You don\'t have any clients, <br> Click the \'+\' below to get started!</div>');
+                else 
+                    displayClients(req);
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            },
+            401: function(req, res) {
+                redirect('/');
+            }
+        }
     }
 
     $.ajax(settings)
-    .done(function (req, res) {
-        if(res === 'success') {
-            clientlist = req;
-            clientList.empty();
-            if(clientlist.length === 0)
-                clientList.append('<div class="empty">You don\'t have any clients, <br> Click the \'+\' below to get started!</div>');
-            else 
-                displayClients(req);
-        }
-    });
+
 }
 
 //----------------------------------------------------------------
@@ -132,10 +145,12 @@ function clientListAJAX() {
 /*******************************************
  * Main Function
 *******************************************/
-clientListAJAX();
+    var Main = (function() {
+        clientListAJAX();
+    })();
 
-return {
-    clientListAJAX: clientListAJAX
-}
+    return {
+        clientListAJAX: clientListAJAX
+    }
 
-})(); // END OF LOGIN.JS
+})(); // END OF CLIENTLIST.JS

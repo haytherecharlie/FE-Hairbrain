@@ -2,10 +2,10 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
-* CLIENT PROFILES JS FUNCTIONALITY.
+* CLIENT PROFILE JS FUNCTIONALITY.
 /******************************************/
 
 var ClientProfile = (function() {
@@ -19,52 +19,55 @@ var ClientProfile = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var clientProfile = $('.clientprofile'),
-    avatar        = $('.avatar'),
-    firstname     = $('.clientprofile .firstname'),
-    lastname      = $('.clientprofile .lastname'),
-    phone         = $('.clientprofile .phone'),
-    photofront    = $('.clientprofile .photofront'),
-    photoleft     = $('.clientprofile .photoleft'),
-    photoback     = $('.clientprofile .photoback'),
-    photoright    = $('.clientprofile .photoright'),
-    notes         = $('.clientprofile .notes');
-    deleteModal   = $('.deleteModal');
+var clientProfile       = $('.clientprofile');
+var avatar              = $('.clientprofile .avatar');
+var firstname           = $('.clientprofile .firstname');
+var lastname            = $('.clientprofile .lastname');
+var phone               = $('.clientprofile .phone');
+var photo               = $('.clientprofile .photo');
+var notes               = $('.clientprofile .notes');
+var deleteClientButton  = $('.clientprofile .deleteclient');
+var deleteModal         = $('.deleteModal');
+var confirmDelete       = $('.deleteModal .confirmDelete');
 
-//----------------------------------------------------------------
-
-						 // TEMPLATES
-
-//---------------------------------------------------------------/
 
 //----------------------------------------------------------------
 
 						 // LISTENERS
 
 //---------------------------------------------------------------/
-$('.deleteclient').click(function() {
+
+/*******************************************
+ * On Click of Delete Client Button
+*******************************************/
+deleteClientButton.click(function() {
     showDeleteConfirmation();
 });
 
-$('.confirmDelete').click(function() {
+/*******************************************
+ * On Click of Confirm Delete
+*******************************************/
+confirmDelete.click(function() {
     deleteClient();
 });
+
 
 //----------------------------------------------------------------
 
 						 // VIEWS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Populate Client Profile
+*******************************************/
 function populateProfile(client) {
     clientProfile.attr('id', client._id);
     avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg');
     firstname.text(client.firstname);
     lastname.text(client.lastname);
     phone.html('<a href="tel:' + client.phone + '">' + client.phone + '</a>');
-    photofront.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photofront.jpg');
-    photoleft.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoleft.jpg');
-    photoback.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoback.jpg');
-    photoright.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photoright.jpg');
+    photo.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photo.jpg');
     notes.val(client.notes);
 }
 
@@ -77,6 +80,16 @@ function showDeleteConfirmation() {
 						 // LOGIC
 
 //---------------------------------------------------------------/
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Delete Client -> DELETE
+*******************************************/
 function deleteClient() {
     var clientid = clientProfile.attr('id');
 
@@ -91,23 +104,23 @@ function deleteClient() {
         },
         "processData": false,
         "contentType": false,
+        "statusCode": {
+            200: function(req, res) {
+                ClientList.clientListAJAX();
+                ClientNav.closeClientProfile();
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            },
+            401: function(req, res) {
+                redirect('/');
+            }
+        }
     }
 
     $.ajax(settings)
-    .done(function (req, res) {
-        if(res === "success") { 
-            ClientList.clientListAJAX();
-            Nav.slideClientProfile();
-        }
-    });
+
 }
-
-//----------------------------------------------------------------
-
-						 // AJAX CALLS
-
-//---------------------------------------------------------------/
-
 
 
 //----------------------------------------------------------------
@@ -119,10 +132,14 @@ function deleteClient() {
 /*******************************************
  * Main Function
 *******************************************/
+    var Main = (function() {
 
+        // Main
 
-return {
-    populateProfile: populateProfile
-}
+    })();
 
-})(); // END OF LOGIN.JS
+    return {
+        populateProfile: populateProfile
+    }
+
+})(); // END OF CLIENTPROFILE.JS

@@ -1,0 +1,21 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px; }
+  body .privacy {
+    padding: 10px; }
+    body .privacy img {
+      display: block;
+      margin: auto; }
+    body .privacy #ppBody {
+      font-size: 11pt;
+      width: 100%;
+      margin: 0 auto;
+      text-align: justify; }
+    body .privacy #ppHeader {
+      font-family: verdana;
+      font-size: 21pt;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center; }
+    body .privacy .ppConsistencies {
+      display: none; }

@@ -1,1 +1,112 @@
-var NavMenu=function(){function n(){c.click(function(){l.hasClass("open")?e():a()})}function u(){underlay.click(function(){e()})}function a(){l.addClass("open"),t.css("display","block")}function e(){l.removeClass("open"),t.css("display","none")}function o(){t=$("menu"),c=$("button.hamburger"),underlay=$("menu .underlay"),n(),u()}var c,t,l=$("header.navmenu");!function(){l&&l.load("/templates/navmenu.tpl.html",function(){o()})}()}();
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* NAVMENU TEMPLATE JS FUNCTIONALITY.
+/******************************************/
+
+var NavMenu = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var navMenuTplPath   = '/templates/navmenu.tpl.html';
+var navMenuContainer = $('header.navmenu'); 
+var hamburgerBtn;
+var menu;
+
+//----------------------------------------------------------------
+
+						 // TEMPLATES
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+function hamburgerClick() {
+    hamburgerBtn.click(function() {
+        if(navMenuContainer.hasClass('open'))
+            closeMenu();
+        else 
+            openMenu();
+    });
+}
+
+function underlayClick() {
+    underlay.click(function() {
+        closeMenu();
+    })
+}
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+function openMenu() {
+    navMenuContainer.addClass('open');
+    menu.css('display', 'block');
+}
+
+function closeMenu() {
+    navMenuContainer.removeClass('open');
+    menu.css('display', 'none');
+}
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+function setNavListeners() {
+    menu         = $('menu');
+    hamburgerBtn = $('button.hamburger');
+    underlay     = $('menu .underlay');
+    hamburgerClick();
+    underlayClick();
+}
+
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+var Main = (function() {
+    
+    // If Nav container exists fill it with nav. 
+    if(navMenuContainer) {
+        navMenuContainer.load(navMenuTplPath, function() {
+            setNavListeners();
+        });
+    }
+
+})();
+
+})(); // END OF NAVMENU.JS

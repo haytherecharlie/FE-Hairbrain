@@ -2,79 +2,90 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
 * LOGIN PAGE STYLES.
 /******************************************/
 
-body {
+// LOGIN PAGE //
+.loginpage {
     background: url('../img/hairbrain-bg.gif') no-repeat center;
     height: 100vh; background-size: cover;
     min-height: 400px;
     position: relative;
-}
 
-.navmenu {
-    nav {
-        background: transparent!important;
-        box-shadow: none!important;
+    // CUSTOM NAV WIDGET OVERRIDE //
+    .navmenu {
 
-        .logo {
-            display: none;
-        }
-    }
+        // NAV STYLES //
+        nav {
+            background: transparent!important;
+            box-shadow: none!important;
 
-    &.open{
-        nav{
-            background: #FFF!important;
-            box-shadow: 0 0 5px #000!important;
             .logo {
-                display: block;
+                display: none;
+            }
+        }
+
+        // OPEN NAV STYLES //
+        &.open{
+            nav{
+                background: #FFF!important;
+                box-shadow: 0 0 5px #000!important;
+
+                .logo {
+                    display: block;
+                }
             }
         }
     }
-}
 
-.loginform {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%); 
-    width: 80%;
-    text-align: center;
-    max-width: 400px;
-
-    img {
-        margin: 0 0 20px 0;
-        width: 100%;
-    }
-
-    input {
-        box-sizing: border-box;
-        width: calc(100% - 20px);
-        border: 2px solid #ff2353;
-        border-radius: 25px;
-        font-size: 15px;
-        padding: 7px 10px;
-        margin: 5px;
+    // LOGIN FORM STYLES //
+    .loginform {
+        position: absolute; top: 50%; left: 50%;
+        transform: translate(-50%, -50%); 
+        width: 80%;
         text-align: center;
-        -webkit-appearance: none;
-        font-family: hb-bold;
-    }
+        max-width: 400px;
 
-    .login {
-        box-sizing: border-box;
-        width: calc(80% - 20px);
-        border: 2px solid #fff;
-        border-radius: 25px;
-        padding: 7px 10px;
-        background: #ff2353;
-        margin: 10px auto;
-        position: relative;
-        font-size: 15px;
-        color: #fff;
+        // HAIRBRAIN LOGO //
+        .loginlogo {
+            margin: 0 0 20px 0;
+            width: 100%;
+        }
+
+        // INPUT STYLES //
+        input {
+            box-sizing: border-box;
+            width: calc(100% - 20px);
+            border: 2px solid #ff2353;
+            border-radius: 25px;
+            font-size: 15px;
+            padding: 7px 10px;
+            margin: 5px;
+            text-align: center;
+            -webkit-appearance: none;
+            font-family: hb-bold;
+        }
+
+        // LOGIN BUTTON //
+        .loginbutton {
+            box-sizing: border-box;
+            width: calc(80% - 20px);
+            border: 2px solid #fff;
+            border-radius: 25px;
+            padding: 7px 10px;
+            background: #ff2353;
+            margin: 10px auto;
+            position: relative;
+            font-size: 15px;
+            color: #fff;
+        }
+
+        // FAILED LOGIN SPAN //
+        .loginfailed {
+            opacity: 0;
+        }
     }
-    .failedlogin {
-        opacity: 0;
-    }
-    
 }

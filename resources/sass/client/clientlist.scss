@@ -2,12 +2,13 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
 * CLIENT LIST STYLES
 /******************************************/
 
+// CLIENT LIST //
 .clientlist {
     background: #fafafa;
     width: 100vw;
@@ -16,6 +17,7 @@
     -webkit-overflow-scrolling: touch;
     padding-top: 10px;
 
+    // EMPTY CLIENT LIST //
     .empty {
         font-family: hb-black;
         width: 100%;
@@ -26,6 +28,7 @@
         color: #777;
     }
 
+    // ALPHABETICAL LETTER HEADER //
     .letter {
         color: #ff3253;
         display: block;
@@ -33,6 +36,7 @@
         opacity: 1;
     }
 
+    // CLIENT CARD //
     .clientcard {
         background: #ffffff;
         margin: 10px 10px;
@@ -40,10 +44,12 @@
         box-shadow: 0px 0px 10px #ccc;
         height: 50px;
 
+        // LAST CLIENT CARD //
         &:last-child {
             margin-bottom: 150px;
         }
 
+        // CLIENT AVATAR //
         .avatar {
             height: 40px; width: 40px;
             overflow: hidden;
@@ -51,6 +57,7 @@
             display: inline-block;
             border-radius: 50%;
 
+            // AVATAR IMAGE //
             img {
                 position: absolute;
                 top: 50%;
@@ -60,6 +67,7 @@
             }
         }
 
+        // CLIENT NAME SPAN //
         span {
             display: inline-block;
             line-height: 40px;
@@ -67,10 +75,13 @@
             font-size: 18.5px;
             color: #333;
 
+            // FIRST NAME //
             &.firstname {
                 margin: 0px 5px 0px 10px;
                 font-family: hb-regular;
             }
+
+            // LAST NAME //
             &.lastname {
                 font-family: hb-regular;
             }

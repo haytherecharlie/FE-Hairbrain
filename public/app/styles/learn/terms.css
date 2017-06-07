@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px; }
+  body .terms {
+    padding: 10px; }
+    body .terms img {
+      display: block;
+      margin: auto; }
+    body .terms #ppHeader {
+      font-family: verdana;
+      font-size: 21pt;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center; }

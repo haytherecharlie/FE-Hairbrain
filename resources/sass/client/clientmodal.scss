@@ -1,0 +1,33 @@
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT MODAL STYLES
+/******************************************/
+
+// MODAL //
+.modal {
+    text-align: center;
+    padding: 0!important;
+    background-color: rgba(255,255,255, 0.7);
+
+    // MODAL BODY //
+    .modal-body {
+        position: relative;
+    }
+
+    // MODAL LOGO //
+    .modallogo {
+        width: 119px;
+        height: 30px;
+        margin: 10px;
+    }
+
+    // MODAL FADE //
+    &.fade {
+        background-color: rgba(255,255,255, 0.7);
+    }
+}

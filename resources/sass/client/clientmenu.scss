@@ -2,13 +2,14 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
-* MENU COMPONENT STYLES 
+* CLIENT MENU STYLES 
 /******************************************/
 
-menu {
+// CLIENT MENU //
+.clientmenu {
     margin: 0; padding: 0;
     padding-top: 50px;
     position: relative;
@@ -18,6 +19,7 @@ menu {
     z-index: 50;
     display: none;
 
+    // MENU BACKGROUND OVERLAY //
     .menuoverlay {
         background-color: rgba(255,255,255, 0.7);
         height: 100%; width: 100%;
@@ -25,7 +27,8 @@ menu {
         z-index: 51;
     }
 
-    ul {
+    // MENU ITEMS //
+    .menuitems {
         overflow: hidden;
         width: 100%;
         background: #ff3253;
@@ -38,6 +41,7 @@ menu {
         border-bottom-right-radius: 5px;
         z-index: 52;
 
+        // LIST ITEMS //
         li {
             list-style: none;
             border-top: 1px solid #db3f59;
@@ -49,6 +53,7 @@ menu {
             font-size: 15px;
             font-family: hb-bold;
 
+            // LAST LIST ITEM //
             &:last-child {
                 border-bottom-left-radius: 5px;
                 border-bottom-right-radius: 5px;

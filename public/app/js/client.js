@@ -1,1 +1,1160 @@
-function cookieCheck(){if(!userid||!jwt)return window.location.href=window.location.origin+"/",!1}var userid=decodeURI($.cookie("userid")),jwt=decodeURI($.cookie("jwt")),name=decodeURI($.cookie("name")),phone=decodeURI($.cookie("phone")),email=decodeURI($.cookie("email")),salon=decodeURI($.cookie("salon")),ClientAdd=function(){function e(){loadingGif.show()}function n(){loadingGif.hide()}function t(){r.each(function(){$(this).val("")}),notes.val(""),$("#photo-front").css("background","none")}function o(){var e=r.length,n=0;r.each(function(){""!==$(this).val()&&n++}),i(n,e)}function i(e,n){e===n?addFormSubmit.prop("disabled",!1):addFormSubmit.prop("disabled",!0)}function a(){var e=new FormData;e.append("firstname",firstname.val()),e.append("lastname",lastname.val()),e.append("phone",phone.val()),e.append("notes",notes.val()),e.append("photofront",photofront[0].files[0],"photofront.jpg"),e.append("name",name);var o={async:!0,crossDomain:!0,url:apiurl+"client/add/"+userid,method:"POST",headers:{"cache-control":"no-cache",Authorization:"Bearer "+jwt},processData:!1,contentType:!1,mimeType:"multipart/form-data",data:e};$.ajax(o).done(function(e,o){"success"===o&&(ClientList.clientListAJAX(),t(),addClientModal.modal("hide"),n())})}var c=$(".clientaddform"),r=$(".clientaddform input");addFormSubmit=$(".clientaddsubmit"),clientAddBtn=$(".clientadd"),closeModal=$(".closemodal"),addClientModal=$(".addmodal"),firstname=$('.clientaddform input[name="firstname"]'),lastname=$('.clientaddform input[name="lastname"]'),phone=$('.clientaddform input[name="phone"]'),notes=$('.clientaddform textarea[name="notes"]'),photofront=$('.clientaddform input[name="photofront"]'),thumbFront=$("#photo-front"),loadingGif=$(".savingclient"),c.submit(function(n){n.preventDefault(),e(),a(),t()}),clientAddBtn.click(function(){o(),addClientModal.modal("show")}),closeModal.click(function(){t()}),$(document).keypress(":input:not(textarea)",function(e){return 13!=e.keyCode}),r.not('input[type="button"]').change(function(){o()})}(),Menu=function(){function e(){a.show(),i.animate({top:50},300),o.animate({opacity:1},300),i.addClass("open")}function n(){i.animate({top:50-i.height()},300,function(){a.hide()}),o.animate({opacity:0},300),i.removeClass("open")}function t(){i.hasClass("open")?i.css("top",50):i.css("top",50-i.height())}var o=$(".menuoverlay"),i=$(".menuitems"),a=$("menu"),c=$(".report"),r=$(".logout");return o.click(function(){n()}),r.click(function(){$.removeCookie("jwt",{path:"/"}),$.removeCookie("userid",{path:"/"}),window.location.href=window.location.origin+"/"}),c.click(function(){$(".issueModal").modal("show"),n()}),$(window).on("resize",function(){t()}),{openMenu:e,closeMenu:n}}(),Nav=function(){function e(){g.animate({left:"100vw"},500,function(){g.scrollTop(0)}),i(),t()}function n(){m.fadeOut(),w.hide()}function t(){m.fadeIn(),w.show()}function o(){v.fadeIn()}function i(){v.fadeOut()}function a(){var e=$(window).width()-40;p.fadeOut(300),k.fadeOut(300),C.fadeIn(300),u(),w.addClass("open"),m.animate({right:"+="+(e-10)+"px"},300,function(){w.show(),w.focus()})}function c(){w.blur();$(window).width();p.fadeIn(300),k.fadeIn(300),C.fadeOut(300),w.removeClass("open"),m.animate({right:"10px"},300,function(){d(),w.val(""),w.trigger("keyup")})}function r(){k.fadeIn(),p.fadeIn(),m.hide(),C.hide(),m.css("right","10px"),w.removeClass("open"),w.removeClass("open")}function s(){setTimeout(function(){w.val(""),w.trigger("keyup"),d()},300)}function l(){var e=$(window).width()-30;m.css("right",e-10)}function d(){$(".letter").each(function(){$(this).fadeIn(300)})}function u(){$(".letter").each(function(){$(this).fadeOut(300)})}function f(e,n){return-1!=e.toLowerCase().indexOf(n.toLowerCase())}var p=$(".hamburger"),h=$(".menuitems"),m=$(".navsearch"),v=$(".exitprofile"),g=$(".clientprofile"),w=$(".searchfield"),k=$(".navlogo"),C=$(".cancelsearch");return p.click(function(){h.hasClass("open")?Menu.closeMenu():Menu.openMenu()}),v.click(function(){e(),h.hasClass("open")&&Menu.closeMenu()}),w.click(function(){w.hasClass("open")?c():a(),h.hasClass("open")&&Menu.closeMenu()}),$(window).on("resize",function(){w.hasClass("open")&&l()}),w.keyup(function(){var e=$(this).val();$(".clientcard").each(function(){$(this).toggle(f($(this).data("name"),e))})}),C.click(function(){c()}),{showSearch:t,hideSearch:n,showBackBtn:o,hideBackBtn:i,slideSearchClosed:c,quickClearSearch:r,restoreList:s,slideClientProfile:e}}(),ClientProfile=function(){function e(e){o.attr("id",e._id),i.attr("src",apiurl+"photo/"+e.userid+"/"+e._id+"/avatar.jpg"),a.text(e.firstname),c.text(e.lastname),r.html('<a href="tel:'+e.phone+'">'+e.phone+"</a>"),s.attr("src",apiurl+"photo/"+e.userid+"/"+e._id+"/photofront.jpg"),l.attr("src",apiurl+"photo/"+e.userid+"/"+e._id+"/photoleft.jpg"),d.attr("src",apiurl+"photo/"+e.userid+"/"+e._id+"/photoback.jpg"),u.attr("src",apiurl+"photo/"+e.userid+"/"+e._id+"/photoright.jpg"),f.val(e.notes)}function n(){deleteModal.modal("show")}function t(){var e=o.attr("id"),n={async:!0,crossDomain:!0,url:apiurl+"client/delete/"+userid+"/"+e,method:"DELETE",headers:{"cache-control":"no-cache",Authorization:"Bearer "+jwt},processData:!1,contentType:!1};$.ajax(n).done(function(e,n){"success"===n&&(ClientList.clientListAJAX(),Nav.slideClientProfile())})}var o=$(".clientprofile"),i=$(".avatar"),a=$(".clientprofile .firstname"),c=$(".clientprofile .lastname"),r=$(".clientprofile .phone"),s=$(".clientprofile .photofront"),l=$(".clientprofile .photoleft"),d=$(".clientprofile .photoback"),u=$(".clientprofile .photoright"),f=$(".clientprofile .notes");return deleteModal=$(".deleteModal"),$(".deleteclient").click(function(){n()}),$(".confirmDelete").click(function(){t()}),{populateProfile:e}}(),ClientList=function(){function e(){$(".clientcard").each(function(){$(this).click(function(){ClientProfile.populateProfile(clientlist[$(this).attr("id")]),Nav.quickClearSearch(),a.animate({left:"0"},500,function(){Nav.restoreList(),i.scrollTop(0)}),Nav.hideSearch(),Nav.showBackBtn()})})}function n(n){for(var o in n)t(n,o),i.append('<div class="clientcard" id="'+o+'" data-name="'+n[o].firstname+n[o].lastname+'"><div class="avatar"><img src="'+apiurl+"photo/"+userid+"/"+n[o]._id+'/avatar.jpg"></div><span class="firstname">'+n[o].firstname+'</span><span class="lastname"> '+n[o].lastname+"</span></div>");e()}function t(e,n){"0"===n&&i.append('<div class="letter">'+e[n].firstname.charAt(0)+"</div>"),n>0&&n<e.length&&e[n].firstname.charAt(0)!==e[n-1].firstname.charAt(0)&&i.append('<div class="letter">'+e[n].firstname.charAt(0).toUpperCase()+"</div>")}function o(){cookieCheck();var e={async:!0,crossDomain:!0,url:apiurl+"client/all/"+userid,method:"GET",headers:{"cache-control":"no-cache",Authorization:"Bearer "+jwt},processData:!1,contentType:!1};$.ajax(e).done(function(e,t){"success"===t&&(clientlist=e,i.empty(),0===clientlist.length?i.append("<div class=\"empty\">You don't have any clients, <br> Click the '+' below to get started!</div>"):n(e))})}var i=$(".clientlist"),a=$(".clientprofile");return o(),{clientListAJAX:o}}();!function(){var e={$src:"",$dest:"",photoListeners:function(){$(".thumbnail").each(function(){$(this).click(function(){var n=$(this).attr("id");e.$src=$("#"+n),e.$dest=$("#select-"+n),e.$dest.click(),e.photoUploaded()})})},photoUploaded:function(){e.$dest.change(function(n){e.resizeImage(this.files[0])})},resizeImage:function(n){ImageTools.resize(n,{width:320,height:440},function(n,t){e.getPhotoDimensions(n)})},getPhotoDimensions:function(n){var t=new FileReader;t.onload=function(){var o=new Image;o.onload=function(){e.rotatePhoto(o,n)},o.src=t.result},t.readAsDataURL(n)},rotatePhoto:function(n,t){n.height<n.width?(e.$src.removeClass("default"),e.$src.addClass("rotate")):(e.$src.removeClass("rotate"),e.$src.addClass("default")),e.$src.css("background","url("+n.src+") no-repeat center"),e.$src.css("background-size","cover"),console.log(n.src)}};e.photoListeners()}();var PhotoWidget=function(){function e(e){o.removeClass("focus"),e.addClass("focus"),o=e}var n=$(".thumbfront"),t=[n],o=n;for(var i in t)t[i].click(function(){e($(this))})}(),ReportIssue=function(){function e(){var e=new FormData;e.append("name",name),e.append("phone",phone),e.append("email",email),e.append("salon",salon),e.append("issue",$(".issueform").val());var n={async:!0,crossDomain:!0,url:"https://script.google.com/macros/s/AKfycbxwK0uSZtglD0qBQKwqNOzfM-1JDMjIusr4FL3i6bkpAkL-QCOH/exec",method:"POST",processData:!1,contentType:!1,data:e};$.ajax(n).done(function(e,n){})}$(".confirmReport").click(function(){e()})}(),ProfileModal=function(){function e(){a.attr("src","")}function n(){c.text(name)}function t(){r.text(phone)}function o(){s.text(email)}function i(){l.text(salon)}var a=($(".profilemodal"),$(".profilemodal #profilephoto")),c=$(".profilemodal #name"),r=$(".profilemodal #phone"),s=$(".profilemodal #phone"),l=$(".profilemodal #salon");!function(){e(),n(),t(),o(),i()}()}();
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT BASE JS FUNCTIONALITY.
+/******************************************/
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var userid      = decodeURI($.cookie('userid'));
+var jwt         = decodeURI($.cookie('jwt'));
+var name        = decodeURI($.cookie('name'));
+var phone       = decodeURI($.cookie('phone'));
+var email       = decodeURI($.cookie('email'));
+var salon       = decodeURI($.cookie('salon'));
+var rating      = decodeURI($.cookie('rating'));
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+/*******************************************
+ * Check Token Exists
+*******************************************/
+function cookieCheck() {
+    if(!userid || !jwt) {
+        window.location.href = window.location.origin + '/';
+        return false;
+    } else {
+        return true;
+    }
+}
+
+/*******************************************
+ * Redirect Page -> URL
+*******************************************/
+function redirect(path) {
+    window.location.href = window.location.origin + path; 
+}
+
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT ADD JS FUNCTIONALITY.
+/******************************************/
+
+var ClientAdd = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var clientAddButton           = $('main .clientaddbutton');
+var clientAddModal            = $('.clientaddmodal');
+var clientAddForm             = $('.clientaddmodal .clientaddform');
+var clientAddFormFirstname    = $('.clientaddmodal .clientaddform .firstname');
+var clientAddFormLastname     = $('.clientaddmodal .clientaddform .lastname');
+var clientAddFormPhone        = $('.clientaddmodal .clientaddform .phone');
+var clientAddFormNotes        = $('.clientaddmodal .clientaddform .notes');
+var clientAddFormSubmit       = $('.clientaddmodal .clientaddsubmit');
+var clientAddModalCloseButton = $('.clientaddmodal .closemodal');
+var clientAddModalLoadingGif  = $('.clientaddmodal .savingclient');
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * On Click of Client Add Button
+*******************************************/
+clientAddButton.click( function() {
+    countValidInputs();
+    clientAddModal.modal('show');
+});
+
+/*******************************************
+ * On Click of Submit Button
+*******************************************/
+clientAddFormSubmit.click( function() {
+    showLoading();
+    clientAddFormAJAX();
+    emptyAddForm();
+});
+
+/*******************************************
+ * On Click of Close Modal 
+*******************************************/
+clientAddModalCloseButton.click( function() {
+    emptyAddForm();
+});
+
+/*******************************************
+ * Doesn't Allow Form Submit on Enter Press
+*******************************************/
+$(document).keypress(":input:not(textarea)", function(event) {
+    return event.keyCode != 13;
+});
+
+/*******************************************
+ * Listens for Change on Inputs (Not Textarea)
+*******************************************/
+$('.clientaddmodal .clientaddform input').not('input[type="button"]').keydown(function() {
+    countValidInputs();
+});
+
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Show Loading Animation
+*******************************************/
+function showLoading() {
+    clientAddModalLoadingGif.show();
+}
+
+/*******************************************
+ * Hide Loading Animation
+*******************************************/
+function hideLoading() {
+    clientAddModalLoadingGif.hide();
+}
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Empty Client Add Form on Close
+*******************************************/
+function emptyAddForm() {
+    $('.clientaddmodal .clientaddform input').each(function() {
+        $(this).val('');
+    })
+    clientAddFormNotes.val('');
+    $('.clientaddmodal .clientaddform .photothumb').css('background', 'none');
+}
+
+/*******************************************
+ * Count Valid Inputs
+*******************************************/
+function countValidInputs() {
+    var numInputs   = $('.clientaddmodal .clientaddform input').length;
+    var validInputs = 1; 
+    $('.clientaddmodal .clientaddform input').each(function() {
+        if ( $(this).val() !== '') {
+            validInputs++;
+        }
+    })
+    toggleSubmitBtn(validInputs, numInputs);
+}
+
+/*******************************************
+ * Toggle Submit Button
+*******************************************/
+function toggleSubmitBtn(valid, total) {
+    if( valid === total )
+        clientAddFormSubmit.prop('disabled', false);
+    else 
+        clientAddFormSubmit.prop('disabled', true);
+}
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Add Client Form -> POST
+*******************************************/
+function clientAddFormAJAX() {
+    var form = new FormData();
+    form.append("firstname", clientAddFormFirstname.val());
+    form.append("lastname", clientAddFormLastname.val());
+    form.append("phone", clientAddFormPhone.val());
+    form.append("notes", clientAddFormNotes.val());
+    form.append("photo", $('.clientaddmodal .clientaddform .photoinput')[0].files[0], 'photo.jpg');
+    form.append("name", name);
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": apiurl + "client/add/" + userid,
+        "method": "POST",
+        "headers": {
+            "cache-control": "no-cache",
+            "Authorization": "Bearer " + jwt
+        },
+        "processData": false,
+        "contentType": false,
+        "mimeType": "multipart/form-data",
+        "data": form,
+        "statusCode": {
+            200: function(req, res) {
+                ClientList.clientListAJAX();
+                emptyAddForm();
+                clientAddModal.modal('hide');
+                hideLoading();
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            },
+            401: function(req, res) {
+                redirect('/');
+            }
+        }
+    }
+
+    $.ajax(settings)
+
+}
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    var Main = (function() {  
+
+        // Main
+
+    })();
+
+    return {
+
+    }
+
+})(); // END OF CLIENTADD.JS
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT MENU JS FUNCTIONALITY.
+/******************************************/
+
+var ClientMenu = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var menuBox     = $('.clientmenu');
+var menuItems   = $('.clientmenu .menuitems');
+var menuReport  = $('.clientmenu .report');
+var menuLogout  = $('.clientmenu .logout');
+var menuOverlay = $('.clientmenu .menuoverlay');
+var reportModal = $('.reportmodal');
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * On Click of Menu Overlay
+*******************************************/
+menuOverlay.click(function() {
+    closeMenu();
+});
+
+/*******************************************
+ * On Click of Report Issue
+*******************************************/
+menuReport.click(function() {
+    reportModal.modal('show');
+    closeMenu();
+});
+
+/*******************************************
+ * On Click of Logout
+*******************************************/
+menuLogout.click(function() {
+	$.removeCookie('jwt', { path: '/' })
+	$.removeCookie('userid', { path: '/' })
+    $.removeCookie('name', { path: '/' })
+    $.removeCookie('phone', { path: '/' })
+    $.removeCookie('email', { path: '/' })
+    $.removeCookie('salon', { path: '/' })
+    $.removeCookie('rating', { path: '/' })
+	window.location.href = window.location.origin + '/';
+});
+
+/*******************************************
+ * On Resize of Window
+*******************************************/
+$(window).on("resize",function() {
+  	repositionMenu();
+});
+
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Open Menu
+*******************************************/
+function openMenu() {
+	menuBox.show();
+	menuItems.animate({
+		top: 50
+	}, 300);
+	menuOverlay.animate({
+		opacity: 1
+	}, 300);
+	menuItems.addClass('open');
+}
+
+/*******************************************
+ * Close Menu
+*******************************************/
+function closeMenu() {
+	menuItems.animate({
+		top: 50 - menuItems.height()
+	}, 300, function() {
+		menuBox.hide();
+	});
+	menuOverlay.animate({
+		opacity: 0
+	}, 300);
+	menuItems.removeClass('open');
+}
+
+/*******************************************
+ * Reposition Menu
+*******************************************/
+function repositionMenu() {
+    if(menuItems.hasClass('open'))
+	    menuItems.css('top', 50);
+    else
+        menuItems.css('top', 50 - menuItems.height());
+}
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    var Main = (function() {
+
+        // Main
+
+    })();
+
+    return {
+        openMenu: openMenu,
+        closeMenu: closeMenu
+    }
+
+})(); // END OF CLIENTMENU.JS
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT NAV JS FUNCTIONALITY.
+/******************************************/
+
+var ClientNav = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var navHamburger    = $('.clientnav .hamburger');
+var navLogo         = $('.clientnav .navlogo');
+var navSearch       = $('.clientnav .navsearch');
+var navSearchField  = $('.clientnav .searchfield');
+var navExitProfile  = $('.clientnav .exitprofile');
+var navCancelSearch = $('.clientnav .cancelsearch');
+var menuItems       = $('.clientmenu .menuitems');
+var clientProfile   = $('.clientprofile');
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * On Click of Nav Hamburger
+*******************************************/
+navHamburger.click(function() {
+	if(menuItems.hasClass('open'))
+		ClientMenu.closeMenu();
+	else
+		ClientMenu.openMenu();
+});
+
+/*******************************************
+ * On Click of "Back" Exit Profile Button
+*******************************************/
+navExitProfile.click(function() {
+	closeClientProfile();
+	if(menuItems.hasClass('open'))
+		ClientMenu.closeMenu();
+})
+
+/*******************************************
+ * On Click of Nav Search Field
+*******************************************/
+navSearchField.click(function() {
+	if(navSearchField.hasClass('open'))
+		slideSearchClosed();
+	else
+		slideSearchOpen();
+	if(menuItems.hasClass('open'))
+		ClientMenu.closeMenu();
+});
+
+/*******************************************
+ * Window is Resized or Rotated (Mobile)
+*******************************************/
+$(window).on("resize",function() {
+  if(navSearchField.hasClass('open'))
+  	repositionSearch();
+});
+
+/*******************************************
+ * User Types in Nav Search Field
+*******************************************/
+navSearchField.keyup(function(){
+    var searchText = $(this).val();
+    $(".clientlist .clientcard").each(function() {
+        $(this).toggle(contains($(this).data('name'), searchText));
+    });
+});
+
+/*******************************************
+ * Search is Cancelled
+*******************************************/
+navCancelSearch.click(function() {
+	slideSearchClosed();
+});
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Close Client Profile
+*******************************************/
+function closeClientProfile() {
+	clientProfile.animate({
+		left: '100vw'
+	}, 500, function() {
+		clientProfile.scrollTop(0);
+	});
+	hideBackBtn();
+	showSearch();
+}
+
+/*******************************************
+ * Hide Search Field
+*******************************************/
+function hideSearch() {
+	navSearch.fadeOut();
+    navSearchField.hide();
+}
+
+/*******************************************
+ * Show Search Field
+*******************************************/
+function showSearch() {
+	navSearch.fadeIn();
+    navSearchField.show();
+}
+
+/*******************************************
+ * Show "Back" Exit Profile Button
+*******************************************/
+function showbackBtn() {
+	navExitProfile.fadeIn();
+}
+
+/*******************************************
+ * Hide "Back" Exit Profile Button
+*******************************************/
+function hideBackBtn() {
+	navExitProfile.fadeOut();
+}
+
+/*******************************************
+ * Slide Search Open
+*******************************************/
+function slideSearchOpen() {
+	var windowWidth = $(window).width() - 40;
+	navHamburger.fadeOut(300);
+	navLogo.fadeOut(300);
+	navCancelSearch.fadeIn(300);
+	fadeOutLetters();
+	navSearchField.addClass('open');
+	navSearch.animate({
+		right: '+=' + (windowWidth - 10) + 'px'
+	}, 300, function() {
+		navSearchField.show();
+        navSearchField.focus();
+	})
+}
+
+/*******************************************
+ * Slide Search Closed
+*******************************************/
+function slideSearchClosed() {
+    navSearchField.blur();
+	var windowWidth = $(window).width() - 40;
+	navHamburger.fadeIn(300);
+	navLogo.fadeIn(300);
+	navCancelSearch.fadeOut(300);
+	navSearchField.removeClass('open');
+	navSearch.animate({
+		right: '10px'
+	}, 300, function() {
+		fadeInLetters();
+		navSearchField.val('');
+		navSearchField.trigger('keyup');
+	});
+}
+
+/*******************************************
+ * Clear Search and Close
+*******************************************/
+function quickClearSearch() {
+	navLogo.fadeIn();
+	navHamburger.fadeIn();
+	navSearch.hide();
+	navCancelSearch.hide();
+	navSearch.css('right', '10px');
+	navSearchField.removeClass('open');
+}
+
+/*******************************************
+ * Restore Letters in Client List
+*******************************************/
+function restoreList() {
+	setTimeout(function() {
+		navSearchField.val('');
+		navSearchField.trigger('keyup');
+		fadeInLetters();
+	},300);
+}
+
+/*******************************************
+ * Reposition Search Field
+*******************************************/
+function repositionSearch() {
+	var windowWidth = $(window).width() - 30;
+	navSearch.css('right', (windowWidth - 10));
+}
+
+/*******************************************
+ * Fade In List Letters
+*******************************************/
+function fadeInLetters() {
+	$('.clientlist .letter').each(function() {
+		$(this).fadeIn(300);
+	});
+}
+
+/*******************************************
+ * Fade Out List Letters
+*******************************************/
+function fadeOutLetters() {
+	$('.clientlist .letter').each(function() {
+		$(this).fadeOut(300);
+	});
+}
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Contains Substring
+*******************************************/
+function contains(text_one, text_two) {
+    return text_one.toLowerCase().indexOf(text_two.toLowerCase()) != -1;
+}
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    var Main = (function() {
+
+        // Main
+
+    })();
+
+    return {
+        hideSearch: hideSearch,
+        showBackBtn: showbackBtn,
+        quickClearSearch: quickClearSearch,
+        restoreList: restoreList,
+        closeClientProfile: closeClientProfile
+    }
+
+})(); // END OF CLIENTNAV.JS
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT PROFILE JS FUNCTIONALITY.
+/******************************************/
+
+var ClientProfile = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var clientProfile       = $('.clientprofile');
+var avatar              = $('.clientprofile .avatar');
+var firstname           = $('.clientprofile .firstname');
+var lastname            = $('.clientprofile .lastname');
+var phone               = $('.clientprofile .phone');
+var photo               = $('.clientprofile .photo');
+var notes               = $('.clientprofile .notes');
+var deleteClientButton  = $('.clientprofile .deleteclient');
+var deleteModal         = $('.deleteModal');
+var confirmDelete       = $('.deleteModal .confirmDelete');
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * On Click of Delete Client Button
+*******************************************/
+deleteClientButton.click(function() {
+    showDeleteConfirmation();
+});
+
+/*******************************************
+ * On Click of Confirm Delete
+*******************************************/
+confirmDelete.click(function() {
+    deleteClient();
+});
+
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Populate Client Profile
+*******************************************/
+function populateProfile(client) {
+    clientProfile.attr('id', client._id);
+    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg');
+    firstname.text(client.firstname);
+    lastname.text(client.lastname);
+    phone.html('<a href="tel:' + client.phone + '">' + client.phone + '</a>');
+    photo.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photo.jpg');
+    notes.val(client.notes);
+}
+
+function showDeleteConfirmation() {
+    deleteModal.modal('show');
+}
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Delete Client -> DELETE
+*******************************************/
+function deleteClient() {
+    var clientid = clientProfile.attr('id');
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": apiurl + "client/delete/" + userid + '/' + clientid,
+        "method": "DELETE",
+        "headers": {
+            "cache-control": "no-cache",
+            "Authorization": "Bearer " + jwt
+        },
+        "processData": false,
+        "contentType": false,
+        "statusCode": {
+            200: function(req, res) {
+                ClientList.clientListAJAX();
+                ClientNav.closeClientProfile();
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            },
+            401: function(req, res) {
+                redirect('/');
+            }
+        }
+    }
+
+    $.ajax(settings)
+
+}
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    var Main = (function() {
+
+        // Main
+
+    })();
+
+    return {
+        populateProfile: populateProfile
+    }
+
+})(); // END OF CLIENTPROFILE.JS
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* CLIENT LIST JS FUNCTIONALITY.
+/******************************************/
+
+var ClientList = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var clientList    = $('.clientlist');
+var clientProfile = $('.clientprofile');
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * SET LISTENERS FOR CLIENT CARDS
+*******************************************/
+function addCCListeners() {
+    $('.clientcard').each(function() {
+        $(this).click(function() {
+            ClientProfile.populateProfile(clientlist[$(this).attr('id')]);
+            ClientNav.quickClearSearch();
+            clientProfile.animate({
+                left: '0'
+            }, 500, function() {
+                ClientNav.restoreList();
+                clientList.scrollTop(0);
+            });
+            ClientNav.hideSearch();
+            ClientNav.showBackBtn();
+        })
+    })
+}
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * DISPLAY CLIENTS
+*******************************************/
+function displayClients(req) {
+    for(var i in req) {
+        insertLeadingLetters(req, i);
+        clientList.append('' +
+            '<div class="clientcard" id="'+i+'" data-name="' + req[i].firstname + req[i].lastname + '">' +
+                '<div class="avatar">' +
+                    '<img src="'+apiurl+'photo/'+userid+'/'+req[i]._id+'/avatar.jpg">' +
+                '</div>' +
+                '<span class="firstname">'+req[i].firstname+'</span>' +
+                '<span class="lastname"> '+req[i].lastname+'</span>' +
+            '</div>'
+        );
+    }
+    addCCListeners();
+}
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * INSERT LEADING LETTERS FOR CLIENT LIST
+*******************************************/
+function insertLeadingLetters(req, i) {
+    if (i === '0') 
+        clientList.append('<div class="letter">'+req[i].firstname.charAt(0)+'</div>');
+    if (i > 0 && i < (req.length) ) {
+        if (req[i].firstname.charAt(0) !== req[i-1].firstname.charAt(0))
+            clientList.append('<div class="letter">'+req[i].firstname.charAt(0).toUpperCase()+'</div>');
+    }
+}
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Client List -> GET
+*******************************************/
+function clientListAJAX() {
+    
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": apiurl + "client/all/" + userid,
+        "method": "GET",
+        "headers": {
+            "cache-control": "no-cache",
+            "Authorization": "Bearer " + jwt
+        },
+        "processData": false,
+        "contentType": false,
+        "statusCode": {
+            200: function(req, res) {
+                clientlist = req;
+                clientList.empty();
+                if(clientlist.length === 0)
+                    clientList.append('<div class="empty">You don\'t have any clients, <br> Click the \'+\' below to get started!</div>');
+                else 
+                    displayClients(req);
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            },
+            401: function(req, res) {
+                redirect('/');
+            }
+        }
+    }
+
+    $.ajax(settings)
+
+}
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    var Main = (function() {
+        clientListAJAX();
+    })();
+
+    return {
+        clientListAJAX: clientListAJAX
+    }
+
+})(); // END OF CLIENTLIST.JS
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* MOTIONGRAPHIC TEMPLATE JS FUNCTIONALITY.
+/******************************************/
+
+var PhotoUpload = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var photoWidget    = $('.photowidget');
+var photoWidgetTpl = '/templates/photoupload.tpl.html'; 
+var photoInput;
+var photoBox;
+var photoThumb;
+
+//----------------------------------------------------------------
+
+						 // TEMPLATES
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+function listenForUpload() {
+    photoThumb.click(function() {
+        photoInput.click();
+        detectFile();
+    })
+}
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+function setNavListeners() {
+    photoInput  = $('.photowidget .photoinput');
+    photoBox    = $('.photowidget .photobox');
+    photoThumb  = $('.photowidget .photothumb');
+    listenForUpload();
+}
+
+function detectFile() {
+    photoInput.change(function(evt) {
+        resizeImage(this.files[0]);
+    })
+}
+
+function resizeImage(img) {
+
+    ImageTools.resize(img, {
+        width: 400, // maximum width
+        height: 300 // maximum height
+    }, function(blob, didItResize) {
+        getPhotoDimensions(blob)
+    });
+}
+
+function getPhotoDimensions(blob) {
+		    
+        var fr = new FileReader;
+        fr.onload = function() {
+            var img = new Image;
+            img.onload = function() {
+                showPhoto(img, blob);
+            };
+            img.src = fr.result;
+        };
+        fr.readAsDataURL(blob);
+}
+
+function showPhoto(img, blob) {
+
+    if (img.height < img.width) {
+        photoThumb.removeClass('default');
+        photoThumb.addClass('rotate');
+    } else {
+        photoThumb.removeClass('rotate');
+        photoThumb.addClass('default');
+    }
+
+    photoThumb.css('background', 'url(' + img.src + ') no-repeat center' );
+    photoThumb.css('background-size', 'cover');
+}
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+var Main = (function() {
+
+    // If PhotoWidget container exists fill it with nav. 
+    if(photoWidget) {
+        photoWidget.load(photoWidgetTpl, function() {
+            setNavListeners();
+        });
+    }
+
+})();
+
+})(); // END OF PHOTOWIDGET.JS

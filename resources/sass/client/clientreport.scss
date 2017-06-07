@@ -1,0 +1,29 @@
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* CLIENT REPORT STYLES
+/******************************************/
+
+// REPORT MODAL //
+.reportmodal {
+
+    // REPORT TEXT AREA //
+    textarea {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 15px;
+        height: 300px;
+        width: 90%;
+        resize: none;
+    }
+
+    .confirmreport {
+        background: #ff2353;
+        color: #fff;
+    }
+}

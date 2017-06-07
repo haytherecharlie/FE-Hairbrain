@@ -2,7 +2,7 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
 * CLIENT ADD JS FUNCTIONALITY.
@@ -19,25 +19,16 @@ var ClientAdd = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var clientAddForm  = $('.clientaddform'),
-    addFormInputs  = $('.clientaddform input')
-    addFormSubmit  = $('.clientaddsubmit'),
-    clientAddBtn   = $('.clientadd'),
-    closeModal     = $('.closemodal'),
-    addClientModal = $('.addmodal'),
-    firstname      = $('.clientaddform input[name="firstname"]'),
-    lastname       = $('.clientaddform input[name="lastname"]'),
-    phone          = $('.clientaddform input[name="phone"]')
-    notes          = $('.clientaddform textarea[name="notes"]'),
-    photofront     = $('.clientaddform input[name="photofront"]'),
-    thumbFront     = $('#photo-front'),
-    loadingGif     = $('.savingclient');
-
-//----------------------------------------------------------------
-
-						 // TEMPLATES
-
-//---------------------------------------------------------------/
+var clientAddButton           = $('main .clientaddbutton');
+var clientAddModal            = $('.clientaddmodal');
+var clientAddForm             = $('.clientaddmodal .clientaddform');
+var clientAddFormFirstname    = $('.clientaddmodal .clientaddform .firstname');
+var clientAddFormLastname     = $('.clientaddmodal .clientaddform .lastname');
+var clientAddFormPhone        = $('.clientaddmodal .clientaddform .phone');
+var clientAddFormNotes        = $('.clientaddmodal .clientaddform .notes');
+var clientAddFormSubmit       = $('.clientaddmodal .clientaddsubmit');
+var clientAddModalCloseButton = $('.clientaddmodal .closemodal');
+var clientAddModalLoadingGif  = $('.clientaddmodal .savingclient');
 
 
 //----------------------------------------------------------------
@@ -45,29 +36,42 @@ var clientAddForm  = $('.clientaddform'),
 						 // LISTENERS
 
 //---------------------------------------------------------------/
-clientAddForm.submit( function(e) {
-    e.preventDefault();
+
+/*******************************************
+ * On Click of Client Add Button
+*******************************************/
+clientAddButton.click( function() {
+    countValidInputs();
+    clientAddModal.modal('show');
+});
+
+/*******************************************
+ * On Click of Submit Button
+*******************************************/
+clientAddFormSubmit.click( function() {
     showLoading();
     clientAddFormAJAX();
     emptyAddForm();
 });
 
-clientAddBtn.click( function() {
-    countValidInputs();
-    addClientModal.modal('show');
-});
-
-closeModal.click( function() {
+/*******************************************
+ * On Click of Close Modal 
+*******************************************/
+clientAddModalCloseButton.click( function() {
     emptyAddForm();
 });
 
-// Doesn't allow form submit on enter press.
+/*******************************************
+ * Doesn't Allow Form Submit on Enter Press
+*******************************************/
 $(document).keypress(":input:not(textarea)", function(event) {
     return event.keyCode != 13;
 });
 
-// Listens for change on each input. NOTE:Doesn't listen to textarea.
-addFormInputs.not('input[type="button"]').change(function() {
+/*******************************************
+ * Listens for Change on Inputs (Not Textarea)
+*******************************************/
+$('.clientaddmodal .clientaddform input').not('input[type="button"]').keydown(function() {
     countValidInputs();
 });
 
@@ -77,12 +81,19 @@ addFormInputs.not('input[type="button"]').change(function() {
 						 // VIEWS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Show Loading Animation
+*******************************************/
 function showLoading() {
-    loadingGif.show();
+    clientAddModalLoadingGif.show();
 }
 
+/*******************************************
+ * Hide Loading Animation
+*******************************************/
 function hideLoading() {
-    loadingGif.hide();
+    clientAddModalLoadingGif.hide();
 }
 
 //----------------------------------------------------------------
@@ -90,18 +101,25 @@ function hideLoading() {
 						 // LOGIC
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Empty Client Add Form on Close
+*******************************************/
 function emptyAddForm() {
-    addFormInputs.each(function() {
+    $('.clientaddmodal .clientaddform input').each(function() {
         $(this).val('');
     })
-    notes.val('');
-    $('#photo-front').css('background', 'none');
+    clientAddFormNotes.val('');
+    $('.clientaddmodal .clientaddform .photothumb').css('background', 'none');
 }
 
+/*******************************************
+ * Count Valid Inputs
+*******************************************/
 function countValidInputs() {
-    var numInputs   = addFormInputs.length;
-    var validInputs = 0; 
-    addFormInputs.each(function() {
+    var numInputs   = $('.clientaddmodal .clientaddform input').length;
+    var validInputs = 1; 
+    $('.clientaddmodal .clientaddform input').each(function() {
         if ( $(this).val() !== '') {
             validInputs++;
         }
@@ -109,12 +127,16 @@ function countValidInputs() {
     toggleSubmitBtn(validInputs, numInputs);
 }
 
+/*******************************************
+ * Toggle Submit Button
+*******************************************/
 function toggleSubmitBtn(valid, total) {
     if( valid === total )
-        addFormSubmit.prop('disabled', false);
+        clientAddFormSubmit.prop('disabled', false);
     else 
-        addFormSubmit.prop('disabled', true);
+        clientAddFormSubmit.prop('disabled', true);
 }
+
 //----------------------------------------------------------------
 
 						 // AJAX CALLS
@@ -126,37 +148,44 @@ function toggleSubmitBtn(valid, total) {
 *******************************************/
 function clientAddFormAJAX() {
     var form = new FormData();
-    form.append("firstname", firstname.val());
-    form.append("lastname", lastname.val());
-    form.append("phone", phone.val());
-    form.append("notes", notes.val());
-    form.append("photofront", photofront[0].files[0], 'photofront.jpg');
+    form.append("firstname", clientAddFormFirstname.val());
+    form.append("lastname", clientAddFormLastname.val());
+    form.append("phone", clientAddFormPhone.val());
+    form.append("notes", clientAddFormNotes.val());
+    form.append("photo", $('.clientaddmodal .clientaddform .photoinput')[0].files[0], 'photo.jpg');
     form.append("name", name);
 
     var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": apiurl + "client/add/" + userid,
-    "method": "POST",
-    "headers": {
-        "cache-control": "no-cache",
-        "Authorization": "Bearer " + jwt
-    },
-    "processData": false,
-    "contentType": false,
-    "mimeType": "multipart/form-data",
-    "data": form
+        "async": true,
+        "crossDomain": true,
+        "url": apiurl + "client/add/" + userid,
+        "method": "POST",
+        "headers": {
+            "cache-control": "no-cache",
+            "Authorization": "Bearer " + jwt
+        },
+        "processData": false,
+        "contentType": false,
+        "mimeType": "multipart/form-data",
+        "data": form,
+        "statusCode": {
+            200: function(req, res) {
+                ClientList.clientListAJAX();
+                emptyAddForm();
+                clientAddModal.modal('hide');
+                hideLoading();
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            },
+            401: function(req, res) {
+                redirect('/');
+            }
+        }
     }
 
     $.ajax(settings)
-    .done(function (req, res) {
-        if(res === "success") { 
-            ClientList.clientListAJAX();
-            emptyAddForm();
-            addClientModal.modal('hide');
-            hideLoading();
-        }
-    });
+
 }
 
 //----------------------------------------------------------------
@@ -168,7 +197,14 @@ function clientAddFormAJAX() {
 /*******************************************
  * Main Function
 *******************************************/
-(function() {
-    // validateform();
-})();
-})(); // END OF LOGIN.JS
+    var Main = (function() {  
+
+        // Main
+
+    })();
+
+    return {
+
+    }
+
+})(); // END OF CLIENTADD.JS

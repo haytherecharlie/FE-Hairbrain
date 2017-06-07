@@ -83,7 +83,10 @@ gulp.task('register-custom-js', function() {
 
 // CLIENT CUSTOM SASS ======================
 gulp.task('client-custom-sass', function() {
-    gulp.src('resources/sass/client/*.scss')
+    gulp.src([
+        'resources/sass/client/*.scss',
+        'resources/sass/templates/photoupload.scss',
+    ])
         .pipe(concat('client.css'))
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./public/app/styles/'))
@@ -92,16 +95,14 @@ gulp.task('client-custom-sass', function() {
 // CLIENT CUSTOM JS ======================
 gulp.task('client-custom-js', function() {
     return gulp.src([
-        'resources/js/client/base.js',
+        'resources/js/client/clientbase.js',
         'resources/js/client/clientadd.js',
-        'resources/js/client/menu.js',
-        'resources/js/client/nav.js',
+        'resources/js/client/clientmenu.js',
+        'resources/js/client/clientnav.js',
         'resources/js/client/clientprofile.js',
         'resources/js/client/clientlist.js',
-        'resources/js/universal/images/photoupload.js',
-        'resources/js/client/photowidget.js',
-        'resources/js/client/reportissue.js',
-        'resources/js/client/profilemodal.js'
+        'resources/js/client/clientreport.js',
+        'resources/js/templates/photoupload.js',
         ])
     .pipe(sourcemaps.init())
     .pipe(concat('client.js'))
@@ -281,6 +282,34 @@ gulp.task('mistake-custom-js', function() {
     .pipe(gulp.dest('./public/app/js/learn/'))
 });
 
+/*******************************************
+/                PRIVACY PAGE
+/******************************************/
+
+// PRIVACY CUSTOM SASS ======================
+gulp.task('privacy-custom-sass', function() {
+    gulp.src([
+        'resources/sass/learn/privacy/privacy.scss'
+        ])
+        .pipe(concat('privacy.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/learn/'))
+});
+
+/*******************************************
+/                TERMS PAGE
+/******************************************/
+
+// TERMS CUSTOM SASS ======================
+gulp.task('terms-custom-sass', function() {
+    gulp.src([
+        'resources/sass/learn/terms/terms.scss'
+        ])
+        .pipe(concat('terms.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/learn/'))
+});
+
 
 /*******************************************
 /                VENDOR
@@ -343,6 +372,7 @@ gulp.task('default', [
     'blog-custom-sass',      'blog-custom-js',
     'tutorials-custom-sass', 'tutorials-custom-js',
     'mistake-custom-sass',   'mistake-custom-js',
+    'privacy-custom-sass',   'terms-custom-sass',
     'vendor-css',            'vendor-js',
 ]);
 

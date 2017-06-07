@@ -2,13 +2,13 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
 * LOGIN PAGE JS FUNCTIONALITY.
 /******************************************/
 
-var Login = (function() {
+var LoginPage = (function() {
 
 //----------------------------------------------------------------
 
@@ -19,13 +19,12 @@ var Login = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var loginForm    = $('.loginform'),
-    phone        = $('input[name="phone"]'),
-    password     = $('input[name="password"]'),
-    loginBtn     = $('button[name="submit"]'),
-    loginBtnSpan = $('button[name="submit"] span'), 
-    loadingGif   = $('.loading'),
-    failedLogin  = $('.failedlogin');
+var loginForm     = $('.loginform');
+var loginPhone    = $('.loginphone');
+var loginPassword = $('.loginpassword');
+var loginFailed   = $('.failedlogin');
+var loginButton   = $('.loginbutton');
+
 
 //----------------------------------------------------------------
 
@@ -54,17 +53,28 @@ $(loginForm).submit( function(e) {
 						 // VIEWS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Show Failed Login Message
+*******************************************/
 function showFailedMessage() {
-    failedLogin.css('opacity', '1');
+    loginFailed.css('opacity', '1');
 }
 
+/*******************************************
+ * Disable Login Button
+*******************************************/
 function disableLogin() {
-    loginBtn.prop('disabled', true);
+    loginButton.prop('disabled', true);
 }
 
+/*******************************************
+ * Enable Login Button
+*******************************************/
 function enableLogin() {
-    loginBtn.prop('disabled', false);
+    loginButton.prop('disabled', false);
 }
+
 
 //----------------------------------------------------------------
 
@@ -82,6 +92,7 @@ function loginSuccess(res) {
     $.cookie('phone',  res.phone, { expires: 7, path: '/' });
     $.cookie('email',  res.email, { expires: 7, path: '/' });
     $.cookie('salon',  res.salon, { expires: 7, path: '/' });
+    $.cookie('rating', res.rating, { expires: 7, path: '/'});
     redirect(/clients/);
 }
 
@@ -103,11 +114,11 @@ function redirect(path) {
 *******************************************/
 function loginFormAJAX() {
 
-    var form = new FormData();
-    form.append("phone", phone.val());
-    form.append("password", password.val());
+    var loginForm = new FormData();
+    loginForm.append("phone", loginPhone.val());
+    loginForm.append("password", loginPassword.val());
 
-    var settings = {
+    var loginSettings = {
         "async": true,
         "crossDomain": true,
         "url": apiurl + "login",
@@ -118,19 +129,23 @@ function loginFormAJAX() {
         "processData": false,
         "contentType": false,
         "mimeType": "multipart/form-data",
-        "data": form
+        "data": loginForm,
+        "statusCode": {
+            200: function(req, res) {
+                loginSuccess(JSON.parse(req));
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            },
+            401: function(req, res) {
+                enableLogin();
+                showFailedMessage();
+            }
+        }
     }
 
-    $.ajax(settings)
-    .done(function (req, res) {
-        if(res === "success") { 
-            loginSuccess(JSON.parse(req));
-        }
-    })
-    .fail( function(err) {
-        enableLogin();
-        showFailedMessage();
-    })
+    // Send AJAX
+    $.ajax(loginSettings)
 
 }
 
@@ -139,7 +154,7 @@ function loginFormAJAX() {
 *******************************************/
 function checkIfAlreadyLoggedIn(jwt) {
 
-    var settings = {
+    var loginCheckSettings = {
         "async": true,
         "crossDomain": true,
         "url": apiurl + "check",
@@ -150,15 +165,25 @@ function checkIfAlreadyLoggedIn(jwt) {
         },
         "processData": false,
         "contentType": false,
-        "mimeType": "multipart/form-data"
+        "mimeType": "multipart/form-data",
+        "statusCode": {
+            200: function(req, res) {
+                redirect(/clients/);
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            },
+            401: function(req, res) {
+                // Do Nothing 
+            }
+        }
     }
 
-    $.ajax(settings)
-    .done(function (req, res) {
-        if(res === "success") 
-            redirect(/clients/);
-    })
+    // Send AJAX
+    $.ajax(loginCheckSettings)
+
 }
+
 
 //----------------------------------------------------------------
 
@@ -169,10 +194,13 @@ function checkIfAlreadyLoggedIn(jwt) {
 /*******************************************
  * Main Function
 *******************************************/
-(function() {
-    if($.cookie('jwt')) {
-        checkIfAlreadyLoggedIn($.cookie('jwt'));
-    }
+var Main = (function() {
+
+    // If JWT exists, try auto login.
+    if ($.cookie('jwt')) { 
+        checkIfAlreadyLoggedIn($.cookie('jwt')) 
+    };
+
 })();
 
 })(); // END OF LOGIN.JS

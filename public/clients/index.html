@@ -4,6 +4,7 @@
 	<!-- TITLE -->
 	<title>Hairbrain</title>
     
+    <!-- META AND ICONS -->
     <meta charset="UTF-8">
     <meta name="description" content="Hairbrain, made for independent hairstylists">
     <meta name="keywords" content="Hairbrain, Hair, Hairstylists, Independent, Style, Bookings, Appointment, Beauty, Salon">
@@ -34,20 +35,22 @@
 	<link rel="stylesheet" type="text/css" href="/app/styles/client.css">
 
 </head>
-<body>
 
-    <!-- NAV BAR -->
-    <nav>
+<!-- CLIENT PAGE -->
+<body class="clientpage">
+
+    <!-- CLIENT NAV -->
+    <nav class="clientnav">
         <a class="hamburger"><img src="/app/img/menu.png"></a>
         <img class="navlogo" src="/app/img/hairbrain.svg">
         <a class="navsearch"><img src="/app/img/search.png"></a>
+        <input class="searchfield" type="text"/>
         <a class="exitprofile">Back</a>
         <a class="cancelsearch">Cancel</a>
-        <input class="searchfield" type="text"/>
     </nav>
 
-    <!-- MENU -->
-    <menu>
+    <!-- CLIENT MENU -->
+    <menu class="clientmenu">
         <ul class="menuitems">
             <li class="report">Report An Issue</li>
             <li class="logout">Logout</li>
@@ -63,40 +66,53 @@
 
         <!-- CLIENT PROFILE -->
         <div class="clientprofile">
+
             <!-- CONTACT CONTAINER -->
             <div class="contactbox container">
+                
+                <!-- COVER PHOTO -->
                 <div class="coverphoto"></div>
+                
+                <!-- AVATAR CONTAINER -->
                 <div class="avatarcontainer">
                     <div class="avatarborder">
                         <img class="avatar" src="">
                     </div>
                 </div>
+
+                <!-- NAME CONTAINER -->
                 <div class="namecontainer">
                     <span class="firstname"></span>
                     <span class="lastname"></span>
                 </div>
+
+                <!-- PHONE -->
                 <div class="phone"></div>
             </div>
+
             <!-- PHOTOS CONTAINER -->
             <div class="photosbox container">
                 <div class="title">Photos</div>
                 <div class="mainphoto">
-                    <img class="photofront" src="" height="100%">
+                    <img class="photo" src="" height="100%">
                 </div>
             </div>
+
             <!-- NOTES CONTAINER -->
             <div class="notesbox container">
                 <div class="title">Notes</div>
                 <textarea class="notes" readonly disabled></textarea>
             </div>
+
+            <!-- DELETE CLIENT BUTTON -->
             <div class="optionsbox container">
                 <button class="deleteclient">Delete Client</button>
             </div>
         </div>
 
         <!-- ADD CLIENT BUTTON -->
-        <div class="clientadd">
-            <a class="addbutton">+</a>
+        <div class="clientaddbutton">
+            <a>+</a>
         </div>
 
     </main>
@@ -104,35 +120,8 @@
     <!-- FOOTER -->
     <footer>
 
-        <!-- USER PROFILE -->
-        <div class="modal profilemodal fade" tabindex="-1" role="dialog" aria-labelledby="hairbrain-modal" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-
-                    <!-- MODAL HEADER -->
-                    <div class="modal-header">
-
-                    </div>
-
-                    <!-- MODAL BODY -->
-                    <div class="modal-body">
-                        <img id="profilephoto" src="/app/img/hairbrain.svg">
-                        <span id="name">STYLIST MCSTYLE</span>
-                        <span id="phone">1(800)MY-STYLE</span>
-                        <span id="email">MCSTYLE@HAIRBRAIN.COM</span>
-                        <span id="salon">100 WASHINGTON SQUARE</span>
-                    </div>
-
-                    <!-- MODAL FOOTER -->
-                    <div class="modal-footer">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ADD CLIENT MODAL -->
-        <div class="modal addmodal fade" tabindex="-1" role="dialog" aria-labelledby="hairbrain-modal" aria-hidden="true">
+        <!-- CLIENT ADD MODAL -->
+        <div class="modal clientaddmodal fade" tabindex="-1" role="dialog" aria-labelledby="hairbrain-modal" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
 
@@ -146,21 +135,14 @@
                     <!-- MODAL BODY -->
                     <div class="modal-body">
                         <form class="clientaddform" encType="multipart/form-data">
-                            <input name="firstname" placeholder="First name" type="text" required>
-                            <input name="lastname" placeholder="Last name" type="text" required>
-                            <input name="phone" placeholder="Phone #" type="tel" data-mask="1 (000) 000-0000" required>
-                            <input name="photofront" type="file" accept="image/*" capture="camera" class="file-select" id="select-photo-front" required>
-                            <textarea name="notes" placeholder="Notes" type="text"></textarea>
-                            <button class="btn clientaddsubmit" name="submit" type="submit" disabled>Save Client</button>
+                            <input class="firstname" placeholder="First name" type="text" required>
+                            <input class="lastname" placeholder="Last name" type="text" required>
+                            <input class="phone" placeholder="Phone #" type="tel" data-mask="1 (000) 000-0000" required>
+                            <div class="photowidget"></div>
+                            <textarea class="notes" placeholder="Notes" type="text"></textarea>
                         </form>
 
-                        <!-- PHOTOS WIDGET -->
-                        <div class="photoswidget">
-                            <div class="thumbnail-container thumbfront focus">
-                                <div class="thumbnail default" id="photo-front"></div>
-                            </div>
-                        </div>
-
+                        <!-- SAVING ICON -->
                         <div class="savingclient">
                             <img src="/app/img/loading.gif">
                         </div>
@@ -168,6 +150,7 @@
 
                     <!-- MODAL FOOTER -->
                     <div class="modal-footer">
+                        <button class="btn clientaddsubmit" name="submit" type="submit" disabled>Save Client</button>
                         <button type="button" class="btn closemodal" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -194,8 +177,8 @@
             </div>
         </div>
 
-        <!-- REPORT AN ISSUE MODAL -->
-        <div class="modal fade issueModal" role="dialog">
+        <!-- REPORT ISSUE MODAL -->
+        <div class="modal fade reportmodal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -207,8 +190,8 @@
 
                     <!-- MODAL FOOTER -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default confirmReport" data-dismiss="modal">Send</button>
-                        <button type="button" class="btn btn-default cancelReport" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-default confirmreport" data-dismiss="modal">Send</button>
+                        <button type="button" class="btn btn-default cancelreport" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>

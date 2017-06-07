@@ -2,13 +2,13 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
-* MOTIONGRAPHIC TEMPLATE JS FUNCTIONALITY.
+* CLIENT REPORT JS FUNCTIONALITY.
 /******************************************/
 
-var MotionGraphic = (function() {
+var ReportIssue = (function() {
 
 //----------------------------------------------------------------
 
@@ -19,14 +19,9 @@ var MotionGraphic = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var motionGraphicTplPath   = '/templates/motiongraphic.tpl.html';
-var motionGraphicContainer = $('div.motionad'); 
-
-//----------------------------------------------------------------
-
-						 // TEMPLATES
-
-//---------------------------------------------------------------/
+var reportModal   = $('.reportmodal');
+var confirmReport = $('.reportmodal .confirmreport');
+var reportTextBox = $('.issueform')
 
 
 //----------------------------------------------------------------
@@ -35,29 +30,18 @@ var motionGraphicContainer = $('div.motionad');
 
 //---------------------------------------------------------------/
 
+confirmReport.click(function() {
+    submitForm();
+});
+
 
 //----------------------------------------------------------------
 
 						 // VIEWS
 
 //---------------------------------------------------------------/
-function backgroundFadeIn() {
-    motionGraphicContainer.find('.container').fadeIn(500, function() {
-        textFadeIn();
-    });
-}
 
-function textFadeIn() { 
-    var motionTitle = $('div.motionad .container section .motiontitle');
-    motionTitle.css('display', 'table-cell');
-    motionTitle.addClass('animated zoomInDown');
-    motionTitle.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', showButtons);
-}
 
-function showButtons() {
-    $('div.motionad .container section .motiontitle a').fadeTo(1000, 1);
-    $('div.motionad .container section .register').fadeTo(1000, 1);
-}
 
 //----------------------------------------------------------------
 
@@ -71,6 +55,38 @@ function showButtons() {
 
 //---------------------------------------------------------------/
 
+function submitForm() {
+    var form = new FormData();
+    form.append("name", name);
+    form.append("phone", phone);
+    form.append("email", email);
+    form.append("salon", salon);
+    form.append("issue", reportTextBox.val());
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://script.google.com/macros/s/AKfycbxwK0uSZtglD0qBQKwqNOzfM-1JDMjIusr4FL3i6bkpAkL-QCOH/exec",
+        "method": "POST",
+        "processData": false,
+        "contentType": false,
+        "data": form,
+        "statusCode": {
+            200: function(req, res) {
+                // Do Nothing
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            },
+            401: function(req, res) {
+                redirect('/');
+            }
+        }
+    }
+
+    $.ajax(settings)
+
+}
 
 
 //----------------------------------------------------------------
@@ -82,15 +98,14 @@ function showButtons() {
 /*******************************************
  * Main Function
 *******************************************/
-var Main = (function() {
-    
-    // If graphics container exists, fill it with graphic and start animation.
-    if(motionGraphicContainer) {
-        motionGraphicContainer.load(motionGraphicTplPath, function() {
-            backgroundFadeIn();
-        });
+    var Main = (function() {
+
+        // Main
+
+    })();
+
+    return {
+
     }
 
-})();
-
-})(); // END OF MOTIONGRAPHIC.JS
+})(); // END OF CLIENTREPORT.JS

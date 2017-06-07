@@ -2,12 +2,13 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
 * CLIENT PROFILE STYLES
 /******************************************/
 
+// CLIENT PROFILE //
 .clientprofile {
     background: #F5F5F5;
     width: 100vw;
@@ -19,6 +20,7 @@
     z-index: 25;
     -webkit-overflow-scrolling: touch;
 
+    // CONTAINER //
     .container {
         position: relative;
         margin: 10px auto;
@@ -30,9 +32,11 @@
         box-shadow: 0 0 10px #CCC;
     }
 
+    // CONTACT INFO BOX //
     .contactbox {
         padding: 10px 10px;
 
+        // COVER PHOTO //
         .coverphoto {
             height: 80px;
             background: url('../img/profilebg.png') no-repeat center;
@@ -41,12 +45,14 @@
             margin-bottom: 40px;
         }
 
+        // AVATAR CONTAINER //
         .avatarcontainer {
             height: 80px; width: 80px;
             position: absolute;
             top: 45px; left: 50%;
             transform: translateX(-50%);
 
+            // AVATAR BORDER // 
             .avatarborder {
                 height: 100%; width: 100%;
                 overflow: hidden;
@@ -55,6 +61,7 @@
                 border: 3px solid #fff;
                 border-radius: 50%;
 
+                // AVATAR IMAGE //
                 img {
                     position: absolute;
                     top: 50%;
@@ -65,22 +72,26 @@
             }   
         }
 
+        // NAME CONTAINER // 
         .namecontainer {
             overflow: hidden;
             display: inline-block;
             font-size: 20px;
 
+            // FIRSTNAME // 
             .firstname {
                 float: left;
                 margin-right: 2px;
             }
 
+            // LASTNAME // 
             .lastname {
                 float: right;
                 margin-left: 2px;
             }   
         }
 
+        // EMAIL ** DEPRICATED ** //
         .email {
             display: block;
             margin: 20px 0 25px 40px;
@@ -88,6 +99,7 @@
             text-align: left;
             font-family: hb-light;
 
+            // EMAIL TITLE ** DEPRICATED ** //
             &:before {
                 position: absolute;
                 top: -10px; left: 0px;
@@ -95,6 +107,8 @@
                 color: #999;
                 font-size: 10px;
             }
+
+            // EMAIL ICON ** DEPRICATED ** //
             &:after {
                 content: " ";
                 background: url('../img/email.png') no-repeat center;
@@ -105,6 +119,7 @@
             }
         }
 
+        // PHONE // 
         .phone {
             display: block;
             margin: 25px 0 20px 40px;
@@ -112,6 +127,7 @@
             text-align: left;
             font-family: hb-light;
 
+            // PHONE TITLE //
             &:before {
                 position: absolute;
                 top: -12px; left: 0px;
@@ -119,6 +135,8 @@
                 color: #999;
                 font-size: 10px;
             }
+
+            // PHONE ICON //
             &:after {
                 content: " ";
                 background: url('../img/phone.png') no-repeat center;
@@ -130,9 +148,11 @@
         }
     }
 
+    // PHOTO CONTAINER //
     .photosbox {
         padding: 10px 10px;
 
+        // TITLE // 
         .title {
             width: 100%;
             text-align: left;
@@ -140,6 +160,7 @@
             margin-bottom: 7px;
             position: relative;
 
+            // PHOTO ICON //
             &:before {
                 content: " ";
                 background: url('../img/camera-icon.png') no-repeat center;
@@ -150,13 +171,14 @@
             }
         }
 
+        // MAIN PHOTO //
         .mainphoto {
-            height: 100%;
-            // float: left;
-            height: 300px;
+            height: 250px;
+            width: auto;
             overflow: hidden;
             position: relative;
 
+            // MAIN PHOTO IMAGE //
             img {
                 height: 100%;
                 width: auto;
@@ -165,41 +187,13 @@
                 transform: translateX(-50%);
             }
         }
-        .sidephotos {
-            width: 33%;
-            float: right;
-            height: 300px;
-
-            .thirdheight {
-                height: 96.5px;
-                width: 100%;
-                overflow: hidden;
-                position: relative;
-
-                img {
-                    width: 100%;
-                    height: auto;
-                    position: absolute;
-                    left: 50%;
-                    transform: translateX(-50%);
-                }
-
-                &.leftphoto {
-                    margin-bottom: 5px;
-                }
-                &.backphoto {
-                    margin-top: 5px;
-                    margin-bottom: 5px;
-                }
-                &.rightphoto {
-                    margin-top: 5px;
-                }
-            }
-        }
     }
 
+    // NOTES CONTAINER //
     .notesbox {
         padding: 10px;
+        
+        // TITLE //
         .title {
             width: 100%;
             text-align: left;
@@ -207,6 +201,7 @@
             margin-bottom: 7px;
             position: relative;
 
+            // NOTES ICON //
             &:before {
                 content: " ";
                 background: url('../img/notes.png') no-repeat center;
@@ -216,6 +211,8 @@
                 top: 4px; left: 0px;
             }
         }
+        
+        // NOTES //
         .notes {
             height: 100px;
             width: 100%;
@@ -227,7 +224,10 @@
         }
     }
 
+    // OPTIONS BOX //
     .optionsbox {
+
+        // OPTIONS BUTTON //
         button {
             display: block;
             width: 100%;
@@ -235,11 +235,8 @@
             margin: 20px 0px;
             border-radius: 5px;
         }
-        .editclient {
-            background: #fff;
-            border: 1px solid #000;
-            color: #000;
-        }
+
+        // DELETE CLIENT BUTTON //
         .deleteclient {
             background: #ff3253;
             border: none;
