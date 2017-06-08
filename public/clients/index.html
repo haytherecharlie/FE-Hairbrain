@@ -52,6 +52,7 @@
     <!-- CLIENT MENU -->
     <menu class="clientmenu">
         <ul class="menuitems">
+            <li class="profile">View My Profile</li>
             <li class="report">Report An Issue</li>
             <li class="logout">Logout</li>
         </ul>
@@ -152,6 +153,31 @@
                     <div class="modal-footer">
                         <button class="btn clientaddsubmit" name="submit" type="submit" disabled>Save Client</button>
                         <button type="button" class="btn closemodal" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STYLIST PROFILE MODAL -->
+        <div class="modal fade stylistmodal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- MODAL HEADER -->
+                    <div class="modal-header">
+                        <img class="modallogo" src="/app/img/hairbrain.svg">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+
+                    <!-- MODAL BODY -->
+                    <div class="modal-body">
+                        <div class="stylistprofile"></div>
+                    </div>
+
+                    <!-- MODAL FOOTER -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

@@ -528,6 +528,72 @@ main {
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
+* Last Modified: June 7th 2017
+* Author: Charlie Hay
+*
+* STYLIST PROFILE STYLES
+/******************************************/
+.stylistmodal .stylistprofile {
+  font-family: hb-light;
+  font-size: 15px; }
+  .stylistmodal .stylistprofile img.avatar {
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    height: 100px;
+    display: block;
+    margin: 5px auto; }
+  .stylistmodal .stylistprofile .name {
+    display: block; }
+  .stylistmodal .stylistprofile .phone {
+    color: #777;
+    font-size: 13px; }
+  .stylistmodal .stylistprofile .salon {
+    display: block;
+    font-size: 12px; }
+  .stylistmodal .stylistprofile .ratingscontainer img {
+    height: 10px; }
+  .stylistmodal .stylistprofile .ratingscontainer .rating {
+    width: 250px;
+    height: 50px;
+    margin: 10px auto 0 auto;
+    position: relative; }
+    .stylistmodal .stylistprofile .ratingscontainer .rating .stargrid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 50px;
+      margin: auto;
+      z-index: 500; }
+      .stylistmodal .stylistprofile .ratingscontainer .rating .stargrid img {
+        width: 50px;
+        height: 50px;
+        display: inline; }
+    .stylistmodal .stylistprofile .ratingscontainer .rating .starbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 50px;
+      background: #FF2353;
+      z-index: 300; }
+  .stylistmodal .stylistprofile .ratingscontainer .comments {
+    text-align: left; }
+    .stylistmodal .stylistprofile .ratingscontainer .comments .starholder {
+      color: #ff2353;
+      font-size: 13px;
+      display: block; }
+    .stylistmodal .stylistprofile .ratingscontainer .comments .comment {
+      font-size: 13px;
+      display: block;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+      margin-bottom: 10px; }
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *

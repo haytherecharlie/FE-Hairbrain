@@ -96,6 +96,7 @@ gulp.task('client-custom-sass', function() {
 gulp.task('client-custom-js', function() {
     return gulp.src([
         'resources/js/client/clientbase.js',
+        'resources/js/client/stylistprofile.js',
         'resources/js/client/clientadd.js',
         'resources/js/client/clientmenu.js',
         'resources/js/client/clientnav.js',

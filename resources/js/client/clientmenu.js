@@ -19,12 +19,14 @@ var ClientMenu = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var menuBox     = $('.clientmenu');
-var menuItems   = $('.clientmenu .menuitems');
-var menuReport  = $('.clientmenu .report');
-var menuLogout  = $('.clientmenu .logout');
-var menuOverlay = $('.clientmenu .menuoverlay');
-var reportModal = $('.reportmodal');
+var menuBox      = $('.clientmenu');
+var menuItems    = $('.clientmenu .menuitems');
+var menuProfile  = $('.clientmenu .profile');
+var menuReport   = $('.clientmenu .report');
+var menuLogout   = $('.clientmenu .logout');
+var menuOverlay  = $('.clientmenu .menuoverlay');
+var stylistModal = $('.stylistmodal');
+var reportModal  = $('.reportmodal');
 
 
 //----------------------------------------------------------------
@@ -39,6 +41,16 @@ var reportModal = $('.reportmodal');
 menuOverlay.click(function() {
     closeMenu();
 });
+
+/*******************************************
+ * On Click of Stylist Profile
+*******************************************/
+menuProfile.click(function() {
+    stylistModal.modal('show');
+    StylistProfile.stylistRatingAJAX();
+    closeMenu();
+});
+
 
 /*******************************************
  * On Click of Report Issue
