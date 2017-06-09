@@ -548,13 +548,16 @@ function registerFormAJAX() {
             "data": form,
             "statusCode": {
                 200: function(req, res) {
-                    successModal.modal('show');
+                    console.log(req, res);
+                    // successModal.modal('show');
                 },
                 400: function(req, res) {
-                    redirect('/learn/mistake/');
+                    console.log(req, res);
+                    // redirect('/learn/mistake/');
                 },
                 401: function(req, res) {
-                    location.origin.reload();
+                    console.log(req, res);
+                    // location.origin.reload();
                 }
             }
         }

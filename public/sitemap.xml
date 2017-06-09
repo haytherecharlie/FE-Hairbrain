@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://www.hairbrain.ca/</loc>
-        <lastmod>2017-06-06T19:42:28.000Z</lastmod>
+        <lastmod>2017-06-07T03:19:16.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/clients/</loc>
-        <lastmod>2017-06-07T01:36:02.000Z</lastmod>
+        <lastmod>2017-06-07T20:42:48.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/contact/</loc>
-        <lastmod>2017-06-06T18:52:37.000Z</lastmod>
+        <lastmod>2017-06-07T03:16:13.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/rating/</loc>
-        <lastmod>2017-06-06T19:11:20.000Z</lastmod>
+        <lastmod>2017-06-07T03:18:51.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/register/</loc>
-        <lastmod>2017-06-07T02:31:47.000Z</lastmod>
+        <lastmod>2017-06-07T03:18:59.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/templates/footerlinks.tpl.html</loc>
@@ -34,26 +34,26 @@
     </url>
     <url>
         <loc>https://www.hairbrain.ca/learn/about/</loc>
-        <lastmod>2017-06-06T19:24:16.000Z</lastmod>
+        <lastmod>2017-06-07T03:16:20.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/learn/blog/</loc>
-        <lastmod>2017-06-06T18:54:57.000Z</lastmod>
+        <lastmod>2017-06-07T03:16:41.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/learn/mistake/</loc>
-        <lastmod>2017-06-07T01:47:16.000Z</lastmod>
+        <lastmod>2017-06-07T03:16:45.000Z</lastmod>
+    </url>
+    <url>
+        <loc>https://www.hairbrain.ca/learn/privacy/</loc>
+        <lastmod>2017-06-07T03:18:19.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/learn/terms/</loc>
-        <lastmod>2017-06-06T19:09:10.000Z</lastmod>
+        <lastmod>2017-06-07T03:18:16.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/learn/tutorials/</loc>
         <lastmod>2017-06-06T19:10:05.000Z</lastmod>
-    </url>
-    <url>
-        <loc>https://www.hairbrain.ca/learn/privacy/</loc>
-        <lastmod>2017-06-06T19:08:36.000Z</lastmod>
     </url>
 </urlset>

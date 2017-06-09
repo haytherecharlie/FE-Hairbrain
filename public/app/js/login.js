@@ -225,8 +225,6 @@ function loginSuccess(res) {
     $.cookie('phone',    res.phone,    { expires: 7, path: '/' });
     $.cookie('email',    res.email,    { expires: 7, path: '/' });
     $.cookie('salon',    res.salon,    { expires: 7, path: '/' });
-    $.cookie('rating',   res.rating,   { expires: 7, path: '/' });
-    $.cookie('comments', res.comments, { expires: 7, path: '/' });
     redirect(/clients/);
 }
 
