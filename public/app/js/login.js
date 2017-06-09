@@ -135,6 +135,110 @@ function setNavListeners() {
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* ERROR MODAL TEMPLATE JS FUNCTIONALITY.
+/******************************************/
+
+var ErrorModal = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var errorModalTplPath    = '/templates/errormodal.tpl.html';
+var errorModalContainer  = $('.errormodalcontainer');
+var errorModal;
+var errorModalMsg;
+var errorModalClose;
+
+//----------------------------------------------------------------
+
+						 // TEMPLATES
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Add Listeners
+*******************************************/
+function addListeners() {
+    console.log('erooor');
+    errorModal      = $('.errormodal');
+    errorModalMsg   = $('.errormodal .message');
+    errorModalClose = $('.errormodal .dismiss');
+    errorModalClose.click(function() {
+        errorModalMsg.empty();
+    })
+}
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+function populateMessage(msg) {
+    console.log('heelo');
+    errorModalMsg.text(msg);
+    errorModal.modal('show');
+}
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    var Main = (function() {
+        
+        // Load onto body. 
+        if(errorModalContainer) {
+            errorModalContainer.load(errorModalTplPath, function() {
+                addListeners();
+            });
+        }
+
+    })();
+
+    return {
+        populateMessage: populateMessage
+    }
+
+})(); // END OF FOOTERLINKS.JS
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
 * Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
@@ -155,7 +259,7 @@ var Login = (function() {
 var loginForm     = $('.loginform');
 var loginPhone    = $('.loginphone');
 var loginPassword = $('.loginpassword');
-var loginFailed   = $('.failedlogin');
+var loginFailed   = $('.loginfailed');
 var loginButton   = $('.loginbutton');
 
 
@@ -190,8 +294,9 @@ $(loginForm).submit( function(e) {
 /*******************************************
  * Show Failed Login Message
 *******************************************/
-function showFailedMessage() {
-    loginFailed.css('opacity', '1');
+function showFailedMessage(message) {
+    $('errormodal .message').text(message);
+    $('.errormodal').modal('show');
 }
 
 /*******************************************
@@ -267,11 +372,12 @@ function loginFormAJAX() {
                 loginSuccess(JSON.parse(req));
             },
             400: function(req, res) {
-                redirect('/learn/mistake/');
-            },
-            401: function(req, res) {
+                ErrorModal.populateMessage(req.responseText);
                 enableLogin();
-                showFailedMessage();
+            },
+            500: function(req, res) {
+                showFailedMessage(req.responseText);
+                enableLogin();
             }
         }
     }
@@ -303,7 +409,7 @@ function checkIfAlreadyLoggedIn(jwt) {
                 redirect(/clients/);
             },
             400: function(req, res) {
-                redirect('/learn/mistake/');
+                console.log(req);
             },
             401: function(req, res) {
                 // Do Nothing 
@@ -330,8 +436,8 @@ function checkIfAlreadyLoggedIn(jwt) {
 
         // If JWT exists, try auto login.
         if ($.cookie('jwt')) { 
-            checkIfAlreadyLoggedIn($.cookie('jwt')) 
-        };
+            checkIfAlreadyLoggedIn($.cookie('jwt'));
+        }
 
     })();
 

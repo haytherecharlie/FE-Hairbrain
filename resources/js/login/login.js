@@ -22,7 +22,7 @@ var Login = (function() {
 var loginForm     = $('.loginform');
 var loginPhone    = $('.loginphone');
 var loginPassword = $('.loginpassword');
-var loginFailed   = $('.failedlogin');
+var loginFailed   = $('.loginfailed');
 var loginButton   = $('.loginbutton');
 
 
@@ -57,8 +57,9 @@ $(loginForm).submit( function(e) {
 /*******************************************
  * Show Failed Login Message
 *******************************************/
-function showFailedMessage() {
-    loginFailed.css('opacity', '1');
+function showFailedMessage(message) {
+    $('errormodal .message').text(message);
+    $('.errormodal').modal('show');
 }
 
 /*******************************************
@@ -134,11 +135,12 @@ function loginFormAJAX() {
                 loginSuccess(JSON.parse(req));
             },
             400: function(req, res) {
-                redirect('/learn/mistake/');
-            },
-            401: function(req, res) {
+                ErrorModal.populateMessage(req.responseText);
                 enableLogin();
-                showFailedMessage();
+            },
+            500: function(req, res) {
+                showFailedMessage(req.responseText);
+                enableLogin();
             }
         }
     }
@@ -170,7 +172,7 @@ function checkIfAlreadyLoggedIn(jwt) {
                 redirect(/clients/);
             },
             400: function(req, res) {
-                redirect('/learn/mistake/');
+                console.log(req);
             },
             401: function(req, res) {
                 // Do Nothing 
@@ -197,8 +199,8 @@ function checkIfAlreadyLoggedIn(jwt) {
 
         // If JWT exists, try auto login.
         if ($.cookie('jwt')) { 
-            checkIfAlreadyLoggedIn($.cookie('jwt')) 
-        };
+            checkIfAlreadyLoggedIn($.cookie('jwt'));
+        }
 
     })();
 

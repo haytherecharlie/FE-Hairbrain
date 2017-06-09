@@ -442,3 +442,8 @@ html *{ font-size: 1.1em; color: #000 ; font-family: hb-regular;}
 body {height: 100vh; width: 100vw; overflow: scroll;}
 a:hover, a:active, a:visited {text-decoration: none; color: inherit;}
 *:focus {outline: none;}
+.modal { text-align: center; padding: 0!important; background-color: rgba(255,255,255, 0.7);
+        .modallogo { width: 119px; height: 30px; margin: 10px; }
+        .modal-body { position: relative; }
+        &.fade { background-color: rgba(255,255,255, 0.7); }
+}

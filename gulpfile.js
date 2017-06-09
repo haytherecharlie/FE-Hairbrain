@@ -25,6 +25,7 @@ var sitemap     = require('gulp-sitemap');
 gulp.task('login-custom-sass', function() {
     gulp.src([
         'resources/sass/templates/navmenu.scss',
+        'resources/sass/templates/errormodal.scss',
         'resources/sass/login/login.scss',
         ])
         .pipe(concat('login.css'))
@@ -36,6 +37,7 @@ gulp.task('login-custom-sass', function() {
 gulp.task('login-custom-js', function() {
     return gulp.src([
         'resources/js/templates/navmenu.js',
+        'resources/js/templates/errormodal.js',
         'resources/js/login/login.js',
         'resources/js/universal/images/photoupload.js',
         ])
