@@ -90,23 +90,28 @@
           color: #999;
           cursor: pointer; }
 
-.modal {
+.errormodal {
   text-align: center;
   padding: 0 !important;
   background-color: rgba(255, 255, 255, 0.7); }
-  .modal .modal-content .modallogo {
+  .errormodal .modallogo {
     width: 119px;
     height: 30px;
     margin: 10px; }
-  .modal .modal-content .modal-body {
+  .errormodal .modal-body {
     position: relative; }
-  .modal .modal-content.fade {
+  .errormodal.fade {
     background-color: rgba(255, 255, 255, 0.7); }
-  .modal .modal-content .dismisserror {
-    width: 100%;
-    padding: 5px;
-    background: #ff2353;
-    color: #fff; }
+  .errormodal .dismiss {
+    border: 2px solid #ff2353;
+    border-radius: 25px;
+    padding: 7px 50px;
+    display: block;
+    background: #fff;
+    margin: auto;
+    position: relative;
+    font-size: 15px;
+    color: #ff2353; }
 
 /*******************************************
 * © 2017 Hairbrain inc.
