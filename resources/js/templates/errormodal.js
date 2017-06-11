@@ -42,7 +42,6 @@ var errorModalClose;
  * Add Listeners
 *******************************************/
 function addListeners() {
-    console.log('erooor');
     errorModal      = $('.errormodal');
     errorModalMsg   = $('.errormodal .message');
     errorModalClose = $('.errormodal .dismiss');
@@ -57,7 +56,6 @@ function addListeners() {
 
 //---------------------------------------------------------------/
 function populateMessage(msg) {
-    console.log('heelo');
     errorModalMsg.text(msg);
     errorModal.modal('show');
 }

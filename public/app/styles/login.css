@@ -100,18 +100,10 @@
     margin: 10px; }
   .errormodal .modal-body {
     position: relative; }
+  .errormodal .message {
+    font-size: 15px; }
   .errormodal.fade {
     background-color: rgba(255, 255, 255, 0.7); }
-  .errormodal .dismiss {
-    border: 2px solid #ff2353;
-    border-radius: 25px;
-    padding: 7px 50px;
-    display: block;
-    background: #fff;
-    margin: auto;
-    position: relative;
-    font-size: 15px;
-    color: #ff2353; }
 
 /*******************************************
 * © 2017 Hairbrain inc.

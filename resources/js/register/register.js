@@ -22,7 +22,7 @@ var Register = (function() {
 var registerForm   = $('.registerpage .registerform');
 var firstname      = $('.registerpage .registerform .firstname');
 var lastname       = $('.registerpage .registerform .lastname');
-var email          = $('.registerpage .registerform .avatar');
+var email          = $('.registerpage .registerform .email');
 var password       = $('.registerpage .registerform .password');
 var phone          = $('.registerpage .registerform .phone');
 var salon          = $('.registerpage .registerform .salon');
@@ -48,15 +48,8 @@ var successLogin   = $('.registerpage .login');
 /*******************************************
  * On Click Register Button
 *******************************************/
-registerBtn.click( function(e) {
+registerBtn.click( function() {
     registerFormAJAX();
-});
-
-/*******************************************
- * Changes on Inputs * Not Text Area
-*******************************************/
-$('.registerform input').keydown(function() {
-    countValidInputs();
 });
 
 /*******************************************
@@ -87,34 +80,6 @@ function initialize() {
     var autocomplete = new google.maps.places.Autocomplete(input);
 }
 
-/*******************************************
- * Count Valid Inputs
-*******************************************/
-function countValidInputs() {
-    var numInputs   = $('.registerform input').length;
-    var validInputs = 0; 
-    $('.registerform input').each(function() {
-        if ( $(this).val() !== '') {
-            validInputs++;
-        }
-    })
-    toggleSubmitBtn(validInputs, numInputs);
-}
-
-/*******************************************
- * Toggle Submit Button
-*******************************************/
-function toggleSubmitBtn(valid, total) {
-    if( valid === total ) {
-        registerBtn.prop('disabled', false);
-        registerBtn.removeClass('disabled');
-    }
-    else {
-        registerBtn.prop('disabled', true);
-        registerBtn.addClass('disabled');
-    }
-}
-
 //----------------------------------------------------------------
 
 						 // AJAX CALLS
@@ -131,6 +96,7 @@ function registerFormAJAX() {
         form.append("email", email.val());
         form.append("password", password.val());
         form.append("phone", phone.val());
+        form.append("email", email.val());
         form.append("salon", salon.val());
         form.append("avatar", $('.photoinput')[0].files[0], 'avatar.jpg');
         form.append("firstname", firstname.val());
@@ -150,20 +116,25 @@ function registerFormAJAX() {
             "data": form,
             "statusCode": {
                 200: function(req, res) {
-                    console.log(req, res);
-                    // successModal.modal('show');
+                    successModal.modal('show');
                 },
                 400: function(req, res) {
-                    console.log(req, res);
-                    // redirect('/learn/mistake/');
+                    ErrorModal.populateMessage(req.responseText);
                 },
                 401: function(req, res) {
-                    console.log(req, res);
-                    // location.origin.reload();
+                    ErrorModal.populateMessage(req.responseText);
+                },
+                500: function(req, res) {
+                    ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
                 }
             }
         }
         $.ajax(settings)
+    } 
+    
+    //
+    else {
+        ErrorModal.populateMessage('Beta keyword incorrect.');
     }
 }
 
@@ -178,7 +149,6 @@ function registerFormAJAX() {
 *******************************************/
     var Main = (function() {
         google.maps.event.addDomListener(window, 'load', initialize);
-        countValidInputs();
     })();
 
     return {

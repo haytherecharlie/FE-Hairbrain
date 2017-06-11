@@ -42,9 +42,8 @@ var loginButton   = $('.loginbutton');
 /*******************************************
  * Submit Form
 *******************************************/
-$(loginForm).submit( function(e) {
+loginForm.submit( function(e) {
     e.preventDefault();
-    disableLogin();
     loginFormAJAX();
 });
 
@@ -53,28 +52,6 @@ $(loginForm).submit( function(e) {
 						 // VIEWS
 
 //---------------------------------------------------------------/
-
-/*******************************************
- * Show Failed Login Message
-*******************************************/
-function showFailedMessage(message) {
-    $('errormodal .message').text(message);
-    $('.errormodal').modal('show');
-}
-
-/*******************************************
- * Disable Login Button
-*******************************************/
-function disableLogin() {
-    loginButton.prop('disabled', true);
-}
-
-/*******************************************
- * Enable Login Button
-*******************************************/
-function enableLogin() {
-    loginButton.prop('disabled', false);
-}
 
 
 //----------------------------------------------------------------
@@ -114,9 +91,9 @@ function redirect(path) {
 *******************************************/
 function loginFormAJAX() {
 
-    var loginForm = new FormData();
-    loginForm.append("phone", loginPhone.val());
-    loginForm.append("password", loginPassword.val());
+    var form = new FormData();
+    form.append("phone", loginPhone.val());
+    form.append("password", loginPassword.val());
 
     var loginSettings = {
         "async": true,
@@ -129,18 +106,19 @@ function loginFormAJAX() {
         "processData": false,
         "contentType": false,
         "mimeType": "multipart/form-data",
-        "data": loginForm,
+        "data": form,
         "statusCode": {
             200: function(req, res) {
                 loginSuccess(JSON.parse(req));
             },
             400: function(req, res) {
                 ErrorModal.populateMessage(req.responseText);
-                enableLogin();
+            },
+            401: function(req, res) {
+                ErrorModal.populateMessage(req.responseText);
             },
             500: function(req, res) {
-                showFailedMessage(req.responseText);
-                enableLogin();
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
     }
@@ -171,11 +149,11 @@ function checkIfAlreadyLoggedIn(jwt) {
             200: function(req, res) {
                 redirect(/clients/);
             },
-            400: function(req, res) {
-                console.log(req);
-            },
             401: function(req, res) {
                 // Do Nothing 
+            }, 
+            500: function(req, res) {
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
     }

@@ -55,6 +55,7 @@ gulp.task('login-custom-js', function() {
 gulp.task('register-custom-sass', function() {
     gulp.src([
         'resources/sass/templates/navmenu.scss',
+        'resources/sass/templates/errormodal.scss',
         'resources/sass/templates/footerlinks.scss',
         'resources/sass/templates/photoupload.scss',
         'resources/sass/register/register.scss',
@@ -68,6 +69,7 @@ gulp.task('register-custom-sass', function() {
 gulp.task('register-custom-js', function() {
     return gulp.src([
         'resources/js/templates/navmenu.js',
+        'resources/js/templates/errormodal.js',
         'resources/js/templates/footerlinks.js',
         'resources/js/templates/photoupload.js',        
         'resources/js/register/register.js',
