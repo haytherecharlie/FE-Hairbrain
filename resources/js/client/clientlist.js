@@ -124,10 +124,13 @@ function clientListAJAX() {
                     displayClients(req);
             },
             400: function(req, res) {
-                redirect('/learn/mistake/');
+                ErrorModal.populateMessage(req.responseText);
             },
             401: function(req, res) {
                 redirect('/');
+            },
+            500: function(req, res) {
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
     }

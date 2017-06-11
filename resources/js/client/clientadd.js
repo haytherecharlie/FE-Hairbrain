@@ -41,7 +41,6 @@ var clientAddModalLoadingGif  = $('.clientaddmodal .savingclient');
  * On Click of Client Add Button
 *******************************************/
 clientAddButton.click( function() {
-    countValidInputs();
     clientAddModal.modal('show');
 });
 
@@ -51,7 +50,6 @@ clientAddButton.click( function() {
 clientAddFormSubmit.click( function() {
     showLoading();
     clientAddFormAJAX();
-    emptyAddForm();
 });
 
 /*******************************************
@@ -66,13 +64,6 @@ clientAddModalCloseButton.click( function() {
 *******************************************/
 $(document).keypress(":input:not(textarea)", function(event) {
     return event.keyCode != 13;
-});
-
-/*******************************************
- * Listens for Change on Inputs (Not Textarea)
-*******************************************/
-$('.clientaddmodal .clientaddform input').not('input[type="button"]').keydown(function() {
-    countValidInputs();
 });
 
 
@@ -113,29 +104,6 @@ function emptyAddForm() {
     $('.clientaddmodal .clientaddform .photothumb').css('background', 'none');
 }
 
-/*******************************************
- * Count Valid Inputs
-*******************************************/
-function countValidInputs() {
-    var numInputs   = $('.clientaddmodal .clientaddform input').length;
-    var validInputs = 1; 
-    $('.clientaddmodal .clientaddform input').each(function() {
-        if ( $(this).val() !== '') {
-            validInputs++;
-        }
-    })
-    toggleSubmitBtn(validInputs, numInputs);
-}
-
-/*******************************************
- * Toggle Submit Button
-*******************************************/
-function toggleSubmitBtn(valid, total) {
-    if( valid === total )
-        clientAddFormSubmit.prop('disabled', false);
-    else 
-        clientAddFormSubmit.prop('disabled', true);
-}
 
 //----------------------------------------------------------------
 
@@ -174,16 +142,24 @@ function clientAddFormAJAX() {
                 emptyAddForm();
                 clientAddModal.modal('hide');
                 hideLoading();
+                emptyAddForm();
             },
             400: function(req, res) {
-                redirect('/learn/mistake/');
+                hideLoading();
+                ErrorModal.populateMessage(req.responseText);
             },
             401: function(req, res) {
-                redirect('/');
+                hideLoading();
+                ErrorModal.populateMessage(req.responseText);
+            },
+            500: function(req, res) {
+                hideLoading();
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
     }
 
+    // AJAX SETTINGS
     $.ajax(settings)
 
 }

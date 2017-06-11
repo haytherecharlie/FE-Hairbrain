@@ -70,7 +70,6 @@ menuLogout.click(function() {
     $.removeCookie('phone', { path: '/' })
     $.removeCookie('email', { path: '/' })
     $.removeCookie('salon', { path: '/' })
-    $.removeCookie('rating', { path: '/' })
 	window.location.href = window.location.origin + '/';
 });
 

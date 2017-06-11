@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://www.hairbrain.ca/</loc>
-        <lastmod>2017-06-07T03:19:16.000Z</lastmod>
+        <lastmod>2017-06-11T19:39:00.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/clients/</loc>
-        <lastmod>2017-06-07T20:42:48.000Z</lastmod>
+        <lastmod>2017-06-11T20:04:52.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/contact/</loc>
@@ -18,7 +18,11 @@
     </url>
     <url>
         <loc>https://www.hairbrain.ca/register/</loc>
-        <lastmod>2017-06-07T03:18:59.000Z</lastmod>
+        <lastmod>2017-06-11T18:58:36.000Z</lastmod>
+    </url>
+    <url>
+        <loc>https://www.hairbrain.ca/templates/errormodal.tpl.html</loc>
+        <lastmod>2017-06-09T20:55:32.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/templates/footerlinks.tpl.html</loc>
@@ -26,7 +30,7 @@
     </url>
     <url>
         <loc>https://www.hairbrain.ca/templates/navmenu.tpl.html</loc>
-        <lastmod>2017-06-01T00:10:48.000Z</lastmod>
+        <lastmod>2017-06-11T18:51:21.000Z</lastmod>
     </url>
     <url>
         <loc>https://www.hairbrain.ca/templates/photoupload.tpl.html</loc>

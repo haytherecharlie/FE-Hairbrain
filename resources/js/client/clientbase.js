@@ -23,8 +23,6 @@ var name        = decodeURI($.cookie('name'));
 var phone       = decodeURI($.cookie('phone'));
 var email       = decodeURI($.cookie('email'));
 var salon       = decodeURI($.cookie('salon'));
-var rating      = decodeURI($.cookie('rating'));
-var comments    = decodeURI($.cookie('comments'));
 
 
 //----------------------------------------------------------------
@@ -72,6 +70,7 @@ function redirect(path) {
 						 // AJAX CALLS
 
 //---------------------------------------------------------------/
+
 
 //----------------------------------------------------------------
 

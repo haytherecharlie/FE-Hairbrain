@@ -43,7 +43,8 @@ function setStarbarLength(rating) {
         var value = (Math.round(rating * 2) / 2).toFixed(1) * 50;
         $('.starbar').css('width', value);
     } else {
-        $('.starbar').css('width', 250);   
+        $('.ratingtitle').text('No Ratings Yet!');
+        $('.starbar').css('width', 0);   
     }
 }
 
@@ -68,11 +69,13 @@ function setComments(comments) {
 //---------------------------------------------------------------/
 function populateStylistProfile() {
     stylistProfile.append('' +
-    '<img class="avatar" src="'+apiurl+'avatar/'+userid+'/">' +
+    '<div class="avatar"></div>' +
     '<span class="name">'+name+'</span>' +
     '<span class="phone">'+phone+'</span>' +
     '<span class="salon">'+salon+'</span><hr>' +
     '<div class="ratingscontainer">Fetching Rating<img src="/app/img/loading.gif"></div>');
+
+    $('.stylistprofile .avatar').css('background', 'url("'+apiurl+'avatar/'+userid+'") no-repeat center');
 }
 
 function populateStylistRating(req) {
@@ -114,16 +117,16 @@ function stylistRatingAJAX() {
         "contentType": false,
         "statusCode": {
             200: function(req, res) {
-                console.log(req);
                 populateStylistRating(req);
             },
             400: function(req, res) {
-                // redirect('/learn/mistake/');
-                console.log('400');
+                ErrorModal.populateMessage(req.responseText);
             },
             401: function(req, res) {
-                // redirect('/');
-                console.log('401');
+                redirect('/');
+            },
+            500: function(req, res) {
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
     }

@@ -23,8 +23,6 @@ var name        = decodeURI($.cookie('name'));
 var phone       = decodeURI($.cookie('phone'));
 var email       = decodeURI($.cookie('email'));
 var salon       = decodeURI($.cookie('salon'));
-var rating      = decodeURI($.cookie('rating'));
-var comments    = decodeURI($.cookie('comments'));
 
 
 //----------------------------------------------------------------
@@ -73,12 +71,115 @@ function redirect(path) {
 
 //---------------------------------------------------------------/
 
+
 //----------------------------------------------------------------
 
 						 // MAIN
 
 //---------------------------------------------------------------/
 
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* ERROR MODAL TEMPLATE JS FUNCTIONALITY.
+/******************************************/
+
+var ErrorModal = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var errorModalTplPath    = '/templates/errormodal.tpl.html';
+var errorModalContainer  = $('.errormodalcontainer');
+var errorModal;
+var errorModalMsg;
+var errorModalClose;
+
+//----------------------------------------------------------------
+
+						 // TEMPLATES
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Add Listeners
+*******************************************/
+function addListeners() {
+    errorModal      = $('.errormodal');
+    errorModalMsg   = $('.errormodal .message');
+    errorModalClose = $('.errormodal .dismiss');
+    errorModalClose.click(function() {
+        errorModalMsg.empty();
+    })
+}
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+function populateMessage(msg) {
+    errorModalMsg.text(msg);
+    errorModal.modal('show');
+}
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+
+
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    var Main = (function() {
+        
+        // Load onto body. 
+        if(errorModalContainer) {
+            errorModalContainer.load(errorModalTplPath, function() {
+                addListeners();
+            });
+        }
+
+    })();
+
+    return {
+        populateMessage: populateMessage
+    }
+
+})(); // END OF FOOTERLINKS.JS
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------
@@ -124,7 +225,8 @@ function setStarbarLength(rating) {
         var value = (Math.round(rating * 2) / 2).toFixed(1) * 50;
         $('.starbar').css('width', value);
     } else {
-        $('.starbar').css('width', 250);   
+        $('.ratingtitle').text('No Ratings Yet!');
+        $('.starbar').css('width', 0);   
     }
 }
 
@@ -149,11 +251,13 @@ function setComments(comments) {
 //---------------------------------------------------------------/
 function populateStylistProfile() {
     stylistProfile.append('' +
-    '<img class="avatar" src="'+apiurl+'avatar/'+userid+'/">' +
+    '<div class="avatar"></div>' +
     '<span class="name">'+name+'</span>' +
     '<span class="phone">'+phone+'</span>' +
     '<span class="salon">'+salon+'</span><hr>' +
     '<div class="ratingscontainer">Fetching Rating<img src="/app/img/loading.gif"></div>');
+
+    $('.stylistprofile .avatar').css('background', 'url("'+apiurl+'avatar/'+userid+'") no-repeat center');
 }
 
 function populateStylistRating(req) {
@@ -195,16 +299,16 @@ function stylistRatingAJAX() {
         "contentType": false,
         "statusCode": {
             200: function(req, res) {
-                console.log(req);
                 populateStylistRating(req);
             },
             400: function(req, res) {
-                // redirect('/learn/mistake/');
-                console.log('400');
+                ErrorModal.populateMessage(req.responseText);
             },
             401: function(req, res) {
-                // redirect('/');
-                console.log('401');
+                redirect('/');
+            },
+            500: function(req, res) {
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
     }
@@ -278,7 +382,6 @@ var clientAddModalLoadingGif  = $('.clientaddmodal .savingclient');
  * On Click of Client Add Button
 *******************************************/
 clientAddButton.click( function() {
-    countValidInputs();
     clientAddModal.modal('show');
 });
 
@@ -288,7 +391,6 @@ clientAddButton.click( function() {
 clientAddFormSubmit.click( function() {
     showLoading();
     clientAddFormAJAX();
-    emptyAddForm();
 });
 
 /*******************************************
@@ -303,13 +405,6 @@ clientAddModalCloseButton.click( function() {
 *******************************************/
 $(document).keypress(":input:not(textarea)", function(event) {
     return event.keyCode != 13;
-});
-
-/*******************************************
- * Listens for Change on Inputs (Not Textarea)
-*******************************************/
-$('.clientaddmodal .clientaddform input').not('input[type="button"]').keydown(function() {
-    countValidInputs();
 });
 
 
@@ -350,29 +445,6 @@ function emptyAddForm() {
     $('.clientaddmodal .clientaddform .photothumb').css('background', 'none');
 }
 
-/*******************************************
- * Count Valid Inputs
-*******************************************/
-function countValidInputs() {
-    var numInputs   = $('.clientaddmodal .clientaddform input').length;
-    var validInputs = 1; 
-    $('.clientaddmodal .clientaddform input').each(function() {
-        if ( $(this).val() !== '') {
-            validInputs++;
-        }
-    })
-    toggleSubmitBtn(validInputs, numInputs);
-}
-
-/*******************************************
- * Toggle Submit Button
-*******************************************/
-function toggleSubmitBtn(valid, total) {
-    if( valid === total )
-        clientAddFormSubmit.prop('disabled', false);
-    else 
-        clientAddFormSubmit.prop('disabled', true);
-}
 
 //----------------------------------------------------------------
 
@@ -411,16 +483,24 @@ function clientAddFormAJAX() {
                 emptyAddForm();
                 clientAddModal.modal('hide');
                 hideLoading();
+                emptyAddForm();
             },
             400: function(req, res) {
-                redirect('/learn/mistake/');
+                hideLoading();
+                ErrorModal.populateMessage(req.responseText);
             },
             401: function(req, res) {
-                redirect('/');
+                hideLoading();
+                ErrorModal.populateMessage(req.responseText);
+            },
+            500: function(req, res) {
+                hideLoading();
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
     }
 
+    // AJAX SETTINGS
     $.ajax(settings)
 
 }
@@ -518,7 +598,6 @@ menuLogout.click(function() {
     $.removeCookie('phone', { path: '/' })
     $.removeCookie('email', { path: '/' })
     $.removeCookie('salon', { path: '/' })
-    $.removeCookie('rating', { path: '/' })
 	window.location.href = window.location.origin + '/';
 });
 
@@ -997,10 +1076,13 @@ function deleteClient() {
                 ClientNav.closeClientProfile();
             },
             400: function(req, res) {
-                redirect('/learn/mistake/');
+                ErrorModal.populateMessage(req.responseText);
             },
             401: function(req, res) {
                 redirect('/');
+            },
+            500: function(req, res) {
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
     }
@@ -1157,10 +1239,13 @@ function clientListAJAX() {
                     displayClients(req);
             },
             400: function(req, res) {
-                redirect('/learn/mistake/');
+                ErrorModal.populateMessage(req.responseText);
             },
             401: function(req, res) {
                 redirect('/');
+            },
+            500: function(req, res) {
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
     }
@@ -1272,10 +1357,13 @@ function submitForm() {
                 // Do Nothing
             },
             400: function(req, res) {
-                redirect('/learn/mistake/');
+                ErrorModal.populateMessage(req.responseText);
             },
             401: function(req, res) {
                 redirect('/');
+            },
+            500: function(req, res) {
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
     }

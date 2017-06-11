@@ -93,14 +93,13 @@ function registerFormAJAX() {
 
     if(keyword.val() === 'Kanye2020') {
         var form = new FormData();
-        form.append("email", email.val());
-        form.append("password", password.val());
-        form.append("phone", phone.val());
-        form.append("email", email.val());
-        form.append("salon", salon.val());
-        form.append("avatar", $('.photoinput')[0].files[0], 'avatar.jpg');
+        form.append("avatar", $('.photoinput')[0].files[0], 'avatar.jpg');        
         form.append("firstname", firstname.val());
         form.append("lastname", lastname.val());
+        form.append("phone", phone.val());
+        form.append("password", password.val());        
+        form.append("email", email.val());
+        form.append("salon", salon.val());
 
         var settings = {
             "async": true,
@@ -129,6 +128,8 @@ function registerFormAJAX() {
                 }
             }
         }
+
+        // AJAX SETTINGS
         $.ajax(settings)
     } 
     

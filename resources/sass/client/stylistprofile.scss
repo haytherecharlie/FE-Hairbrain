@@ -18,13 +18,14 @@
         font-size: 15px;
 
         // STYLIST AVATAR //
-        img.avatar {
+        .avatar {
             border-radius: 50%;
             border: 2px solid #ccc;
             height: 100px;
             width: 100px;
             display: block;
             margin: 5px auto;
+            background-size: cover!important;
         }
 
         .name {
@@ -39,9 +40,6 @@
         .salon {
             display: block;
             font-size: 12px;
-        }
-
-        .ratingtitle {
         }
 
         .ratingscontainer {

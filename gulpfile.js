@@ -89,6 +89,7 @@ gulp.task('register-custom-js', function() {
 gulp.task('client-custom-sass', function() {
     gulp.src([
         'resources/sass/client/*.scss',
+        'resources/sass/templates/errormodal.scss',        
         'resources/sass/templates/photoupload.scss',
     ])
         .pipe(concat('client.css'))
@@ -100,6 +101,7 @@ gulp.task('client-custom-sass', function() {
 gulp.task('client-custom-js', function() {
     return gulp.src([
         'resources/js/client/clientbase.js',
+        'resources/js/templates/errormodal.js',                
         'resources/js/client/stylistprofile.js',
         'resources/js/client/clientadd.js',
         'resources/js/client/clientmenu.js',
