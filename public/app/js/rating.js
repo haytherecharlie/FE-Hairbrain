@@ -1,1 +1,351 @@
-var Rating=function(){function t(){b.fadeIn()}function n(){a(),g.fadeIn()}function a(){C.html(F.name)}function e(){v.animate({height:"50%"},500,function(){w.fadeIn()})}function i(){v.animate({height:"100%"},500,function(){y.fadeIn()})}function o(t,n){for(var a=0;a<=5;a++)a<=n?$("#"+t+" #star"+a).html("&bigstar;"):$("#"+t+" #star"+a).html("&star;");c()}function c(){setTimeout(function(){r("step2"),I.fadeOut()},1e3)}function r(t){$("#"+t).animate({left:"-100%"},500,function(){T.fadeIn(),D.fadeIn()})}function s(){""!==x.val()&&(h=x.val()),d()}function u(t,n){switch(n){case"star1":p=1,o(t,1);break;case"star2":p=2,o(t,2);break;case"star3":p=3,o(t,3);break;case"star4":p=4,o(t,4);break;case"star5":p=5,o(t,5);break;default:console.log("error")}}function f(){null===E||""===E?t():m()}function l(t){window.location.href=window.location.origin+t}function m(){var a={async:!0,crossDomain:!0,url:apiurl+"rating/verify/"+E,method:"GET",headers:{"cache-control":"no-cache"},processData:!1,contentType:!1,statusCode:{200:function(a,e){""==a?(t(),setTimeout(function(){l("/learn/about/")},5e3)):(F=a,n())},400:function(t,n){l("/learn/mistake/")},401:function(n,a){t()}}};$.ajax(a)}function d(){var t=new FormData;t.append("stars",p),t.append("comment",h),t.append("id",E);var n={async:!0,crossDomain:!0,url:apiurl+"rating/"+F.userid+"/"+F.clientid,method:"POST",headers:{"cache-control":"no-cache"},processData:!1,contentType:!1,mimeType:"multipart/form-data",data:t,statusCode:{200:function(t,n){setTimeout(function(){l("/learn/about/")},5e3)},400:function(t,n){l("/learn/mistake/")}}};$.ajax(n)}var p=5,h="No comments.",v=$("header"),k=$("#startnow"),b=$("#invalid"),g=$("#step1"),w=$("#step2"),T=$("#step3"),y=$("#step4"),I=$("#stars1"),D=$(".comments"),x=$(".commentsbox"),O=$(".submitcomment"),j=$("#skipcomments"),C=$("#stylist"),E=function(){var t=window.location.href,n=t.split("?")[1];if(void 0===n)return null;var a=n.split("=");return"id"===a[0]?a[1]:null}(),F={};k.click(function(){g.fadeOut(),e()}),$("#stars1 .starrating").each(function(){$(this).click(function(){var t=$(this).attr("id");u($(this).parent().attr("id"),t)})}),O.click(function(){r("step3"),i(),s()}),j.click(function(){r("step3"),i(),s()});!function(){f()}();return{}}();
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 6th 2017
+* Author: Charlie Hay
+*
+* RATING PAGE JS FUNCTIONALITY.
+/******************************************/
+
+var Rating = (function() {
+
+//----------------------------------------------------------------
+
+						 // CACHE
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Global Variables
+*******************************************/
+var experienceScore = 5;
+var commentsScore   = 'No comments.';
+var header          = $('header');
+var startNow        = $('#startnow');
+var invalid         = $('#invalid');
+var step1           = $('#step1');
+var step2           = $('#step2');
+var step3           = $('#step3');
+var step4           = $('#step4');
+var stars1          = $('#stars1');
+var comments        = $('.comments');
+var commentsBox     = $('.commentsbox');
+var submitComment   = $('.submitcomment');
+var skipComments    = $('#skipcomments');
+var stylistBold     = $('#stylist');
+var requestId       = getRequestId();
+var keyInfoObj      = {};
+
+//----------------------------------------------------------------
+
+						 // TEMPLATES
+
+//---------------------------------------------------------------/
+
+
+//----------------------------------------------------------------
+
+						 // LISTENERS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * On Click of Start Now
+*******************************************/
+startNow.click(function() {
+    step1.fadeOut();
+    slideHeaderUp();
+});
+
+/*******************************************
+ * Listens to All Stars
+*******************************************/
+$('#stars1 .starrating').each(function() {
+    $(this).click(function() {
+        var rating = $(this).attr('id');
+        var question = $(this).parent().attr('id');
+        setStarsScore(question, rating);
+    })
+});
+
+/*******************************************
+ * On Click of Submit Comment
+*******************************************/
+submitComment.click(function() {
+    slideAndFade('step3');
+    slideHeaderDown();
+    setCommentsScore();
+});
+
+/*******************************************
+ * On Click of Skip Comments
+*******************************************/
+skipComments.click(function() {
+    slideAndFade('step3');
+    slideHeaderDown();
+    setCommentsScore();
+});
+
+//----------------------------------------------------------------
+
+						 // VIEWS
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Show Invalid Rating
+*******************************************/
+function ratingInvalid() {
+    invalid.fadeIn();
+}
+
+/*******************************************
+ * Show Valid Rating
+*******************************************/
+function ratingValid() {
+    showStylistName();
+    step1.fadeIn();
+}
+
+/*******************************************
+ * Show Stylist Name
+*******************************************/
+function showStylistName() {
+    stylistBold.html(keyInfoObj.name);
+}
+
+/*******************************************
+ * Slide Header Up
+*******************************************/
+function slideHeaderUp() {
+    header.animate({
+        height: '50%'
+    }, 500, function() {
+        step2.fadeIn();
+    });
+}
+
+/*******************************************
+ * Slide Header Down 
+*******************************************/
+function slideHeaderDown() {
+    header.animate({
+        height: '100%'
+    }, 500, function() {
+        step4.fadeIn();
+    }); 
+}
+
+/*******************************************
+ * Show Stars
+*******************************************/
+function showStars(q, r) {
+    for(var i = 0; i <= 5; i++) {
+        if( i <= r) $('#' + q + ' #star' + i).html('&bigstar;');
+        else $('#' + q + ' #star' + i).html('&star;');
+    }
+    showCommentsBox();
+}
+
+/*******************************************
+ * Show Comments Box
+*******************************************/
+function showCommentsBox() {
+    setTimeout(function() {
+        slideAndFade('step2');
+        stars1.fadeOut();
+    }, 1000)     
+}
+
+/*******************************************
+ * Slide and Fade
+*******************************************/
+function slideAndFade(id) {
+    $('#' + id).animate({
+        left: "-100%"
+    }, 500, function() {
+        step3.fadeIn();
+        comments.fadeIn();
+    });
+}
+
+//----------------------------------------------------------------
+
+						 // LOGIC
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Set Comments Score
+*******************************************/
+function setCommentsScore() {
+    if(commentsBox.val() !== '')
+        commentsScore = commentsBox.val();
+    postRating();
+}
+
+/*******************************************
+ * Set Stars Score
+*******************************************/
+function setStarsScore(q, r) {
+    switch(r) {
+        case 'star1':
+            experienceScore = 1;
+            showStars(q, 1);
+            break;
+        case 'star2':
+            experienceScore = 2;
+            showStars(q, 2);
+            break;
+        case 'star3':
+            experienceScore = 3;
+            showStars(q, 3);
+            break;
+        case 'star4':
+            experienceScore = 4;
+            showStars(q, 4);
+            break;
+        case 'star5':
+            experienceScore = 5;
+            showStars(q, 5);
+            break;
+        default:
+            console.log('error');
+    }
+}
+
+/*******************************************
+ * Verify Rating With Code
+*******************************************/
+function verifyRating() {
+
+    // Rating is invalid. 
+    if( requestId === null || requestId === '' ) ratingInvalid();
+    
+    // Rating is valid.
+    else getRatingVerification();
+
+}
+
+/*******************************************
+ * Get Request Id From URL
+*******************************************/
+function getRequestId() {
+
+    var url = window.location.href;
+    var param = url.split('?')[1];
+
+    if( typeof param === 'undefined' ) {
+        return null;
+    } 
+    
+    else {
+        var idVal = param.split('=');
+        if(idVal[0] === 'id') return idVal[1];
+        else return null;
+    }
+
+}
+
+/*******************************************
+ * Redirect Page -> URL
+*******************************************/
+function redirect(path) {
+    window.location.href = window.location.origin + path; 
+}
+
+
+//----------------------------------------------------------------
+
+						 // AJAX CALLS
+
+//---------------------------------------------------------------/
+/*******************************************
+ * Get Rating Verification
+*******************************************/
+function getRatingVerification() {
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": apiurl + "rating/verify/" + requestId,
+        "method": "GET",
+        "headers": {
+            "cache-control": "no-cache"
+        },
+        "processData": false,
+        "contentType": false,
+        "statusCode": {
+            200: function(req, res) {
+                if(req == '') {
+                    ratingInvalid();
+                    setTimeout(function() { redirect('/learn/about/') }, 5000);
+                } else {
+                    keyInfoObj = req;
+                    ratingValid();
+                }
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            },
+            401: function(req, res) {
+                ratingInvalid();
+            }
+        }
+    }
+    $.ajax(settings)
+}
+
+function postRating() {
+
+    var form = new FormData();
+    form.append("stars", experienceScore);
+    form.append("comment", commentsScore);
+    form.append('id', requestId);
+
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": apiurl + "rating/" + keyInfoObj.userid + '/' + keyInfoObj.clientid,
+        "method": "POST",
+        "headers": {
+            "cache-control": "no-cache",
+        },
+        "processData": false,
+        "contentType": false,
+        "mimeType": "multipart/form-data",
+        "data": form,        
+        "statusCode": {
+            200: function(req, res) {
+                setTimeout(function() { redirect('/learn/about/') }, 5000);
+            },
+            400: function(req, res) {
+                redirect('/learn/mistake/');
+            }
+        }
+    }
+    $.ajax(settings)
+}
+
+//----------------------------------------------------------------
+
+						 // MAIN
+
+//---------------------------------------------------------------/
+
+/*******************************************
+ * Main Function
+*******************************************/
+    var Main = (function() {
+
+        // Verify if Rating is Valid
+        verifyRating();
+
+    })();
+
+    return {
+
+    }
+
+})(); // END OF RATING.JS

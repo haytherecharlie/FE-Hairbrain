@@ -119,6 +119,36 @@ gulp.task('client-custom-js', function() {
 
 
 /*******************************************
+/               PROFILE PAGE
+/******************************************/
+
+// PROFILE CUSTOM SASS ======================
+gulp.task('profile-custom-sass', function() {
+    gulp.src([
+        'resources/sass/templates/navmenu.scss',
+        'resources/sass/templates/footerlinks.scss',
+        'resources/sass/profile/profile.scss'
+        ])
+        .pipe(concat('profile.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/'))
+});
+
+// PROFILE CUSTOM JS ========================
+gulp.task('profile-custom-js', function() {
+    return gulp.src([
+        'resources/js/templates/navmenu.js',
+        'resources/js/templates/footerlinks.js',
+        'resources/js/profile/profile.js'
+        ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('profile.js'))
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
+    .pipe(gulp.dest('./public/app/js/'))
+});
+
+
+/*******************************************
 /               CONTACT PAGE
 /******************************************/
 
@@ -373,6 +403,7 @@ gulp.task('default', [
     'login-custom-sass',     'login-custom-js',
     'register-custom-sass',  'register-custom-js',
     'client-custom-sass',    'client-custom-js', 
+    'profile-custom-sass',   'profile-custom-js', 
     'contact-custom-sass',   'contact-custom-js',
     'rating-custom-sass',    'rating-custom-js',
     'about-custom-sass',     'about-custom-js',

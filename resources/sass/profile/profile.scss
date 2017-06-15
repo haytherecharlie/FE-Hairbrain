@@ -1,0 +1,91 @@
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: June 15th 2017
+* Author: Charlie Hay
+*
+* PROFILE PAGE STYLES.
+/******************************************/
+
+.profilepage {
+
+    main {
+        margin-top: 50px;
+        min-height: 400px;
+        width: 100%;
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+
+        .stylistnotfound {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 15px;
+            font-family: hb-bold;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .namebanner {
+            padding: 0 20px;
+            height: 40px;
+            display: block;
+            background: #ff2353;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            font-size: 15px;
+            text-transform: uppercase;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: hb-bold;
+        }
+
+        .profilepic {
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+        }
+
+        .salonbanner {
+            display: block;
+            text-align: center;
+            font-size: 15px;
+            color: #666;
+        }
+
+        .phonebanner {
+            display: block;
+            text-align: center;
+            font-size: 15px;
+            color: #666;
+        }
+
+        .emailbanner {
+            display: block;
+            text-align: center;
+            font-size: 15px;
+            color: #666;
+        }
+
+        .totalratingbanner {
+            display: block;
+            text-align: center;
+            font-size: 15px;
+            color: #666;
+        }
+
+        .rawratingsbanner {
+            display: block;
+            text-align: center;
+            font-size: 15px;
+            color: #666;
+        }
+    }
+}

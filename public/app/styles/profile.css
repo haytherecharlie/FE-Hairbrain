@@ -90,21 +90,6 @@
           color: #999;
           cursor: pointer; }
 
-.errormodal {
-  text-align: center;
-  padding: 0 !important;
-  background-color: rgba(255, 255, 255, 0.7); }
-  .errormodal .modallogo {
-    width: 119px;
-    height: 30px;
-    margin: 10px; }
-  .errormodal .modal-body {
-    position: relative; }
-  .errormodal .message {
-    font-size: 15px; }
-  .errormodal.fade {
-    background-color: rgba(255, 255, 255, 0.7); }
-
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------
@@ -156,122 +141,70 @@
 * © 2017 Hairbrain inc.
 * ---------------------
 * Created: February 11th 2017
-* Last Modified: March 21st 2017
+* Last Modified: June 15th 2017
 * Author: Charlie Hay
 *
-* PHOTO UPLOAD STYLES 
+* PROFILE PAGE STYLES.
 /******************************************/
-.photowidget {
-  display: block;
-  position: relative; }
-  .photowidget .photoinput {
-    display: none; }
-  .photowidget .photobox {
-    height: 150px;
-    width: 100px;
-    background: url("/app/img/photoholder.png") no-repeat center;
-    background-size: 100%;
-    display: block;
-    margin: 10px auto;
-    position: relative; }
-    .photowidget .photobox .default {
-      height: 100%;
-      width: 100%;
-      border: none; }
-    .photowidget .photobox .rotate {
-      -webkit-transform: rotate(90deg);
-      -moz-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-      -o-transform: rotate(90deg);
-      transform: rotate(90deg);
-      position: absolute;
-      top: 24px;
-      left: -26px;
-      width: 150px;
-      height: 100px;
-      border: none; }
-
-/*******************************************
-* © 2017 Hairbrain inc.
-* ---------------------
-* Created: February 11th 2017
-* Last Modified: March 21st 2017
-* Author: Charlie Hay
-*
-* REGISTER STYLES 
-/******************************************/
-.registerpage main {
+.profilepage main {
   margin-top: 50px;
-  min-height: calc(100vh - 100px);
-  background: #ff2353;
+  min-height: 400px;
+  width: 100%;
   padding: 20px;
-  display: table;
-  width: 100%; }
-  .registerpage main .registerbox {
-    display: table-cell;
+  position: relative;
+  overflow: hidden; }
+  .profilepage main .stylistnotfound {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+    font-family: hb-bold;
+    color: #333;
+    text-transform: uppercase; }
+  .profilepage main .namebanner {
+    padding: 0 20px;
+    height: 40px;
+    display: block;
+    background: #ff2353;
+    color: #fff;
     text-align: center;
-    vertical-align: middle;
-    width: 100%; }
-    .registerpage main .registerbox .registerform {
-      position: relative;
-      height: 440px;
-      border-radius: 25px;
-      text-align: left;
-      background: #fff;
-      padding: 20px;
-      width: 100%;
-      max-width: 600px;
-      margin: auto;
-      overflow: hidden; }
-      .registerpage main .registerbox .registerform b {
-        font-size: 15px;
-        display: block;
-        text-align: center; }
-      .registerpage main .registerbox .registerform input {
-        border: none;
-        border-bottom: 1px solid #ccc;
-        font-family: hb-light;
-        font-size: 15px;
-        padding: 5px;
-        margin: 5px 0;
-        width: 100%; }
-      .registerpage main .registerbox .registerform textarea {
-        margin-top: 10px;
-        font-family: hb-light;
-        font-size: 15px;
-        padding: 5px;
-        border: 1px solid #ccc;
-        width: 100%;
-        resize: none;
-        min-height: 200px; }
-      .registerpage main .registerbox .registerform .avatarimg {
-        display: none; }
-      .registerpage main .registerbox .registerform button {
-        font-size: 15px;
-        color: #fff;
-        font-family: hb-regular;
-        background: #ff2353;
-        border: 2px solid #FFF;
-        border-radius: 25px;
-        margin: 15px 0 0 0;
-        width: 100%;
-        padding: 10px; }
-      .registerpage main .registerbox .registerform .sliderbox {
-        width: calc(200% - 40px);
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        overflow-y: hidden;
-        overflow-x: scroll; }
-        .registerpage main .registerbox .registerform .sliderbox .firstpane {
-          width: 50%;
-          padding: 0 20px 0 0;
-          height: 400px;
-          display: inline-block;
-          float: left; }
-        .registerpage main .registerbox .registerform .sliderbox .secondpane {
-          height: 330px;
-          padding: 0 20px 0 0;
-          width: 50%;
-          display: inline-block;
-          float: right; }
+    line-height: 40px;
+    font-size: 15px;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-family: hb-bold; }
+  .profilepage main .profilepic {
+    display: block;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px; }
+  .profilepage main .salonbanner {
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    color: #666; }
+  .profilepage main .phonebanner {
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    color: #666; }
+  .profilepage main .emailbanner {
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    color: #666; }
+  .profilepage main .totalratingbanner {
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    color: #666; }
+  .profilepage main .rawratingsbanner {
+    display: block;
+    text-align: center;
+    font-size: 15px;
+    color: #666; }
