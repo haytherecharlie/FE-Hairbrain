@@ -8,9 +8,16 @@
 * BLOG PAGE STYLES
 /******************************************/
 
-// TUMBLR IFRAME //
-iframe {
-    height: 99vh;
-    width: 100%;
-    overflow: hidden;
+.blogpage {
+    background: #ff2353;
+
+    // TUMBLR IFRAME //
+    object {
+        width: 100vw;
+        max-width: 800px;
+        display: block;
+        margin: auto;
+        min-height: 2000px;
+        overflow: hidden;
+    }
 }
