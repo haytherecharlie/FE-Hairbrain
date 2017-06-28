@@ -150,7 +150,7 @@
 * Last Modified: March 21st 2017
 * Author: Charlie Hay
 *
-* ABOUT PAGE STYLES
+* ABOUT PAGE BANNER STYLES
 /******************************************/
 .banner {
   position: relative;
@@ -193,3 +193,41 @@
     left: 50%;
     transform: translateX(-50%);
     color: #fff; }
+
+/*******************************************
+* © 2017 Hairbrain inc.
+* ---------------------
+* Created: February 11th 2017
+* Last Modified: March 21st 2017
+* Author: Charlie Hay
+*
+* ABOUT PAGE INFOBOX STYLES
+/******************************************/
+.infobox {
+  display: block;
+  text-align: center;
+  padding: 40px 20px;
+  background: url("/app/img/infoboxcover.png") no-repeat center;
+  background-size: cover; }
+  .infobox span.title {
+    color: #ff2353;
+    font-family: hairbrain;
+    font-size: 30px; }
+  .infobox p.description {
+    padding: 20px;
+    color: #666;
+    font-family: hb-regular;
+    font-size: 20px; }
+  .infobox img {
+    max-width: 90%;
+    display: block;
+    margin: 20px auto; }
+  .infobox a.findlink {
+    display: block;
+    background: #ff2353;
+    border-radius: 15px;
+    width: 175px;
+    padding: 20px;
+    color: #fff;
+    font-family: hb-bold;
+    margin: 20px auto; }
