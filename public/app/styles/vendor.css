@@ -436,7 +436,7 @@ table {
 @font-face{ font-family:hb-bold;    src: url('/app/fonts/hb-bold.ttf');      font-weight:400; }
 @font-face{ font-family:hb-regular; src: url('/app/fonts/hb-regular.ttf');   font-weight:400; }
 @font-face{ font-family:hb-light;   src: url('/app/fonts/hb-light.ttf');     font-weight:400; }
-@font-face{ font-family:kefa;       src: url('/app/fonts/kefa-regular.ttf'); font-weight:400; }
+@font-face{ font-family:hairbrain;  src: url('/app/fonts/hairbrain.ttf'); font-weight:400; }
 
 html *{ font-size: 1.1em; color: #000 ; font-family: hb-regular;}
 body {height: 100vh; width: 100vw; overflow: scroll;}

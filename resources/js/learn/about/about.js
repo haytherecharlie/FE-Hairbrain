@@ -19,7 +19,7 @@ var About = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-
+var scrolldown = $('.scrolldown');
 
 //----------------------------------------------------------------
 
@@ -34,7 +34,17 @@ var About = (function() {
 						 // VIEWS
 
 //---------------------------------------------------------------/
-
+function bounceScrollIcon() {
+    scrolldown.animate({
+        bottom: '10'
+    },500, function() {
+        scrolldown.animate({
+            bottom: '0'
+        }, 500, function() {
+            bounceScrollIcon();
+        })
+    });
+}
 
 
 //----------------------------------------------------------------
@@ -64,7 +74,7 @@ var About = (function() {
     var Main = (function() {  
 
         // Main
-
+        bounceScrollIcon();
     })();
 
     return {

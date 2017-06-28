@@ -214,7 +214,7 @@ gulp.task('about-custom-sass', function() {
         'resources/sass/templates/navmenu.scss',
         'resources/sass/templates/footerlinks.scss',
         'resources/sass/templates/motiongraphic.scss',
-        'resources/sass/learn/about/about.scss'
+        'resources/sass/learn/about/banner.scss'
         ])
         .pipe(concat('about.css'))
         .pipe(sass().on('error', sass.logError))

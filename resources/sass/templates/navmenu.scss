@@ -55,6 +55,14 @@
                 -ms-interpolation-mode: nearest-neighbor;   /* IE8+    */
             }
         }
+
+        .login {
+            float: right;
+            font-size: 15px;
+            font-family: hb-black;
+            padding: 17px 10px 12px 10px;
+            color: #ff2353;
+        }
     }
 
     // MENU //
