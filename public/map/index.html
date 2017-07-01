@@ -33,84 +33,31 @@
 	<link rel="stylesheet" type="text/css" href="/app/styles/vendor.css">
 
 	<!-- CUSTOM STYLESHEET -->
-	<link rel="stylesheet" type="text/css" href="/app/styles/learn/about.css">
+	<link rel="stylesheet" type="text/css" href="/app/styles/map.css">
 
 </head>
 
 <!-- ABOUT PAGE -->
-<body class="aboutpage">
+<body class="mappage">
 
     <!-- HEADER NAV/MENU -->
     <header class="navmenu"></header>
 
-    <!-- BANNER -->
-    <div class="banner">
+    <!-- GOOGLE MAP SEARCH BOX -->
+    <input id="pac-input" class="controls" type="text" placeholder="Find a salon...">
 
-        <!-- CALL TO ACTION --> 
-        <div class="cta">
-            <span>
-                <img src="/app/img/scissors.png">
-                <b class="reinventing">REINVENTING</b>
-                <b class="haircuts">HAIRCUTS</b>
-                <p>FIND THE BEST STYLISTS IN YOUR CITY<br>
-                &amp; BOOK APPOINTMENTS INSTANTLY.</p>
-                <a class="download">BOOK IT NOW</a>
-            </span>
-        </div>
+    <!-- GOOGLE MAP -->
+    <div id="map"></div>
 
-        <!--PROMO IPHONE -->
-        <div class="promo">
-            <img class="phonead" src="/app/img/phones.png">
-        </div>
-
-    </div>
-
-    <!-- MAPS INFO BOX -->
-    <div class="infobox">
-
-        <!-- TITLE -->
-        <span class="title">FIND YOUR NEXT HAIRSTYLIST</span>
-
-        <!-- DESCRIPTION -->
-        <p class="description">
-            Find hairstylists in your city on the interactive map.
-        </p>
-
-        <!-- MAP IMAGE -->
-        <img src="/app/img/map.png">
-
-        <!-- DESCRIPTION -->
-        <p class="description">
-            View stylists in list format and sort by rating.
-        </p>
-
-        <!-- LINK -->
-        <a class="findlink" href="/map/">FIND A STYLIST</a>
-
-    </div>
-
-    <div class="stylistbox">
-        <span class="title">ARE YOU A HAIRSTYLIST?</span>
-        
-        <p class="tagline">
-            HAIRBRAIN FOR STYLISTS ADDS A FACE TO THE NAME 
-        </p>
-        
-        <p class="description">
-            A content management system for individuals & entire salons.<br>
-            Save contact info, photos and notes all in one place. 
-        </p>
-        <a class="download">GET IT NOW</a>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="footerlinks"></footer>
 </body>
 
 	<!-- VENDOR JS -->
 	<script type="text/javascript" src="/app/js/vendor.js"></script>
 
+    <!-- GOOGLE MAPS API -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHI1kN2owdq5XTq4aRtLkWD_d4rUoLFaA&libraries=places"></script>
+
 	<!-- APP JS -->
-	<script type="text/javascript" src="/app/js/learn/about.js"></script>
+	<script type="text/javascript" src="/app/js/map.js"></script>
 
 </html>

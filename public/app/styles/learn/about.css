@@ -28,7 +28,7 @@
     float: left;
     border: none;
     background: transparent;
-    padding: 12px 5px 8px 10px; }
+    padding: 12px 5px 8px 20px; }
     .navmenu nav .hamburger img {
       height: 30px;
       width: 30px;
@@ -51,7 +51,7 @@
     float: right;
     font-size: 15px;
     font-family: hb-black;
-    padding: 17px 10px 12px 10px;
+    padding: 17px 20px 12px 10px;
     color: #ff2353; }
 
 .navmenu menu {
@@ -95,6 +95,12 @@
         .navmenu menu ul li a:hover {
           color: #999;
           cursor: pointer; }
+
+@media (max-width: 768px) {
+  .navmenu nav .hamburger {
+    padding: 12px 5px 8px 10px; }
+  .navmenu nav .login {
+    padding: 17px 10px 12px 10px; } }
 
 /*******************************************
 * © 2017 Hairbrain inc.
@@ -143,6 +149,12 @@
       display: none;
       margin: 5px 0px 5px 30px; } }
 
+.aboutpage {
+  overflow-x: hidden; }
+  .aboutpage img.hairrow {
+    width: 100%;
+    border: 1px; }
+
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------
@@ -153,15 +165,15 @@
 * ABOUT PAGE BANNER STYLES
 /******************************************/
 .banner {
-  width: 100%;
+  width: 100vw;
   height: calc(90vh - 50px);
   min-height: 300px;
   margin-top: 50px;
   background: url("/app/img/bannercover.png") no-repeat center;
   background-size: cover;
-  display: table;
-  width: 100%; }
+  display: table; }
   .banner .cta {
+    padding: 0;
     width: 50vw;
     height: 100%;
     display: table-cell;
@@ -187,7 +199,7 @@
       letter-spacing: 1px;
       line-height: 2.5rem;
       padding-top: 10px;
-      margin-bottom: 40px; }
+      margin-bottom: 50px; }
     .banner .cta span a.download {
       color: #ff2353;
       font-family: hb-black;
@@ -201,10 +213,45 @@
     position: relative;
     width: 50vw;
     height: 100%;
-    float: right; }
+    float: right;
+    display: block; }
     .banner .promo img.phonead {
       position: absolute;
-      bottom: -60px; }
+      bottom: -60px;
+      left: 0; }
+
+@media (max-width: 942px) {
+  .banner .cta {
+    padding: 40px 0;
+    height: 400px;
+    width: 100%;
+    display: block; }
+    .banner .cta span img {
+      height: 50px;
+      padding: 5px; }
+    .banner .cta span b.reinventing {
+      font-size: 4.6rem;
+      line-height: 3.3rem; }
+    .banner .cta span b.haircuts {
+      font-size: 5.9rem;
+      line-height: 5rem; }
+    .banner .cta span p {
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      line-height: 1.8rem;
+      padding-top: 5px;
+      margin-bottom: 30px; }
+    .banner .cta span a.download {
+      font-size: 14px;
+      padding: 15px 20px; }
+  .banner .promo {
+    height: 200px;
+    width: 100%;
+    float: none; }
+    .banner .promo img.phonead {
+      height: 350px;
+      left: 50%;
+      transform: translate(-50%); } }
 
 /*******************************************
 * © 2017 Hairbrain inc.
@@ -218,7 +265,7 @@
 .infobox {
   display: block;
   text-align: center;
-  padding: 60px 20px 40px 20px;
+  padding: 80px 20px 40px 20px;
   background: url("/app/img/infoboxcover.png") no-repeat center;
   background-size: cover; }
   .infobox span.title {
@@ -243,3 +290,46 @@
     color: #fff;
     font-family: hb-bold;
     margin: 20px auto; }
+
+.stylistbox {
+  position: relative;
+  background: url("/app/img/hairbox.png") repeat center;
+  background-size: contain;
+  overflow: hidden;
+  padding: 60px 20px 80px 20px;
+  border-top: 30px solid #ff2353;
+  border-bottom: 30px solid #ff2353;
+  text-align: center; }
+  .stylistbox span.title {
+    color: #fff;
+    font-family: hairbrain;
+    font-size: 70px;
+    line-height: 70px;
+    z-index: 1;
+    display: block;
+    text-align: center;
+    text-shadow: -3px  3px #000, -3px -3px #000, 3px  3px #000, 3px -3px #000; }
+  .stylistbox p {
+    color: #fff;
+    display: block;
+    text-align: center;
+    text-shadow: -2px  2px #000, -2px -2px #000, 2px  2px #000, 2px -2px #000; }
+    .stylistbox p.tagline {
+      padding: 20px;
+      font-family: hb-black;
+      font-size: 30px;
+      text-transform: uppercase; }
+    .stylistbox p.description {
+      padding: 0 0 20px 0;
+      font-family: hb-regular;
+      font-size: 25px;
+      margin-bottom: 40px; }
+  .stylistbox a.download {
+    color: #fff;
+    font-family: hb-black;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px 30px;
+    border-radius: 15px;
+    border: 1px solid #fff; }
+    .stylistbox a.download:hover {
+      cursor: pointer; }

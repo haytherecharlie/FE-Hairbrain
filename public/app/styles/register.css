@@ -28,7 +28,7 @@
     float: left;
     border: none;
     background: transparent;
-    padding: 12px 5px 8px 10px; }
+    padding: 12px 5px 8px 20px; }
     .navmenu nav .hamburger img {
       height: 30px;
       width: 30px;
@@ -51,7 +51,7 @@
     float: right;
     font-size: 15px;
     font-family: hb-black;
-    padding: 17px 10px 12px 10px;
+    padding: 17px 20px 12px 10px;
     color: #ff2353; }
 
 .navmenu menu {
@@ -95,6 +95,12 @@
         .navmenu menu ul li a:hover {
           color: #999;
           cursor: pointer; }
+
+@media (max-width: 768px) {
+  .navmenu nav .hamburger {
+    padding: 12px 5px 8px 10px; }
+  .navmenu nav .login {
+    padding: 17px 10px 12px 10px; } }
 
 .errormodal {
   text-align: center;

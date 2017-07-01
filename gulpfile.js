@@ -205,6 +205,35 @@ gulp.task('rating-custom-js', function() {
 
 
 /*******************************************
+/                MAP PAGE
+/******************************************/
+
+// MAP CUSTOM SASS ======================
+gulp.task('map-custom-sass', function() {
+    gulp.src([
+        'resources/sass/templates/navmenu.scss',
+        'resources/sass/map/searchbox.scss',
+        'resources/sass/map/map.scss',
+        ])
+        .pipe(concat('map.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/'))
+});
+
+// MAP CUSTOM JS ========================
+gulp.task('map-custom-js', function() {
+    return gulp.src([
+        'resources/js/templates/navmenu.js',
+        'resources/js/map/map.js'
+        ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('map.js'))
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
+    .pipe(gulp.dest('./public/app/js/'))
+});
+
+
+/*******************************************
 /               ABOUT PAGE
 /******************************************/
 
@@ -214,8 +243,10 @@ gulp.task('about-custom-sass', function() {
         'resources/sass/templates/navmenu.scss',
         'resources/sass/templates/footerlinks.scss',
         'resources/sass/templates/motiongraphic.scss',
+        'resources/sass/learn/about/about.scss',        
         'resources/sass/learn/about/banner.scss',
-        'resources/sass/learn/about/infoboxes.scss'
+        'resources/sass/learn/about/infoboxes.scss',
+        'resources/sass/learn/about/stylistbox.scss' 
         ])
         .pipe(concat('about.css'))
         .pipe(sass().on('error', sass.logError))
@@ -407,6 +438,7 @@ gulp.task('default', [
     'profile-custom-sass',   'profile-custom-js', 
     'contact-custom-sass',   'contact-custom-js',
     'rating-custom-sass',    'rating-custom-js',
+    'map-custom-sass',       'map-custom-js',
     'about-custom-sass',     'about-custom-js',
     'blog-custom-sass',      'blog-custom-js',
     'tutorials-custom-sass', 'tutorials-custom-js',

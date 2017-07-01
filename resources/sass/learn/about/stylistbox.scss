@@ -1,0 +1,64 @@
+.stylistbox {
+    position: relative;
+    background: url('/app/img/hairbox.png') repeat center;
+    background-size: contain;
+    overflow: hidden;
+    padding: 60px 20px 80px 20px;
+    border-top: 30px solid #ff2353;
+    border-bottom: 30px solid #ff2353;
+    text-align: center;
+
+    span.title {
+        color: #fff;
+        font-family: hairbrain;
+        font-size: 70px;
+        line-height: 70px;
+        z-index: 1;
+        display: block;
+        text-align: center;
+        text-shadow: 
+            -3px  3px #000,
+            -3px -3px #000,
+             3px  3px #000,
+             3px -3px #000;
+    }
+
+    p {
+        color: #fff;
+        display: block;
+        text-align: center;
+        text-shadow: 
+            -2px  2px #000,
+            -2px -2px #000,
+             2px  2px #000,
+             2px -2px #000;
+
+        &.tagline {
+            padding: 20px;
+            font-family: hb-black;
+            font-size: 30px;
+            text-transform: uppercase;
+        }
+
+        &.description {
+            padding: 0 0 20px 0;
+            font-family: hb-regular;
+            font-size: 25px;
+            margin-bottom: 40px;
+        }
+
+    }
+
+    a.download {
+        color: #fff;
+        font-family: hb-black;
+        background: rgba(0,0,0,.5);
+        padding: 20px 30px;
+        border-radius: 15px;
+        border: 1px solid #fff;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
