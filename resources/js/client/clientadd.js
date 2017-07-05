@@ -120,7 +120,7 @@ function clientAddFormAJAX() {
     form.append("lastname", clientAddFormLastname.val());
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.val());
-    form.append("photo", $('.clientaddmodal .clientaddform .photoinput')[0].files[0], 'photo.jpg');
+    form.append("photo", PhotoUpload.getResizedImage(), 'photo.jpg');
     form.append("name", name);
 
     var settings = {

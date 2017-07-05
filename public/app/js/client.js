@@ -461,7 +461,7 @@ function clientAddFormAJAX() {
     form.append("lastname", clientAddFormLastname.val());
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.val());
-    form.append("photo", $('.clientaddmodal .clientaddform .photoinput')[0].files[0], 'photo.jpg');
+    form.append("photo", PhotoUpload.getResizedImage(), 'photo.jpg');
     form.append("name", name);
 
     var settings = {
@@ -1420,6 +1420,8 @@ var photoWidgetTpl = '/templates/photoupload.tpl.html';
 var photoInput;
 var photoBox;
 var photoThumb;
+var resizedImage;
+
 
 //----------------------------------------------------------------
 
@@ -1480,12 +1482,26 @@ function detectFile() {
  * Resize Photo - Using Resize.js
 *******************************************/
 function resizeImage(img) {
-    ImageTools.resize(img, {
-        width: 400, // maximum width
-        height: 300 // maximum height
-    }, function(blob, didItResize) {
-        getPhotoDimensions(blob)
-    });
+
+    // Get the URL to determine flows. 
+    var url = window.location.href.split('/')[3];
+    
+    // If on the clients page...
+    // THIS NEEDS FINISHING!!!!!!!
+    
+    if(url === 'clients') {
+    
+        var avatar = img;
+        var photo  = img;
+
+        ImageTools.resize(avatar, {
+            width: 400, // maximum width
+            height: 300 // maximum height
+        }, function(blob, didItResize) {
+            getPhotoDimensions(blob)
+        });
+
+    }
 }
 
 /*******************************************
@@ -1519,7 +1535,19 @@ function showPhoto(img, blob) {
 
     photoThumb.css('background', 'url(' + img.src + ') no-repeat center' );
     photoThumb.css('background-size', 'cover');
+
+    var file = new File([blob], 'photo.jpg', {type: 'image/jpeg', lastModified: Date.now()});
+
+    resizedImage = file;
 }
+
+/*******************************************
+ * Get Resized Image : Globally Exposed
+*******************************************/
+function getResizedImage() {
+    return resizedImage;
+}
+
 
 //----------------------------------------------------------------
 
@@ -1550,7 +1578,7 @@ function showPhoto(img, blob) {
     })();
 
     return {
-        
+        getResizedImage: getResizedImage
     }
 
 })(); // END OF PHOTOUPLOAD.JS

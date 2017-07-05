@@ -24,6 +24,8 @@ var photoWidgetTpl = '/templates/photoupload.tpl.html';
 var photoInput;
 var photoBox;
 var photoThumb;
+var resizedImage;
+
 
 //----------------------------------------------------------------
 
@@ -84,12 +86,26 @@ function detectFile() {
  * Resize Photo - Using Resize.js
 *******************************************/
 function resizeImage(img) {
-    ImageTools.resize(img, {
-        width: 400, // maximum width
-        height: 300 // maximum height
-    }, function(blob, didItResize) {
-        getPhotoDimensions(blob)
-    });
+
+    // Get the URL to determine flows. 
+    var url = window.location.href.split('/')[3];
+    
+    // If on the clients page...
+    // THIS NEEDS FINISHING!!!!!!!
+    
+    if(url === 'clients') {
+    
+        var avatar = img;
+        var photo  = img;
+
+        ImageTools.resize(avatar, {
+            width: 400, // maximum width
+            height: 300 // maximum height
+        }, function(blob, didItResize) {
+            getPhotoDimensions(blob)
+        });
+
+    }
 }
 
 /*******************************************
@@ -123,7 +139,19 @@ function showPhoto(img, blob) {
 
     photoThumb.css('background', 'url(' + img.src + ') no-repeat center' );
     photoThumb.css('background-size', 'cover');
+
+    var file = new File([blob], 'photo.jpg', {type: 'image/jpeg', lastModified: Date.now()});
+
+    resizedImage = file;
 }
+
+/*******************************************
+ * Get Resized Image : Globally Exposed
+*******************************************/
+function getResizedImage() {
+    return resizedImage;
+}
+
 
 //----------------------------------------------------------------
 
@@ -154,7 +182,7 @@ function showPhoto(img, blob) {
     })();
 
     return {
-        
+        getResizedImage: getResizedImage
     }
 
 })(); // END OF PHOTOUPLOAD.JS
