@@ -266,7 +266,7 @@
         border: 2px solid #FFF;
         border-radius: 25px;
         margin: 15px 0 0 0;
-        width: 100%;
+        width: 240px;
         padding: 10px; }
       .registerpage main .registerbox .registerform .sliderbox {
         width: calc(200% - 40px);
@@ -282,8 +282,29 @@
           display: inline-block;
           float: left; }
         .registerpage main .registerbox .registerform .sliderbox .secondpane {
-          height: 330px;
+          height: 400px;
           padding: 0 20px 0 0;
           width: 50%;
           display: inline-block;
-          float: right; }
+          float: right;
+          position: relative; }
+          .registerpage main .registerbox .registerform .sliderbox .secondpane .photowidget {
+            position: absolute;
+            top: 40%;
+            left: calc(50% - 10px);
+            display: block;
+            margin: auto;
+            transform: translate(-50%, -50%);
+            border: 1px dashed #ccc;
+            padding: 0px 30px; }
+          .registerpage main .registerbox .registerform .sliderbox .secondpane .back {
+            border: 1px solid #ff2353;
+            color: #ff2353;
+            background: #fff;
+            position: absolute;
+            bottom: 80px;
+            left: 0; }
+          .registerpage main .registerbox .registerform .sliderbox .secondpane .submit {
+            position: absolute;
+            bottom: 20px;
+            left: 0; }

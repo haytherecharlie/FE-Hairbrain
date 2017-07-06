@@ -91,20 +91,22 @@ function resizeImage(img) {
     var url = window.location.href.split('/')[3];
     
     // If on the clients page...
-    // THIS NEEDS FINISHING!!!!!!!
-    
     if(url === 'clients') {
-    
-        var avatar = img;
-        var photo  = img;
-
-        ImageTools.resize(avatar, {
-            width: 400, // maximum width
-            height: 300 // maximum height
+        ImageTools.resize(img, {
+            width: 500, // maximum width
+            height: 500 // maximum height
         }, function(blob, didItResize) {
             getPhotoDimensions(blob)
         });
+    }
 
+    if(url === 'register') {
+        ImageTools.resize(img, {
+            width: 200, // maximum width
+            height: 200 // maximum height
+        }, function(blob, didItResize) {
+            getPhotoDimensions(blob)
+        });     
     }
 }
 

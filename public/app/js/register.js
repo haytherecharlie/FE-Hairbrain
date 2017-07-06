@@ -431,20 +431,22 @@ function resizeImage(img) {
     var url = window.location.href.split('/')[3];
     
     // If on the clients page...
-    // THIS NEEDS FINISHING!!!!!!!
-    
     if(url === 'clients') {
-    
-        var avatar = img;
-        var photo  = img;
-
-        ImageTools.resize(avatar, {
-            width: 400, // maximum width
-            height: 300 // maximum height
+        ImageTools.resize(img, {
+            width: 500, // maximum width
+            height: 500 // maximum height
         }, function(blob, didItResize) {
             getPhotoDimensions(blob)
         });
+    }
 
+    if(url === 'register') {
+        ImageTools.resize(img, {
+            width: 200, // maximum width
+            height: 200 // maximum height
+        }, function(blob, didItResize) {
+            getPhotoDimensions(blob)
+        });     
     }
 }
 
@@ -556,7 +558,10 @@ var phone          = $('.registerpage .registerform .phone');
 var salon          = $('.registerpage .registerform .salon');
 var avatar         = $('.registerpage .registerform .photoinput');
 var keyword        = $('.registerpage .registerform .keyword');
+var continueBtn    = $('.registerpage .registerform .next');
+var backBtn        = $('.registerpage .registerform .back');
 var registerBtn    = $('.registerpage .registerform .submit');
+var sliderBox      = $('.registerpage .registerform .sliderbox');
 var successModal   = $('.registerpage .successmodal');
 var successLogin   = $('.registerpage .login');
 
@@ -586,6 +591,19 @@ registerBtn.click( function() {
 successLogin.click(function() {
     location.href = location.origin;
 })
+
+continueBtn.click(function() {
+    var distance = -(sliderBox.width()/2 - 20);
+    sliderBox.animate({
+        'left': distance
+    }, 500);
+});
+
+backBtn.click(function() {
+    sliderBox.animate({
+        'left': 20
+    }, 500);
+});
 
 //----------------------------------------------------------------
 
@@ -621,7 +639,7 @@ function registerFormAJAX() {
 
     if(keyword.val() === 'Kanye2020') {
         var form = new FormData();
-        form.append("avatar", $('.photoinput')[0].files[0], 'avatar.jpg');        
+        form.append("avatar", PhotoUpload.getResizedImage(), 'avatar.jpg');       
         form.append("firstname", firstname.val());
         form.append("lastname", lastname.val());
         form.append("phone", phone.val());
