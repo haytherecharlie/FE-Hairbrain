@@ -3,7 +3,7 @@
 <head>
 
 	<!-- TITLE -->
-	<title>Hairbrain</title>
+	<title>hairbrain</title>
 
     <!-- META AND ICONS -->
     <meta charset="UTF-8">
@@ -33,34 +33,85 @@
 	<link rel="stylesheet" type="text/css" href="/app/styles/vendor.css">
 
 	<!-- CUSTOM STYLESHEET -->
-	<link rel="stylesheet" type="text/css" href="/app/styles/login.css">
+	<link rel="stylesheet" type="text/css" href="/app/styles/learn/about.css">
 
 </head>
 
-<!-- LOGIN PAGE -->
-<body class="loginpage">
+<!-- ABOUT PAGE -->
+<body class="aboutpage">
 
-    <!-- MENU -->
+    <!-- HEADER NAV/MENU -->
     <header class="navmenu"></header>
 
-    <!-- LOGIN FORM --> 
-    <form class="loginform" encType="multipart/form-data">
-		<img class="loginlogo" src="/app/img/hairbrain.svg">
-        <input class="loginphone" placeholder="Phone" type="tel" data-mask="1(000)000-0000" required>
-        <input class="loginpassword" placeholder="Password" type="password" minlength="8" maxlength="16" required>
-		<span class="loginfailed">Phone # or Password Incorrect</span>
-        <button class="loginbutton" type='submit' name="submit">Log in</button>
-    </form>
+    <!-- BANNER -->
+    <div class="banner">
 
-    <!-- ERROR MODAL CONTAINER -->
-    <div class="errormodalcontainer"></div>
+        <!-- CALL TO ACTION --> 
+        <div class="cta">
+            <span>
+                <img src="/app/img/scissors.png">
+                <b class="reinventing">REINVENTING</b>
+                <b class="haircuts">YOUR STYLE</b>
+                <p>SAVE CLIENT PROFILES IN A SNAP<br>
+                &amp; GET FEEDBACK AFTER EVERY VISIT.</p>
+                <a href="/login/" class="download">LOGIN NOW</a>
+            </span>
+        </div>
 
+        <!--PROMO IPHONE -->
+        <div class="promo">
+            <img class="phonead" src="/app/img/phones.png">
+        </div>
+
+    </div>
+
+    <!-- MAPS INFO BOX -->
+    <div class="infobox">
+
+        <!-- TITLE -->
+        <span class="title">HAIRBRAIN IS A STYLISTS BEST FRIEND</span>
+
+        <!-- DESCRIPTION -->
+        <p class="description">
+            With hairbrain it's easy to keep track of every person you see, 
+            simply save their profile, snap a pic, and write notes about them.<br>
+            The next time they visit you'll remember everything!
+        </p>
+
+        <!-- MAP IMAGE -->
+        <img src="/app/img/profiledemo.png">
+
+        <!-- DESCRIPTION -->
+        <p class="description">
+            As your client leaves the salon, they will recieve a text message 
+            asking to rate their experience. <br> You can view the ratings you recieve 
+            privately in your profile to ensure that: every head you see, leaves happy as can be. 
+        </p>
+
+    </div>
+
+    <div class="stylistbox">
+        <span class="title">WANT TO JOIN THE BETA?</span>
+        
+        <p class="tagline">
+            BE THE FIRST TO TRY OUT HAIRBRAIN.
+        </p>
+        
+        <p class="description">
+            Click the link below and ask for a beta key,<br>
+            we'll get back to you within 24 hours. 
+        </p>
+        <a class="download" href="/contact/">GET IN TOUCH</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footerlinks"></footer>
 </body>
 
-    <!-- VENDOR JS -->
+	<!-- VENDOR JS -->
 	<script type="text/javascript" src="/app/js/vendor.js"></script>
 
 	<!-- APP JS -->
-	<script type="text/javascript" src="/app/js/login.js"></script>
+	<script type="text/javascript" src="/app/js/learn/about.js"></script>
 
 </html>

@@ -132,7 +132,8 @@
   min-width: 200px;
   background: #fff;
   text-align: center;
-  padding: 5px 0; }
+  padding: 5px 0;
+  margin-bottom: 15px; }
   .footerlinks .group b {
     display: block;
     font-family: hb-bold;
@@ -145,17 +146,21 @@
       color: #ccc; }
 
 .footerlinks .basebar {
-  display: block;
+  padding: 0 20px;
+  color: #fff;
+  height: 30px;
   background: #333;
-  padding: 10px 20px; }
-  .footerlinks .basebar span {
-    color: #fff; }
+  line-height: 30px;
+  font-size: 13px; }
+  .footerlinks .basebar img {
+    height: 30px; }
 
 @media (max-width: 768px) {
   .footerlinks .group {
     width: 100%;
     border-top: 1px solid #ccc;
-    text-align: left; }
+    text-align: left;
+    margin-bottom: 0; }
     .footerlinks .group b:before {
       content: '>';
       font-size: .8em;
@@ -265,7 +270,8 @@
         background: #ff2353;
         border: 2px solid #FFF;
         border-radius: 25px;
-        margin: 15px 0 0 0;
+        display: block;
+        margin: 15px auto 0 auto;
         width: 240px;
         padding: 10px; }
       .registerpage main .registerbox .registerform .sliderbox {
@@ -303,8 +309,10 @@
             background: #fff;
             position: absolute;
             bottom: 80px;
-            left: 0; }
+            left: calc(50% - 10px);
+            transform: translateX(-50%); }
           .registerpage main .registerbox .registerform .sliderbox .secondpane .submit {
             position: absolute;
             bottom: 20px;
-            left: 0; }
+            left: calc(50% - 10px);
+            transform: translateX(-50%); }

@@ -3,7 +3,7 @@
 <head>
 
 	<!-- TITLE -->
-	<title>hairbrain</title>
+	<title>Hairbrain</title>
 
     <!-- META AND ICONS -->
     <meta charset="UTF-8">
@@ -33,84 +33,34 @@
 	<link rel="stylesheet" type="text/css" href="/app/styles/vendor.css">
 
 	<!-- CUSTOM STYLESHEET -->
-	<link rel="stylesheet" type="text/css" href="/app/styles/learn/about.css">
+	<link rel="stylesheet" type="text/css" href="/app/styles/login.css">
 
 </head>
 
-<!-- ABOUT PAGE -->
-<body class="aboutpage">
+<!-- LOGIN PAGE -->
+<body class="loginpage">
 
-    <!-- HEADER NAV/MENU -->
+    <!-- MENU -->
     <header class="navmenu"></header>
 
-    <!-- BANNER -->
-    <div class="banner">
+    <!-- LOGIN FORM --> 
+    <form class="loginform" encType="multipart/form-data">
+		<img class="loginlogo" src="/app/img/hairbrain.svg">
+        <input class="loginphone" placeholder="Phone" type="tel" data-mask="1(000)000-0000" required>
+        <input class="loginpassword" placeholder="Password" type="password" minlength="8" maxlength="16" required>
+		<span class="loginfailed">Phone # or Password Incorrect</span>
+        <button class="loginbutton" type='submit' name="submit">Log in</button>
+    </form>
 
-        <!-- CALL TO ACTION --> 
-        <div class="cta">
-            <span>
-                <img src="/app/img/scissors.png">
-                <b class="reinventing">REINVENTING</b>
-                <b class="haircuts">HAIRCUTS</b>
-                <p>FIND THE BEST STYLISTS IN YOUR CITY<br>
-                &amp; BOOK APPOINTMENTS INSTANTLY.</p>
-                <a class="download">BOOK IT NOW</a>
-            </span>
-        </div>
+    <!-- ERROR MODAL CONTAINER -->
+    <div class="errormodalcontainer"></div>
 
-        <!--PROMO IPHONE -->
-        <div class="promo">
-            <img class="phonead" src="/app/img/phones.png">
-        </div>
-
-    </div>
-
-    <!-- MAPS INFO BOX -->
-    <div class="infobox">
-
-        <!-- TITLE -->
-        <span class="title">FIND YOUR NEXT HAIRSTYLIST</span>
-
-        <!-- DESCRIPTION -->
-        <p class="description">
-            Find hairstylists in your city on the interactive map.
-        </p>
-
-        <!-- MAP IMAGE -->
-        <img src="/app/img/map.png">
-
-        <!-- DESCRIPTION -->
-        <p class="description">
-            View stylists in list format and sort by rating.
-        </p>
-
-        <!-- LINK -->
-        <a class="findlink" href="/map/">FIND A STYLIST</a>
-
-    </div>
-
-    <div class="stylistbox">
-        <span class="title">ARE YOU A HAIRSTYLIST?</span>
-        
-        <p class="tagline">
-            HAIRBRAIN FOR STYLISTS ADDS A FACE TO THE NAME 
-        </p>
-        
-        <p class="description">
-            A content management system for individuals & entire salons.<br>
-            Save contact info, photos and notes all in one place. 
-        </p>
-        <a class="download">GET IT NOW</a>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="footerlinks"></footer>
 </body>
 
-	<!-- VENDOR JS -->
+    <!-- VENDOR JS -->
 	<script type="text/javascript" src="/app/js/vendor.js"></script>
 
 	<!-- APP JS -->
-	<script type="text/javascript" src="/app/js/learn/about.js"></script>
+	<script type="text/javascript" src="/app/js/login.js"></script>
 
 </html>
