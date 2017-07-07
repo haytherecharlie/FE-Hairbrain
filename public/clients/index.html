@@ -93,7 +93,7 @@
 
             <!-- PHOTOS CONTAINER -->
             <div class="photosbox container">
-                <div class="title">Photos</div>
+                <div class="title">Photo</div>
                 <div class="mainphoto">
                     <img class="photo" src="">
                 </div>
@@ -102,11 +102,12 @@
             <!-- NOTES CONTAINER -->
             <div class="notesbox container">
                 <div class="title">Notes</div>
-                <textarea class="notes" readonly disabled></textarea>
+                <div class="notes" readonly></div>
             </div>
 
             <!-- DELETE CLIENT BUTTON -->
             <div class="optionsbox container">
+                <button class="editclient">Edit Client</button>
                 <button class="deleteclient">Delete Client</button>
             </div>
         </div>
@@ -140,7 +141,7 @@
                             <input class="lastname" placeholder="Last name" type="text" required>
                             <input class="phone" placeholder="Phone #" type="tel" data-mask="1 (000) 000-0000" required>
                             <div class="photowidget"></div>
-                            <textarea class="notes" placeholder="Notes" type="text"></textarea>
+                            <div class="notes" placeholder="Notes" type="text" contenteditable="true"></div>
                         </form>
 
                         <!-- SAVING ICON -->

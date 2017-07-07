@@ -68,7 +68,7 @@ function populateProfile(client) {
     lastname.text(client.lastname);
     phone.html('<a href="tel:' + client.phone + '">' + client.phone + '</a>');
     photo.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photo.jpg');
-    notes.val(client.notes);
+    notes.text(client.notes);
 }
 
 function showDeleteConfirmation() {

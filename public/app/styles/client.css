@@ -34,13 +34,13 @@
       font-size: 15px;
       width: 100%;
       margin-bottom: 10px; }
-    .clientaddmodal .clientaddform textarea {
-      border: none;
+    .clientaddmodal .clientaddform .notes {
+      white-space: pre;
+      text-align: left;
       font-size: 15px;
-      width: 100%;
       border: 1px solid #CCC;
-      height: 100px;
-      resize: none;
+      overflow: hidden;
+      min-height: 100px;
       padding: 5px;
       margin-top: 15px; }
   .clientaddmodal .savingclient {
@@ -436,7 +436,7 @@ main {
         left: 0px; }
     .clientprofile .photosbox .mainphoto {
       height: 250px;
-      width: 150px;
+      width: 250px;
       display: block;
       margin: auto;
       overflow: hidden;
@@ -465,13 +465,15 @@ main {
         top: 4px;
         left: 0px; }
     .clientprofile .notesbox .notes {
-      height: 100px;
+      overflow: hidden;
+      min-height: 100px;
+      text-align: left;
+      white-space: pre-wrap;
       width: 100%;
       border: 1px solid #000;
       border-radius: 5px;
-      padding: 5px;
-      color: #000;
-      overflow: scroll; }
+      padding: 10px;
+      color: #000; }
   .clientprofile .optionsbox button {
     display: block;
     width: 100%;

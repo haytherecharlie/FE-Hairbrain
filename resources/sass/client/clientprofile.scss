@@ -174,7 +174,7 @@
         // MAIN PHOTO //
         .mainphoto {
             height: 250px;
-            width: 150px;
+            width: 250px;
             display: block;
             margin: auto;
             overflow: hidden;
@@ -216,13 +216,15 @@
         
         // NOTES //
         .notes {
-            height: 100px;
+            overflow: hidden;
+            min-height: 100px;
+            text-align: left;
+            white-space: pre-wrap;
             width: 100%;
             border: 1px solid #000;
             border-radius: 5px;
-            padding: 5px;
+            padding: 10px;
             color: #000;
-            overflow: scroll;
         }
     }
 

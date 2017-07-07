@@ -5,10 +5,10 @@
 * Last Modified: June 6th 2017
 * Author: Charlie Hay
 *
-* CLIENT ADD JS FUNCTIONALITY.
+* CLIENT EDIT JS FUNCTIONALITY.
 /******************************************/
 
-var ClientAdd = (function() {
+var ClientEdit = (function() {
 
 //----------------------------------------------------------------
 
@@ -19,6 +19,13 @@ var ClientAdd = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
+var editClientButton          = $('.clientprofile .editclient'); 
+var originalFirstname;
+var originalLastname;
+var originalPhone;
+var originalPhotoSrc;
+var originalNotes;
+
 var clientAddButton           = $('main .clientaddbutton');
 var clientAddModal            = $('.clientaddmodal');
 var clientAddForm             = $('.clientaddmodal .clientaddform');
@@ -36,45 +43,10 @@ var clientAddModalLoadingGif  = $('.clientaddmodal .savingclient');
 						 // LISTENERS
 
 //---------------------------------------------------------------/
-
-/*******************************************
- * On Click of Client Add Button
-*******************************************/
-clientAddButton.click( function() {
-    clientAddModal.modal('show');
+editClientButton.click(function() {
+    loadProfileValues();
+    // clientAddModal.modal('show');
 });
-
-// clientAddFormNotes.keyup(function(e) {
-
-//     // if(e.which==13){
-//     //     e.preventDefault();
-//     //     Add stuff later
-//     // }
-
-// })
-
-/*******************************************
- * On Click of Submit Button
-*******************************************/
-clientAddFormSubmit.click( function() {
-    showLoading();
-    clientAddFormAJAX();
-});
-
-/*******************************************
- * On Click of Close Modal 
-*******************************************/
-clientAddModalCloseButton.click( function() {
-    emptyAddForm();
-});
-
-/*******************************************
- * Doesn't Allow Form Submit on Enter Press
-*******************************************/
-$(document).keypress(":input:not(textarea)", function(event) {
-    return event.keyCode != 13;
-});
-
 
 //----------------------------------------------------------------
 
@@ -82,37 +54,30 @@ $(document).keypress(":input:not(textarea)", function(event) {
 
 //---------------------------------------------------------------/
 
-/*******************************************
- * Show Loading Animation
-*******************************************/
-function showLoading() {
-    clientAddModalLoadingGif.show();
-}
-
-/*******************************************
- * Hide Loading Animation
-*******************************************/
-function hideLoading() {
-    clientAddModalLoadingGif.hide();
-}
 
 //----------------------------------------------------------------
 
 						 // LOGIC
 
 //---------------------------------------------------------------/
+function loadProfileValues() {
 
-/*******************************************
- * Empty Client Add Form on Close
-*******************************************/
-function emptyAddForm() {
-    $('.clientaddmodal .clientaddform input').each(function() {
-        $(this).val('');
-    })
-    clientAddFormNotes.val('');
-    $('.clientaddmodal .clientaddform .photothumb').css('background', 'none');
+    originalFirstname = $('.clientprofile .firstname').text();
+    originalLastname  = $('.clientprofile .lastname').text();
+    originalPhone     = $('.clientprofile .phone').text();
+    originalPhotoSrc  = $('.clientprofile .photo').attr('src');
+    originalNotes     = $('.clientprofile .notes').text();
+
+    clientAddFormFirstname.val(originalFirstname);
+    clientAddFormLastname.val(originalLastname);
+    clientAddFormPhone.val(originalPhone);
+    clientAddFormNotes.val(originalNotes);
+
+    clientAddModal.modal('show');
+
+    console.log(originalFirstname, originalLastname, originalPhone, originalPhotoSrc, originalNotes);
+
 }
-
 
 //----------------------------------------------------------------
 
@@ -123,12 +88,13 @@ function emptyAddForm() {
 /*******************************************
  * Add Client Form -> POST
 *******************************************/
-function clientAddFormAJAX() {
+function clientEditFormAJAX() {
+
     var form = new FormData();
     form.append("firstname", clientAddFormFirstname.val());
     form.append("lastname", clientAddFormLastname.val());
     form.append("phone", clientAddFormPhone.val());
-    form.append("notes", clientAddFormNotes.text());
+    form.append("notes", clientAddFormNotes.val());
     form.append("photo", PhotoUpload.getResizedImage(), 'photo.jpg');
     form.append("name", name);
 
