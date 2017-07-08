@@ -99,6 +99,18 @@ main {
   border: none;
   color: #fff; }
 
+.clientaddmodal .clienteditsubmit {
+  display: none;
+  background: #ff2353;
+  color: #fff;
+  border: none; }
+
+.clientaddmodal .closeeditmodal {
+  display: none;
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc; }
+
 /*******************************************
 * © 2017 Hairbrain inc.
 * ---------------------

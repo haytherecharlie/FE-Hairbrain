@@ -385,15 +385,6 @@ clientAddButton.click( function() {
     clientAddModal.modal('show');
 });
 
-// clientAddFormNotes.keyup(function(e) {
-
-//     // if(e.which==13){
-//     //     e.preventDefault();
-//     //     Add stuff later
-//     // }
-
-// })
-
 /*******************************************
  * On Click of Submit Button
 *******************************************/
@@ -406,6 +397,7 @@ clientAddFormSubmit.click( function() {
  * On Click of Close Modal 
 *******************************************/
 clientAddModalCloseButton.click( function() {
+    console.log('pooop');
     emptyAddForm();
 });
 
@@ -450,7 +442,7 @@ function emptyAddForm() {
     $('.clientaddmodal .clientaddform input').each(function() {
         $(this).val('');
     })
-    clientAddFormNotes.val('');
+    clientAddFormNotes.text('');
     $('.clientaddmodal .clientaddform .photothumb').css('background', 'none');
 }
 
@@ -492,7 +484,6 @@ function clientAddFormAJAX() {
                 emptyAddForm();
                 clientAddModal.modal('hide');
                 hideLoading();
-                emptyAddForm();
             },
             400: function(req, res) {
                 hideLoading();
@@ -530,7 +521,9 @@ function clientAddFormAJAX() {
     })();
 
     return {
-
+        emptyAddForm: emptyAddForm,
+        showLoading: showLoading,
+        hideLoading: hideLoading
     }
 
 })(); // END OF CLIENTADD.JS
@@ -1430,16 +1423,23 @@ var originalLastname;
 var originalPhone;
 var originalPhotoSrc;
 var originalNotes;
+var clientAddFormPhotoWidget;
 
 var clientAddButton           = $('main .clientaddbutton');
 var clientAddModal            = $('.clientaddmodal');
+var clientAddModalFooter      = $('.clientaddmodal .modal-footer');
 var clientAddForm             = $('.clientaddmodal .clientaddform');
 var clientAddFormFirstname    = $('.clientaddmodal .clientaddform .firstname');
 var clientAddFormLastname     = $('.clientaddmodal .clientaddform .lastname');
 var clientAddFormPhone        = $('.clientaddmodal .clientaddform .phone');
 var clientAddFormNotes        = $('.clientaddmodal .clientaddform .notes');
+
 var clientAddFormSubmit       = $('.clientaddmodal .clientaddsubmit');
 var clientAddModalCloseButton = $('.clientaddmodal .closemodal');
+
+var clientEditFormSubmit       = $('.clientaddmodal .clienteditsubmit');
+var clientEditModalCloseButton = $('.clientaddmodal .closeeditmodal');
+
 var clientAddModalLoadingGif  = $('.clientaddmodal .savingclient');
 
 
@@ -1450,7 +1450,16 @@ var clientAddModalLoadingGif  = $('.clientaddmodal .savingclient');
 //---------------------------------------------------------------/
 editClientButton.click(function() {
     loadProfileValues();
-    // clientAddModal.modal('show');
+});
+
+clientEditModalCloseButton.click(function() {
+    removeEditModalFooterButtons();
+    ClientAdd.emptyAddForm();
+});
+
+clientEditFormSubmit.click(function() {
+    ClientAdd.showLoading();
+    clientEditFormAJAX();
 });
 
 //----------------------------------------------------------------
@@ -1459,6 +1468,41 @@ editClientButton.click(function() {
 
 //---------------------------------------------------------------/
 
+function displayProfileValues() {
+
+    clientAddFormFirstname.val(originalFirstname);
+    clientAddFormLastname.val(originalLastname);
+    clientAddFormPhone.val(originalPhone);
+    clientAddFormNotes.text(originalNotes);
+    clientAddFormPhotoWidget.css('background', 'url('+originalPhotoSrc+') no-repeat center');
+    clientAddFormPhotoWidget.css('background-size', 'cover');
+
+    addEditModalFooterButtons();
+    
+
+    clientAddModal.modal('show');
+
+}
+
+function addEditModalFooterButtons() {
+
+    clientAddFormSubmit.hide();
+    clientAddModalCloseButton.hide();
+
+    clientEditFormSubmit.show()
+    clientEditModalCloseButton.show();
+
+}
+
+function removeEditModalFooterButtons() {
+
+    clientAddFormSubmit.show();
+    clientAddModalCloseButton.show();
+
+    clientEditFormSubmit.hide()
+    clientEditModalCloseButton.hide();
+
+}
 
 //----------------------------------------------------------------
 
@@ -1467,20 +1511,14 @@ editClientButton.click(function() {
 //---------------------------------------------------------------/
 function loadProfileValues() {
 
-    originalFirstname = $('.clientprofile .firstname').text();
-    originalLastname  = $('.clientprofile .lastname').text();
-    originalPhone     = $('.clientprofile .phone').text();
-    originalPhotoSrc  = $('.clientprofile .photo').attr('src');
-    originalNotes     = $('.clientprofile .notes').text();
+    originalFirstname        = $('.clientprofile .firstname').text();
+    originalLastname         = $('.clientprofile .lastname').text();
+    originalPhone            = $('.clientprofile .phone').text();
+    originalPhotoSrc         = $('.clientprofile .photo').attr('src');
+    originalNotes            = $('.clientprofile .notes').text();
+    clientAddFormPhotoWidget = $('.clientaddmodal .clientaddform .photothumb');
 
-    clientAddFormFirstname.val(originalFirstname);
-    clientAddFormLastname.val(originalLastname);
-    clientAddFormPhone.val(originalPhone);
-    clientAddFormNotes.val(originalNotes);
-
-    clientAddModal.modal('show');
-
-    console.log(originalFirstname, originalLastname, originalPhone, originalPhotoSrc, originalNotes);
+    displayProfileValues();
 
 }
 
@@ -1499,15 +1537,16 @@ function clientEditFormAJAX() {
     form.append("firstname", clientAddFormFirstname.val());
     form.append("lastname", clientAddFormLastname.val());
     form.append("phone", clientAddFormPhone.val());
-    form.append("notes", clientAddFormNotes.val());
+    form.append("notes", clientAddFormNotes.text());
     form.append("photo", PhotoUpload.getResizedImage(), 'photo.jpg');
-    form.append("name", name);
+
+    clientid = $('.clientprofile').attr('id');
 
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": apiurl + "client/add/" + userid,
-        "method": "POST",
+        "url": apiurl + "client/edit/" + userid + '/' + clientid + '/',
+        "method": "PUT",
         "headers": {
             "cache-control": "no-cache",
             "Authorization": "Bearer " + jwt
@@ -1519,10 +1558,10 @@ function clientEditFormAJAX() {
         "statusCode": {
             200: function(req, res) {
                 ClientList.clientListAJAX();
-                emptyAddForm();
+                ClientAdd.emptyAddForm();
                 clientAddModal.modal('hide');
-                hideLoading();
-                emptyAddForm();
+                ClientAdd.hideLoading();
+                ClientNav.closeClientProfile();
             },
             400: function(req, res) {
                 hideLoading();

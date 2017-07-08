@@ -44,15 +44,6 @@ clientAddButton.click( function() {
     clientAddModal.modal('show');
 });
 
-// clientAddFormNotes.keyup(function(e) {
-
-//     // if(e.which==13){
-//     //     e.preventDefault();
-//     //     Add stuff later
-//     // }
-
-// })
-
 /*******************************************
  * On Click of Submit Button
 *******************************************/
@@ -65,6 +56,7 @@ clientAddFormSubmit.click( function() {
  * On Click of Close Modal 
 *******************************************/
 clientAddModalCloseButton.click( function() {
+    console.log('pooop');
     emptyAddForm();
 });
 
@@ -109,7 +101,7 @@ function emptyAddForm() {
     $('.clientaddmodal .clientaddform input').each(function() {
         $(this).val('');
     })
-    clientAddFormNotes.val('');
+    clientAddFormNotes.text('');
     $('.clientaddmodal .clientaddform .photothumb').css('background', 'none');
 }
 
@@ -151,7 +143,6 @@ function clientAddFormAJAX() {
                 emptyAddForm();
                 clientAddModal.modal('hide');
                 hideLoading();
-                emptyAddForm();
             },
             400: function(req, res) {
                 hideLoading();
@@ -189,7 +180,9 @@ function clientAddFormAJAX() {
     })();
 
     return {
-
+        emptyAddForm: emptyAddForm,
+        showLoading: showLoading,
+        hideLoading: hideLoading
     }
 
 })(); // END OF CLIENTADD.JS
