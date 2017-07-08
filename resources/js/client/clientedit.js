@@ -164,6 +164,7 @@ function clientEditFormAJAX() {
                 clientAddModal.modal('hide');
                 ClientAdd.hideLoading();
                 ClientNav.closeClientProfile();
+                removeEditModalFooterButtons();
             },
             400: function(req, res) {
                 hideLoading();

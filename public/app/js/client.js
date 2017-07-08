@@ -1030,12 +1030,13 @@ confirmDelete.click(function() {
  * Populate Client Profile
 *******************************************/
 function populateProfile(client) {
+    var x = Math.floor(Math.random() * 10000);
     clientProfile.attr('id', client._id);
-    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg');
+    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg?dummy='+x+'');
     firstname.text(client.firstname);
     lastname.text(client.lastname);
     phone.html('<a href="tel:' + client.phone + '">' + client.phone + '</a>');
-    photo.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photo.jpg');
+    photo.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photo.jpg?dummy='+x+'');
     notes.text(client.notes);
 }
 
@@ -1176,12 +1177,13 @@ function addCCListeners() {
  * DISPLAY CLIENTS
 *******************************************/
 function displayClients(req) {
+    var x = Math.floor(Math.random() * 10000);
     for(var i in req) {
         insertLeadingLetters(req, i);
         clientList.append('' +
             '<div class="clientcard" id="'+i+'" data-name="' + req[i].firstname + req[i].lastname + '">' +
                 '<div class="avatar">' +
-                    '<img src="'+apiurl+'photo/'+userid+'/'+req[i]._id+'/avatar.jpg">' +
+                    '<img src="'+apiurl+'photo/'+userid+'/'+req[i]._id+'/avatar.jpg?dummy='+x+'">' +
                 '</div>' +
                 '<span class="firstname">'+req[i].firstname+'</span>' +
                 '<span class="lastname"> '+req[i].lastname+'</span>' +
@@ -1562,6 +1564,7 @@ function clientEditFormAJAX() {
                 clientAddModal.modal('hide');
                 ClientAdd.hideLoading();
                 ClientNav.closeClientProfile();
+                removeEditModalFooterButtons();
             },
             400: function(req, res) {
                 hideLoading();

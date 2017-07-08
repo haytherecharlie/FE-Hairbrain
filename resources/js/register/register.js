@@ -59,7 +59,7 @@ registerBtn.click( function() {
  * On Click Go To Login Page
 *******************************************/
 successLogin.click(function() {
-    location.href = location.origin;
+    location.href = location.origin + '/login/';
 })
 
 continueBtn.click(function() {

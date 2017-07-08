@@ -62,12 +62,13 @@ confirmDelete.click(function() {
  * Populate Client Profile
 *******************************************/
 function populateProfile(client) {
+    var x = Math.floor(Math.random() * 10000);
     clientProfile.attr('id', client._id);
-    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg');
+    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg?dummy='+x+'');
     firstname.text(client.firstname);
     lastname.text(client.lastname);
     phone.html('<a href="tel:' + client.phone + '">' + client.phone + '</a>');
-    photo.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photo.jpg');
+    photo.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photo.jpg?dummy='+x+'');
     notes.text(client.notes);
 }
 

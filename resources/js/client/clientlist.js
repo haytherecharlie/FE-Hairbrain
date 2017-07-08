@@ -59,12 +59,13 @@ function addCCListeners() {
  * DISPLAY CLIENTS
 *******************************************/
 function displayClients(req) {
+    var x = Math.floor(Math.random() * 10000);
     for(var i in req) {
         insertLeadingLetters(req, i);
         clientList.append('' +
             '<div class="clientcard" id="'+i+'" data-name="' + req[i].firstname + req[i].lastname + '">' +
                 '<div class="avatar">' +
-                    '<img src="'+apiurl+'photo/'+userid+'/'+req[i]._id+'/avatar.jpg">' +
+                    '<img src="'+apiurl+'photo/'+userid+'/'+req[i]._id+'/avatar.jpg?dummy='+x+'">' +
                 '</div>' +
                 '<span class="firstname">'+req[i].firstname+'</span>' +
                 '<span class="lastname"> '+req[i].lastname+'</span>' +
