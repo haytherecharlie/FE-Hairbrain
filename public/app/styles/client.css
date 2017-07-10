@@ -548,8 +548,11 @@ main {
     height: 100px;
     width: 100px;
     display: block;
-    margin: 5px auto;
-    background-size: cover !important; }
+    margin: 5px auto; }
+    .stylistmodal .stylistprofile .avatar img {
+      height: 100%;
+      width: auto;
+      border-radius: 50%; }
   .stylistmodal .stylistprofile .name {
     display: block; }
   .stylistmodal .stylistprofile .phone {
@@ -629,25 +632,11 @@ main {
     display: none; }
   .photowidget .photobox {
     height: 150px;
-    width: 100px;
-    background: url("/app/img/photoholder.png") no-repeat center;
-    background-size: 100%;
+    width: 100%;
+    background: transparent;
     display: block;
     margin: 10px auto;
     position: relative; }
-    .photowidget .photobox .default {
+    .photowidget .photobox img {
       height: 100%;
-      width: 100%;
-      border: none; }
-    .photowidget .photobox .rotate {
-      -webkit-transform: rotate(90deg);
-      -moz-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-      -o-transform: rotate(90deg);
-      transform: rotate(90deg);
-      position: absolute;
-      top: 24px;
-      left: -26px;
-      width: 150px;
-      height: 100px;
-      border: none; }
+      width: auto; }

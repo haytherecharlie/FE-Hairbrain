@@ -65,7 +65,7 @@ function displayClients(req) {
         clientList.append('' +
             '<div class="clientcard" id="'+i+'" data-name="' + req[i].firstname + req[i].lastname + '">' +
                 '<div class="avatar">' +
-                    '<img src="'+apiurl+'photo/'+userid+'/'+req[i]._id+'/avatar.jpg?dummy='+x+'">' +
+                    '<img src="'+req[i].avatar+'">' +
                 '</div>' +
                 '<span class="firstname">'+req[i].firstname+'</span>' +
                 '<span class="lastname"> '+req[i].lastname+'</span>' +

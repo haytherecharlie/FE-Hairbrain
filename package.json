@@ -6,20 +6,21 @@
   "dependencies": {
     "animate.css": "latest",
     "bootstrap": "3.3.7",
+    "fast-exif": "^1.0.1",
     "gulp": "latest",
     "gulp-concat": "latest",
+    "gulp-minify": "latest",
     "gulp-sass": "latest",
     "gulp-sitemap": "latest",
     "gulp-sourcemaps": "latest",
-    "gulp-minify": "latest",
     "gulp-util": "latest",
     "gulp-watch": "latest",
-    "normalize-css": "latest",
     "jquery": "latest",
-    "jquery.cookie": "latest",
-    "jquery-validation-dist": "latest",
     "jquery-mask-plugin": "latest",
-    "moment": "latest"
+    "jquery-validation-dist": "latest",
+    "jquery.cookie": "latest",
+    "moment": "latest",
+    "normalize-css": "latest"
   },
   "repository": {
     "type": "git",
@@ -27,5 +28,8 @@
   },
   "author": "Charlie Hay",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "gulp-babel": "^6.1.2"
+  }
 }

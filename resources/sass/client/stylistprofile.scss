@@ -25,7 +25,12 @@
             width: 100px;
             display: block;
             margin: 5px auto;
-            background-size: cover!important;
+
+            img {
+                height: 100%;
+                width: auto;
+                border-radius: 50%;
+            }
         }
 
         .name {

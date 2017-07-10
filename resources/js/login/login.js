@@ -70,6 +70,7 @@ function loginSuccess(res) {
     $.cookie('phone',    res.phone,    { expires: 7, path: '/' });
     $.cookie('email',    res.email,    { expires: 7, path: '/' });
     $.cookie('salon',    res.salon,    { expires: 7, path: '/' });
+    sessionStorage.setItem('avatar', res.avatar );
     redirect(/clients/);
 }
 
@@ -109,7 +110,10 @@ function loginFormAJAX() {
         "data": form,
         "statusCode": {
             200: function(req, res) {
+                console.log(JSON.parse(req));
+                // setTimeout( function() {
                 loginSuccess(JSON.parse(req));
+                // }, 100000)
             },
             400: function(req, res) {
                 ErrorModal.populateMessage(req.responseText);

@@ -64,11 +64,11 @@ confirmDelete.click(function() {
 function populateProfile(client) {
     var x = Math.floor(Math.random() * 10000);
     clientProfile.attr('id', client._id);
-    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg?dummy='+x+'');
+    avatar.attr('src', client.avatar);
     firstname.text(client.firstname);
     lastname.text(client.lastname);
     phone.html('<a href="tel:' + client.phone + '">' + client.phone + '</a>');
-    photo.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photo.jpg?dummy='+x+'');
+    photo.attr('src', client.photo);
     notes.text(client.notes);
 }
 

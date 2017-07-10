@@ -23,6 +23,7 @@ var name        = decodeURI($.cookie('name'));
 var phone       = decodeURI($.cookie('phone'));
 var email       = decodeURI($.cookie('email'));
 var salon       = decodeURI($.cookie('salon'));
+var avatar      = decodeURI($.cookie('avatar'));
 
 
 //----------------------------------------------------------------

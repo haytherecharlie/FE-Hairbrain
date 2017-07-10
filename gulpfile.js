@@ -9,6 +9,7 @@
 /******************************************/
 
 var gulp        = require('gulp');
+var babel       = require('gulp-babel')
 var gutil       = require('gulp-util');
 var sass        = require('gulp-sass');
 var concat      = require('gulp-concat');
@@ -28,9 +29,9 @@ gulp.task('login-custom-sass', function() {
         'resources/sass/templates/errormodal.scss',
         'resources/sass/login/login.scss',
         ])
-        .pipe(concat('login.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/'))
+    .pipe(concat('login.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/'))
 });
 
 // LOGIN CUSTOM JS ========================
@@ -60,9 +61,9 @@ gulp.task('register-custom-sass', function() {
         'resources/sass/templates/photoupload.scss',
         'resources/sass/register/register.scss',
         ])
-        .pipe(concat('register.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/'))
+    .pipe(concat('register.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/'))
 });
 
 // REGISTER CUSTOM JS ========================
@@ -91,10 +92,10 @@ gulp.task('client-custom-sass', function() {
         'resources/sass/client/*.scss',
         'resources/sass/templates/errormodal.scss',        
         'resources/sass/templates/photoupload.scss',
-    ])
-        .pipe(concat('client.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/'))
+        ])
+    .pipe(concat('client.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/'))
 });
 
 // CLIENT CUSTOM JS ======================
@@ -131,9 +132,9 @@ gulp.task('profile-custom-sass', function() {
         'resources/sass/templates/footerlinks.scss',
         'resources/sass/profile/profile.scss'
         ])
-        .pipe(concat('profile.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/'))
+    .pipe(concat('profile.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/'))
 });
 
 // PROFILE CUSTOM JS ========================
@@ -161,9 +162,9 @@ gulp.task('contact-custom-sass', function() {
         'resources/sass/templates/footerlinks.scss',
         'resources/sass/contact/contact.scss'
         ])
-        .pipe(concat('contact.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/'))
+    .pipe(concat('contact.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/'))
 });
 
 // CONTACT CUSTOM JS ========================
@@ -189,9 +190,9 @@ gulp.task('rating-custom-sass', function() {
     gulp.src([
         'resources/sass/rating/rating.scss'
         ])
-        .pipe(concat('rating.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/'))
+    .pipe(concat('rating.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/'))
 });
 
 // RATING CUSTOM JS ========================
@@ -217,9 +218,9 @@ gulp.task('map-custom-sass', function() {
         'resources/sass/map/searchbox.scss',
         'resources/sass/map/map.scss',
         ])
-        .pipe(concat('map.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/'))
+    .pipe(concat('map.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/'))
 });
 
 // MAP CUSTOM JS ========================
@@ -250,9 +251,9 @@ gulp.task('about-custom-sass', function() {
         'resources/sass/learn/about/infoboxes.scss',
         'resources/sass/learn/about/stylistbox.scss' 
         ])
-        .pipe(concat('about.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/learn/'))
+    .pipe(concat('about.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/learn/'))
 });
 
 // ABOUT CUSTOM JS ========================
@@ -280,9 +281,9 @@ gulp.task('blog-custom-sass', function() {
         'resources/sass/templates/navmenu.scss',
         'resources/sass/learn/blog/blog.scss'
         ])
-        .pipe(concat('blog.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/learn/'))
+    .pipe(concat('blog.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/learn/'))
 });
 
 // BLOG CUSTOM JS ========================
@@ -309,9 +310,9 @@ gulp.task('tutorials-custom-sass', function() {
         'resources/sass/templates/footerlinks.scss',
         'resources/sass/learn/tutorials/tutorials.scss'
         ])
-        .pipe(concat('tutorials.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/learn/'))
+    .pipe(concat('tutorials.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/learn/'))
 });
 
 // TUTORIALS CUSTOM JS ========================
@@ -337,9 +338,9 @@ gulp.task('mistake-custom-sass', function() {
     gulp.src([
         'resources/sass/learn/mistake/mistake.scss'
         ])
-        .pipe(concat('mistake.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/learn/'))
+    .pipe(concat('mistake.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/learn/'))
 });
 
 // MISTAKE CUSTOM JS ========================
@@ -362,9 +363,9 @@ gulp.task('privacy-custom-sass', function() {
     gulp.src([
         'resources/sass/learn/privacy/privacy.scss'
         ])
-        .pipe(concat('privacy.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/learn/'))
+    .pipe(concat('privacy.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/learn/'))
 });
 
 /*******************************************
@@ -376,9 +377,9 @@ gulp.task('terms-custom-sass', function() {
     gulp.src([
         'resources/sass/learn/terms/terms.scss'
         ])
-        .pipe(concat('terms.css'))
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./public/app/styles/learn/'))
+    .pipe(concat('terms.css'))
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./public/app/styles/learn/'))
 });
 
 
@@ -412,9 +413,10 @@ gulp.task('vendor-js', function() {
         'resources/js/universal/google/analytics.js',
         'resources/js/universal/api/' + (gutil.env.api ? gutil.env.api : 'test') + 'api.js'
         ])
+    // .pipe(babel({ presets: ['es2015'] }))
     .pipe(sourcemaps.init())
     .pipe(concat('vendor.js'))
-    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
+    .pipe(uglify())
     .pipe(gulp.dest('./public/app/js/'))
 });
 
@@ -446,6 +448,9 @@ gulp.task('default', [
     'tutorials-custom-sass', 'tutorials-custom-js',
     'mistake-custom-sass',   'mistake-custom-js',
     'privacy-custom-sass',   'terms-custom-sass',
+]);
+
+gulp.task('vendor', [
     'vendor-css',            'vendor-js',
 ]);
 

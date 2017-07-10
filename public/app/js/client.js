@@ -23,6 +23,7 @@ var name        = decodeURI($.cookie('name'));
 var phone       = decodeURI($.cookie('phone'));
 var email       = decodeURI($.cookie('email'));
 var salon       = decodeURI($.cookie('salon'));
+var avatar      = decodeURI($.cookie('avatar'));
 
 
 //----------------------------------------------------------------
@@ -251,13 +252,13 @@ function setComments(comments) {
 //---------------------------------------------------------------/
 function populateStylistProfile() {
     stylistProfile.append('' +
-    '<div class="avatar"></div>' +
+    '<div class="avatar"><img src="'+ sessionStorage.getItem('avatar') +'"></div>' +
     '<span class="name">'+name+'</span>' +
     '<span class="phone">'+phone+'</span>' +
     '<span class="salon">'+salon+'</span><hr>' +
     '<div class="ratingscontainer">Fetching Rating<img src="/app/img/loading.gif"></div>');
 
-    $('.stylistprofile .avatar').css('background', 'url("'+apiurl+'avatar/'+userid+'") no-repeat center');
+    $('.stylistprofile .avatar').css('background', 'url('+ avatar + ') no-repeat center');
 }
 
 function populateStylistRating(req) {
@@ -462,8 +463,10 @@ function clientAddFormAJAX() {
     form.append("lastname", clientAddFormLastname.val());
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.text());
-    form.append("photo", PhotoUpload.getResizedImage(), 'photo.jpg');
+    form.append("photo", PhotoUpload.getResizedImage());
+    form.append("avatar", PhotoUpload.getResizedAvatar());
     form.append("name", name);
+    form.append("userid", userid);
 
     var settings = {
         "async": true,
@@ -1032,11 +1035,11 @@ confirmDelete.click(function() {
 function populateProfile(client) {
     var x = Math.floor(Math.random() * 10000);
     clientProfile.attr('id', client._id);
-    avatar.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/avatar.jpg?dummy='+x+'');
+    avatar.attr('src', client.avatar);
     firstname.text(client.firstname);
     lastname.text(client.lastname);
     phone.html('<a href="tel:' + client.phone + '">' + client.phone + '</a>');
-    photo.attr('src', apiurl+'photo/'+client.userid+'/'+client._id+'/photo.jpg?dummy='+x+'');
+    photo.attr('src', client.photo);
     notes.text(client.notes);
 }
 
@@ -1183,7 +1186,7 @@ function displayClients(req) {
         clientList.append('' +
             '<div class="clientcard" id="'+i+'" data-name="' + req[i].firstname + req[i].lastname + '">' +
                 '<div class="avatar">' +
-                    '<img src="'+apiurl+'photo/'+userid+'/'+req[i]._id+'/avatar.jpg?dummy='+x+'">' +
+                    '<img src="'+req[i].avatar+'">' +
                 '</div>' +
                 '<span class="firstname">'+req[i].firstname+'</span>' +
                 '<span class="lastname"> '+req[i].lastname+'</span>' +
@@ -1476,12 +1479,10 @@ function displayProfileValues() {
     clientAddFormLastname.val(originalLastname);
     clientAddFormPhone.val(originalPhone);
     clientAddFormNotes.text(originalNotes);
-    clientAddFormPhotoWidget.css('background', 'url('+originalPhotoSrc+') no-repeat center');
-    clientAddFormPhotoWidget.css('background-size', 'cover');
+    clientAddFormPhotoWidget.attr('src', originalPhotoSrc);
 
     addEditModalFooterButtons();
     
-
     clientAddModal.modal('show');
 
 }
@@ -1540,7 +1541,8 @@ function clientEditFormAJAX() {
     form.append("lastname", clientAddFormLastname.val());
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.text());
-    form.append("photo", PhotoUpload.getResizedImage(), 'photo.jpg');
+    form.append("photo", PhotoUpload.getResizedImage());
+    form.append("avatar", PhotoUpload.getResizedAvatar());
 
     clientid = $('.clientprofile').attr('id');
 
@@ -1633,6 +1635,9 @@ var photoInput;
 var photoBox;
 var photoThumb;
 var resizedImage;
+var resizedAvatar;
+var orientation;
+var imgFile;
 
 
 //----------------------------------------------------------------
@@ -1652,7 +1657,7 @@ var resizedImage;
  * Listen for Photo Upload
 *******************************************/
 function listenForUpload() {
-    photoThumb.click(function() {
+    photoBox.click(function() {
         photoInput.click();
         detectFile();
     })
@@ -1677,7 +1682,7 @@ function listenForUpload() {
 function setNavListeners() {
     photoInput  = $('.photowidget .photoinput');
     photoBox    = $('.photowidget .photobox');
-    photoThumb  = $('.photowidget .photothumb');
+    photoThumb  = $('.photobox img');
     listenForUpload();
 }
 
@@ -1686,80 +1691,208 @@ function setNavListeners() {
 *******************************************/
 function detectFile() {
     photoInput.change(function(evt) {
-        resizeImage(this.files[0]);
+        imgFile = this.files[0]
+
+        // Get the URL to determine flows. 
+        var url = window.location.href.split('/')[3];
+
+        if(url === 'clients') { getOrientation(uprightImg, 500, true); }
+
+        if(url === 'register') { getOrientation(uprightImg, 200, false); }
+
     })
 }
 
-/*******************************************
- * Resize Photo - Using Resize.js
-*******************************************/
-function resizeImage(img) {
 
-    // Get the URL to determine flows. 
-    var url = window.location.href.split('/')[3];
-    
-    // If on the clients page...
-    if(url === 'clients') {
-        ImageTools.resize(img, {
-            width: 500, // maximum width
-            height: 500 // maximum height
-        }, function(blob, didItResize) {
-            getPhotoDimensions(blob)
-        });
-    }
+function getOrientation(callback, scaleSize, avatar) {
 
-    if(url === 'register') {
-        ImageTools.resize(img, {
-            width: 200, // maximum width
-            height: 200 // maximum height
-        }, function(blob, didItResize) {
-            getPhotoDimensions(blob)
-        });     
-    }
+    // Create new FileReader
+    var reader = new FileReader();
+
+    // Onload of reader
+    reader.onload = function(e) {
+
+        // Create DataView
+        var view = new DataView(e.target.result);
+
+        // Return -2 for base case.
+        if (view.getUint16(0, false) != 0xFFD8) {
+            orientation = -2;
+            return callback(scaleSize, avatar);
+        }
+
+        // While offset < length
+        var length = view.byteLength, offset = 2;
+        while (offset < length) {
+
+            // Increment by 2 on marker
+            var marker = view.getUint16(offset, false);
+            offset += 2;
+
+            // If markert == 0xFFE1
+            if (marker == 0xFFE1) {
+
+                // Return -1 
+                if (view.getUint32(offset += 2, false) != 0x45786966) {
+                    orientation = -1;
+                    return callback(scaleSize, avatar);
+                }
+
+                // Check offset
+                var little = view.getUint16(offset += 6, false) == 0x4949;
+                offset += view.getUint32(offset + 4, little);
+                var tags = view.getUint16(offset, little);
+                offset += 2;
+
+                // Run tags
+                for (var i = 0; i < tags; i++){
+
+                    // If orientation data is present return orientation.
+                    if (view.getUint16(offset + (i * 12), little) == 0x0112){
+                        orientation = view.getUint16(offset + (i * 12) + 8, little)
+                        return callback(scaleSize, avatar);
+                    }
+                }
+            }
+
+            // Break.
+            else if ((marker & 0xFF00) != 0xFF00) { 
+                break;
+            }
+
+            // else getUnit16(offset, false)
+            else { 
+                offset += view.getUint16(offset, false);
+            }
+
+        }
+
+        // Return -1 
+        orientation = -1;
+        return callback(scaleSize, avatar);
+
+    };
+
+    // Read imgFile as Array Buffer.
+    reader.readAsArrayBuffer(imgFile);
+
 }
 
-/*******************************************
- * Get Photo Dimensions
-*******************************************/
-function getPhotoDimensions(blob) {
-		    
-        var fr = new FileReader;
-        fr.onload = function() {
-            var img = new Image;
-            img.onload = function() {
-                showPhoto(img, blob);
-            };
-            img.src = fr.result;
-        };
-        fr.readAsDataURL(blob);
-}
+function uprightImg(scaleSize, avatar) {
+  
+  var can = document.createElement("canvas");
+  var ctx = can.getContext('2d');
+  var thisImage = new Image;
 
-/*******************************************
- * Show Photo
-*******************************************/
-function showPhoto(img, blob) {
+  thisImage.onload = function() {
 
-    if (img.height < img.width) {
-        photoThumb.removeClass('default');
-        photoThumb.addClass('rotate');
-    } else {
-        photoThumb.removeClass('rotate');
-        photoThumb.addClass('default');
+    var ratio  = thisImage.width / thisImage.height;
+    var width  = thisImage.height * ratio;
+    var height = thisImage.width / ratio; 
+
+    can.height = scaleSize;
+    can.width  = can.height * ratio;
+    ctx.save();
+    var styleWidth  = can.style.width;
+    var styleHeight = can.style.height;
+
+    if (orientation) {
+      if (orientation > 4) {
+        can.width  = height; can.style.width  = styleHeight;
+        can.height = width;  can.style.height = styleWidth;
+      }
+      switch (orientation) {
+      case 2: ctx.translate(width, 0);     ctx.scale(-1,1); break;
+      case 3: ctx.translate(width,height); ctx.rotate(Math.PI); break;
+      case 4: ctx.translate(0,height);     ctx.scale(1,-1); break;
+      case 5: ctx.rotate(0.5 * Math.PI);   ctx.scale(1,-1); break;
+      case 6: ctx.rotate(0.5 * Math.PI);   ctx.translate(0,-height); break;
+      case 7: ctx.rotate(0.5 * Math.PI);   ctx.translate(width,-height); ctx.scale(-1,1); break;
+      case 8: ctx.rotate(-0.5 * Math.PI);  ctx.translate(-width,0); break;
+      }
     }
 
-    photoThumb.css('background', 'url(' + img.src + ') no-repeat center' );
-    photoThumb.css('background-size', 'cover');
+    ctx.drawImage(thisImage,0,0, can.width, can.height);
+    ctx.restore();
+    var dataURL = can.toDataURL();
 
-    var file = new File([blob], 'photo.jpg', {type: 'image/jpeg', lastModified: Date.now()});
+    resizedImage  = dataURL;
 
-    resizedImage = file;
+    showImage(resizedImage);
+
+    if(avatar === true) {
+        scaleAvatar(150);
+    }
+
+  }
+
+  // now trigger the onload function by setting the src to your HTML5 file object (called 'file' here)
+  thisImage.src = URL.createObjectURL(imgFile);
+
 }
+
+function scaleAvatar(scaleSize) {
+  
+  var can = document.createElement("canvas");
+  var ctx = can.getContext('2d');
+  var thisImage = new Image;
+
+  thisImage.onload = function() {
+
+    var ratio  = thisImage.width / thisImage.height;
+    var width  = thisImage.height * ratio;
+    var height = thisImage.width / ratio; 
+
+    can.height = scaleSize;
+    can.width  = can.height * ratio;
+    ctx.save();
+    var width  = can.width;  var styleWidth  = can.style.width;
+    var height = can.height; var styleHeight = can.style.height;
+
+    if (orientation) {
+      if (orientation > 4) {
+        can.width  = height; can.style.width  = styleHeight;
+        can.height = width;  can.style.height = styleWidth;
+      }
+      switch (orientation) {
+      case 2: ctx.translate(width, 0);     ctx.scale(-1,1); break;
+      case 3: ctx.translate(width,height); ctx.rotate(Math.PI); break;
+      case 4: ctx.translate(0,height);     ctx.scale(1,-1); break;
+      case 5: ctx.rotate(0.5 * Math.PI);   ctx.scale(1,-1); break;
+      case 6: ctx.rotate(0.5 * Math.PI);   ctx.translate(0,-height); break;
+      case 7: ctx.rotate(0.5 * Math.PI);   ctx.translate(width,-height); ctx.scale(-1,1); break;
+      case 8: ctx.rotate(-0.5 * Math.PI);  ctx.translate(-width,0); break;
+      }
+    }
+
+    ctx.drawImage(thisImage,0,0, can.width, can.height);
+    ctx.restore();
+    var dataURL = can.toDataURL();
+
+    resizedAvatar  = dataURL;
+
+  }
+
+  // now trigger the onload function by setting the src to your HTML5 file object (called 'file' here)
+  thisImage.src = URL.createObjectURL(imgFile);
+
+}
+
+
+function showImage(dataURL) {
+    photoThumb.attr('src', dataURL);
+}
+
 
 /*******************************************
  * Get Resized Image : Globally Exposed
 *******************************************/
 function getResizedImage() {
     return resizedImage;
+}
+
+function getResizedAvatar() {
+    return resizedAvatar;
 }
 
 
@@ -1792,7 +1925,9 @@ function getResizedImage() {
     })();
 
     return {
-        getResizedImage: getResizedImage
+        getResizedImage: getResizedImage,
+        getResizedAvatar: getResizedAvatar,
+        showImage: showImage
     }
 
 })(); // END OF PHOTOUPLOAD.JS
