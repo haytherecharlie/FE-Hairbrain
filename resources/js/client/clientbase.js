@@ -17,12 +17,14 @@
 /*******************************************
  * Global Variables
 *******************************************/
-var userid      = decodeURI($.cookie('userid'));
 var jwt         = decodeURI($.cookie('jwt'));
-var name        = decodeURI($.cookie('name'));
-var phone       = decodeURI($.cookie('phone'));
-var email       = decodeURI($.cookie('email'));
-var salon       = decodeURI($.cookie('salon'));
+var user        = JSON.parse(sessionStorage.getItem('user'));
+var userid      = user.id;
+var name        = user.name;
+var phone       = user.phone;
+var email       = user.email;
+var salon       = user.salon;
+var avatar      = user.avatar;
 
 
 //----------------------------------------------------------------

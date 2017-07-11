@@ -21,33 +21,15 @@
     // PHOTO CONTAINER //
     .photobox {
         height: 150px;
-        width: 100px;
-        background: url('/app/img/photoholder.png') no-repeat center;
-        background-size: 100%;
+        width: 100%;
+        background: transparent;
         display: block;
         margin: 10px auto;
         position: relative;
 
-        // VERTICAL PHOTO //
-        .default {
+        .photothumb {
             height: 100%;
-            width: 100%;
-            border: none;
-        }
-        
-        // ROTATE PHOTO //
-        .rotate {
-            -webkit-transform: rotate(90deg);
-            -moz-transform: rotate(90deg);
-            -ms-transform: rotate(90deg);
-            -o-transform: rotate(90deg);
-            transform: rotate(90deg);
-            position: absolute;
-            top: 24px;
-            left: -26px;
-            width: 150px;
-            height: 100px;
-            border: none;
+            width: auto;
         }
     }
 }

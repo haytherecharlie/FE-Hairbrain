@@ -69,7 +69,7 @@ function setComments(comments) {
 //---------------------------------------------------------------/
 function populateStylistProfile() {
     stylistProfile.append('' +
-    '<div class="avatar"></div>' +
+    '<div class="avatar"><img src="'+avatar+'"></div>' +
     '<span class="name">'+name+'</span>' +
     '<span class="phone">'+phone+'</span>' +
     '<span class="salon">'+salon+'</span><hr>' +

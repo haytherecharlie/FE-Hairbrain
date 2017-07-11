@@ -76,8 +76,7 @@ function displayProfileValues() {
     clientAddFormLastname.val(originalLastname);
     clientAddFormPhone.val(originalPhone);
     clientAddFormNotes.text(originalNotes);
-    clientAddFormPhotoWidget.css('background', 'url('+originalPhotoSrc+') no-repeat center');
-    clientAddFormPhotoWidget.css('background-size', 'cover');
+    clientAddFormPhotoWidget.attr('src', originalPhotoSrc);
 
     addEditModalFooterButtons();
     
@@ -140,7 +139,9 @@ function clientEditFormAJAX() {
     form.append("lastname", clientAddFormLastname.val());
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.text());
-    form.append("photo", PhotoUpload.getResizedImage(), 'photo.jpg');
+
+    if (PhotoUpload.getResizedImage())  { form.append("photo", PhotoUpload.getResizedImage());   }
+    if (PhotoUpload.getResizedAvatar()) { form.append("avatar", PhotoUpload.getResizedAvatar()); }
 
     clientid = $('.clientprofile').attr('id');
 

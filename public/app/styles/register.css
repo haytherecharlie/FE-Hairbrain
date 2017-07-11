@@ -185,28 +185,14 @@
     display: none; }
   .photowidget .photobox {
     height: 150px;
-    width: 100px;
-    background: url("/app/img/photoholder.png") no-repeat center;
-    background-size: 100%;
+    width: 100%;
+    background: transparent;
     display: block;
     margin: 10px auto;
     position: relative; }
-    .photowidget .photobox .default {
+    .photowidget .photobox .photothumb {
       height: 100%;
-      width: 100%;
-      border: none; }
-    .photowidget .photobox .rotate {
-      -webkit-transform: rotate(90deg);
-      -moz-transform: rotate(90deg);
-      -ms-transform: rotate(90deg);
-      -o-transform: rotate(90deg);
-      transform: rotate(90deg);
-      position: absolute;
-      top: 24px;
-      left: -26px;
-      width: 150px;
-      height: 100px;
-      border: none; }
+      width: auto; }
 
 /*******************************************
 * © 2017 Hairbrain inc.

@@ -64,12 +64,22 @@ loginForm.submit( function(e) {
  * Login Success
 *******************************************/
 function loginSuccess(res) {
-    $.cookie('jwt',      res.token,    { expires: 7, path: '/' });
-    $.cookie('userid',   res.id,       { expires: 7, path: '/' });
-    $.cookie('name',     res.name,     { expires: 7, path: '/' });
-    $.cookie('phone',    res.phone,    { expires: 7, path: '/' });
-    $.cookie('email',    res.email,    { expires: 7, path: '/' });
-    $.cookie('salon',    res.salon,    { expires: 7, path: '/' });
+
+    var user = {
+        id: res.id,
+        name: res.name,
+        phone: res.phone,
+        email: res.email,
+        salon: res.salon, 
+        avatar: res.avatar
+    }
+
+    // Set the user in Session Storage.
+    sessionStorage.setItem('user', JSON.stringify(user));
+
+    // Set the JWT in the Session Storage.
+    $.cookie('jwt', res.token, { expires: 7, path: '/' });
+
     redirect(/clients/);
 }
 

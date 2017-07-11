@@ -109,7 +109,7 @@ function registerFormAJAX() {
 
     if(keyword.val() === 'Kanye2020') {
         var form = new FormData();
-        form.append("avatar", PhotoUpload.getResizedImage(), 'avatar.jpg');       
+        form.append("avatar", PhotoUpload.getResizedImage());       
         form.append("firstname", firstname.val());
         form.append("lastname", lastname.val());
         form.append("phone", phone.val());

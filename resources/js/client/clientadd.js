@@ -121,8 +121,9 @@ function clientAddFormAJAX() {
     form.append("lastname", clientAddFormLastname.val());
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.text());
-    form.append("photo", PhotoUpload.getResizedImage(), 'photo.jpg');
     form.append("name", name);
+    form.append("photo", PhotoUpload.getResizedImage());
+    form.append("avatar", PhotoUpload.getResizedAvatar());
 
     var settings = {
         "async": true,
