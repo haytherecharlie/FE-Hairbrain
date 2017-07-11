@@ -186,11 +186,6 @@ function checkIfAlreadyLoggedIn(jwt) {
 *******************************************/
     var Main = (function() {
 
-        // If JWT exists, try auto login.
-        if ($.cookie('jwt')) { 
-            checkIfAlreadyLoggedIn($.cookie('jwt'));
-        }
-
     })();
 
     return {
