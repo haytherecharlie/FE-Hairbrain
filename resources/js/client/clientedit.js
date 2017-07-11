@@ -140,7 +140,7 @@ function clientEditFormAJAX() {
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.text());
 
-    if (PhotoUpload.getResizedImage())  { form.append("photo", PhotoUpload.getResizedImage());   }
+    if (PhotoUpload.getResizedImage())  { form.append("photo",  PhotoUpload.getResizedImage());   }
     if (PhotoUpload.getResizedAvatar()) { form.append("avatar", PhotoUpload.getResizedAvatar()); }
 
     clientid = $('.clientprofile').attr('id');

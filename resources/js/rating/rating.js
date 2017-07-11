@@ -280,7 +280,7 @@ function getRatingVerification() {
             200: function(req, res) {
                 if(req == '') {
                     ratingInvalid();
-                    setTimeout(function() { redirect('/learn/about/') }, 5000);
+                    setTimeout(function() { redirect('/') }, 5000);
                 } else {
                     keyInfoObj = req;
                     ratingValid();

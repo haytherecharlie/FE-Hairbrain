@@ -65,11 +65,7 @@ menuReport.click(function() {
 *******************************************/
 menuLogout.click(function() {
 	$.removeCookie('jwt', { path: '/' })
-	$.removeCookie('userid', { path: '/' })
-    $.removeCookie('name', { path: '/' })
-    $.removeCookie('phone', { path: '/' })
-    $.removeCookie('email', { path: '/' })
-    $.removeCookie('salon', { path: '/' })
+    sessionStorage.removeItem('user');
 	window.location.href = window.location.origin + '/';
 });
 
