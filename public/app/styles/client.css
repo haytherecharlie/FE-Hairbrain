@@ -547,7 +547,7 @@ main {
     width: 100px;
     display: block;
     margin: 5px auto;
-    background-size: cover;
+    background-size: contain !important;
     border-radius: 50%; }
   .stylistmodal .stylistprofile .name {
     display: block; }

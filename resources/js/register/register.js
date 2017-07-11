@@ -107,7 +107,7 @@ function initialize() {
 *******************************************/
 function registerFormAJAX() {
 
-    if(keyword.val() === 'Kanye2020') {
+    if(keyword.val() === 'hairbeta') {
         var form = new FormData();
         form.append("avatar", PhotoUpload.getResizedImage());       
         form.append("firstname", firstname.val());
