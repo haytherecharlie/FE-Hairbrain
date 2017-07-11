@@ -546,11 +546,9 @@ main {
     height: 100px;
     width: 100px;
     display: block;
-    margin: 5px auto; }
-    .stylistmodal .stylistprofile .avatar img {
-      width: 100%;
-      height: auto;
-      border-radius: 50%; }
+    margin: 5px auto;
+    background-size: cover;
+    border-radius: 50%; }
   .stylistmodal .stylistprofile .name {
     display: block; }
   .stylistmodal .stylistprofile .phone {

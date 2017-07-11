@@ -56,7 +56,6 @@ clientAddFormSubmit.click( function() {
  * On Click of Close Modal 
 *******************************************/
 clientAddModalCloseButton.click( function() {
-    console.log('pooop');
     emptyAddForm();
 });
 
@@ -102,7 +101,7 @@ function emptyAddForm() {
         $(this).val('');
     })
     clientAddFormNotes.text('');
-    $('.clientaddmodal .clientaddform .photothumb').css('background', 'none');
+    $('.clientaddmodal .clientaddform .photothumb').attr('src', '/app/img/photoholder.png');
 }
 
 

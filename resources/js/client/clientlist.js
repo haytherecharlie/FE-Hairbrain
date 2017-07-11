@@ -118,6 +118,7 @@ function clientListAJAX() {
         "statusCode": {
             200: function(req, res) {
                 clientlist = req;
+                console.log(clientlist);
                 clientList.empty();
                 if(clientlist.length === 0)
                     clientList.append('<div class="empty">You don\'t have any clients, <br> Click the \'+\' below to get started!</div>');

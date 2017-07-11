@@ -69,13 +69,13 @@ function setComments(comments) {
 //---------------------------------------------------------------/
 function populateStylistProfile() {
     stylistProfile.append('' +
-    '<div class="avatar"><img src="'+avatar+'"></div>' +
+    '<div class="avatar"></div>' +
     '<span class="name">'+name+'</span>' +
     '<span class="phone">'+phone+'</span>' +
     '<span class="salon">'+salon+'</span><hr>' +
     '<div class="ratingscontainer">Fetching Rating<img src="/app/img/loading.gif"></div>');
 
-    $('.stylistprofile .avatar').css('background', 'url("'+apiurl+'avatar/'+userid+'") no-repeat center');
+    $('.stylistprofile .avatar').css('background', 'url('+avatar+') no-repeat center');
 }
 
 function populateStylistRating(req) {
