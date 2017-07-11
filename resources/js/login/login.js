@@ -80,6 +80,7 @@ function loginSuccess(res) {
     // Set the JWT in the Session Storage.
     $.cookie('jwt', res.token, { expires: 7, path: '/' });
 
+    // Redirect 
     redirect(/clients/);
 }
 
