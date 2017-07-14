@@ -110,6 +110,7 @@ gulp.task('client-custom-js', function() {
         'resources/js/client/clientlist.js',
         'resources/js/client/clientreport.js',
         'resources/js/client/clientedit.js',
+        'resources/js/client/clientfooter.js',
         'resources/js/templates/photoupload.js',
         
         ])

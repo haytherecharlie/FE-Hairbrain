@@ -13,7 +13,7 @@
   width: 50px;
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 75px;
   background: #ff3253;
   border-radius: 50%; }
   .clientaddbutton a {
@@ -111,6 +111,22 @@ main {
   background: #fff;
   color: #000;
   border: 1px solid #ccc; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 55px;
+  width: 100%;
+  background: transparent;
+  border-top: 1px solid #ccc;
+  text-align: center; }
+  footer button {
+    width: calc(97% / 3);
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: none; }
 
 /*******************************************
 * © 2017 Hairbrain inc.

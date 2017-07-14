@@ -17,6 +17,11 @@
 /*******************************************
  * Global Variables
 *******************************************/
+
+if (!sessionStorage.getItem('user')) {
+    redirect('/login/');
+}
+
 var jwt         = decodeURI($.cookie('jwt'));
 var user        = JSON.parse(sessionStorage.getItem('user'));
 var userid      = user.id;
