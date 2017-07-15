@@ -39,6 +39,7 @@ gulp.task('login-custom-js', function() {
         'resources/js/templates/navmenu.js',
         'resources/js/templates/errormodal.js',
         'resources/js/login/login.js',
+        'resources/js/universal/images/exif.js',
         'resources/js/universal/images/photoupload.js',
         ])
     .pipe(sourcemaps.init())
@@ -71,6 +72,7 @@ gulp.task('register-custom-js', function() {
         'resources/js/templates/navmenu.js',
         'resources/js/templates/errormodal.js',
         'resources/js/templates/footerlinks.js',
+        'resources/js/universal/images/exif.js',
         'resources/js/templates/photoupload.js',        
         'resources/js/register/register.js',
         ])
@@ -111,6 +113,7 @@ gulp.task('client-custom-js', function() {
         'resources/js/client/clientreport.js',
         'resources/js/client/clientedit.js',
         'resources/js/client/clientfooter.js',
+        'resources/js/universal/images/exif.js',
         'resources/js/templates/photoupload.js',
         
         ])
@@ -418,6 +421,7 @@ gulp.task('vendor-js', function() {
     .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
     .pipe(gulp.dest('./public/app/js/'))
 });
+
 
 /*******************************************
 /                SITEMAP
