@@ -318,7 +318,7 @@ function postRating() {
         "data": form,        
         "statusCode": {
             200: function(req, res) {
-                setTimeout(function() { redirect('/learn/about/') }, 5000);
+                setTimeout(function() { redirect('/') }, 5000);
             },
             400: function(req, res) {
                 redirect('/learn/mistake/');
