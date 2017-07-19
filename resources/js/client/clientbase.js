@@ -20,6 +20,7 @@
 
 var jwt         = decodeURI($.cookie('jwt'));
 var userid      = decodeURI($.cookie('userid'));
+var name        = decodeURI($.cookie('name'));
 
 if(!jwt || !userid) { redirect('/'); }
 

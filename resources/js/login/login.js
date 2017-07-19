@@ -71,6 +71,9 @@ function loginSuccess(res) {
     // Set the UserID in the Session Storage.
     $.cookie('userid', res.id, { expires: 7, path: '/' });
 
+    // Set the UserID in the Session Storage.
+    $.cookie('name', res.name, { expires: 7, path: '/' });
+
     // Redirect 
     redirect(/clients/);
 }
