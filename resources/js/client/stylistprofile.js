@@ -67,15 +67,15 @@ function setComments(comments) {
 						 // LOGIC
 
 //---------------------------------------------------------------/
-function populateStylistProfile() {
+function populateStylistProfile(req) {
     stylistProfile.append('' +
     '<div class="avatar"></div>' +
-    '<span class="name">'+name+'</span>' +
-    '<span class="phone">'+phone+'</span>' +
-    '<span class="salon">'+salon+'</span><hr>' +
+    '<span class="name">'+req.name+'</span>' +
+    '<span class="phone">'+req.phone+'</span>' +
+    '<span class="salon">'+req.salon+'</span><hr>' +
     '<div class="ratingscontainer">Fetching Rating<img src="/app/img/loading.gif"></div>');
 
-    $('.stylistprofile .avatar').css('background', 'url('+avatar+') no-repeat center');
+    $('.stylistprofile .avatar').css('background', 'url('+req.avatar+') no-repeat center');
 }
 
 function populateStylistRating(req) {
@@ -98,6 +98,43 @@ function populateStylistRating(req) {
 						 // AJAX CALLS
 
 //---------------------------------------------------------------/
+
+/*******************************************
+ * Stylist Profile -> GET
+*******************************************/
+function stylistProfileAJAX() {
+    
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": apiurl + "profile/" + userid,
+        "method": "GET",
+        "headers": {
+            "cache-control": "no-cache",
+            "Authorization": "Bearer " + jwt
+        },
+        "processData": false,
+        "contentType": false,
+        "statusCode": {
+            200: function(req, res) {
+                populateStylistProfile(req);
+            },
+            400: function(req, res) {
+                ErrorModal.populateMessage(req.responseText);
+            },
+            401: function(req, res) {
+                redirect('/');
+            },
+            500: function(req, res) {
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
+            }
+        }
+    }
+
+    $.ajax(settings)
+
+}
+
 
 /*******************************************
  * Stylist Rating -> GET
@@ -147,7 +184,7 @@ function stylistRatingAJAX() {
     var Main = (function() {  
 
         // Populate Stylist Profile
-        populateStylistProfile();
+        stylistProfileAJAX();
 
     })();
 

@@ -65,20 +65,11 @@ loginForm.submit( function(e) {
 *******************************************/
 function loginSuccess(res) {
 
-    var user = {
-        id: res.id,
-        name: res.name,
-        phone: res.phone,
-        email: res.email,
-        salon: res.salon, 
-        avatar: res.avatar
-    }
-
-    // Set the user in Session Storage.
-    sessionStorage.setItem('user', JSON.stringify(user));
-
     // Set the JWT in the Session Storage.
     $.cookie('jwt', res.token, { expires: 7, path: '/' });
+
+    // Set the UserID in the Session Storage.
+    $.cookie('userid', res.id, { expires: 7, path: '/' });
 
     // Redirect 
     redirect(/clients/);

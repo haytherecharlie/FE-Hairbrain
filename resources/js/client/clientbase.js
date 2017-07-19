@@ -18,19 +18,10 @@
  * Global Variables
 *******************************************/
 
-if (!sessionStorage.getItem('user')) {
-    redirect('/login/');
-}
-
 var jwt         = decodeURI($.cookie('jwt'));
-var user        = JSON.parse(sessionStorage.getItem('user'));
-var userid      = user.id;
-var name        = user.name;
-var phone       = user.phone;
-var email       = user.email;
-var salon       = user.salon;
-var avatar      = user.avatar;
+var userid      = decodeURI($.cookie('userid'));
 
+if(!jwt || !userid) { redirect('/'); }
 
 //----------------------------------------------------------------
 
