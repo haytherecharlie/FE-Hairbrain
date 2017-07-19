@@ -19,7 +19,7 @@ var ClientEdit = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var editClientButton          = $('.clientprofile .editclient'); 
+var editClientButton           = $('.clientprofile .editclient'); 
 var originalFirstname;
 var originalLastname;
 var originalPhone;
@@ -27,22 +27,21 @@ var originalPhotoSrc;
 var originalNotes;
 var clientAddFormPhotoWidget;
 
-var clientAddButton           = $('main .clientaddbutton');
-var clientAddModal            = $('.clientaddmodal');
-var clientAddModalFooter      = $('.clientaddmodal .modal-footer');
-var clientAddForm             = $('.clientaddmodal .clientaddform');
-var clientAddFormFirstname    = $('.clientaddmodal .clientaddform .firstname');
-var clientAddFormLastname     = $('.clientaddmodal .clientaddform .lastname');
-var clientAddFormPhone        = $('.clientaddmodal .clientaddform .phone');
-var clientAddFormNotes        = $('.clientaddmodal .clientaddform .notes');
+var clientAddButton            = $('main .clientaddbutton');
+var clientAddModal             = $('.clientaddmodal');
+var clientAddModalFooter       = $('.clientaddmodal .modal-footer');
+var clientAddForm              = $('.clientaddmodal .clientaddform');
+var clientAddFormFirstname     = $('.clientaddmodal .clientaddform .firstname');
+var clientAddFormLastname      = $('.clientaddmodal .clientaddform .lastname');
+var clientAddFormPhone         = $('.clientaddmodal .clientaddform .phone');
+var clientAddFormNotes         = $('.clientaddmodal .clientaddform .notes');
 
-var clientAddFormSubmit       = $('.clientaddmodal .clientaddsubmit');
-var clientAddModalCloseButton = $('.clientaddmodal .closemodal');
+var clientAddFormSubmit        = $('.clientaddmodal .clientaddsubmit');
+var clientAddModalCloseButton  = $('.clientaddmodal .closemodal');
 
 var clientEditFormSubmit       = $('.clientaddmodal .clienteditsubmit');
 var clientEditModalCloseButton = $('.clientaddmodal .closeeditmodal');
-
-var clientAddModalLoadingGif  = $('.clientaddmodal .savingclient');
+var clientAddModalLoadingGif   = $('.clientaddmodal .savingclient');
 
 
 //----------------------------------------------------------------
@@ -140,8 +139,22 @@ function clientEditFormAJAX() {
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.text());
 
-    if (PhotoUpload.getResizedImage())  { form.append("photo",  PhotoUpload.getResizedImage());   }
-    if (PhotoUpload.getResizedAvatar()) { form.append("avatar", PhotoUpload.getResizedAvatar()); }
+    var resizedPhoto  = PhotoUpload.getResizedImage();
+    var resizedAvatar = PhotoUpload.getResizedAvatar(); 
+    var thumbsrc = $('.clientaddmodal .photothumb').attr('src');
+
+    if (typeof resizedPhoto === 'undefined'  && thumbsrc === '/app/img/defaultphoto.png')  { 
+        form.append("photo", 'empty');
+        form.append("avatar", 'empty');  
+    }
+    else if (typeof resizedPhoto === 'undefined'  && thumbsrc !== '/app/img/defaultphoto.png') {
+        form.append("photo", 'unchanged');
+        form.append("avatar", 'unchanged');
+    }
+    else {
+        form.append("photo", resizedPhoto);
+        form.append("avatar", resizedAvatar);
+    }
 
     clientid = $('.clientprofile').attr('id');
 
@@ -168,15 +181,15 @@ function clientEditFormAJAX() {
                 removeEditModalFooterButtons();
             },
             400: function(req, res) {
-                hideLoading();
+                ClientAdd.hideLoading();
                 ErrorModal.populateMessage(req.responseText);
             },
             401: function(req, res) {
-                hideLoading();
+                ClientAdd.hideLoading();
                 ErrorModal.populateMessage(req.responseText);
             },
             500: function(req, res) {
-                hideLoading();
+                ClientAdd.hideLoading();
                 ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }

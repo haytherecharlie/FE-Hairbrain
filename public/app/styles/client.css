@@ -13,7 +13,7 @@
   width: 50px;
   position: fixed;
   right: 20px;
-  bottom: 75px;
+  bottom: 20px;
   background: #ff3253;
   border-radius: 50%; }
   .clientaddbutton a {
@@ -113,6 +113,7 @@ main {
   border: 1px solid #ccc; }
 
 footer {
+  display: none;
   position: absolute;
   bottom: 0;
   left: 0;

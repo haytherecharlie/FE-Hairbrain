@@ -121,8 +121,12 @@ function clientAddFormAJAX() {
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.text());
     form.append("name", name);
-    form.append("photo", PhotoUpload.getResizedImage());
-    form.append("avatar", PhotoUpload.getResizedAvatar());
+
+    var resizedPhoto  = PhotoUpload.getResizedImage();
+    var resizedAvatar = PhotoUpload.getResizedAvatar(); 
+
+    if (resizedPhoto)  { form.append("photo",  resizedPhoto);  }
+    if (resizedAvatar) { form.append("avatar", resizedAvatar); }
 
     var settings = {
         "async": true,

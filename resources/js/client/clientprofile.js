@@ -51,7 +51,6 @@ confirmDelete.click(function() {
     deleteClient();
 });
 
-
 //----------------------------------------------------------------
 
 						 // VIEWS
@@ -63,12 +62,21 @@ confirmDelete.click(function() {
 *******************************************/
 function populateProfile(client) {
     var x = Math.floor(Math.random() * 10000);
+
+    var listavatar;
+    if( client.avatar === 'no-avatar' ) listavatar = '/app/img/defaultavatar.png';
+    else listavatar = client.avatar;
+
+    var listphoto;
+    if( client.photo === 'no-photo' ) listphoto = '/app/img/defaultphoto.png';
+    else listphoto = client.photo;
+
     clientProfile.attr('id', client._id);
-    avatar.attr('src', client.avatar);
+    avatar.attr('src', listavatar);
     firstname.text(client.firstname);
     lastname.text(client.lastname);
     phone.html('<a href="tel:' + client.phone + '">' + client.phone + '</a>');
-    photo.attr('src', client.photo );
+    photo.attr('src', listphoto );
     notes.text(client.notes);
 }
 

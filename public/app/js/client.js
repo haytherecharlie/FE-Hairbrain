@@ -469,8 +469,12 @@ function clientAddFormAJAX() {
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.text());
     form.append("name", name);
-    form.append("photo", PhotoUpload.getResizedImage());
-    form.append("avatar", PhotoUpload.getResizedAvatar());
+
+    var resizedPhoto  = PhotoUpload.getResizedImage();
+    var resizedAvatar = PhotoUpload.getResizedAvatar(); 
+
+    if (resizedPhoto)  { form.append("photo",  resizedPhoto);  }
+    if (resizedAvatar) { form.append("avatar", resizedAvatar); }
 
     var settings = {
         "async": true,
@@ -1022,7 +1026,6 @@ confirmDelete.click(function() {
     deleteClient();
 });
 
-
 //----------------------------------------------------------------
 
 						 // VIEWS
@@ -1034,12 +1037,21 @@ confirmDelete.click(function() {
 *******************************************/
 function populateProfile(client) {
     var x = Math.floor(Math.random() * 10000);
+
+    var listavatar;
+    if( client.avatar === 'no-avatar' ) listavatar = '/app/img/defaultavatar.png';
+    else listavatar = client.avatar;
+
+    var listphoto;
+    if( client.photo === 'no-photo' ) listphoto = '/app/img/defaultphoto.png';
+    else listphoto = client.photo;
+
     clientProfile.attr('id', client._id);
-    avatar.attr('src', client.avatar);
+    avatar.attr('src', listavatar);
     firstname.text(client.firstname);
     lastname.text(client.lastname);
     phone.html('<a href="tel:' + client.phone + '">' + client.phone + '</a>');
-    photo.attr('src', client.photo );
+    photo.attr('src', listphoto );
     notes.text(client.notes);
 }
 
@@ -1182,11 +1194,14 @@ function addCCListeners() {
 function displayClients(req) {
     var x = Math.floor(Math.random() * 10000);
     for(var i in req) {
+        var listavatar;
+        if( req[i].avatar === 'no-avatar' ) listavatar = '/app/img/defaultavatar.png';
+        else listavatar = req[i].avatar;
         insertLeadingLetters(req, i);
         clientList.append('' +
             '<div class="clientcard" id="'+i+'" data-name="' + req[i].firstname + req[i].lastname + '">' +
                 '<div class="avatar">' +
-                    '<img src="' + req[i].avatar + '">' +
+                    '<img src="' + listavatar + '">' +
                 '</div>' +
                 '<span class="firstname">'+req[i].firstname+'</span>' +
                 '<span class="lastname"> '+req[i].lastname+'</span>' +
@@ -1422,7 +1437,7 @@ var ClientEdit = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var editClientButton          = $('.clientprofile .editclient'); 
+var editClientButton           = $('.clientprofile .editclient'); 
 var originalFirstname;
 var originalLastname;
 var originalPhone;
@@ -1430,22 +1445,21 @@ var originalPhotoSrc;
 var originalNotes;
 var clientAddFormPhotoWidget;
 
-var clientAddButton           = $('main .clientaddbutton');
-var clientAddModal            = $('.clientaddmodal');
-var clientAddModalFooter      = $('.clientaddmodal .modal-footer');
-var clientAddForm             = $('.clientaddmodal .clientaddform');
-var clientAddFormFirstname    = $('.clientaddmodal .clientaddform .firstname');
-var clientAddFormLastname     = $('.clientaddmodal .clientaddform .lastname');
-var clientAddFormPhone        = $('.clientaddmodal .clientaddform .phone');
-var clientAddFormNotes        = $('.clientaddmodal .clientaddform .notes');
+var clientAddButton            = $('main .clientaddbutton');
+var clientAddModal             = $('.clientaddmodal');
+var clientAddModalFooter       = $('.clientaddmodal .modal-footer');
+var clientAddForm              = $('.clientaddmodal .clientaddform');
+var clientAddFormFirstname     = $('.clientaddmodal .clientaddform .firstname');
+var clientAddFormLastname      = $('.clientaddmodal .clientaddform .lastname');
+var clientAddFormPhone         = $('.clientaddmodal .clientaddform .phone');
+var clientAddFormNotes         = $('.clientaddmodal .clientaddform .notes');
 
-var clientAddFormSubmit       = $('.clientaddmodal .clientaddsubmit');
-var clientAddModalCloseButton = $('.clientaddmodal .closemodal');
+var clientAddFormSubmit        = $('.clientaddmodal .clientaddsubmit');
+var clientAddModalCloseButton  = $('.clientaddmodal .closemodal');
 
 var clientEditFormSubmit       = $('.clientaddmodal .clienteditsubmit');
 var clientEditModalCloseButton = $('.clientaddmodal .closeeditmodal');
-
-var clientAddModalLoadingGif  = $('.clientaddmodal .savingclient');
+var clientAddModalLoadingGif   = $('.clientaddmodal .savingclient');
 
 
 //----------------------------------------------------------------
@@ -1543,8 +1557,22 @@ function clientEditFormAJAX() {
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.text());
 
-    if (PhotoUpload.getResizedImage())  { form.append("photo",  PhotoUpload.getResizedImage());   }
-    if (PhotoUpload.getResizedAvatar()) { form.append("avatar", PhotoUpload.getResizedAvatar()); }
+    var resizedPhoto  = PhotoUpload.getResizedImage();
+    var resizedAvatar = PhotoUpload.getResizedAvatar(); 
+    var thumbsrc = $('.clientaddmodal .photothumb').attr('src');
+
+    if (typeof resizedPhoto === 'undefined'  && thumbsrc === '/app/img/defaultphoto.png')  { 
+        form.append("photo", 'empty');
+        form.append("avatar", 'empty');  
+    }
+    else if (typeof resizedPhoto === 'undefined'  && thumbsrc !== '/app/img/defaultphoto.png') {
+        form.append("photo", 'unchanged');
+        form.append("avatar", 'unchanged');
+    }
+    else {
+        form.append("photo", resizedPhoto);
+        form.append("avatar", resizedAvatar);
+    }
 
     clientid = $('.clientprofile').attr('id');
 
@@ -1571,15 +1599,15 @@ function clientEditFormAJAX() {
                 removeEditModalFooterButtons();
             },
             400: function(req, res) {
-                hideLoading();
+                ClientAdd.hideLoading();
                 ErrorModal.populateMessage(req.responseText);
             },
             401: function(req, res) {
-                hideLoading();
+                ClientAdd.hideLoading();
                 ErrorModal.populateMessage(req.responseText);
             },
             500: function(req, res) {
-                hideLoading();
+                ClientAdd.hideLoading();
                 ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
@@ -2632,146 +2660,129 @@ var resizedImage;
 var resizedAvatar;
 var orientation;
 var imgFile;
-var tags = {
-
-    // version tags
-    0x9000 : "ExifVersion",             // EXIF version
-    0xA000 : "FlashpixVersion",         // Flashpix format version
-
-    // colorspace tags
-    0xA001 : "ColorSpace",              // Color space information tag
-
-    // image configuration
-    0xA002 : "PixelXDimension",         // Valid width of meaningful image
-    0xA003 : "PixelYDimension",         // Valid height of meaningful image
-    0x9101 : "ComponentsConfiguration", // Information about channels
-    0x9102 : "CompressedBitsPerPixel",  // Compressed bits per pixel
-
-    // user information
-    0x927C : "MakerNote",               // Any desired information written by the manufacturer
-    0x9286 : "UserComment",             // Comments by user
-
-    // related file
-    0xA004 : "RelatedSoundFile",        // Name of related sound file
-
-    // date and time
-    0x9003 : "DateTimeOriginal",        // Date and time when the original image was generated
-    0x9004 : "DateTimeDigitized",       // Date and time when the image was stored digitally
-    0x9290 : "SubsecTime",              // Fractions of seconds for DateTime
-    0x9291 : "SubsecTimeOriginal",      // Fractions of seconds for DateTimeOriginal
-    0x9292 : "SubsecTimeDigitized",     // Fractions of seconds for DateTimeDigitized
-
-    // picture-taking conditions
-    0x829A : "ExposureTime",            // Exposure time (in seconds)
-    0x829D : "FNumber",                 // F number
-    0x8822 : "ExposureProgram",         // Exposure program
-    0x8824 : "SpectralSensitivity",     // Spectral sensitivity
-    0x8827 : "ISOSpeedRatings",         // ISO speed rating
-    0x8828 : "OECF",                    // Optoelectric conversion factor
-    0x9201 : "ShutterSpeedValue",       // Shutter speed
-    0x9202 : "ApertureValue",           // Lens aperture
-    0x9203 : "BrightnessValue",         // Value of brightness
-    0x9204 : "ExposureBias",            // Exposure bias
-    0x9205 : "MaxApertureValue",        // Smallest F number of lens
-    0x9206 : "SubjectDistance",         // Distance to subject in meters
-    0x9207 : "MeteringMode",            // Metering mode
-    0x9208 : "LightSource",             // Kind of light source
-    0x9209 : "Flash",                   // Flash status
-    0x9214 : "SubjectArea",             // Location and area of main subject
-    0x920A : "FocalLength",             // Focal length of the lens in mm
-    0xA20B : "FlashEnergy",             // Strobe energy in BCPS
-    0xA20C : "SpatialFrequencyResponse",    //
-    0xA20E : "FocalPlaneXResolution",   // Number of pixels in width direction per FocalPlaneResolutionUnit
-    0xA20F : "FocalPlaneYResolution",   // Number of pixels in height direction per FocalPlaneResolutionUnit
-    0xA210 : "FocalPlaneResolutionUnit",    // Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution
-    0xA214 : "SubjectLocation",         // Location of subject in image
-    0xA215 : "ExposureIndex",           // Exposure index selected on camera
-    0xA217 : "SensingMethod",           // Image sensor type
-    0xA300 : "FileSource",              // Image source (3 == DSC)
-    0xA301 : "SceneType",               // Scene type (1 == directly photographed)
-    0xA302 : "CFAPattern",              // Color filter array geometric pattern
-    0xA401 : "CustomRendered",          // Special processing
-    0xA402 : "ExposureMode",            // Exposure mode
-    0xA403 : "WhiteBalance",            // 1 = auto white balance, 2 = manual
-    0xA404 : "DigitalZoomRation",       // Digital zoom ratio
-    0xA405 : "FocalLengthIn35mmFilm",   // Equivalent foacl length assuming 35mm film camera (in mm)
-    0xA406 : "SceneCaptureType",        // Type of scene
-    0xA407 : "GainControl",             // Degree of overall image gain adjustment
-    0xA408 : "Contrast",                // Direction of contrast processing applied by camera
-    0xA409 : "Saturation",              // Direction of saturation processing applied by camera
-    0xA40A : "Sharpness",               // Direction of sharpness processing applied by camera
-    0xA40B : "DeviceSettingDescription",    //
-    0xA40C : "SubjectDistanceRange",    // Distance to subject
-
-    // other tags
-    0xA005 : "InteroperabilityIFDPointer",
-    0xA420 : "ImageUniqueID",            // Identifier assigned uniquely to each image
-
-    0x0100 : "ImageWidth",
-    0x0101 : "ImageHeight",
-    0x8769 : "ExifIFDPointer",
-    0x8825 : "GPSInfoIFDPointer",
-    0xA005 : "InteroperabilityIFDPointer",
-    0x0102 : "BitsPerSample",
-    0x0103 : "Compression",
-    0x0106 : "PhotometricInterpretation",
-    0x0112 : "Orientation",
-    0x0115 : "SamplesPerPixel",
-    0x011C : "PlanarConfiguration",
-    0x0212 : "YCbCrSubSampling",
-    0x0213 : "YCbCrPositioning",
-    0x011A : "XResolution",
-    0x011B : "YResolution",
-    0x0128 : "ResolutionUnit",
-    0x0111 : "StripOffsets",
-    0x0116 : "RowsPerStrip",
-    0x0117 : "StripByteCounts",
-    0x0201 : "JPEGInterchangeFormat",
-    0x0202 : "JPEGInterchangeFormatLength",
-    0x012D : "TransferFunction",
-    0x013E : "WhitePoint",
-    0x013F : "PrimaryChromaticities",
-    0x0211 : "YCbCrCoefficients",
-    0x0214 : "ReferenceBlackWhite",
-    0x0132 : "DateTime",
-    0x010E : "ImageDescription",
-    0x010F : "Make",
-    0x0110 : "Model",
-    0x0131 : "Software",
-    0x013B : "Artist",
-    0x8298 : "Copyright",
-    0x0000 : "GPSVersionID",
-    0x0001 : "GPSLatitudeRef",
-    0x0002 : "GPSLatitude",
-    0x0003 : "GPSLongitudeRef",
-    0x0004 : "GPSLongitude",
-    0x0005 : "GPSAltitudeRef",
-    0x0006 : "GPSAltitude",
-    0x0007 : "GPSTimeStamp",
-    0x0008 : "GPSSatellites",
-    0x0009 : "GPSStatus",
-    0x000A : "GPSMeasureMode",
-    0x000B : "GPSDOP",
-    0x000C : "GPSSpeedRef",
-    0x000D : "GPSSpeed",
-    0x000E : "GPSTrackRef",
-    0x000F : "GPSTrack",
-    0x0010 : "GPSImgDirectionRef",
-    0x0011 : "GPSImgDirection",
-    0x0012 : "GPSMapDatum",
-    0x0013 : "GPSDestLatitudeRef",
-    0x0014 : "GPSDestLatitude",
-    0x0015 : "GPSDestLongitudeRef",
-    0x0016 : "GPSDestLongitude",
-    0x0017 : "GPSDestBearingRef",
-    0x0018 : "GPSDestBearing",
-    0x0019 : "GPSDestDistanceRef",
-    0x001A : "GPSDestDistance",
-    0x001B : "GPSProcessingMethod",
-    0x001C : "GPSAreaInformation",
-    0x001D : "GPSDateStamp",
-    0x001E : "GPSDifferential"
-};
+var metaData;
+var tags = [
+    "ExifVersion",             // EXIF version
+    "FlashpixVersion",         // Flashpix format version
+    "ColorSpace",              // Color space information tag
+    "PixelXDimension",         // Valid width of meaningful image
+    "PixelYDimension",         // Valid height of meaningful image
+    "ComponentsConfiguration", // Information about channels
+    "CompressedBitsPerPixel",  // Compressed bits per pixel
+    "UserComment",             // Comments by user
+    "RelatedSoundFile",        // Name of related sound file
+    "DateTimeOriginal",        // Date and time when the original image was generated
+    "DateTimeDigitized",       // Date and time when the image was stored digitally
+    "SubsecTime",              // Fractions of seconds for DateTime
+    "SubsecTimeOriginal",      // Fractions of seconds for DateTimeOriginal
+    "SubsecTimeDigitized",     // Fractions of seconds for DateTimeDigitized
+    "ExposureTime",            // Exposure time (in seconds)
+    "FNumber",                 // F number
+    "ExposureProgram",         // Exposure program
+    "SpectralSensitivity",     // Spectral sensitivity
+    "ISOSpeedRatings",         // ISO speed rating
+    "OECF",                    // Optoelectric conversion factor
+    "ShutterSpeedValue",       // Shutter speed
+    "ApertureValue",           // Lens aperture
+    "BrightnessValue",         // Value of brightness
+    "ExposureBias",            // Exposure bias
+    "MaxApertureValue",        // Smallest F number of lens
+    "SubjectDistance",         // Distance to subject in meters
+    "MeteringMode",            // Metering mode
+    "LightSource",             // Kind of light source
+    "Flash",                   // Flash status
+    "SubjectArea",             // Location and area of main subject
+    "FocalLength",             // Focal length of the lens in mm
+    "FlashEnergy",             // Strobe energy in BCPS
+    "SpatialFrequencyResponse",
+    "FocalPlaneXResolution",   // Number of pixels in width direction per FocalPlaneResolutionUnit
+    "FocalPlaneYResolution",   // Number of pixels in height direction per FocalPlaneResolutionUnit
+    "FocalPlaneResolutionUnit",// Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution
+    "SubjectLocation",         // Location of subject in image
+    "ExposureIndex",           // Exposure index selected on camera
+    "SensingMethod",           // Image sensor type
+    "FileSource",              // Image source (3 == DSC)
+    "SceneType",               // Scene type (1 == directly photographed)
+    "CFAPattern",              // Color filter array geometric pattern
+    "CustomRendered",          // Special processing
+    "ExposureMode",            // Exposure mode
+    "WhiteBalance",            // 1 = auto white balance, 2 = manual
+    "DigitalZoomRation",       // Digital zoom ratio
+    "FocalLengthIn35mmFilm",   // Equivalent foacl length assuming 35mm film camera (in mm)
+    "SceneCaptureType",        // Type of scene
+    "GainControl",             // Degree of overall image gain adjustment
+    "Contrast",                // Direction of contrast processing applied by camera
+    "Saturation",              // Direction of saturation processing applied by camera
+    "Sharpness",               // Direction of sharpness processing applied by camera
+    "DeviceSettingDescription",    //
+    "SubjectDistanceRange",    // Distance to subject
+    "InteroperabilityIFDPointer",
+    "ImageUniqueID",            // Identifier assigned uniquely to each image
+    "ImageWidth",
+    "ImageHeight",
+    "ExifIFDPointer",
+    "GPSInfoIFDPointer",
+    "InteroperabilityIFDPointer",
+    "BitsPerSample",
+    "Compression",
+    "PhotometricInterpretation",
+    "Orientation",
+    "SamplesPerPixel",
+    "PlanarConfiguration",
+    "YCbCrSubSampling",
+    "YCbCrPositioning",
+    "XResolution",
+    "YResolution",
+    "ResolutionUnit",
+    "StripOffsets",
+    "RowsPerStrip",
+    "StripByteCounts",
+    "JPEGInterchangeFormat",
+    "JPEGInterchangeFormatLength",
+    "TransferFunction",
+    "WhitePoint",
+    "PrimaryChromaticities",
+    "YCbCrCoefficients",
+    "ReferenceBlackWhite",
+    "DateTime",
+    "ImageDescription",
+    "Make",
+    "Model",
+    "Software",
+    "Artist",
+    "Copyright",
+    "GPSVersionID",
+    "GPSLatitudeRef",
+    "GPSLatitude",
+    "GPSLongitudeRef",
+    "GPSLongitude",
+    "GPSAltitudeRef",
+    "GPSAltitude",
+    "GPSTimeStamp",
+    "GPSSatellites",
+    "GPSStatus",
+    "GPSMeasureMode",
+    "GPSDOP",
+    "GPSSpeedRef",
+    "GPSSpeed",
+    "GPSTrackRef",
+    "GPSTrack",
+    "GPSImgDirectionRef",
+    "GPSImgDirection",
+    "GPSMapDatum",
+    "GPSDestLatitudeRef",
+    "GPSDestLatitude",
+    "GPSDestLongitudeRef",
+    "GPSDestLongitude",
+    "GPSDestBearingRef",
+    "GPSDestBearing",
+    "GPSDestDistanceRef",
+    "GPSDestDistance",
+    "GPSProcessingMethod",
+    "GPSAreaInformation",
+    "GPSDateStamp",
+    "GPSDifferential"
+];
 
 //----------------------------------------------------------------
 
@@ -2826,13 +2837,11 @@ function detectFile() {
 
         // If photoWidget on Clients page. 
         if ( url === 'clients') { 
-            getExifData();
             getOrientation(orientImg, 150, true); 
         }
 
         // If photoWidget on Register page. 
         if ( url === 'register') { 
-            getExifData();
             getOrientation(orientImg, 200, false); 
         }
 
@@ -2842,15 +2851,30 @@ function detectFile() {
 function getExifData() {
 
     EXIF.getData(imgFile, function() {
-        var exifStore = [];
-        for (var prop in tags) {
-            var keys  = tags[prop];
-            var values = EXIF.getTag(imgFile, tags[prop]);
+        
+        var exifStore = {};
+
+        for(var i in tags) {
+        
+            var keys   = tags[i];
+            var values = EXIF.getTag(imgFile, keys);
+
             if(typeof values !== 'undefined') {
-                exifStore.push({ id: keys, value: values });
+
+                exifStore[keys] = values;
+
+            }
+
+            else {
+
+                exifStore[keys] = 'undefined';
+
             }
         }
+
         // YOU NOW HAVE THE DATA! SEND IT TO THE BACKEND WITH THE REQUEST AND STORE IN AN OBJECT FIELD!!!!
+        return (JSON.stringify(exifStore, undefined, 2));
+
     });
 }
 
@@ -2961,6 +2985,9 @@ function orientImg(scaleSize, avatar) {
 
     // now trigger the onload function by setting the src to your HTML5 file object (called 'file' here)
     thisImage.src = URL.createObjectURL(imgFile);
+
+    // Get and Set Meta Data.
+    metaData = getExifData();
 }
 
 // No rotate / Orentation == 1.
@@ -3025,11 +3052,21 @@ function showImage(dataURL) {
  * Get Resized Image : Globally Exposed
 *******************************************/
 function getResizedImage() {
-    return resizedImage;
+    var x = resizedImage;
+    resizedImage = undefined;
+    return x;
 }
 
 function getResizedAvatar() {
-    return resizedAvatar;
+    var y = resizedAvatar;
+    resizedAvatar = undefined;
+    return y;
+}
+
+function getMetaData() {
+    var z = metaData;
+    metaData = undefined;
+    return z;
 }
 
 
@@ -3064,7 +3101,8 @@ function getResizedAvatar() {
     return {
         getResizedImage: getResizedImage,
         getResizedAvatar: getResizedAvatar,
-        showImage: showImage
+        showImage: showImage,
+        getMetaData: getMetaData
     }
 
 })(); // END OF PHOTOUPLOAD.JS
