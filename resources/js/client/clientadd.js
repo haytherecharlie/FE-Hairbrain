@@ -60,6 +60,15 @@ clientAddModalCloseButton.click( function() {
 });
 
 /*******************************************
+ * Quick clear phone input if placeholder. 
+*******************************************/
+clientAddFormPhone.focus(function() {
+    if($(this).val() === '1(000)000-0000'){
+        $(this).val('');
+    }
+})
+
+/*******************************************
  * Doesn't Allow Form Submit on Enter Press
 *******************************************/
 $(document).keypress(":input:not(textarea)", function(event) {

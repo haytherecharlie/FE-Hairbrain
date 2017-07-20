@@ -68,14 +68,15 @@ function setComments(comments) {
 
 //---------------------------------------------------------------/
 function populateStylistProfile(req) {
+    var x = Math.floor(Math.random() * 10000);
     stylistProfile.append('' +
     '<div class="avatar"></div>' +
-    '<span class="name">'+req.name+'</span>' +
+    '<span class="name">'+name+'</span>' +
     '<span class="phone">'+req.phone+'</span>' +
     '<span class="salon">'+req.salon+'</span><hr>' +
     '<div class="ratingscontainer">Fetching Rating<img src="/app/img/loading.gif"></div>');
 
-    $('.stylistprofile .avatar').css('background', 'url('+req.avatar+') no-repeat center');
+    $('.stylistprofile .avatar').css('background', 'url('+apiurl+'user/avatar/'+userid+'?j='+x+') no-repeat center');
 }
 
 function populateStylistRating(req) {
@@ -107,7 +108,7 @@ function stylistProfileAJAX() {
     var settings = {
         "async": true,
         "crossDomain": true,
-        "url": apiurl + "profile/" + userid,
+        "url": apiurl + "user/profile/" + userid,
         "method": "GET",
         "headers": {
             "cache-control": "no-cache",

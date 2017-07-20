@@ -66,13 +66,17 @@ continueBtn.click(function() {
     var distance = -(sliderBox.width()/2 - 20);
     sliderBox.animate({
         'left': distance
-    }, 500);
+    }, 500, function() {
+        $(window).scrollTop(0);
+    });
 });
 
 backBtn.click(function() {
     sliderBox.animate({
         'left': 20
-    }, 500);
+    }, 500, function() {
+        $(window).scrollTop(0);
+    });
 });
 
 //----------------------------------------------------------------
@@ -107,52 +111,47 @@ function initialize() {
 *******************************************/
 function registerFormAJAX() {
 
-    if(keyword.val() === 'hairbeta') {
-        var form = new FormData();
-        form.append("avatar", PhotoUpload.getResizedImage());       
-        form.append("firstname", firstname.val());
-        form.append("lastname", lastname.val());
-        form.append("phone", phone.val());
-        form.append("password", password.val());        
-        form.append("email", email.val());
-        form.append("salon", salon.val());
+    var form = new FormData();
+    form.append("avatar", PhotoUpload.getResizedImage());       
+    form.append("firstname", firstname.val());
+    form.append("lastname", lastname.val());
+    form.append("phone", phone.val());
+    form.append("password", password.val());        
+    form.append("email", email.val());
+    form.append("salon", salon.val());
+    form.append("keyword", keyword.val());
 
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": apiurl + "register",
-            "method": "POST",
-            "headers": {
-                "cache-control": "no-cache",
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": apiurl + "user/register",
+        "method": "POST",
+        "headers": {
+            "cache-control": "no-cache",
+        },
+        "processData": false,
+        "contentType": false,
+        "mimeType": "multipart/form-data",
+        "data": form,
+        "statusCode": {
+            200: function(req, res) {
+                successModal.modal('show');
             },
-            "processData": false,
-            "contentType": false,
-            "mimeType": "multipart/form-data",
-            "data": form,
-            "statusCode": {
-                200: function(req, res) {
-                    successModal.modal('show');
-                },
-                400: function(req, res) {
-                    ErrorModal.populateMessage(req.responseText);
-                },
-                401: function(req, res) {
-                    ErrorModal.populateMessage(req.responseText);
-                },
-                500: function(req, res) {
-                    ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
-                }
+            400: function(req, res) {
+                ErrorModal.populateMessage(req.responseText);
+            },
+            401: function(req, res) {
+                ErrorModal.populateMessage(req.responseText);
+            },
+            500: function(req, res) {
+                ErrorModal.populateMessage('Hairbrain isn\'t working right now. Please try again later.');
             }
         }
-
-        // AJAX SETTINGS
-        $.ajax(settings)
-    } 
-    
-    //
-    else {
-        ErrorModal.populateMessage('Beta keyword incorrect.');
     }
+
+    // AJAX SETTINGS
+    $.ajax(settings)
+
 }
 
 //----------------------------------------------------------------

@@ -103,7 +103,7 @@ function loginFormAJAX() {
     var loginSettings = {
         "async": true,
         "crossDomain": true,
-        "url": apiurl + "login",
+        "url": apiurl + "user/login",
         "method": "POST",
         "headers": {
             "cache-control": "no-cache"
@@ -141,7 +141,7 @@ function checkIfAlreadyLoggedIn(jwt) {
     var loginCheckSettings = {
         "async": true,
         "crossDomain": true,
-        "url": apiurl + "check",
+        "url": apiurl + "user/check",
         "method": "GET",
         "headers": {
             "cache-control": "no-cache",
@@ -179,6 +179,10 @@ function checkIfAlreadyLoggedIn(jwt) {
  * Main Function
 *******************************************/
     var Main = (function() {
+
+        if($.cookie('jwt') && $.cookie('userid') && $.cookie('name')) {
+            checkIfAlreadyLoggedIn($.cookie('jwt'))
+        }
 
     })();
 

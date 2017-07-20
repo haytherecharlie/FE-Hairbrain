@@ -61,14 +61,11 @@ function addCCListeners() {
 function displayClients(req) {
     var x = Math.floor(Math.random() * 10000);
     for(var i in req) {
-        var listavatar;
-        if( req[i].avatar === 'no-avatar' ) listavatar = '/app/img/defaultavatar.png';
-        else listavatar = req[i].avatar;
         insertLeadingLetters(req, i);
         clientList.append('' +
             '<div class="clientcard" id="'+i+'" data-name="' + req[i].firstname + req[i].lastname + '">' +
                 '<div class="avatar">' +
-                    '<img src="' + listavatar + '">' +
+                    '<img src="'+apiurl+'client/avatar/'+userid+'/'+req[i]._id+'?j='+x+'">' +
                 '</div>' +
                 '<span class="firstname">'+req[i].firstname+'</span>' +
                 '<span class="lastname"> '+req[i].lastname+'</span>' +
