@@ -19,8 +19,8 @@ var StylistProfile = (function() {
 /*******************************************
  * Global Variables
 *******************************************/
-var stylistModal   = $('.stylistmodal');
-var stylistProfile = $('.stylistprofile');
+var stylistModal         = $('.stylistmodal');
+var stylistProfile       = $('.stylistprofile');
 
 
 //----------------------------------------------------------------
@@ -77,6 +77,7 @@ function populateStylistProfile(req) {
     '<div class="ratingscontainer">Fetching Rating<img src="/app/img/loading.gif"></div>');
 
     $('.stylistprofile .avatar').css('background', 'url('+apiurl+'user/avatar/'+userid+'?j='+x+') no-repeat center');
+    
 }
 
 function populateStylistRating(req) {

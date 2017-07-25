@@ -6,6 +6,7 @@
   "dependencies": {
     "animate.css": "latest",
     "bootstrap": "3.3.7",
+    "bootstrap-toggle": "2.2.2",
     "gulp": "latest",
     "gulp-concat": "latest",
     "gulp-sass": "latest",

@@ -397,6 +397,7 @@ gulp.task('vendor-css', function () {
         'node_modules/font-awesome/css/font-awesome.min.css',
         'node_modules/normalize-css/normalize.css',
         'node_modules/animate.css/animate.min.css',
+        'node_modules/bootstrap-toggle/css/bootstrap-toggle.min.css',
         'resources/sass/universal/base.scss'
         ])
     .pipe(concat('vendor.css'))
@@ -412,6 +413,7 @@ gulp.task('vendor-js', function() {
         'node_modules/jquery.cookie/jquery.cookie.js',
         'node_modules/jquery-validation-dist/dist/jquery.validate.js',
         'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
+        'node_modules/bootstrap-toggle/js/bootstrap-toggle.min.js',
         'resources/js/universal/images/resize.js',
         'resources/js/universal/google/analytics.js',
         'resources/js/universal/api/' + (gutil.env.api ? gutil.env.api : 'test') + 'api.js'

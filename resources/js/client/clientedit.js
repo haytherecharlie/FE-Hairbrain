@@ -34,6 +34,7 @@ var clientAddForm              = $('.clientaddmodal .clientaddform');
 var clientAddFormFirstname     = $('.clientaddmodal .clientaddform .firstname');
 var clientAddFormLastname      = $('.clientaddmodal .clientaddform .lastname');
 var clientAddFormPhone         = $('.clientaddmodal .clientaddform .phone');
+var clientAddFormFeedbackToggle = $('.clientaddmodal .clientaddform .feedbacktoggle');
 var clientAddFormNotes         = $('.clientaddmodal .clientaddform .notes');
 
 var clientAddFormSubmit        = $('.clientaddmodal .clientaddsubmit');
@@ -138,6 +139,10 @@ function clientEditFormAJAX() {
     form.append("lastname", clientAddFormLastname.val());
     form.append("phone", clientAddFormPhone.val());
     form.append("notes", clientAddFormNotes.text());
+
+    // If feedback request is made or not. 
+    if(clientAddFormFeedbackToggle.val() === "on" ) { form.append("feedback", true); } 
+    else { form.append("feedback", false); }
 
     var resizedPhoto  = PhotoUpload.getResizedImage();
     var resizedAvatar = PhotoUpload.getResizedAvatar(); 
