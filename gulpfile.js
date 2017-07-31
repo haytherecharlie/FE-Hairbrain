@@ -386,6 +386,74 @@ gulp.task('terms-custom-sass', function() {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*******************************************
+/                MISTAKE PAGE
+/******************************************/
+
+// MISTAKE CUSTOM SASS ======================
+gulp.task('schedulr-custom-sass', function() {
+    gulp.src([
+        'resources/sass/templates/schedulr.scss'
+        ])
+        .pipe(concat('schedulr.css'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./public/app/styles/'))
+});
+
+// MISTAKE CUSTOM JS ========================
+gulp.task('schedulr-custom-js', function() {
+    return gulp.src([
+        'resources/js/templates/schedulr.js'
+        ])
+    .pipe(sourcemaps.init())
+    .pipe(concat('schedulr.js'))
+    .pipe(gutil.env.api === 'prod' ? uglify() : gutil.noop())    // uglify with '--api prod'
+    .pipe(gulp.dest('./public/app/js/'))
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*******************************************
 /                VENDOR
 /******************************************/
@@ -394,10 +462,11 @@ gulp.task('terms-custom-sass', function() {
 gulp.task('vendor-css', function () {
     gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/bootstrap-toggle/css/bootstrap-toggle.min.css',
+        'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css',
         'node_modules/font-awesome/css/font-awesome.min.css',
         'node_modules/normalize-css/normalize.css',
         'node_modules/animate.css/animate.min.css',
-        'node_modules/bootstrap-toggle/css/bootstrap-toggle.min.css',
         'resources/sass/universal/base.scss'
         ])
     .pipe(concat('vendor.css'))
@@ -409,11 +478,12 @@ gulp.task('vendor-js', function() {
     return gulp.src([
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js',
+        'node_modules/bootstrap-toggle/js/bootstrap-toggle.min.js',
+        'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
         'node_modules/moment/moment.js',
         'node_modules/jquery.cookie/jquery.cookie.js',
         'node_modules/jquery-validation-dist/dist/jquery.validate.js',
         'node_modules/jquery-mask-plugin/dist/jquery.mask.min.js',
-        'node_modules/bootstrap-toggle/js/bootstrap-toggle.min.js',
         'resources/js/universal/images/resize.js',
         'resources/js/universal/google/analytics.js',
         'resources/js/universal/api/' + (gutil.env.api ? gutil.env.api : 'test') + 'api.js'
@@ -453,6 +523,7 @@ gulp.task('default', [
     'tutorials-custom-sass', 'tutorials-custom-js',
     'mistake-custom-sass',   'mistake-custom-js',
     'privacy-custom-sass',   'terms-custom-sass',
+    'schedulr-custom-sass',  'schedulr-custom-js',
     'vendor-css',            'vendor-js',
 ]);
 

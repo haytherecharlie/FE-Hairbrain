@@ -1,0 +1,80 @@
+body {
+    padding: 0;
+    background: blue;
+}
+.schedulrwidget {
+    height: 100vw;
+    background: rgba(255, 255, 255, 1);
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    .datepicker {
+        width: 100vw;
+        max-width: 500px;
+        height: 100vw;
+        max-height: 500px;
+        overflow: hidden;
+        padding: 0;
+        display: block;
+        margin: auto;
+
+        .datepicker-days {
+            height: 100%;
+
+            table.table-condensed {
+                width: 100%;
+                height: 100%;
+
+                thead {
+
+                    th.prev {
+                        font-size: 20px;
+                    }
+                    th.datepicker-switch {
+                        font-size: 20px;
+                        font-family: hb-black;
+                        color: #ff2353;
+                    }
+                    th.next {
+                        font-size: 20px;
+                    }
+                    th.dow {
+                        font-size: 2.5vw;
+                    }
+                }
+
+                tbody {
+
+                    td.day {
+                        font-family: hb-black;
+                        font-size: 2.5vw;
+                        width: calc(100% / 7);
+                        height: calc(100% / 6);
+
+                        &.today {
+                            background: #f5f5f5;
+                        }
+                        &.old {
+                            visibility: hidden;
+                        }
+
+                        &.new {
+                            visibility: hidden;
+                        }
+
+                        &.active {
+                            background: #ff2353;
+                            border-radius: 50%;
+                        }
+
+                        &.disabled {
+                            color: #999;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
