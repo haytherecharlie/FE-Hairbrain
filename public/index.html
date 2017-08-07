@@ -29,22 +29,92 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="/app/favicon/favicon-16x16.png">
 	<link rel="manifest" href="/app/favicon/manifest.json">
 
-<style>
-    body {
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
-        background: url('/app/img/hairbrain.svg') no-repeat center;
-        background-size: contain;
-    }
-</style>
+	<!-- VENDOR STYLESHEET -->
+	<link rel="stylesheet" type="text/css" href="/app/styles/vendor.css">
 
+	<!-- CUSTOM STYLESHEET -->
+	<link rel="stylesheet" type="text/css" href="/app/styles/learn/about.css">
 
 </head>
 
-<body>
+<!-- ABOUT PAGE -->
+<body class="aboutpage">
 
+    <!-- HEADER NAV/MENU -->
+    <header class="navmenu"></header>
 
+    <!-- BANNER -->
+    <div class="banner">
+
+        <!-- CALL TO ACTION --> 
+        <div class="cta">
+            <span>
+                <img src="/app/img/scissors.png">
+                <b class="reinventing">REINVENTING</b>
+                <b class="haircuts">YOUR STYLE</b>
+                <p>HAIRBRAIN IS AN APP MADE<br>
+                FOR HAIR PROFESSIONALS.</p>
+                <a href="/login/" class="download">LOGIN NOW</a>
+            </span>
+        </div>
+
+        <!--PROMO IPHONE -->
+        <div class="promo">
+             <img class="phonead" src="/app/img/phones.png"> 
+        </div>
+
+    </div>
+
+    <!-- MAPS INFO BOX -->
+    <div class="infobox">
+
+        <!-- TITLE -->
+        <span class="title">MANAGE YOUR CLIENTS IN A SNAP</span>
+
+        <!-- DESCRIPTION -->
+        <p class="description">
+            With hairbrain it's easy to keep track of your clients, 
+            simply save their profile, snap a pic, and write notes about them.<br><br>
+            The next time they visit you'll remember everything!
+        </p>
+
+        <!-- VIDEO PLAYER -->
+        <video class="hbvid" poster="/app/img/videothumb.png" controls>
+            <source src="/app/video/hbvid.mp4" type="video/mp4">
+        </video>
+
+        <!-- DESCRIPTION -->
+        <p class="description">
+            After their visit, your clients will recieve a text message 
+            asking for feedback on their experience. <br><br>
+            You'll know  who left happy, and where you can improve in 
+            the future. 
+        </p>
+
+    </div>
+
+    <div class="stylistbox">
+        <span class="title">WANT TO JOIN THE BETA?</span>
+        
+        <p class="tagline">
+            BE THE FIRST TO TRY OUT HAIRBRAIN.
+        </p>
+        
+        <p class="description">
+            Click the link below and ask for a beta key,<br>
+            we'll get back to you within 24 hours. 
+        </p>
+        <a class="download" href="/contact/">GET IN TOUCH</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footerlinks"></footer>
 </body>
+
+	<!-- VENDOR JS -->
+	<script type="text/javascript" src="/app/js/vendor.js"></script>
+
+	<!-- APP JS -->
+	<script type="text/javascript" src="/app/js/learn/about.js"></script>
 
 </html>
